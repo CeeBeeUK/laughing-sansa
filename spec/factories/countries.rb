@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :country do
-    name "MyString"
-    image_path "MyString"
+    name 'United Kingdom'
+    image_path nil
   end
 end

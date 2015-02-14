@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150207175526) do
     t.string   "image"
     t.string   "provider"
     t.string   "uid"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
