@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20150207175526) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
-    t.string   "image_path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
