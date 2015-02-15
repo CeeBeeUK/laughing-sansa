@@ -21,11 +21,10 @@ html[lang="en"]
             h1 Bruce-Burton Eurovision
           section.right.tab-bar-section
             - if user_signed_in?
-              .right-small
-                =link_to destroy_session_path, :method => :delete do
-                  img src=current_user.image
+              =link_to destroy_session_path, :method => :delete do
+                img src=current_user.image
             - else
-              = link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
+              = link_to 'Google sign in', user_omniauth_authorize_path(:google_oauth2)
         nav.left-off-canvas-menu
           ul.off-canvas-list
             li

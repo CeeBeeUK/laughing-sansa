@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe CountriesController, :type => :controller do
 
+  include Devise::TestHelpers
+
+
   let(:valid_attributes) {
     { name: 'United Kingdom'}
   }
@@ -12,11 +15,14 @@ RSpec.describe CountriesController, :type => :controller do
 
   let(:valid_session) { {} }
 
+  let(:user) { FactoryGirl.create :user }
+  let(:admin_user) { FactoryGirl.create :admin_user }
+  
   describe 'GET index' do
     it 'assigns all countries as @countries' do
       country = Country.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:countries).last).to eq(country)
+      expect(assigns(:countries)).to include(country)
     end
   end
 
