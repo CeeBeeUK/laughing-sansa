@@ -3,6 +3,5 @@
 FactoryGirl.define do
   factory :country do
     name 'United Kingdom'
-    image_path nil
   end
 end
