@@ -3,16 +3,13 @@ class Country < ActiveRecord::Base
   validates :name, presence: true
 
   def small_image
-    "assets/#{get_image_path}.png"
+    "assets/32/#{get_image_path}.png"
   end
 
   def large_image
-    "assets/#{get_image_path}_lrg.png"
+    "assets/64/#{get_image_path}.png"
   end
 
-  def disabled_image
-    "assets/#{get_image_path}_lrg_bw.png"
-  end
 
   private
 
