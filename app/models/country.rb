@@ -1,5 +1,7 @@
 class Country < ActiveRecord::Base
 
+  scope :sorted, -> { all.order(:name) }
+
   validates :name, presence: true
 
   def small_image

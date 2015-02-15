@@ -3,7 +3,7 @@ class CountriesController < ApplicationController
   respond_to :html
 
   def index
-    @countries = Country.all
+    @countries = Country.sorted
     respond_with(@countries)
   end
 
