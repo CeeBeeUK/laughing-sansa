@@ -3,7 +3,10 @@ p#notice = notice
 p
   strong Name:
   = @country.name
-
+  img { src=@country.small_image }
+  img { src=@country.large_image }
+  img { src=@country.xl_image }
+  img { src=@country.disabled_image }
 = link_to 'Edit', edit_country_path(@country)
 '|
 = link_to 'Back', countries_path
