@@ -1,3 +1,21 @@
 // Place all the styles related to the countries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul.countries {
+  li {
+    display:block;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    vertical-align: middle;
+    img {
+      float:left;
+      margin: .5rem;
+    }
+    i {
+      float:left;
+      margin:.5rem;
+    }
+  }
+}

@@ -8,6 +8,39 @@ RSpec.describe Country, :type => :model do
   it 'should pass factory build' do
       expect(country).to be_valid
   end
+
+  context 'with no image set' do
+    it 'should return a small image path from the country name' do
+      expect(country.small_image).to eql('assets/united_kingdom.png')
+    end
+
+    it 'should return a large image path from the country name' do
+      expect(country.large_image).to eql('assets/united_kingdom_lrg.png')
+    end
+
+    context 'requesting disabled badge' do
+      it 'should return a b&w large image from the country name' do
+        expect(country.disabled_image).to eql('assets/united_kingdom_lrg_bw.png')
+      end
+    end
+  end
+
+  context 'with image path set' do
+    before(:each) { country.image_path = 'country' }
+
+    it 'should return a small path' do
+      expect(country.small_image).to eql('assets/country.png')
+    end
+    it 'should return a large path' do
+      expect(country.large_image).to eql('assets/country_lrg.png')
+    end
+    context 'requesting disabled badge' do
+      it 'should return a b&w large image from the country name' do
+        expect(country.disabled_image).to eql('assets/country_lrg_bw.png')
+      end
+    end
+  end
+
   describe 'validations' do
     it 'should have a name' do
       country.name = nil
