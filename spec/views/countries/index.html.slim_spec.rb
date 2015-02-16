@@ -11,6 +11,6 @@ RSpec.describe 'countries/index', :type => :view do
   it 'renders a list of countries' do
     render
     assert_select 'li>div.name', :text => 'New Country'.to_s, :count => 1
-    assert_select 'li>div.name', :count => 3
+    assert_select 'li>ul>li.name', :count => 2
   end
 end
