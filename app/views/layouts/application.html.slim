@@ -19,12 +19,13 @@ html[lang="en"]
                 span
           section.middle.tab-bar-section
             h1 Bruce-Burton Eurovision
-          section.right.tab-bar-section
+          section.right-small.tab-bar-section
             - if user_signed_in?
               =link_to destroy_session_path, :method => :delete do
                 img src=current_user.image
             - else
-              = link_to 'Google sign in', user_omniauth_authorize_path(:google_oauth2)
+              = link_to user_omniauth_authorize_path(:google_oauth2)
+                i.fi-social-google-plus.login-icon
         nav.left-off-canvas-menu
           ul.off-canvas-list
             li
