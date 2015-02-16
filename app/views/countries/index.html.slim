@@ -9,11 +9,14 @@ ul.countries
     end
   -@countries.each do |c|
     li
-      .flag
-        img { src= c.large_image }
-      .name
-         =c.name
-      .actions
-        = link_to 'Show', c
-        = link_to 'Edit', edit_country_path(c)
-        = link_to 'Destroy', c, data: {:confirm => 'Are you sure?'}, :method => :delete
+      ul.small-block-grid-5
+        li.flag
+          img { src= c.large_image }
+        li.name
+          =c.name
+        li
+          = link_to 'Show', c
+        li
+          = link_to 'Edit', edit_country_path(c)
+        li
+          = link_to 'Destroy', c, data: {:confirm => 'Are you sure?'}, :method => :delete
