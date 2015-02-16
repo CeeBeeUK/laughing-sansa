@@ -21,7 +21,7 @@ html[lang="en"]
             h1 Bruce-Burton Eurovision
           section.right-small.tab-bar-section
             - if user_signed_in?
-              =link_to destroy_session_path, :method => :delete do
+              =link_to '#' do
                 img src=current_user.image
             - else
               = link_to user_omniauth_authorize_path(:google_oauth2)
@@ -36,6 +36,9 @@ html[lang="en"]
                   |admin functions
               li
                 =link_to 'Countries', countries_path
+            -if current_user.present?
+              li
+                =link_to 'Sign out', destroy_session_path, :method => :delete
         /.row
         /=render 'layouts/toolbar'
         .row
