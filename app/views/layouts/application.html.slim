@@ -38,7 +38,9 @@ html[lang="en"]
                 =link_to 'Countries', countries_path
             -if current_user.present?
               li
-                =link_to 'Sign out', destroy_session_path, :method => :delete
+                =link_to destroy_session_path, :method => :delete do
+                  |Sign out
+                  i.fi-power
         /.row
         /=render 'layouts/toolbar'
         .row
