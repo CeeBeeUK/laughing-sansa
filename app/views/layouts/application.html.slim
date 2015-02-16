@@ -11,7 +11,7 @@ html[lang="en"]
     = csrf_meta_tags
   body
     .off-canvas-wrap data-offcanvas=''
-      .inner-wrap
+      .inner-wrap#content
         nav.tab-bar
           - if user_signed_in?
             section.left-small

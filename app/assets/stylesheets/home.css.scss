@@ -2,6 +2,10 @@
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#content {
+	height: 100vh;
+}
+
 .login-icon {
   color:red;
   font-size: 30px;
