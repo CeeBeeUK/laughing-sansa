@@ -5,6 +5,7 @@ RSpec.describe "layouts/application.html.slim", :type => :view do
   include Devise::TestHelpers
 
   let(:user) { FactoryGirl.create :user }
+  let(:admin) { FactoryGirl.create :admin_user }
 
   context 'all visitors' do
     it 'should have access to an off canvas menu' do
@@ -19,7 +20,21 @@ RSpec.describe "layouts/application.html.slim", :type => :view do
       sign_in user
       render
       assert_select 'nav.left-off-canvas-menu>ul.off-canvas-list>li>a', text: 'Sign out', :count => 1
-
+    end
+  end
+  context 'signed in admin' do
+    before(:each) { sign_in admin }
+    it 'should have a sign out option' do
+      render
+      assert_select 'nav.left-off-canvas-menu>ul.off-canvas-list>li>a', text: 'Sign out', :count => 1
+    end
+    it 'should have an admin header' do
+      render
+      assert_select 'nav.left-off-canvas-menu>ul.off-canvas-list>li>label', text: 'Admin functions', :count => 1
+    end
+    it 'should have a link to maintain countries' do
+      render
+      assert_select 'nav.left-off-canvas-menu>ul.off-canvas-list>li>a', text: 'Countries', :count => 1
     end
   end
 end

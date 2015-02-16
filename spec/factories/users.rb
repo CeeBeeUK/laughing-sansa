@@ -4,7 +4,7 @@ FactoryGirl.define do
     sequence(:email){|n| "user#{n}@example.com" }
     factory :admin_user do
       role 'admin'
-      email 'admin@example.com'
+      sequence(:email){|n| "admin#{n}@example.com" }
     end
   end
 end
