@@ -2,21 +2,18 @@ h1 Listing countries
 
 ul.countries
   li
-    .flag
-      i.fi-plus
-    .name
-      = link_to 'New Country', new_country_path
-    end
+    = link_to new_country_path do
+      i.fi-plus.pad-right
+      span New Country
   -@countries.each do |c|
     li
-      ul.small-block-grid-5
-        li.flag
-          img { src= c.large_image }
-        li.name
+      = link_to c do
+        img { src= c.large_image }
+        span.name
           =c.name
-        li
-          = link_to 'Show', c
-        li
-          = link_to 'Edit', edit_country_path(c)
-        li
-          = link_to 'Destroy', c, data: {:confirm => 'Are you sure?'}, :method => :delete
+      span
+        = link_to edit_country_path(c)
+          i.fi-pencil.pad-left-large
+      span
+        = link_to c, data: {:confirm => 'Are you sure?'}, :method => :delete do
+          i.fi-x.pad-left-large

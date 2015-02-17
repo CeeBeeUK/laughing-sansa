@@ -3,19 +3,29 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 ul.countries {
+  li:nth-child(odd)		{ background-color:#eee; }
+    li:nth-child(even)	{ background-color:#fff; }
   li {
     display:block;
     border: 1px solid black;
     border-radius: 10px;
     overflow: hidden;
     vertical-align: middle;
-    img {
-      float:left;
-      margin: .5rem;
+    padding:0.5rem;
+    margin-bottom: 0.25rem;
+    span.name {
+      padding:0 0.25rem;
+      width: 10rem;
+      display: inline-block;
     }
     i {
-      float:left;
-      margin:.5rem;
+      font-size: larger;
+    }
+    .pad-right {
+      padding-right: 0.5rem;
+    }
+    .pad-left-large {
+      padding-left: 1rem;
     }
   }
 }
