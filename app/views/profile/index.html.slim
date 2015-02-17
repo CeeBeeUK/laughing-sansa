@@ -1,13 +1,17 @@
-h2
-  =current_user.name
+h2 My Profile
 
-label Name
-.value
-  =current_user.name
-label email
-.value
-  =current_user.email
-
-label Image
-.value
-  img src=current_user.image
+.row
+  .columns.small-10.large-12
+    #name
+      span.profile-label Name:
+      =current_user.name
+.row
+  .columns.small-10.large-12
+    #email
+      span.profile-label Email:
+      =current_user.email
+.row
+  .columns.small-10.large-12
+    #image
+      span.profile-label Image:
+      img src=current_user.image
