@@ -21,7 +21,7 @@ html[lang="en"]
             h1 Bruce-Burton Eurovision
           section.right-small.tab-bar-section
             - if user_signed_in?
-              =link_to '#' do
+              =link_to my_profile_path do
                 img src=current_user.image
             - else
               = link_to user_omniauth_authorize_path(:google_oauth2)
