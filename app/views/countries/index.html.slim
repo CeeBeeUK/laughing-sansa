@@ -1,4 +1,9 @@
-h1 Listing countries
+ul.breadcrumbs
+  li
+    =link_to 'Home', root_path
+  li.current
+    =link_to 'Countries', countries_path
+h1 Qualifiying countries
 
 ul.countries
   li
@@ -13,7 +18,4 @@ ul.countries
           =c.name
       span
         = link_to edit_country_path(c)
-          i.fi-pencil.pad-left-large
-      span
-        = link_to c, data: {:confirm => 'Are you sure?'}, :method => :delete do
-          i.fi-x.pad-left-large
+          i.fi-pencil.pad-left-large.push-right

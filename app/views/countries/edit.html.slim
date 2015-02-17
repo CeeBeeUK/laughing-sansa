@@ -1,8 +1,14 @@
-h1 Editing country
+ul.breadcrumbs
+  li
+    =link_to 'Home', root_path
+  li
+    =link_to 'Countries', countries_path
+  li
+    =link_to @country.name, @country
+  li.current
+    =link_to 'Editing', edit_country_path(@country)
+h2 Editing country
 
 == render 'form'
 
-= link_to 'Show', @country
-'|
-= link_to 'Back', countries_path
-
+= link_to 'Back to list', countries_path

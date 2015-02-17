@@ -15,7 +15,6 @@ ul.countries {
     margin-bottom: 0.25rem;
     span.name {
       padding:0 0.25rem;
-      width: 10rem;
       display: inline-block;
     }
     i {
@@ -24,8 +23,8 @@ ul.countries {
     .pad-right {
       padding-right: 0.5rem;
     }
-    .pad-left-large {
-      padding-left: 1rem;
+    .push-right {
+      float:right;
     }
   }
 }

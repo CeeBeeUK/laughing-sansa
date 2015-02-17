@@ -1,12 +1,20 @@
-p#notice = notice
+ul.breadcrumbs
+  li
+    =link_to 'Home', root_path
+  li
+    =link_to 'Countries', countries_path
+  li.current
+    =link_to @country.name, @country
+h2
+  |Name: #{@country.name}
+  =link_to edit_country_path(@country)
+    i.fi-pencil.pad-left-large
 
-p
-  strong Name:
-  = @country.name
+h3 Flags:
+#flags
   img { src=@country.small_image }
   img { src=@country.large_image }
   img { src=@country.xl_image }
   img { src=@country.disabled_image }
-= link_to 'Edit', edit_country_path(@country)
-'|
-= link_to 'Back', countries_path
+
+= link_to 'Back to list', countries_path
