@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'my_profile', to: 'profile#index'
+
   devise_for :users, controllers: {
     omniauth_callbacks:'users/omniauth_callbacks'
   }
