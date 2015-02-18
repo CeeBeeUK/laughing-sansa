@@ -18,7 +18,9 @@ html[lang="en"]
               a.left-off-canvas-toggle.menu-icon
                 span
           section.middle.tab-bar-section
-            h1 Bruce-Burton Eurovision
+            h1 
+              img src='/assets/eurovisionplaque-small.png'
+              |Bruce-Burton Eurovision
           section.right-small.tab-bar-section
             - if user_signed_in?
               =link_to my_profile_path do
