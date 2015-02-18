@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :events
+
   get 'my_profile', to: 'profile#index'
 
   devise_for :users, controllers: {

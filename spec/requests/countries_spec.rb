@@ -25,6 +25,5 @@ RSpec.describe "Countries", :type => :request do
       get countries_path
       expect(response.status).to eql(200)
     end
-
   end
 end
