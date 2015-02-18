@@ -3,8 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 ul.countries {
+  margin-left:0;
   li:nth-child(odd)		{ background-color:#eee; }
-    li:nth-child(even)	{ background-color:#fff; }
+  li:nth-child(even)	{ background-color:#fff; }
   li {
     display:block;
     border: 1px solid black;
