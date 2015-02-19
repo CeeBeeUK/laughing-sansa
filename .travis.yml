@@ -1,0 +1,27 @@
+language: ruby
+rvm:
+- 2.1.5
+before_install:
+- sudo apt-get update -qq
+before_script:
+- psql -c 'create role euro login createdb;' -U postgres
+addons:
+  postgresql: 9.3
+#  code_climate:
+#    repo_token:
+script:
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rake db:seed
+- bundle exec rake spec
+deploy:
+  provider: heroku
+  api_key:
+    secure: X/uNAA1qEZxyb94ks05W7MhgRGXkIDMAO2UyGhhs5ZoUFGmUycKVBjk4IJenEjd0/9zJnJCHGN/BKjtM15EnRcl+tcJgwW/A81TkXTX26D3T5CAHxYGJ1Xcioe4kyAXOcYOoxEOqa+IA6JMDvDPmHQkz8Fy0rjeiA/9NSuU7+OA=
+  app: laughing-sansa
+  on:
+    repo: CeeBeeUK/laughing-sansa
+  run:
+  - "rake db:migrate"
+  - "rake db:seed"
+  
