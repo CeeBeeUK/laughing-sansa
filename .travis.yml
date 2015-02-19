@@ -24,4 +24,3 @@ deploy:
   run:
   - "rake db:migrate"
   - "rake db:seed"
-  
