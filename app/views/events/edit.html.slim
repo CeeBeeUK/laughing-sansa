@@ -1,8 +1,12 @@
+ul.breadcrumbs
+  li
+    =link_to 'Home', root_path
+  li
+    =link_to 'Events', events_path
+  li
+    =link_to @event.display_name, @event
+  li.current
+    =link_to 'Editing', edit_country_path(@event)
 h1 Editing event
 
 == render 'form'
-
-= link_to 'Show', @event
-'|
-= link_to 'Back', events_path
-

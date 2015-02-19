@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   respond_to :html
 
   def index
-    @events = Event.all
+    @events = Event.last_to_first
     respond_with(@events)
   end
 

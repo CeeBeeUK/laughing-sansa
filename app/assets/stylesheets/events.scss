@@ -1,3 +1,43 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul.events {
+  margin-left: 0;
+  li:nth-child(odd) {
+    background-color: #eee;
+  }
+  li:nth-child(even) {
+    background-color: #fff;
+  }
+  li {
+    display: block;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    vertical-align: middle;
+    padding: 0.5rem;
+    margin-bottom: 0.25rem;
+    .host-flag img {
+      margin: .5em;
+      vertical-align: middle;
+      float: left;
+    }
+    .result {
+      vertical-align: middle;
+    }
+    .host-details {
+      font-weight: bold;
+      .host-city {
+        margin-right: .25rem;
+      }
+    }
+    .pad-right {
+      padding-right: 0.5rem;
+    }
+    .push-right {
+      float:right;
+    }
+
+  }
+}

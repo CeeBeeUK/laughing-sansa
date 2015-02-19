@@ -1,27 +1,33 @@
-h1 Listing events
+ul.breadcrumbs
+  li
+    =link_to 'Home', root_path
+  li.current
+    =link_to 'Events', events_path
+h2 Listing events
 
-table
-  thead
-    tr
-      th Year
-      th Host city
-      th Active
-      th Country
-      th
-      th
-      th
-
-  tbody
-    - @events.each do |event|
-      tr
-        td = event.year
-        td = event.host_city
-        td = event.active
-        td = event.country
-        td = link_to 'Show', event
-        td = link_to 'Edit', edit_event_path(event)
-        td = link_to 'Destroy', event, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Event', new_event_path
+ul.events
+  -if current_user.admin?
+    li
+      = link_to new_event_path do
+        i.fi-plus.pad-right
+        span New event
+  - @events.each do |event|
+    li
+      =link_to event do
+        .host-flag
+          img src=event.country.xl_image
+        .result
+          .host-details
+            span.host-city =event.host_city
+            span.year =event.year
+          .winner
+            |Won by
+            span.winner-country <insert real winner country>
+            | (
+            span.winner-player <insert player>
+            |)
+          .home
+            |Home Champion was
+            span.home-champion <insert home champion player>
+            |with
+            span.home-champion-country <insert home champion country>
