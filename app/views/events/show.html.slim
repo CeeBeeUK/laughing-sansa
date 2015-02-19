@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Year:
+  = @event.year
+p
+  strong Host city:
+  = @event.host_city
+p
+  strong Active:
+  = @event.active
+p
+  strong Country:
+  = @event.country
+
+= link_to 'Edit', edit_event_path(@event)
+'|
+= link_to 'Back', events_path

@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :event do
-    year "2015"
+    sequence(:year)
+    host_city 'london'
+    active false
     country_id 1
-    host_city "London"
   end
 
 end
