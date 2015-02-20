@@ -1,28 +1,34 @@
 require 'rails_helper'
 
-RSpec.describe "events/index", type: :view do
+RSpec.describe 'events/index', type: :view do
+
+  include Devise::TestHelpers
+
+  let(:user) { FactoryGirl.create :user }
+
   before(:each) do
+    country = FactoryGirl.create :country
     assign(:events, [
       Event.create!(
         :year => 2010,
-        :host_city => "Host City",
+        :host_city => 'Host City',
         :active => false,
-        :country_id => 1
+        :country => country
       ),
       Event.create!(
         :year => 2011,
-        :host_city => "Host City",
+        :host_city => 'Host City',
         :active => false,
-        :country_id => 2
+        country: country
       )
     ])
   end
 
-  it "renders a list of events" do
+  it 'renders a list of events' do
+    sign_in user
     render
-    assert_select "tr>td", :text => 2010.to_s, :count => 1
-    assert_select "tr>td", :text => 2011.to_s, :count => 1
-    assert_select "tr>td", :text => "Host City".to_s, :count => 2
-    assert_select "tr>td", :text => false.to_s, :count => 2
+    assert_select 'li span.year', :text => 2010.to_s, :count => 1
+    assert_select 'li span.year', :text => 2011.to_s, :count => 1
+    assert_select 'li span.host-city', :text => 'Host City'.to_s, :count => 2
   end
 end

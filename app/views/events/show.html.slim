@@ -1,18 +1,17 @@
-p#notice = notice
+ul.breadcrumbs
+  li
+    =link_to 'Home', root_path
+  li
+    =link_to 'Events', events_path
+  li.current
+    =link_to @event.display_name, @event
+h2
+  =@event.display_name
+  -if current_user.admin?
+    =link_to edit_event_path(@event)
+      i.fi-pencil.pad-left-large
 
-p
-  strong Year:
-  = @event.year
-p
-  strong Host city:
-  = @event.host_city
-p
-  strong Active:
-  = @event.active
 p
   strong Country:
-  = @event.country
-
-= link_to 'Edit', edit_event_path(@event)
-'|
-= link_to 'Back', events_path
+  = @event.country.name
+  img src= @event.country.large_image
