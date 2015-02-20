@@ -276,8 +276,9 @@ Devise.setup do |config|
     {
       scope: 'email, profile',
       prompt: 'select_account',
-      :image_aspect_ratio => "square",
-      :image_size => 25
+      access_type: 'online',
+      image_aspect_ratio: "square",
+      image_size: 25
     }
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
