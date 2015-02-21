@@ -15,3 +15,20 @@ p
   strong Country:
   = @event.country.name
   img src= @event.country.large_image
+
+p
+  strong Participating countries: 
+  =@event.participating_countries.count
+
+table
+  tr
+    th Country
+    th Final score
+    th Player
+    th Home Score
+  -@event.participating_countries.each do |c|
+    tr
+      td =c.country.name
+      td =c.real_final_score
+      td =c.player.name
+      td =c.home_final_score

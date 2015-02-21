@@ -1,0 +1,15 @@
+class CreateParticipatingCountries < ActiveRecord::Migration
+  def change
+    create_table :participating_countries do |t|
+      t.references :country, index: true
+      t.references :event, index: true
+      t.integer :sequence
+      t.references :player, references: :users, index: true
+      t.integer :real_final_score
+      t.integer :home_final_score
+
+      t.timestamps
+    end
+    add_index(:participating_countries, [:country_id, :event_id, :player_id], unique: true, name: 'unique_player_and_country_for_event')
+  end
+end
