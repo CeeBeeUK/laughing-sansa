@@ -11,7 +11,7 @@
     = f.number_field :year
   .field
     = f.label :country
-    = f.collection_select :country_id, Country.sorted_by_name, :id, :name, prompt: true
+    = f.collection_select :country_id, @countries, :id, :name, prompt: true
   .field
     = f.label :host_city
     = f.text_field :host_city

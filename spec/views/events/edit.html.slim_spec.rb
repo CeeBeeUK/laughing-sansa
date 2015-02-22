@@ -8,6 +8,10 @@ RSpec.describe "events/edit", type: :view do
       :active => false,
       :country_id => 1
     ))
+    assign(:countries, [
+                         Country.create(name: 'country 1'),
+                         Country.create(name: 'country 2')
+                     ])
   end
 
   it "renders the edit event form" do
