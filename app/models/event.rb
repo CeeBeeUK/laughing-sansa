@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :country
+  has_many :participating_countries
   validates :year, :country_id, :host_city, presence: true
   validates :year, uniqueness: true
 

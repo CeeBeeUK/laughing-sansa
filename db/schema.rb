@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218225917) do
+ActiveRecord::Schema.define(version: 20150220233724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,23 @@ ActiveRecord::Schema.define(version: 20150218225917) do
   end
 
   add_index "events", ["country_id"], name: "index_events_on_country_id", using: :btree
+
+  create_table "participating_countries", force: true do |t|
+    t.integer  "country_id"
+    t.integer  "event_id"
+    t.integer  "sequence"
+    t.integer  "player_id"
+    t.integer  "real_final_score"
+    t.integer  "home_final_score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "participating_countries", ["country_id", "event_id", "player_id"], name: "unique_player_and_country_for_event", unique: true, using: :btree
+  add_index "participating_countries", ["country_id"], name: "index_participating_countries_on_country_id", using: :btree
+  add_index "participating_countries", ["event_id", "sequence"], name: "unique_sequence_for_event", unique: true, using: :btree
+  add_index "participating_countries", ["event_id"], name: "index_participating_countries_on_event_id", using: :btree
+  add_index "participating_countries", ["player_id"], name: "index_participating_countries_on_player_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
