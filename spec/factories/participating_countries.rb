@@ -1,11 +1,10 @@
 FactoryGirl.define do
   factory :participating_country do
-    country nil
-event nil
-sequence 1
-user nil
-real_final_score 1
-home_final_score 1
+    country
+    event
+    add_attribute :sequence, 1
+    association :player, factory: 'user'
+    real_final_score nil
+    home_final_score nil
   end
-
 end

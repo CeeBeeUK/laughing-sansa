@@ -10,6 +10,7 @@ class CreateParticipatingCountries < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index(:participating_countries, [:country_id, :event_id, :player_id], unique: true, name: 'unique_player_and_country_for_event')
+    add_index(:participating_countries, [:country_id, :event_id], unique: true, name: 'unique_country_for_event')
+    add_index(:participating_countries, [:event_id, :sequence], unique: true, name: 'unique_sequence_for_event')
   end
 end

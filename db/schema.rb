@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150220233724) do
 
   add_index "participating_countries", ["country_id", "event_id", "player_id"], name: "unique_player_and_country_for_event", unique: true, using: :btree
   add_index "participating_countries", ["country_id"], name: "index_participating_countries_on_country_id", using: :btree
+  add_index "participating_countries", ["event_id", "sequence"], name: "unique_sequence_for_event", unique: true, using: :btree
   add_index "participating_countries", ["event_id"], name: "index_participating_countries_on_event_id", using: :btree
   add_index "participating_countries", ["player_id"], name: "index_participating_countries_on_player_id", using: :btree
 
