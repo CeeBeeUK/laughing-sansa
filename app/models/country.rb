@@ -1,6 +1,6 @@
 class Country < ActiveRecord::Base
 
-  scope :sorted, -> { all.order(:name) }
+  scope :sorted_by_name, -> { all.order(:name) }
 
   validates :name, presence: true
 

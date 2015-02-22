@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   load_and_authorize_resource
 
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :get_countries, only: [:new, :edit, :create, :update]
   respond_to :html
 
   def index
@@ -38,12 +39,16 @@ class EventsController < ApplicationController
     respond_with(@event)
   end
 
-  private
-    def set_event
-      @event = Event.find(params[:id])
-    end
+private
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
-    def event_params
-      params.require(:event).permit(:year, :host_city, :active, :country_id)
-    end
+  def get_countries
+    @countries = Country.sorted_by_name
+  end
+
+  def event_params
+    params.require(:event).permit(:year, :host_city, :active, :country_id)
+  end
 end

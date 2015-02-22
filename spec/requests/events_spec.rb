@@ -31,17 +31,24 @@ RSpec.describe 'Events', type: :request do
       get new_event_path
       expect(response.status).to eql(302)
     end
+    context 'valid user' do
 
-    it 'should return 200 when authenticated' do
-      login_as(user, :scope => :user)
-      get new_event_path
-      expect(response.status).to eql(302)
-    end
+      let(:countries) {assign(:countries, [
+                                            Country.create(name: 'country 1'),
+                                            Country.create(name: 'country 2')
+                                        ])}
 
-    it 'should return 200 when authorised' do
-      login_as(admin_user, :scope => :user)
-      get new_event_path
-      expect(response.status).to eql(200)
+      it 'should return 200 when authenticated' do
+        login_as(user, :scope => :user)
+        get new_event_path
+        expect(response.status).to eql(302)
+      end
+
+      it 'should return 200 when authorised' do
+        login_as(admin_user, :scope => :user)
+        get new_event_path
+        expect(response.status).to eql(200)
+      end
     end
   end
 end

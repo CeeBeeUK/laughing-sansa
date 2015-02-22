@@ -6,7 +6,7 @@ class CountriesController < ApplicationController
   respond_to :html
 
   def index
-    @countries = Country.sorted
+    @countries = Country.sorted_by_name
     respond_with(@countries)
   end
 
