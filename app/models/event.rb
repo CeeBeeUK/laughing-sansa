@@ -9,5 +9,7 @@ class Event < ActiveRecord::Base
   def display_name
     "#{self.host_city} #{self.year}"
   end
-
+  def to_param
+    self.year.to_s
+  end
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  resources :events
+  resources :events, param: :year
 
   get 'my_profile', to: 'profile#index'
 
