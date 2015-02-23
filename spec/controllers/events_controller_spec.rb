@@ -31,7 +31,7 @@ RSpec.describe EventsController, type: :controller do
     describe 'GET #show' do
       it 'redirects to login page' do
         event = FactoryGirl.create :event
-        get :show, {:id => event.to_param}, valid_session
+        get :show, { year: event.year }, valid_session
         expect(response).to redirect_to(root_path)
       end
     end
@@ -44,7 +44,7 @@ RSpec.describe EventsController, type: :controller do
     describe 'GET #edit' do
       it 'should redirect to login page' do
         event = FactoryGirl.create :event
-        get :edit, {:id => event.to_param}, valid_session
+        get :edit, { year: event.year }, valid_session
         expect(response).to redirect_to(root_path)
       end
     end
@@ -65,7 +65,7 @@ RSpec.describe EventsController, type: :controller do
     describe 'GET #show' do
       it 'assigns the requested event as @event' do
         event = FactoryGirl.create :event
-        get :show, {:id => event.to_param}, valid_session
+        get :show, { year: event.year }, valid_session
         expect(assigns(:event)).to eq(event)
       end
     end
@@ -78,7 +78,7 @@ RSpec.describe EventsController, type: :controller do
     describe 'GET #edit' do
       it 'should redirect to login page' do
         event = FactoryGirl.create :event
-        get :edit, {:id => event.to_param}, valid_session
+        get :edit, { year: event.year }, valid_session
         expect(response).to redirect_to(root_path)
       end
     end
@@ -98,7 +98,7 @@ RSpec.describe EventsController, type: :controller do
     describe 'GET #show' do
       it 'should assigns the requested event as @event' do
         event = FactoryGirl.create :event
-        get :show, {:id => event.to_param}, valid_session
+        get :show, { year: event.year }, valid_session
         expect(assigns(:event)).to eq(event)
       end
     end
@@ -111,7 +111,7 @@ RSpec.describe EventsController, type: :controller do
     describe 'GET #edit' do
       it 'should assign the requested event as @event' do
         event = FactoryGirl.create :event
-        get :edit, {:id => event.to_param}, valid_session
+        get :edit, { year: event.year }, valid_session
         expect(assigns(:event)).to eq(event)
       end
     end
@@ -157,30 +157,30 @@ RSpec.describe EventsController, type: :controller do
         before(:each) { new_attributes['host_city'] += 'test' }
         it 'updates the requested event' do
           expect = "#{event.host_city}test"
-          put :update, {:id => event.to_param, :event => new_attributes}, valid_session
+          put :update, { year: event.year, event: new_attributes }, valid_session
           event.reload
           expect(event.host_city).to eql(expect)
         end
 
         it 'assigns the requested event as @event' do
-          put :update, {:id => event.to_param, :event => new_attributes}, valid_session
+          put :update, { year: event.year, event: new_attributes }, valid_session
           expect(assigns(:event)).to eq(event)
         end
 
         it 'redirects to the event' do
-          put :update, {:id => event.to_param, :event => new_attributes}, valid_session
+          put :update, { year: event.year, event: new_attributes }, valid_session
           expect(response).to redirect_to(event)
         end
       end
 
       context 'with invalid params' do
         it 'assigns the event as @event' do
-          put :update, {:id => event.to_param, :event => invalid_attributes}, valid_session
+          put :update, { year: event.year, event: invalid_attributes }, valid_session
           expect(assigns(:event)).to eq(event)
         end
 
         it 're-renders the "edit" template' do
-          put :update, {:id => event.to_param, :event => invalid_attributes}, valid_session
+          put :update, { year: event.year, event: invalid_attributes }, valid_session
           expect(response).to render_template('edit')
         end
       end
