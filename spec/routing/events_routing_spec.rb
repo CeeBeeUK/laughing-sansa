@@ -12,11 +12,11 @@ RSpec.describe EventsController, type: :routing do
     end
 
     it "routes to #show" do
-      expect(:get => "/events/1").to route_to("events#show", :id => "1")
+      expect(:get => "/events/2015").to route_to("events#show", :year => "2015")
     end
 
     it "routes to #edit" do
-      expect(:get => "/events/1/edit").to route_to("events#edit", :id => "1")
+      expect(:get => "/events/2015/edit").to route_to("events#edit", :year => "2015")
     end
 
     it "routes to #create" do
@@ -24,11 +24,11 @@ RSpec.describe EventsController, type: :routing do
     end
 
     it "routes to #update" do
-      expect(:put => "/events/1").to route_to("events#update", :id => "1")
+      expect(:put => "/events/2015").to route_to("events#update", :year => "2015")
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/events/1").to route_to("events#destroy", :id => "1")
+      expect(:delete => "/events/2015").to route_to("events#destroy", :year => "2015")
     end
 
   end
