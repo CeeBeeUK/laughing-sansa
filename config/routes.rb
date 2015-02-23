@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
 
 
-  resources :events
-
+  get 'events', to: 'events#index'
+  post 'events', to: 'events#create'
+  get 'events/new', to: 'events#new', as: :new_event
+  get 'events/:year', to: 'events#show'
+  get 'events/:year/edit', to: 'events#edit', as: :edit_event
+  patch 'events/:year', to: 'events#update', as: :event
+  put 'events/:year', to: 'events#update'
+  delete 'events/:year', to: 'events#destroy'
+  
   get 'my_profile', to: 'profile#index'
 
   devise_for :users, controllers: {
