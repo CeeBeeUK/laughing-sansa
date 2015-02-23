@@ -13,7 +13,7 @@ ul.events
         span New event
   - @events.each do |event|
     li
-      =link_to event do
+      =link_to event_path(event.year) do
         .host-flag
           img src=event.country.xl_image
         .result
