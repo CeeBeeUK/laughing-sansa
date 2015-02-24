@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_session
   end
 
-  resources :countries
+  resources :countries, param: :name
 
   root to: 'home#index'
 

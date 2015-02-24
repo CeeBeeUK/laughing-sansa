@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Country, :type => :model do
 
-  let(:country) { FactoryGirl.build :country }
-
+  let(:country) { FactoryGirl.build :country, name: 'United Kingdom' }
 
   it 'should pass factory build' do
       expect(country).to be_valid
