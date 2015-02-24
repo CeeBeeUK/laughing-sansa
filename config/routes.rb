@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   resources :events, param: :year
 
-  get 'my_profile', to: 'profile#index'
-
+  get 'my_profile', to: 'profile#show'
+  patch 'my_profile', to: 'profile#update'
   devise_for :users, controllers: {
     omniauth_callbacks:'users/omniauth_callbacks'
   }

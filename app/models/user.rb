@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def display_name
-    self[:display_name] ||= self[:first_name]
+    self[:display_name].presence ? self[:display_name] : first_name
   end
 
   def admin?
