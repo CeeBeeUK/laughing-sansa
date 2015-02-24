@@ -1,34 +1,34 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe CountriesController, :type => :routing do
-  describe "routing" do
+RSpec.describe EventsController, type: :routing do
+  describe 'routing' do
 
-    it "routes to #index" do
-      expect(get: "/countries").to route_to("countries#index")
+    it 'routes to #index' do
+      expect(get: '/events').to route_to('events#index')
     end
 
-    it "routes to #new" do
-      expect(get: "/countries/new").to route_to("countries#new")
+    it 'routes to #new' do
+      expect(get: '/events/new').to route_to('events#new')
     end
 
-    it "routes to #show" do
-      expect(get: "/countries/Albania").to route_to("countries#show", name: 'Albania' )
+    it 'routes to #show' do
+      expect(get: '/events/2015').to route_to('events#show', year: '2015')
     end
 
-    it "routes to #edit" do
-      expect(get: "/countries/Albania/edit").to route_to("countries#edit", name: 'Albania' )
+    it 'routes to #edit' do
+      expect(get: '/events/2015/edit').to route_to('events#edit', year: '2015')
     end
 
-    it "routes to #create" do
-      expect(post: "/countries").to route_to("countries#create")
+    it 'routes to #create' do
+      expect(post: '/events').to route_to('events#create')
     end
 
-    it "routes to #update" do
-      expect(put: "/countries/Albania").to route_to("countries#update", name: 'Albania' )
+    it 'routes to #update' do
+      expect(put: '/events/2015').to route_to('events#update', year: '2015')
     end
 
-    it "routes to #destroy" do
-      expect(delete: "/countries/Albania").to route_to("countries#destroy", name: 'Albania' )
+    it 'routes to #destroy' do
+      expect(delete: '/events/2015').to route_to('events#destroy', year: '2015')
     end
 
   end
