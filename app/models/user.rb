@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
     user = User.where(:email => data['email']).first
     if user
       user.update!(name: data['name'],
+                   last_name: data['last_name'],
+                   first_name: data['first_name'],
                    encrypted_password: Devise.friendly_token[0,20],
                    image: data['image'])
     end
@@ -22,6 +24,8 @@ class User < ActiveRecord::Base
     unless user
       user = User.create!(name: data['name'],
                          email: data['email'],
+                         last_name: data['last_name'],
+                         first_name: data['first_name'],
                          encrypted_password: Devise.friendly_token[0,20],
                          image: data['image'],
                          role: 'user'
