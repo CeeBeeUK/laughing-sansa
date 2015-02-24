@@ -1,0 +1,21 @@
+h2 #{@user.display_name}'s profile
+
+= form_for @user, url: my_profile_path do |f|
+  .alert-box.info.radius data-alert='' If you don't set a display name below, we'll use your google supplied first name
+  .field
+    = f.label :display_name
+    = f.text_field :display_name
+  .actions = f.submit class: 'button tiny radius'
+  .alert-box.secondary.radius data-alert='' Below is what Google told us. You can't change it!
+  .field
+    = f.label :name
+    = f.text_field :name, disabled: true
+  .field
+    = f.label :email
+    = f.text_field :email, disabled: true
+  .field
+    = f.label :first_name
+    = f.text_field :first_name, disabled: true
+  .field
+    = f.label :last_name
+    = f.text_field :last_name, disabled: true

@@ -2,9 +2,13 @@ require 'rails_helper'
 
 RSpec.describe ProfileController, type: :controller do
 
-  describe "GET #index" do
+  include Devise::TestHelpers
+  let(:user) { FactoryGirl.create :user }
+
+  describe "GET #show" do
     it "returns http success" do
-      get :index
+      sign_in user
+      get :show
       expect(response).to have_http_status(:success)
     end
   end
