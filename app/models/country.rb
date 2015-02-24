@@ -19,7 +19,10 @@ class Country < ActiveRecord::Base
   def disabled_image
     "/assets/64/#{get_image_path}_bw.png"
   end
-
+  
+  def to_param
+    self.name
+  end
   private
 
   def get_image_path
