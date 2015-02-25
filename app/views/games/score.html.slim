@@ -1,60 +1,64 @@
 h2 #{@participating_country.event.display_name} - Act #{@participating_country.sequence} - #{@participating_country.country.name}
-h3 Score
 .row
-	.small-10.medium-11.columns
-		#slider.range-slider data-slider='' data-options='start: 0; end: 10; display_selector: #scoreValue;'
-			span.range-slider-handle role='slider' tabindex='0'
-			span.range-slider-active-segment
-			input type='hidden'
-	.small-2.medium-1.columns style='line-height: 3.5;'
-		span#scoreValue 
-ul.button-group.even-3
-	li
-		a.small.button href="#" 0
-	li
-		a.small.button href="#" 1
-	li
-		a.small.button href="#" 2
-	li
-		a.small.button href="#" 3
-	li
-		a.small.button href="#" 4
-	li
-		a.small.button href="#" 5
-	li
-		a.small.button href="#" 6
-	li
-		a.small.button href="#" 7
-	li
-		a.small.button href="#" 8
-	li
-		a.small.button href="#" 9
-	li
-		a.small.button href="#" 10
-
-h3 Flags
-.row
-	.small-6.medium-3.large-2.columns style="line-height: 2.5;"
-		|Best Wail
-	.small-6.medium-9.large-10.columns
-		.switch.radius.large
-		  input#bestWailSwitch type="checkbox"
-		  label for="bestWailSwitch"
+  .columns.small-2.medium-3.large-4
+    h3 Score
+  .columns.small-10.medium-9.large-8
+    ul.button-group.even-5
+      li
+        a.small.button href="#" 0
+      li
+        a.small.button href="#" 1
+      li
+        a.small.button href="#" 2
+      li
+        a.small.button href="#" 3
+      li
+        a.small.button href="#" 4
+    ul.button-group.even-3
+      li
+        a.small.button href="#" 5
+      li
+        a.small.button href="#" 6
+      li
+        a.small.button href="#" 7
+    ul.button-group.even-2
+      li
+        a.small.button href="#" 8
+      li
+        a.small.button href="#" 9
+    ul.button-group
+      li
+        a.button.small style='padding-left:11.35rem;padding-right:11.5rem;margin-bottom:1.25rem!important;' href="#" 10
 
 .row
-	.small-6.medium-3.large-2.columns style="line-height: 2.5;"
-		|Weirdest
-	.small-6.medium-9.large-10.columns
-		.switch.radius.large
-		  input#weirdestSwitch type="checkbox"
-		  label for="weirdestSwitch"
-
+  .columns.small-2.medium-3.large-4
+    h3 Flags
+  .columns.small-10.medium-9.large-8
+    .row
+      .small-6.medium-3.large-2.columns style="line-height: 2.5;"
+        |Best Wail
+      .small-6.medium-9.large-10.columns
+        .switch.radius.large
+          input#bestWailSwitch type="checkbox"
+          label for="bestWailSwitch"
+    .row
+      .small-6.medium-3.large-2.columns style="line-height: 2.5;"
+        |Weirdest
+      .small-6.medium-9.large-10.columns
+        .switch.radius.large
+          input#weirdestSwitch type="checkbox"
+          label for="weirdestSwitch"
+.row
+  .columns.small-2.medium-3.large-4
+    h3 Notes
+  .columns.small-10.medium-9.large-8
+    textarea rows=10
 javascript:
-	$(document).ready( function () {
-		$('ul.button-group.even-3>li>a.small.button').css({'margin-bottom':'.25rem'});
-		$('#slider').foundation('slider', 'set_value', 0);
-		$('ul.button-group.even-3>li>a.small.button').on('click', function () {
-			new_val = $(this).text();
-			$('#slider').foundation('slider', 'set_value', new_val);
-		});
-	});
+  $(document).ready( function () {
+    $('ul.button-group>li>a.small.button')
+      .css({'margin-bottom':'.25rem'})
+      .on('click', function () {
+        new_val = $(this).text();
+        $('#slider').foundation('slider', 'set_value', new_val);
+      });
+  });
