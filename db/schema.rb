@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20150224232604) do
     t.datetime "updated_at"
   end
 
-  add_index "participating_countries", ["country_id", "event_id", "player_id"], name: "unique_player_and_country_for_event", unique: true, using: :btree
+  add_index "participating_countries", ["country_id", "event_id"], name: "unique_country_for_event", unique: true, using: :btree
   add_index "participating_countries", ["country_id"], name: "index_participating_countries_on_country_id", using: :btree
   add_index "participating_countries", ["event_id", "sequence"], name: "unique_sequence_for_event", unique: true, using: :btree
   add_index "participating_countries", ["event_id"], name: "index_participating_countries_on_event_id", using: :btree
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 20150224232604) do
     t.string   "role"
     t.string   "last_name"
     t.string   "first_name"
-    t.string   "display_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
