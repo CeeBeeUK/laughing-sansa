@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:google_oauth2]
 
   ROLES = %w[admin user]
+  STATUS = %w[setup in-play finished]
 
   validates_format_of :email, :with => Devise::email_regexp
   validates :email, uniqueness: true
