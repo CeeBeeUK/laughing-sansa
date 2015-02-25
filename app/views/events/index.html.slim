@@ -21,13 +21,12 @@ ul.events
             span.host-city =event.host_city
             span.year =event.year
           .winner
-            |Won by
-            span.winner-country insert real winner country
-            | (
-            span.winner-player insert player
-            |)
+            |Won by&nbsp;
+            span.winner-country =event.real_winning_country
+            |&nbsp;played by&nbsp;
+            span.winner-player =event.real_winning_player
           .home
-            |Home Champion was
-            span.home-champion insert home champion player
-            |with
-            span.home-champion-country insert home champion country
+            |Home Champion was&nbsp;
+            span.home-champion =event.home_winning_player
+            |&nbsp;with&nbsp;
+            span.home-champion-country =event.home_winning_country

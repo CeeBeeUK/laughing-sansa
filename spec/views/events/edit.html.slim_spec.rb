@@ -3,15 +3,28 @@ require 'rails_helper'
 RSpec.describe "events/edit", type: :view do
   before(:each) do
     @event = assign(:event, Event.create!(
-      :year => 999,
-      :host_city => "MyString",
-      :active => false,
-      :country_id => 1
+      year: 999,
+      host_city: "MyString",
+      active: false,
+      country_id: 1,
+      real_winner_id: nil,
+      real_score: nil,
+      real_player_id: nil,
+      real_player_name: nil,
+      home_winner_id: nil,
+      home_score: nil,
+      home_player_id: nil,
+      home_player_name: nil,
+      status: nil
     ))
     assign(:countries, [
                          Country.create(name: 'country 1'),
                          Country.create(name: 'country 2')
                      ])
+    assign(:users, [
+                    FactoryGirl.create(:user),
+                    FactoryGirl.create(:user)
+                 ])
   end
 
   it "renders the edit event form" do

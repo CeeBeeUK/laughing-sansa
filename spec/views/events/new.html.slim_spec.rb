@@ -12,6 +12,10 @@ RSpec.describe "events/new", type: :view do
                          Country.create(name: 'country 1'),
                          Country.create(name: 'country 2')
                      ])
+    assign(:users, [
+                     FactoryGirl.create(:user),
+                     FactoryGirl.create(:user)
+                 ])
   end
 
   it "renders new event form" do

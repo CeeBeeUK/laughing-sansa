@@ -22,12 +22,12 @@ class User < ActiveRecord::Base
 
     unless user
       user = User.create!(name: data['name'],
-                         email: data['email'],
-                         last_name: data['last_name'],
-                         first_name: data['first_name'],
-                         encrypted_password: Devise.friendly_token[0,20],
-                         image: data['image'],
-                         role: 'user'
+                          email: data['email'],
+                          last_name: data['last_name'],
+                          first_name: data['first_name'],
+                          encrypted_password: Devise.friendly_token[0,20],
+                          image: data['image'],
+                          role: 'user'
       )
     end
     user

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224180808) do
+ActiveRecord::Schema.define(version: 20150224232604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,22 @@ ActiveRecord::Schema.define(version: 20150224180808) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "real_winner_id"
+    t.integer  "real_score"
+    t.integer  "real_player_id"
+    t.string   "real_player_name"
+    t.integer  "home_winner_id"
+    t.integer  "home_score"
+    t.integer  "home_player_id"
+    t.string   "home_player_name"
+    t.integer  "status"
   end
 
   add_index "events", ["country_id"], name: "index_events_on_country_id", using: :btree
+  add_index "events", ["home_player_id"], name: "index_events_on_home_player_id", using: :btree
+  add_index "events", ["home_winner_id"], name: "index_events_on_home_winner_id", using: :btree
+  add_index "events", ["real_player_id"], name: "index_events_on_real_player_id", using: :btree
+  add_index "events", ["real_winner_id"], name: "index_events_on_real_winner_id", using: :btree
 
   create_table "participating_countries", force: true do |t|
     t.integer  "country_id"

@@ -80,6 +80,11 @@ Event.create([
                      year: 2014,
                      country_id: Country.find_by(name: 'Denmark').id,
                      host_city: 'Copenhagen',
-                     active: false
+                     active: false,
+                     real_winner_id: Country.find_by(name: 'Austria').id,
+                     real_player_name: 'Joe',
+                     home_winner_id: Country.find_by(name: 'Denmark').id,
+                     home_player_name: 'Ros',
+                     home_score: 58
                  },
              ])
