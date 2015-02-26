@@ -50,7 +50,9 @@ group :test, :development do
 end
 
 # Code climate CI integration
-#gem "codeclimate-test-reporter", group: :test, require: nil
+group :test do
+  gem "codeclimate-test-reporter", require: nil
+end
 
 # gem for heroku deployment
 gem 'rails_12factor', group: :production
