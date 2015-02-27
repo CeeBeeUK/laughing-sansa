@@ -41,10 +41,10 @@ describe User, :type => :model do
     it 'should require a valid role' do
       user.role = 'student'
       expect(user).to be_invalid
-      expect(user.errors[:role]).to eq ["student is not a valid role"]
+      expect(user.errors[:role]).to eq ['student is not a valid role']
     end
 
-    it 'should return the oaauth firts name if display name empty' do
+    it 'should return the oaauth first name if display name empty' do
       user.display_name = nil
       expect(user.display_name).to eql('test')
     end
@@ -54,7 +54,19 @@ describe User, :type => :model do
       expect(user.display_name).to eql('wibble')
     end
   end
+  describe '@display_name_set?' do
+    it 'should respond true if a name is explicitly set' do
+      user.display_name='CeeBee'
+      expect(user.display_name_set?).to be true
+    end
 
+    it 'should respond false if not admin user' do
+      user.display_name = nil
+      expect(user.display_name_set?).to be false
+      user.display_name = ''
+      expect(user.display_name_set?).to be false
+    end
+  end
   describe '@admin?' do
     it 'should respond true if admin user' do
       expect(admin_user.admin?).to be true

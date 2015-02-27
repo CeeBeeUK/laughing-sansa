@@ -41,4 +41,7 @@ class User < ActiveRecord::Base
     self.role == 'admin'
   end
 
+  def display_name_set?
+    self[:display_name].presence ? true : false
+  end
 end
