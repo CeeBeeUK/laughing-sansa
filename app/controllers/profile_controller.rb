@@ -8,7 +8,7 @@ class ProfileController < ApplicationController
 
   def update
     @user.update_column(:display_name, user_params[:display_name])
-    redirect_to my_profile_path(@user)
+    redirect_to my_profile_path
   end
 
 private
