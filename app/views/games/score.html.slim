@@ -1,11 +1,16 @@
 h2 #{@participating_country.event.display_name} - Act #{@participating_country.sequence} - #{@participating_country.country.name}
 .row
   .columns.small-2.medium-3.large-4
+    h3 Notes
+  .columns.small-10.medium-9.large-8
+    textarea rows=6
+.row
+  .columns.small-2.medium-3.large-4
     h3 Score
   .columns.small-10.medium-9.large-8
     .row
       .columns.small-12
-        ul.button-group.even-5 style="margin-bottom: 0.25rem;"
+        ul.button-group.even-4 style="margin-bottom: 0.25rem;"
           li
             input#score-0 name='score' type='radio' style='display:none;'
               label.button.primary for='score-0' style='margin-left:0; margin-right:0;' 0
@@ -18,20 +23,20 @@ h2 #{@participating_country.event.display_name} - Act #{@participating_country.s
           li
             input#score-3 name='score' type='radio' style='display:none;'
               label.button.primary for='score-3' style='margin-left:0; margin-right:0;' 3
+        ul.button-group.even-3 style="margin-bottom: 0.25rem;"
           li
             input#score-4 name='score' type='radio' style='display:none;'
               label.button.primary for='score-4' style='margin-left:0; margin-right:0;' 4
-        ul.button-group.even-3 style="margin-bottom: 0.25rem;"
           li
             input#score-5 name='score' type='radio' style='display:none;'
               label.button.primary for='score-5' style='margin-left:0; margin-right:0;' 5
           li
             input#score-6 name='score' type='radio' style='display:none;'
               label.button.primary for='score-6' style='margin-left:0; margin-right:0;' 6
+        ul.button-group.even-3 style="margin-bottom: 0.25rem;"
           li
             input#score-7 name='score' type='radio' style='display:none;'
               label.button.primary for='score-7' style='margin-left:0; margin-right:0;' 7
-        ul.button-group.even-2 style="margin-bottom: 0.25rem;"
           li
             input#score-8 name='score' type='radio' style='display:none;'
               label.button.primary for='score-8' style='margin-left:0; margin-right:0;' 8
@@ -48,24 +53,26 @@ h2 #{@participating_country.event.display_name} - Act #{@participating_country.s
     h3 Flags
   .columns.small-10.medium-9.large-8
     .row
-      .small-6.medium-3.large-2.columns style="line-height: 2.5;"
+      .small-4.medium-3.large-2.columns style="line-height: 2.5;"
         |Best Wail
-      .small-6.medium-9.large-10.columns
+      .small-3.medium-4.large-4.columns
         .switch.radius.large
           input#bestWailSwitch type="checkbox"
           label for="bestWailSwitch"
+      .small-5.medium-5.large-6.columns style="line-height: 2.5;"
+        |Replace Moldova?
     .row
-      .small-6.medium-3.large-2.columns style="line-height: 2.5;"
+      .small-4.medium-3.large-2.columns style="line-height: 2.5;"
         |Weirdest
-      .small-6.medium-9.large-10.columns
+      .small-3.medium-4.large-4.columns
         .switch.radius.large
           input#weirdestSwitch type="checkbox"
           label for="weirdestSwitch"
+      .small-5.medium-5.large-6.columns style="line-height: 2.5;"
+ 
 .row
-  .columns.small-2.medium-3.large-4
-    h3 Notes
-  .columns.small-10.medium-9.large-8
-    textarea rows=6
+  .columns.small-12
+    button.button.tiny.radius Fake submit - does nothing!
 javascript:
   $(document).ready( function () {
     $('ul.button-group>li>a.small.button')
