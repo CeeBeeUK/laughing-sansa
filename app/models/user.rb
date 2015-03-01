@@ -18,9 +18,7 @@ class User < ActiveRecord::Base
                    first_name: data['first_name'],
                    encrypted_password: Devise.friendly_token[0,20],
                    image: data['image'])
-    end
-
-    unless user
+    else
       user = User.create!(name: data['name'],
                           email: data['email'],
                           last_name: data['last_name'],
@@ -43,5 +41,15 @@ class User < ActiveRecord::Base
 
   def display_name_set?
     self[:display_name].presence ? true : false
+  end
+
+private
+
+  def add_new_user(data)
+
+  end
+
+  def update_user(user, data)
+
   end
 end
