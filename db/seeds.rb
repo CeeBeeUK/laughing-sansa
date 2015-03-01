@@ -56,25 +56,39 @@ Event.create([
                      year: 2010,
                      country_id: Country.find_by(name: 'Sweden').id,
                      host_city: 'Oslo',
-                     active: false
+                     active: false,
+                     real_winner_id: Country.find_by(name: 'Germany').id,
+                     real_player_name: 'Onge',
+                     home_winner_id: Country.find_by(name: 'Georgia').id,
+                     home_player_name: 'Helen',
                  },
                  {
                      year: 2011,
                      country_id: Country.find_by(name: 'Germany').id,
                      host_city: 'Düsseldorf',
-                     active: false
+                     active: false,
+                     real_winner_id: Country.find_by(name: 'Azerbaijan').id,
+                     real_player_name: 'Joe',
+                     home_winner_id: Country.find_by(name: 'Moldova').id,
+                     home_player_name: 'Joanne',
                  },
                  {
                      year: 2012,
                      country_id: Country.find_by(name: 'Azerbaijan').id,
                      host_city: 'Baku',
-                     active: false
+                     active: false,
+                     real_winner_id: Country.find_by(name: 'Sweden').id,
+                     real_player_name: 'Ros',
+                     home_winner_id: Country.find_by(name: 'Italy').id,
+                     home_player_name: 'Onge',
                  },
                  {
                      year: 2013,
                      country_id: Country.find_by(name: 'Sweden').id,
-                     host_city: 'Malm',
-                     active: false
+                     host_city: 'Malmo',
+                     active: false,
+                     real_winner_id: Country.find_by(name: 'Denmark').id,
+                     real_player_name: 'Joanne',
                  },
                  {
                      year: 2014,
