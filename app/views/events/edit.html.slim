@@ -7,6 +7,6 @@ ul.breadcrumbs
     =link_to @event.display_name, @event
   li.current
     =link_to 'Editing', edit_country_path(@event)
-h1 Editing event
+h2 Editing #{@event.display_name}
 
 == render 'form'

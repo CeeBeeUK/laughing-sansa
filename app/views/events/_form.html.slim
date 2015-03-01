@@ -1,38 +1,75 @@
-= form_for @event do |f|
+= form_for @event, html: { autocomplete: 'off' } do |f|
   - if @event.errors.any?
     #error_explanation
       h2 = "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
       ul
         - @event.errors.full_messages.each do |message|
           li = message
-
-  .field
-    = f.label :year
-    = f.number_field :year
-  .field
-    = f.label :country
-    = f.collection_select :country_id, @countries, :id, :name, prompt: true
-  .field
-    = f.label :host_city
-    = f.text_field :host_city
-  .field
-    = f.label :real_winner_id, 'Real winning country'
-    = f.collection_select :real_winner_id, @countries, :id, :name, prompt: true
-  .field
-    = f.label :real_player_id, 'Player whose country won for real'
-    = f.collection_select :real_player_id, @users, :id, :display_name, prompt: true
-  .field
-    = f.label :real_player_name, 'Player whose country scored highest at home'
-    = f.text_field :real_player_name
-  .field
-    = f.label :real_winner_id, 'Highest scored country at home'
-    = f.collection_select :home_winner_id, @countries, :id, :name, prompt: true
-  .field
-    = f.label :real_winner_id, 'Player whose country scored highest at home'
-    = f.collection_select :home_player_id, @users, :id, :display_name, prompt: true
-  .field
-    = f.label :home_player_name, 'Player whose country scored highest at home'
-    = f.text_field :home_player_name
+  .row
+    .small-12.medium-4.columns
+      h3 Host
+  .row
+    .small-12.medium-4.columns
+      .row.collapse.prefix-radius
+        .small-5.medium-3.columns
+          = f.label :year, class: 'prefix'
+        .small-7.medium-9.columns
+          = f.number_field :year, autofocus: true
+    .small-12.medium-4.columns
+      .row.collapse.prefix-radius
+        .small-5.medium-3.columns
+          = f.label :country, 'Host country', class: 'prefix'
+        .small-7.medium-9.columns
+          = f.collection_select :country_id, @countries, :id, :name, prompt: true
+    .small-12.medium-4.columns
+      .row.collapse.prefix-radius
+        .small-5.medium-3.columns
+          = f.label :host_city, class: 'prefix'
+        .small-7.medium-9.columns
+          = f.text_field :host_city
+  .row
+    .small-12.columns
+      h3 Real competition
+  .row
+    .small-12.medium-4.columns
+      .row.collapse.prefix-radius
+        .small-5.medium-3.columns
+          = f.label :real_winner_id, 'Winner', class: 'prefix'
+        .small-7.medium-9.columns
+          = f.collection_select :real_winner_id, @countries, :id, :name, prompt: true
+    .small-12.medium-4.columns
+      .row.collapse.prefix-radius
+        .small-5.medium-3.columns
+          = f.label :real_player_id, 'Player', class: 'prefix'
+        .small-7.medium-9.columns
+          = f.collection_select :real_player_id, @users, :id, :display_name, prompt: true
+    .small-12.medium-4.columns
+      .row.collapse.prefix-radius
+        .small-5.medium-3.columns
+          = f.label :real_player_name, 'or static name', class: 'prefix'
+        .small-7.medium-9.columns
+          = f.text_field :real_player_name
+  .row
+    .small-12.medium-6.columns
+      h3 Home competition
+  .row
+    .small-12.medium-4.columns
+      .row.collapse.prefix-radius
+        .small-5.medium-3.columns
+          = f.label :real_winner_id, 'Home winner', class: 'prefix'
+        .small-7.medium-9.columns
+          = f.collection_select :home_winner_id, @countries, :id, :name, prompt: true
+    .small-12.medium-4.columns
+      .row.collapse.prefix-radius
+        .small-5.medium-3.columns
+          = f.label :real_winner_id, 'Home player', class: 'prefix'
+        .small-7.medium-9.columns
+          = f.collection_select :home_player_id, @users, :id, :display_name, prompt: true
+    .small-12.medium-4.columns
+      .row.collapse.prefix-radius
+        .small-5.medium-3.columns
+          = f.label :home_player_name, 'or static name', class: 'prefix'
+        .small-7.medium-9.columns
+          = f.text_field :home_player_name
   = f.hidden_field :active, value: true
-
   .actions = f.submit class: 'button tiny radius'
