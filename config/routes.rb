@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get "games/score/:id", to: 'games#score'
+  get "games/score/:id", to: 'games#score', as: 'test_score'
 
   resources :events, param: :year
 

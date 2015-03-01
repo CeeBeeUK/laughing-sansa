@@ -8,6 +8,19 @@ RSpec.describe "home/index.html.slim", :type => :view do
 
   it 'should have a Main Page header' do
     render
-    expect(rendered).to include('Main Page')
+    expect(rendered).to include('Bruce-Burton Eurovision scoring')
+  end
+  context 'logged out user' do
+    it 'will see a log in prompt' do
+      render
+      expect(rendered).to include('Use the G+ icon')
+    end
+  end
+  context 'logged in user' do
+    it 'will see guidance' do
+      sign_in user
+      render
+      expect(rendered).to include('Welcome to the 2015+ scoring system')
+    end
   end
 end

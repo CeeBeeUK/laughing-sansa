@@ -1,2 +1,7 @@
-h2 Main Page
-p Find me in app/views/home/index.html.slim
+h2 Bruce-Burton Eurovision scoring
+-if current_user
+  p Welcome to the 2015+ scoring system for the Eurovision Song Contest
+  p This is currenlty a work in progress, you can use the menu in the top left corner to check the menu/logout
+  p You can also see a prototype score entry page #{ link_to 'here', test_score_path(1)}
+-else
+  p Use the G+ icon in the top right to login using your google account.
