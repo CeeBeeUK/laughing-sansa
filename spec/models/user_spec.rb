@@ -76,4 +76,20 @@ describe User, :type => :model do
       expect(user.admin?).to be false
     end
   end
+  it 'can find existing user' do
+    User.create({
+                    email: 'test_create@example.com',
+                    name: 'Test User',
+                    role: 'user'
+                })
+    user_struct = OpenStruct.new({
+                info: {
+                    'email'=> 'test_create@example.com',
+                    'name' => 'Test User'
+                }
+            })
+    user2 = User.find_for_google_oauth2(user_struct)
+    expect(user2).to be_valid
+  end
+
 end
