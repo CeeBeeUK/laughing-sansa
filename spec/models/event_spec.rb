@@ -13,7 +13,36 @@ RSpec.describe Event, type: :model do
       expect(event).to respond_to(:country)
     end
   end
-
+  describe 'real_winning_player' do
+    describe 'outputs' do
+      it 'real_winner_name if set' do
+        event.real_winner_id = nil
+        event.real_player_name = 'Bob'
+        expect(event.real_winning_player).to eql('Bob')
+      end
+      it 'linked players display_name if set' do
+        player = FactoryGirl.create :user
+        event.real_player = player
+        event.real_player_name = 'Bob'
+        expect(event.real_winning_player).to eql(player.display_name)
+      end
+    end
+  end
+  describe 'home_winning_player' do
+    describe 'outputs' do
+      it 'home_winner_name if set' do
+        event.home_winner_id = nil
+        event.home_player_name = 'Bob'
+        expect(event.home_winning_player).to eql('Bob')
+      end
+      it 'linked players display_name if set' do
+        player = FactoryGirl.create :user
+        event.home_player = player
+        event.home_player_name = 'Bob'
+        expect(event.home_winning_player).to eql(player.display_name)
+      end
+    end
+  end
   context 'validations' do
     it 'should have a country' do
       event.country = nil

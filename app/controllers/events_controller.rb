@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update]
   before_action :get_countries, only: [:new, :edit, :create, :update]
   respond_to :html
 
@@ -31,11 +31,6 @@ class EventsController < ApplicationController
 
   def update
     @event.update(event_params)
-    respond_with(@event)
-  end
-
-  def destroy
-    @event.destroy
     respond_with(@event)
   end
 
