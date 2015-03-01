@@ -91,5 +91,15 @@ describe User, :type => :model do
     user2 = User.find_for_google_oauth2(user_struct)
     expect(user2).to be_valid
   end
-
+  it 'will create a new user if credentials valid' do
+    user_struct = OpenStruct.new({
+                                     info: {
+                                         'email'=> 'test_create_unique@example.com',
+                                         'name' => 'Test User'
+                                     }
+                                 })
+    expect {
+      User.find_for_google_oauth2(user_struct)
+    }.to change(User, :count).by(1)
+  end
 end
