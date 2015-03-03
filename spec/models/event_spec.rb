@@ -65,5 +65,25 @@ RSpec.describe Event, type: :model do
                             })
       expect(duplicate).to be_invalid
     end
+    context 'status' do
+      it 'should allow being set to active' do
+        event.active!
+        expect(event.active?).to eql(true)
+        expect(event.status).to eql('active')
+      end
+      it 'should allow being set to setup' do
+        event.setup!
+        expect(event.setup?).to eql(true)
+        expect(event.status).to eql('setup')
+      end
+      it 'should allow being set to archived' do
+        event.archived!
+        expect(event.archived?).to eql(true)
+        expect(event.status).to eql('archived')
+      end
+      it 'should fail if set to invalid value' do
+        expect { event.status='wrong' }.to raise_error(ArgumentError,"'wrong' is not a valid status")      
+      end
+    end
   end
 end
