@@ -82,8 +82,8 @@ RSpec.describe Event, type: :model do
         expect(event.status).to eql('archived')
       end
       it 'should fail if set to invalid value' do
-        event.status='wrong'
-        expect(event).to be_invalid
+        expect { event.status='wrong' }.to raise_error(ArgumentError,"'wrong' is not a valid status")      
+      end
     end
   end
 end
