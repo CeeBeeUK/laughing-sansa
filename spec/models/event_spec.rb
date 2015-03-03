@@ -80,6 +80,10 @@ RSpec.describe Event, type: :model do
       end
     end
   end
+  it 'should allow a date to be set' do
+    event.date = Date.today
+    expect(event).to be_valid
+  end
   context 'validations' do
     it 'should have a country' do
       event.country = nil

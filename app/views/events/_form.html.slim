@@ -28,6 +28,20 @@
         .small-7.medium-9.columns
           = f.text_field :host_city
   .row
+    .small-12.medium-4.columns
+      .row.collapse.prefix-radius
+        .small-5.medium-3.columns
+          = f.label :date, class: 'prefix'
+        .small-7.medium-9.columns
+          = f.date_field :date
+    .small-12.medium-4.columns
+      .row.collapse.prefix-radius
+        .small-5.medium-3.columns
+          = f.label :status, class: 'prefix'
+        .small-7.medium-9.columns
+          = f.select :status, Event.statuses.keys.to_a
+    .small-12.medium-4.columns
+  .row
     .small-12.columns
       h3 Real competition
   .row
