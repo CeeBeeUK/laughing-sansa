@@ -14,5 +14,4 @@ FactoryGirl.define do
     home_player_name nil
     status nil
   end
-
 end
