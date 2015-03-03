@@ -26,8 +26,9 @@ ul.events
               span.winner-country =event.real_winning_country
               |&nbsp;played by&nbsp;
               span.winner-player =event.real_winning_player
-            .home
-              |Home Champion was&nbsp;
-              span.home-champion =event.home_winning_player
-              |&nbsp;with&nbsp;
-              span.home-champion-country =event.home_winning_country
+            - if event.home_winning_player.present?
+              .home
+                |Home Champion was&nbsp;
+                span.home-champion =event.home_winning_player
+                |&nbsp;with&nbsp;
+                span.home-champion-country =event.home_winning_country

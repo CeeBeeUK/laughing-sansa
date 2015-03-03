@@ -21,9 +21,9 @@ class Event < ActiveRecord::Base
   end
 
   def complete?
-    archived? && real_winner_id.present? && home_winner_id.present? &&
-      (real_player_name.present? || real_player_id.present? || false) &&
-      (home_player_name.present? || home_player_id.present? || false)
+    archived? &&
+      ((real_winner_id.present? && (real_player_name.present? || real_player_id.present? || false)) ||
+      (home_winner_id.present? && (home_player_name.present? || home_player_id.present? || false)))
   end
 
   def real_winning_country
