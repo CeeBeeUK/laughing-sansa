@@ -20,13 +20,14 @@ ul.events
           .host-details
             span.host-city =event.host_city
             span.year =event.year
-          .winner
-            |Won by&nbsp;
-            span.winner-country =event.real_winning_country
-            |&nbsp;played by&nbsp;
-            span.winner-player =event.real_winning_player
-          .home
-            |Home Champion was&nbsp;
-            span.home-champion =event.home_winning_player
-            |&nbsp;with&nbsp;
-            span.home-champion-country =event.home_winning_country
+          - if event.complete?
+            .winner
+              |Won by&nbsp;
+              span.winner-country =event.real_winning_country
+              |&nbsp;played by&nbsp;
+              span.winner-player =event.real_winning_player
+            .home
+              |Home Champion was&nbsp;
+              span.home-champion =event.home_winning_player
+              |&nbsp;with&nbsp;
+              span.home-champion-country =event.home_winning_country

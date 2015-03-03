@@ -20,6 +20,12 @@ class Event < ActiveRecord::Base
     self.year.to_s
   end
 
+  def complete?
+    archived? && real_winner_id.present? && home_winner_id.present? &&
+      (real_player_name.present? || real_player_id.present? || false) &&
+      (home_player_name.present? || home_player_id.present? || false)
+  end
+
   def real_winning_country
     real_winner.name if real_winner_id
   end
