@@ -22,10 +22,7 @@ ul.events
             span.year =event.year
           - if event.complete?
             .winner
-              |Won by&nbsp;
-              span.winner-country =event.real_winning_country
-              |&nbsp;played by&nbsp;
-              span.winner-player =event.real_winning_player
+              = event.real_winner_display
           - else
             - if event.date
               .event-date Will take place on #{event.date.strftime("#{event.date.day.ordinalize} %B %Y")}
