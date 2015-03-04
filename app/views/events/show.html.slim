@@ -16,6 +16,12 @@ p
   = @event.country.name
   img src= @event.country.large_image
 
+-if @event.real_winner_complete?
+  div =@event.real_winner_display
+
+-if @event.home_winner_complete?
+  div =@event.home_winner_display
+
 -if @event.participating_countries.count==0
   p No data on participating countries
 -else
