@@ -21,9 +21,14 @@ class Event < ActiveRecord::Base
   end
 
   def complete?
-    archived? &&
-      ((real_winner_id.present? && (real_player_name.present? || real_player_id.present? || false)) ||
-      (home_winner_id.present? && (home_player_name.present? || home_player_id.present? || false)))
+    archived? && (real_winner_complete? || home_winner_complete?)
+  end
+
+  def real_winner_complete?
+    real_winner_id.present? && (real_player_name.present? || real_player_id.present? || false)
+  end
+  def home_winner_complete?
+    home_winner_id.present? && (home_player_name.present? || home_player_id.present? || false)
   end
 
   def real_winning_country
@@ -45,5 +50,13 @@ class Event < ActiveRecord::Base
     else
       home_player_name
     end
+  end
+
+  def real_winner_display
+    "Won by #{real_winning_player} with #{real_winner.name}" if real_winner_complete?
+  end
+
+  def home_winner_display
+    "Home champion was #{home_winning_player} with #{home_winner.name}" if home_winner_complete?
   end
 end

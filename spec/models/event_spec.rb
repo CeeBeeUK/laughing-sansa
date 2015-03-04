@@ -65,6 +65,36 @@ RSpec.describe Event, type: :model do
       end
     end
   end
+  describe 'real_winner_display' do
+    it 'should display set text if country and name is set' do
+      country = FactoryGirl.create :country
+      event.real_winner = country
+      event.real_player_name = 'Bob'
+      expect(event.real_winner_display).to eql("Won by #{event.real_winning_player} with #{country.name}")
+    end
+    it 'should display set text if country and player is set' do
+      country = FactoryGirl.create :country
+      player = FactoryGirl.create :user
+      event.real_winner = country
+      event.real_player = player
+      expect(event.real_winner_display).to eql("Won by #{event.real_winning_player} with #{country.name}")
+    end
+  end
+  describe 'home_winner_display' do
+    it 'should display set text if country and name is set' do
+      country = FactoryGirl.create :country
+      event.home_winner = country
+      event.home_player_name = 'Bob'
+      expect(event.home_winner_display).to eql("Home champion was #{event.home_winning_player} with #{country.name}")
+    end
+    it 'should display set text if country and player is set' do
+      country = FactoryGirl.create :country
+      player = FactoryGirl.create :user
+      event.home_winner = country
+      event.home_player = player
+      expect(event.home_winner_display).to eql("Home champion was #{event.home_winning_player} with #{country.name}")
+    end
+  end
   describe 'home_winning_player' do
     describe 'outputs' do
       it 'home_winner_name if set' do
