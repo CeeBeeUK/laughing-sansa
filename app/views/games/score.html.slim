@@ -14,8 +14,7 @@ h2 #{@participating_country.event.display_name} - Act #{@participating_country.s
           li
             input#score-0 name='score' type='radio' style='display:none;'
               label.button.small.primary for='score-0' style='margin-left:0; margin-right:0;' 0
-          li 
-           |&nbsp;
+          li "&nbsp;".html_safe
           li
             input#score-1 name='score' type='radio' style='display:none;'
               label.button.small.primary for='score-1' style='margin-left:0; margin-right:0;' 1
