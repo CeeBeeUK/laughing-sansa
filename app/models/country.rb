@@ -24,7 +24,8 @@ class Country < ActiveRecord::Base
   def to_param
     self.name
   end
-  private
+
+private
 
   def get_image_path
     self.name.parameterize.underscore
