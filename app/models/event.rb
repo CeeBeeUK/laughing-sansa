@@ -20,6 +20,10 @@ class Event < ActiveRecord::Base
     self.year.to_s
   end
 
+  def can_be_joined?
+    active?
+  end
+
   def complete?
     archived? && (real_winner_complete? || home_winner_complete?)
   end
