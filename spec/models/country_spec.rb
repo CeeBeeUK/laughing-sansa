@@ -33,5 +33,10 @@ RSpec.describe Country, :type => :model do
       country.name = nil
       expect(country).to be_invalid
     end
+    it 'should have a unique name' do
+      FactoryGirl.create :country, name: 'Unique'
+      duplicate = FactoryGirl.build :country, name: 'Unique'
+      expect(duplicate).to be_invalid
+    end
   end
 end
