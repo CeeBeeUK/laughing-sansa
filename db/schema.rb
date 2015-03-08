@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20150307172951) do
   end
 
   add_index "participating_players", ["event_id"], name: "index_participating_players_on_event_id", using: :btree
+  add_index "participating_players", ["player_id", "event_id"], name: "unique_player_and_event", unique: true, using: :btree
   add_index "participating_players", ["player_id"], name: "index_participating_players_on_player_id", using: :btree
 
   create_table "users", force: true do |t|
