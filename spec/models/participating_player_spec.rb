@@ -23,6 +23,12 @@ RSpec.describe ParticipatingPlayer, type: :model do
       participant.predicted_uk_score = -1
       expect(participant).to be_invalid
     end
+    it 'player must be unique for an event' do
+      first = ParticipatingPlayer.create(player_id: 1, event_id: 1, predicted_uk_score: 1)
+      first.event.active!
+      duplicate = FactoryGirl.build :participating_player
+      expect(duplicate).to be_invalid
+    end
   end
   context 'joining an event' do
     let (:event) { FactoryGirl.build :event }
