@@ -13,14 +13,13 @@ ul.breadcrumbs
     h2
       |#{@participating_player.player.display_name}, thanks for joining #{@participating_player.event.display_name}
       img.pad-left src= @participating_player.event.country.xl_image
-
+- if @participating_player.errors.any?
+  #error_explanation
+    h2 = "#{pluralize(@participating_player.errors.count, "error")} prohibited you from joining this event:"
+    ul
+      - @participating_player.errors.full_messages.each do |message|
+        li = message
 =form_for @participating_player, html: { autocomplete: 'off' }, url: create_join_game_path do |f|
-  - if @event.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@participating_player.errors.count, "error")} prohibited you from joining this event:"
-      ul
-        - @participating_player.errors.full_messages.each do |message|
-          li = message
   .row
     .small-12.columns
       h3

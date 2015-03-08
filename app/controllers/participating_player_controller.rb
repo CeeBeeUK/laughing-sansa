@@ -20,8 +20,13 @@ class ParticipatingPlayerController < ApplicationController
         event_id: @event.id
       )
     )
-    @participating_player.save
-    respond_with(@participating_player)
+    puts "------------------#{@participating_player.errors.full_messages.first if @participating_player.player.errors.any?}"
+    if @participating_player.valid?
+      @participating_player.save
+      respond_with(@participating_player)
+    else
+      render action: :new
+    end
   end
 
 private

@@ -4,8 +4,7 @@ class ParticipatingPlayer < ActiveRecord::Base
 
   validates :player_id, :event_id, :predicted_uk_score, presence: true
   validates :predicted_uk_score, numericality: { greater_than_or_equal_to: 0 }
-  validates :player_id, uniqueness: { scope: :event_id }
-
+  validates :player_id, uniqueness: { scope: :event_id, message: "is already playing in this year" }
   before_validation :event_can_be_joined, on: :create
 
   private
