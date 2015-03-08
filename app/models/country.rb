@@ -3,7 +3,8 @@ class Country < ActiveRecord::Base
   scope :sorted_by_name, -> { all.order(:name) }
 
   validates :name, presence: true
-
+  validates :name, uniqueness: true
+  
   def small_image
     "/assets/16/#{get_image_path}.png"
   end
