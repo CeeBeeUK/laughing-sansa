@@ -1,0 +1,35 @@
+ul.breadcrumbs
+  li
+    =link_to 'Home', root_path
+  li
+    =link_to 'Events', events_path
+  li
+    =link_to @participating_player.event.display_name, @event
+  li.current
+    =link_to 'Join', new_join_game_path(@participating_player.event.year)
+
+.row
+  .small-12.columns
+    h2
+      |#{@participating_player.player.display_name}, thanks for joining #{@participating_player.event.display_name}
+      img.pad-left src= @participating_player.event.country.xl_image
+
+=form_for @participating_player, html: { autocomplete: 'off' }, url: create_join_game_path do |f|
+  - if @event.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@participating_player.errors.count, "error")} prohibited you from joining this event:"
+      ul
+        - @participating_player.errors.full_messages.each do |message|
+          li = message
+  .row
+    .small-12.columns
+      h3
+  .row
+    .small-8.medium-8.columns
+      = f.label :predicted_uk_score, class: 'inline'
+        |What score do you think the UK will get in total?
+    .small-4.medium-4.columns
+      = f.number_field :predicted_uk_score, autofocus: true
+  .row
+    .small-2.small-centered.columns
+      .actions = f.submit 'Join', class: 'button tiny radius'
