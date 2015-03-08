@@ -4,5 +4,4 @@ FactoryGirl.define do
     event
     predicted_uk_score 1
   end
-
 end
