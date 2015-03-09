@@ -8,6 +8,9 @@ class Ability
     else
       # can :read, :all
       can :read, Event
+      can :new, ParticipatingPlayer
+      can :create, ParticipatingPlayer
+      can :create, ParticipatingCountry
     end
     #
     # The first argument to `can` is the action you are giving the user

@@ -1,10 +1,10 @@
 class ParticipatingPlayerController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
-  before_action :set_event, only: [:new, :create]
   respond_to :html
+  before_action :set_event, only: [:new, :create]
 
   def new
+    authorize! :new, ParticipatingPlayer
     @participating_player = ParticipatingPlayer.new
     @participating_player.event = @event
     @participating_player.player = current_user
@@ -12,6 +12,7 @@ class ParticipatingPlayerController < ApplicationController
   end
 
   def create
+    authorize! :create, ParticipatingPlayer
     @participating_player = ParticipatingPlayer.new(
       participating_player_params.merge(
         player_id: current_user.id,
