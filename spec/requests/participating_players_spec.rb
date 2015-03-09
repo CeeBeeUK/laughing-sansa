@@ -11,7 +11,7 @@ RSpec.describe "ParticipatingPlayers", :type => :request do
    	if Event.first
    		@event = Event.first
    		@event.active!
-	else
+	  else
 	    @event = assign(:event, Event.create!(
 	      year: 998,
 	      host_city: "MyString",
@@ -27,24 +27,24 @@ RSpec.describe "ParticipatingPlayers", :type => :request do
 	      home_player_name: nil,
 	      status: 'active'
 	    ))
-	end
+	  end
   end
 
   describe "GET /events/2015/join" do
     it "Redirects us when not authenticated." do
-      get new_join_game_path(year: 2015)
+      get new_join_game_path(year: @event.year)
       expect(response.status).to eql(302)
     end
 
     it "as user serves the required page" do
       login_as(user, :scope => :user)
-      get new_join_game_path(year: 2015)
+      get new_join_game_path(year: @event.year)
       expect(response.status).to eql(200)
     end
 
     it "as admin serves the required page" do
       login_as(admin_user, :scope => :user)
-      get new_join_game_path(year: 2015)
+      get new_join_game_path(year: @event.year)
       expect(response.status).to eql(200)
     end
   end
