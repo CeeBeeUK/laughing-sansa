@@ -45,7 +45,6 @@ RSpec.describe "ParticipatingPlayers", :type => :request do
     it "as admin serves the required page" do
       login_as(admin_user, :scope => :user)
       get new_join_game_path(year: 2015)
-      puts "----------#{response.inspect}" if response.status == 500
       expect(response.status).to eql(200)
     end
   end
