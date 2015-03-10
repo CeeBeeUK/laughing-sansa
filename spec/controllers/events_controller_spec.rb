@@ -82,6 +82,18 @@ RSpec.describe EventsController, type: :controller do
         expect(response).to redirect_to(root_path)
       end
     end
+    describe 'GET #join' do
+      before :each do
+        @participating_player = FactoryGirl.create(:participating_player)
+        get :join, year: @participating_player.event.to_param
+      end
+      it 'assigns the requested pp to @participating_player' do
+        expect(assigns(:participating_player)).to be_a_new(ParticipatingPlayer)
+      end
+      it 'should render the view' do
+        expect(response).to render_template :join
+      end
+    end
   end
 
   context 'logged in as admin' do
@@ -104,6 +116,7 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #new' do
       it 'should assign a new event to @event' do
+        event = FactoryGirl.create :event
         get :new, {}, valid_session
         expect(assigns(:event)).to be_a_new(Event)
       end
@@ -115,6 +128,19 @@ RSpec.describe EventsController, type: :controller do
         expect(assigns(:event)).to eq(event)
       end
     end
+    describe 'GET #join' do
+      before :each do
+        @participating_player = FactoryGirl.create(:participating_player)
+        get :join, year: @participating_player.event.to_param
+      end
+      it 'assigns the requested pp to @participating_player' do
+        expect(assigns(:participating_player)).to be_a_new(ParticipatingPlayer)
+      end
+      it 'should render the view' do
+        expect(response).to render_template :join
+      end
+    end
+
     describe 'POST #create' do
       context 'with valid params' do
         let(:event) { FactoryGirl.build :event }

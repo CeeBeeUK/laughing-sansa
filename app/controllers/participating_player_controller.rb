@@ -1,10 +1,10 @@
 class ParticipatingPlayerController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
-  before_action :set_event, only: [:new, :create]
+  before_action :set_event, only: [:join, :create]
   respond_to :html
 
-  def new
+  def join
     @participating_player = ParticipatingPlayer.new
     @participating_player.event = @event
     @participating_player.player = current_user
@@ -22,7 +22,7 @@ class ParticipatingPlayerController < ApplicationController
       @participating_player.save
       respond_with(@participating_player)
     else
-      render action: :new
+      render action: :join
     end
   end
 

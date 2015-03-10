@@ -29,6 +29,14 @@ class EventsController < ApplicationController
     respond_with(@event)
   end
 
+  def join
+    authorize! :join, Event
+    @participating_player = ParticipatingPlayer.new
+    @participating_player.event = @event
+    @participating_player.player = current_user
+    respond_with(@participating_player)
+  end
+
   def update
     @event.update(event_params)
     respond_with(@event)
