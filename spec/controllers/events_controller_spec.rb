@@ -140,7 +140,25 @@ RSpec.describe EventsController, type: :controller do
         expect(response).to render_template :join
       end
     end
-
+    describe 'POST #sign_up' do
+      before :each do
+        @participating_player = FactoryGirl.create(:participating_player)
+      end
+      context 'with valid params' do
+        it 'creates a new participating player' do
+          expect {
+            post :sign_up, { year: @participating_player.event.year, participating_player: @participating_player.attributes }
+          }.to change(ParticipatingPlayer, :count).by(1)
+        end
+        it 'redirects to the event view' do
+          post :sign_up, { year: @participating_player.event.year, participating_player: @participating_player.attributes }
+          expect(response).to redirect_to(@participating_player.event)
+        end
+      end
+      context 'with invalid params' do
+        it 're-renders to the join view'
+      end
+    end
     describe 'POST #create' do
       context 'with valid params' do
         let(:event) { FactoryGirl.build :event }
