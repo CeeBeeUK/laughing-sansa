@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'events/:year/join', to: 'participating_player#new', as:'new_join_game'
-  post 'events/:year/join', to: 'participating_player#create', as:'create_join_game'
+  get 'events/:year/join', to: 'events#join', as: 'game_join'
+  post 'events/:year/join', to: 'events#sign_up', as: 'game_sign_up'
 
   get "games/score/:id", to: 'games#score', as: 'test_score'
 

@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
-  before_action :set_event, only: [:show, :edit, :update]
+  before_action :set_event, only: [:show, :edit, :update, :join, :sign_up]
   before_action :get_countries, only: [:new, :edit, :create, :update]
   respond_to :html
 
@@ -29,6 +29,30 @@ class EventsController < ApplicationController
     respond_with(@event)
   end
 
+  def join
+    authorize! :join, Event
+    @participating_player = ParticipatingPlayer.new
+    @participating_player.event = @event
+    @participating_player.player = current_user
+    respond_with(@participating_player)
+  end
+
+  def sign_up
+    authorize! :sign_up, Event
+    @participating_player = ParticipatingPlayer.new(
+        participating_player_params.merge(
+            player_id: current_user.id,
+            event_id: @event.id
+        )
+    )
+    if @participating_player.valid?
+      @participating_player.save
+      redirect_to event_path(@participating_player.event)
+    else
+      render action: :join
+    end
+  end
+
   def update
     @event.update(event_params)
     respond_with(@event)
@@ -42,6 +66,10 @@ private
   def get_countries
     @countries = Country.sorted_by_name
     @users = User.all
+  end
+
+  def participating_player_params
+    params.require(:participating_player).permit(:predicted_uk_score)
   end
 
   def event_params

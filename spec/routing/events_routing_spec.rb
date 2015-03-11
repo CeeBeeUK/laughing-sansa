@@ -30,6 +30,11 @@ RSpec.describe EventsController, type: :routing do
     it 'routes to #destroy' do
       expect(delete: '/events/2015').to route_to('events#destroy', year: '2015')
     end
-
+    it 'routes to #join' do
+      expect(get: '/events/2015/join').to route_to('events#join', year: '2015')
+    end
+    it 'routes to #sign_up' do
+      expect(post: '/events/2015/join').to route_to('events#sign_up', year: '2015')
+    end
   end
 end

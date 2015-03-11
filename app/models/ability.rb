@@ -8,6 +8,8 @@ class Ability
     else
       # can :read, :all
       can :read, Event
+      can :join, Event
+      can :sign_up, Event
     end
     #
     # The first argument to `can` is the action you are giving the user

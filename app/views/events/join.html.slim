@@ -6,7 +6,7 @@ ul.breadcrumbs
   li
     =link_to @participating_player.event.display_name, @event
   li.current
-    =link_to 'Join', new_join_game_path(@participating_player.event.year)
+    =link_to 'Join', game_join_path(@participating_player.event.year)
 
 .row
   .small-12.columns
@@ -19,7 +19,7 @@ ul.breadcrumbs
     ul
       - @participating_player.errors.full_messages.each do |message|
         li = message
-=form_for @participating_player, html: { autocomplete: 'off' }, url: create_join_game_path do |f|
+=form_for @participating_player, html: { autocomplete: 'off' }, url: game_sign_up_path do |f|
   .row
     .small-12.columns
       h3
