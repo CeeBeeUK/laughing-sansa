@@ -7,9 +7,10 @@ class ParticipatingPlayer < ActiveRecord::Base
   validates :player_id, uniqueness: { scope: :event_id, message: "is already playing in this year" }
   before_validation :event_can_be_joined, on: :create
 
-  private
+private
+
   def event_can_be_joined
-    if self.event && !self.event.can_be_joined?
+    if event && !event.can_be_joined?
       errors.add(:event, 'is not active.')
     end
   end
