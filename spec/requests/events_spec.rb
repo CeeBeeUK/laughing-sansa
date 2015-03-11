@@ -15,13 +15,13 @@ RSpec.describe 'Events', type: :request do
     end
 
     it 'returns 200 when authenticated' do
-      login_as(user, scope: user)
+      login_as(user, scope: :user)
       get events_path
       expect(response.status).to eql(200)
     end
 
     it 'returns 200 when authorised' do
-      login_as(admin_user, scope: user)
+      login_as(admin_user, scope: :user)
       get events_path
       expect(response.status).to eql(200)
     end
@@ -43,13 +43,13 @@ RSpec.describe 'Events', type: :request do
       }
 
       it 'returns 200 when authenticated' do
-        login_as(user, scope: user)
+        login_as(user, scope: :user)
         get new_event_path
         expect(response.status).to eql(302)
       end
 
       it 'returns 200 when authorised' do
-        login_as(admin_user, scope: user)
+        login_as(admin_user, scope: :user)
         get new_event_path
         expect(response.status).to eql(200)
       end
