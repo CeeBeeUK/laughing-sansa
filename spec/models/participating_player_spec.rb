@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ParticipatingPlayer, type: :model do
-  let(:participant) { FactoryGirl.build :participating_player }
+  let(:participant) { build(:participating_player) }
   before(:each) { participant.event.active! }
   it 'should pass factory build' do
     expect(participant).to be_valid
@@ -32,7 +32,7 @@ RSpec.describe ParticipatingPlayer, type: :model do
     end
   end
   context 'joining an event' do
-    let (:event) { FactoryGirl.build :event }
+    let (:event) { build(:event) }
     it 'in setup should fail' do
       event.setup!
       participant.event = event

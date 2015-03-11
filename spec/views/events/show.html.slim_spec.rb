@@ -4,11 +4,11 @@ RSpec.describe 'events/show', type: :view do
 
   include Devise::TestHelpers
 
-  let(:user) { FactoryGirl.create :user }
+  let(:user) { create(:user) }
 
   before(:each) do
-    @event = FactoryGirl.create :event
-    @event.country = FactoryGirl.create :country
+    @event = create(:event)
+    @event.country = create(:country)
   end
 
   it 'renders attributes' do

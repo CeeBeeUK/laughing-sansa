@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'countries/edit', :type => :view do
   before(:each) do
-    @country =  FactoryGirl.create(:country)
+    @country =  create(:country)
   end
 
   it 'renders the edit country form' do

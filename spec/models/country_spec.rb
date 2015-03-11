@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Country, :type => :model do
 
-  let(:country) { FactoryGirl.build :country, name: 'United Kingdom' }
+  let(:country) { build(:country, name: 'United Kingdom') }
 
   it 'should pass factory build' do
       expect(country).to be_valid
@@ -34,8 +34,8 @@ RSpec.describe Country, :type => :model do
       expect(country).to be_invalid
     end
     it 'should have a unique name' do
-      FactoryGirl.create :country, name: 'Unique'
-      duplicate = FactoryGirl.build :country, name: 'Unique'
+      create(:country, name: 'Unique')
+      duplicate = build(:country, name: 'Unique')
       expect(duplicate).to be_invalid
     end
   end

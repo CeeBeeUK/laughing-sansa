@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe User, :type => :model do
 
-  let(:user)          { FactoryGirl.build :user }
-  let(:admin_user)    { FactoryGirl.build :admin_user }
+  let(:user)          { build(:user) }
+  let(:admin_user)    { build(:admin_user) }
 
   it 'should pass factory build' do
     expect(user).to be_valid

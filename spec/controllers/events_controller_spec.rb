@@ -18,8 +18,8 @@ RSpec.describe EventsController, type: :controller do
 
   let(:valid_session) { {} }
 
-  let(:user) { FactoryGirl.create :user }
-  let(:admin_user) { FactoryGirl.create :admin_user }
+  let(:user) { create(:user) }
+  let(:admin_user) { create(:admin_user) }
 
   context 'logged out user' do
     describe 'GET #index' do
@@ -30,7 +30,7 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #show' do
       it 'redirects to login page' do
-        event = FactoryGirl.create :event
+        event = create(:event)
         get :show, { year: event.to_param }, valid_session
         expect(response).to redirect_to(root_path)
       end
@@ -43,7 +43,7 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #edit' do
       it 'should redirect to login page' do
-        event = FactoryGirl.create :event
+        event = create(:event)
         get :edit, { year: event.to_param }, valid_session
         expect(response).to redirect_to(root_path)
       end
@@ -57,14 +57,14 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #index' do
       it 'assigns all events as @events' do
-        event = FactoryGirl.create :event
+        event = create(:event)
         get :index, {}, valid_session
         expect(assigns(:events)).to include(event)
       end
     end
     describe 'GET #show' do
       it 'assigns the requested event as @event' do
-        event = FactoryGirl.create :event
+        event = create(:event)
         get :show, { year: event.to_param }, valid_session
         expect(assigns(:event)).to eq(event)
       end
@@ -77,14 +77,14 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #edit' do
       it 'should redirect to login page' do
-        event = FactoryGirl.create :event
+        event = create(:event)
         get :edit, { year: event.to_param }, valid_session
         expect(response).to redirect_to(root_path)
       end
     end
     describe 'GET #join' do
       before :each do
-        @participating_player = FactoryGirl.create(:participating_player)
+        @participating_player = create(:participating_player)
         get :join, year: @participating_player.event.to_param
       end
       it 'assigns the requested pp to @participating_player' do
@@ -102,35 +102,35 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #index' do
       it 'should assigns all events as @events' do
-        event = FactoryGirl.create :event
+        event = create(:event)
         get :index, {}, valid_session
         expect(assigns(:events)).to include(event)
       end
     end
     describe 'GET #show' do
       it 'should assigns the requested event as @event' do
-        event = FactoryGirl.create :event
+        event = create(:event)
         get :show, { year: event.to_param }, valid_session
         expect(assigns(:event)).to eq(event)
       end
     end
     describe 'GET #new' do
       it 'should assign a new event to @event' do
-        event = FactoryGirl.create :event
+        event = create(:event)
         get :new, {}, valid_session
         expect(assigns(:event)).to be_a_new(Event)
       end
     end
     describe 'GET #edit' do
       it 'should assign the requested event as @event' do
-        event = FactoryGirl.create :event
+        event = create(:event)
         get :edit, { year: event.to_param }, valid_session
         expect(assigns(:event)).to eq(event)
       end
     end
     describe 'GET #join' do
       before :each do
-        @participating_player = FactoryGirl.create(:participating_player)
+        @participating_player = create(:participating_player)
         get :join, year: @participating_player.event.to_param
       end
       it 'assigns the requested pp to @participating_player' do
@@ -143,7 +143,7 @@ RSpec.describe EventsController, type: :controller do
     describe 'POST #sign_up' do
       context 'with valid params' do
         before :each do
-          @participating_player = FactoryGirl.create(:participating_player)
+          @participating_player = create(:participating_player)
         end       
         it 'creates a new participating player' do
           expect {
@@ -157,7 +157,7 @@ RSpec.describe EventsController, type: :controller do
       end
       context 'with invalid params' do
         it 're-renders to the join view' do
-          @bad_pp = FactoryGirl.build(:invalid_pp)
+          @bad_pp = build(:invalid_pp)
           post :sign_up, { year: @bad_pp.event.year, participating_player: @bad_pp.attributes }
           expect(response).to render_template :join
         end
@@ -165,7 +165,7 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'POST #create' do
       context 'with valid params' do
-        let(:event) { FactoryGirl.build :event }
+        let(:event) { build(:event) }
 
         it 'should create a new Event' do
           expect {
@@ -199,7 +199,7 @@ RSpec.describe EventsController, type: :controller do
     end
 
     describe 'PUT #update' do
-      let(:event) { FactoryGirl.create :event }
+      let(:event) { create(:event) }
       context 'with valid params' do
         let(:new_attributes) { event.attributes  }
         before(:each) { new_attributes['host_city'] += 'test' }

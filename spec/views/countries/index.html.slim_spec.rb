@@ -4,7 +4,7 @@ RSpec.describe 'countries/index', :type => :view do
 
   include Devise::TestHelpers
 
-  let(:user) { FactoryGirl.create :user }
+  let(:user) { create(:user) }
 
   before(:each) do
     assign(:countries, [

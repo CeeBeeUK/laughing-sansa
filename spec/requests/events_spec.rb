@@ -5,8 +5,8 @@ RSpec.describe 'Events', type: :request do
   include Warden::Test::Helpers
   Warden.test_mode!
 
-  let(:user) { FactoryGirl.create :user }
-  let(:admin_user) { FactoryGirl.create :admin_user }
+  let(:user) { create(:user) }
+  let(:admin_user) { create(:admin_user) }
 
   describe 'GET /events' do
     it 'should redirect when user not authenticated' do

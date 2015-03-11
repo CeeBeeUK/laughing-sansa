@@ -4,8 +4,8 @@ RSpec.describe "layouts/application.html.slim", :type => :view do
 
   include Devise::TestHelpers
 
-  let(:user) { FactoryGirl.create :user }
-  let(:admin) { FactoryGirl.create :admin_user }
+  let(:user) { create(:user) }
+  let(:admin) { create(:admin_user) }
 
   context 'all visitors' do
     it 'should have access to an off canvas menu' do

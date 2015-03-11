@@ -4,10 +4,10 @@ RSpec.describe 'events/index', type: :view do
 
   include Devise::TestHelpers
 
-  let(:user) { FactoryGirl.create :user }
+  let(:user) { create(:user) }
 
   before(:each) do
-    country = FactoryGirl.create :country
+    country = create(:country)
     assign(:events, [
       Event.create!(
         year: 2010,

@@ -4,7 +4,7 @@ RSpec.describe "profile/show.html.slim", type: :view do
 
   include Devise::TestHelpers
 
-  let(:user) { assign(:user, FactoryGirl.create(:user)) }
+  let(:user) { assign(:user, create(:user)) }
   before(:each) do
     sign_in user
   end

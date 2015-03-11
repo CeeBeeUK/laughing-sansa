@@ -13,8 +13,8 @@ RSpec.describe "events/new", type: :view do
                          Country.create(name: 'country 2')
                      ])
     assign(:users, [
-                     FactoryGirl.create(:user),
-                     FactoryGirl.create(:user)
+                     create(:user),
+                     create(:user)
                  ])
   end
 

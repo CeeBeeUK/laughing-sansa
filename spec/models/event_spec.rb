@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
 
-  let(:event) { FactoryGirl.build :event }
+  let(:event) { build(:event) }
 
   it 'should pass factory build' do
     expect(event).to be_valid
@@ -58,7 +58,7 @@ RSpec.describe Event, type: :model do
         expect(event.real_winning_player).to eql('Bob')
       end
       it 'linked players display_name if set' do
-        player = FactoryGirl.create :user
+        player = create(:user)
         event.real_player = player
         event.real_player_name = 'Bob'
         expect(event.real_winning_player).to eql(player.display_name)
@@ -67,14 +67,14 @@ RSpec.describe Event, type: :model do
   end
   describe 'real_winner_display' do
     it 'should display set text if country and name is set' do
-      country = FactoryGirl.create :country
+      country = create(:country)
       event.real_winner = country
       event.real_player_name = 'Bob'
       expect(event.real_winner_display).to eql("Won by #{event.real_winning_player} with #{country.name}")
     end
     it 'should display set text if country and player is set' do
-      country = FactoryGirl.create :country
-      player = FactoryGirl.create :user
+      country = create(:country)
+      player = create(:user)
       event.real_winner = country
       event.real_player = player
       expect(event.real_winner_display).to eql("Won by #{event.real_winning_player} with #{country.name}")
@@ -82,14 +82,14 @@ RSpec.describe Event, type: :model do
   end
   describe 'home_winner_display' do
     it 'should display set text if country and name is set' do
-      country = FactoryGirl.create :country
+      country = create(:country)
       event.home_winner = country
       event.home_player_name = 'Bob'
       expect(event.home_winner_display).to eql("Home champion was #{event.home_winning_player} with #{country.name}")
     end
     it 'should display set text if country and player is set' do
-      country = FactoryGirl.create :country
-      player = FactoryGirl.create :user
+      country = create(:country)
+      player = create(:user)
       event.home_winner = country
       event.home_player = player
       expect(event.home_winner_display).to eql("Home champion was #{event.home_winning_player} with #{country.name}")
@@ -103,7 +103,7 @@ RSpec.describe Event, type: :model do
         expect(event.home_winning_player).to eql('Bob')
       end
       it 'linked players display_name if set' do
-        player = FactoryGirl.create :user
+        player = create(:user)
         event.home_player = player
         event.home_player_name = 'Bob'
         expect(event.home_winning_player).to eql(player.display_name)
