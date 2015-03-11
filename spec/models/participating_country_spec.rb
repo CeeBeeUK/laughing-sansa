@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe ParticipatingCountry, type: :model do
   let(:participant) { build(:participating_country) }
 
-  it 'should pass the factory build' do
+  it 'passes the factory build' do
     expect(participant).to be_valid
   end
   context 'validations' do
     it 'must require a country' do
-      participant.country=nil
+      participant.country = nil
       expect(participant).to be_invalid
     end
 
