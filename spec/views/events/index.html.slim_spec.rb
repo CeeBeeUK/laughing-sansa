@@ -49,10 +49,10 @@ RSpec.describe 'events/index', type: :view do
   it 'renders a list of events' do
     sign_in user
     render
-    assert_select 'li span.year', :text => 2010.to_s, :count => 1
-    assert_select 'li span.year', :text => 2011.to_s, :count => 1
-    assert_select 'li span.host-city', :text => 'Host City'.to_s, :count => 3
-    assert_select 'li div.winner', text: /Won by/, :count => 2
+    assert_select 'li span.year', text: 2010.to_s, count: 1
+    assert_select 'li span.year', text: 2011.to_s, count: 1
+    assert_select 'li span.host-city', text: 'Host City'.to_s, count: 3
+    assert_select 'li div.winner', text: /Won by/, count: 2
     assert_select 'li div.event-date', text: "Will take place on #{Date.today.strftime("#{Date.today.day.ordinalize} %B %Y")}", count: 1
   end
 end

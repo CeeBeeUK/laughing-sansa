@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'countries/show', :type => :view do
+RSpec.describe 'countries/show', type: :view do
   before(:each) do
     @country =  create(:country)
   end
