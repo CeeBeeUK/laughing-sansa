@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe ParticipatingPlayer, type: :model do
   let(:participant) { build(:participating_player) }
   before(:each) { participant.event.active! }
-  it 'should pass factory build' do
+  it 'passes factory build' do
     expect(participant).to be_valid
   end
   context 'validations' do
     it 'must require an event' do
-      participant.event = nil 
+      participant.event = nil
       expect(participant).to be_invalid
     end
     it 'must require a player' do
@@ -24,7 +24,7 @@ RSpec.describe ParticipatingPlayer, type: :model do
       expect(participant).to be_invalid
     end
     it 'player must be unique for an event' do
-      first = ParticipatingPlayer.create(player_id: 1, event_id: 1, predicted_uk_score: 1)
+      first = described_class.create(player_id: 1, event_id: 1, predicted_uk_score: 1)
       first.event.active!
       first.save!
       duplicate = first.dup
@@ -32,7 +32,7 @@ RSpec.describe ParticipatingPlayer, type: :model do
     end
   end
   context 'joining an event' do
-    let (:event) { build(:event) }
+    let(:event) { build(:event) }
     it 'in setup should fail' do
       event.setup!
       participant.event = event
