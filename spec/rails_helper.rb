@@ -12,23 +12,5 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
   config.infer_spec_type_from_file_location!
-  # config.include(OmniauthMacros)
-  # OmniAuth.config.test_mode = true
-  # OmniAuth.config.add_mock(
-  #     :create_new_user,
-  #     {
-  #         :info => {
-  #             :email => 'failing@non-existant.com',
-  #             :name=>'Test User'
-  #         }
-  #     })
-  # OmniAuth.config.add_mock(
-  #     :find_existing,
-  #     {
-  #         :info => {
-  #             :email => 'user1@example.com',
-  #             :name=>'Test User'
-  #         }
-  #     })
-
+  config.include FactoryGirl::Syntax::Methods
 end
