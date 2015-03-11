@@ -101,33 +101,30 @@ RSpec.describe EventsController, type: :controller do
   end
 
   context 'logged in as admin' do
+    let(:event) { create(:event) }
     before(:each) do
       sign_in admin_user
     end
     describe 'GET #index' do
       it 'assigns all events as @events' do
-        event = create(:event)
         get :index, {}, valid_session
         expect(assigns(:events)).to include(event)
       end
     end
     describe 'GET #show' do
       it 'assigns the requested event as @event' do
-        create(:event)
         get :show, { year: event.to_param }, valid_session
         expect(assigns(:event)).to eq(event)
       end
     end
     describe 'GET #new' do
       it 'assigns a new event to @event' do
-        create(:event)
         get :new, {}, valid_session
         expect(assigns(:event)).to be_a_new(Event)
       end
     end
     describe 'GET #edit' do
       it 'assigns the requested event as @event' do
-        create(:event)
         get :edit, { year: event.to_param }, valid_session
         expect(assigns(:event)).to eq(event)
       end
@@ -146,7 +143,7 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'POST #sign_up' do
       context 'with valid params' do
-        let(:participating_player) { create(:participating_player) }
+        let(:participating_player) { build(:participating_player) }
         it 'creates a new participating player' do
           expect {
             post :sign_up, year: participating_player.event.year, participating_player: participating_player.attributes
