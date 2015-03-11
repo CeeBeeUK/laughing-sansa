@@ -6,5 +6,9 @@ FactoryGirl.define do
     after(:build) do |pp|
       pp.event.active!
     end
+
+    factory :invalid_pp do
+    	predicted_uk_score nil
+    end
   end
 end
