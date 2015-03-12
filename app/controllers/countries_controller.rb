@@ -1,7 +1,7 @@
 class CountriesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
-  
+
   before_action :set_country, only: [:show, :edit, :update, :destroy]
   respond_to :html
 
@@ -38,12 +38,13 @@ class CountriesController < ApplicationController
     respond_with(@country)
   end
 
-  private
-    def set_country
-      @country = Country.find_by(name: params[:name])
-    end
+private
 
-    def country_params
-      params.require(:country).permit(:name, :image_path)
-    end
+  def set_country
+    @country = Country.find_by(name: params[:name])
+  end
+
+  def country_params
+    params.require(:country).permit(:name, :image_path)
+  end
 end
