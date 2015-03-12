@@ -83,7 +83,7 @@ Style/EmptyLinesAroundBlockBody:
 
 # We have a mixture at the moment, so don't enforce anything.
 Style/FormatString:
-  Enabled: false
+  Enabled: true
 
 # It's not really clearer to replace every if with a return if.
 Style/GuardClause:
