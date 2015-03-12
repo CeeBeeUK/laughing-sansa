@@ -36,8 +36,6 @@ class User < ActiveRecord::Base
     self[:display_name].presence ? true : false
   end
 
-private
-
   def self.add_new_user(data)
     User.create!(name: data['name'],
                  email: data['email'],
