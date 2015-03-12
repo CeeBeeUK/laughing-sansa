@@ -16,7 +16,7 @@ private
   def load_user
     @user = User.find_by(email: current_user.email)
   end
-  
+
   def user_params
     params.require(:user).permit(:display_name)
   end
