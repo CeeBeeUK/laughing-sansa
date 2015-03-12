@@ -1,35 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'events/new', type: :view do
-  let(:event) {
-    assign(:event,
-      Event.new(
-        year: 1,
-        host_city: 'MyString',
-        active: false,
-        country_id: 1
-      )
-    )
-  }
-  let(:countries) {
-    assign(:countries,
-      [
-        Country.create(name: 'country 1'),
-        Country.create(name: 'country 2')
-      ]
-    )
-  }
-  let(:users) {
-    assign(:users,
-      [
-        create(:user),
-        create(:user)
-      ]
-    )
-  }
+  let(:event) { assign(:event, create(:event)) }
 
   it 'renders new event form' do
-    countries
     event
     render
 
