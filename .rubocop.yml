@@ -51,7 +51,7 @@ Style/AlignParameters:
 Style/ClassAndModuleChildren:
   EnforcedStyle: nested
   Exclude:
-    - app/controllers/users/invitations_controller.rb
+    - app/controllers/users/omniauth_callbacks_controller.rb
 
 Style/CollectionMethods:
   PreferredMethods:
