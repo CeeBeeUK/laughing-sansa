@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "events/edit", type: :view do
-
   let(:event) {
     assign(:event,
       Event.create!(
@@ -21,7 +20,8 @@ RSpec.describe "events/edit", type: :view do
       )
     )
   }
-  before(:each) do
+  it "renders the edit event form" do
+    event
     assign(:countries,
       [
         Country.create(name: 'country 1'),
@@ -34,14 +34,14 @@ RSpec.describe "events/edit", type: :view do
         create(:user)
       ]
     )
-  end
-
-  it "renders the edit event form" do
     render
 
     assert_select "form[action=?][method=?]", event_path(event), "post" do
+
       assert_select "input#event_year[name=?]", "event[year]"
+
       assert_select "input#event_host_city[name=?]", "event[host_city]"
+
       assert_select "input#event_active[name=?]", "event[active]"
     end
   end
