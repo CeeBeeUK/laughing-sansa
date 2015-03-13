@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "layouts/application.html.slim", type: :view do
+RSpec.describe 'layouts/application.html.slim', type: :view do
 
   include Devise::TestHelpers
 

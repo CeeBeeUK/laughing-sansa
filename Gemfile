@@ -56,7 +56,7 @@ end
 # Code climate CI integration
 group :test do
   gem 'database_cleaner'
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 # gem for heroku deployment

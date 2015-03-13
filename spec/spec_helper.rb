@@ -31,7 +31,7 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
-  config.order = "random"
+  config.order = 'random'
   config.expect_with :rspec do |c|
     c.syntax = [:should, :expect]
   end

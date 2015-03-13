@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates :role, presence: true
   validates :role, inclusion: {
     in: ROLES,
-    message: "%{value} is not a valid role",
+    message: '%{value} is not a valid role',
     allow_nil: true
   }
 

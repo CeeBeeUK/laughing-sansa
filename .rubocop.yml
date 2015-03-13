@@ -96,7 +96,7 @@ Style/NumericLiterals:
 # Percent-formatting and hash interpolation both have their place. Don't
 # enforce any particular one.
 Style/StringLiterals:
-  Enabled: false
+  Enabled: true
 
 # I'm happy with raise, thanks.
 Style/SignalException:
