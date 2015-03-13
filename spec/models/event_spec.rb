@@ -53,7 +53,7 @@ RSpec.describe Event, type: :model do
   describe 'real_winning_player' do
     describe 'outputs' do
       it 'real_winner_name if set' do
-        event.real_winner_id = nil
+        event.real_player_id = nil
         event.real_player_name = 'Bob'
         expect(event.real_winning_player).to eql('Bob')
       end
@@ -98,7 +98,7 @@ RSpec.describe Event, type: :model do
   describe 'home_winning_player' do
     describe 'outputs' do
       it 'home_winner_name if set' do
-        event.home_winner_id = nil
+        event.home_player_id = nil
         event.home_player_name = 'Bob'
         expect(event.home_winning_player).to eql('Bob')
       end

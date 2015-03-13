@@ -6,11 +6,11 @@ FactoryGirl.define do
     association :country
     real_winner_id nil
     real_score nil
-    real_player_id nil
+    association :real_player, factory: 'user'
     real_player_name nil
     home_winner_id nil
     home_score nil
-    home_player_id nil
+    association :home_player, factory: 'user'
     home_player_name nil
     status nil
   end
