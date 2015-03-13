@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     data = access_token.info
     user = User.where(email: data['email']).first
     if user
-      user = update_user(data)
+      user = update_user(user, data)
     else
       user = add_new_user(data)
     end
@@ -53,5 +53,6 @@ class User < ActiveRecord::Base
                  first_name: data['first_name'],
                  encrypted_password: Devise.friendly_token[0, 20],
                  image: data['image'])
+    user
   end
 end
