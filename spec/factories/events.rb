@@ -3,7 +3,7 @@ FactoryGirl.define do
     sequence(:year)
     host_city 'london'
     active false
-    country_id 1
+    association :country
     real_winner_id nil
     real_score nil
     real_player_id nil

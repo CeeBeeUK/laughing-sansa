@@ -7,6 +7,7 @@ RSpec.describe 'Events', type: :request do
 
   let(:user) { create(:user) }
   let(:admin_user) { create(:admin_user) }
+  let(:event) { create(:event) }
 
   describe 'GET /events' do
     it 'redirects when user not authenticated' do
@@ -15,7 +16,7 @@ RSpec.describe 'Events', type: :request do
     end
 
     it 'returns 200 when authenticated' do
-      login_as(user, scope: :user)
+      login_as user
       get events_path
       expect(response.status).to eql(200)
     end
@@ -42,14 +43,14 @@ RSpec.describe 'Events', type: :request do
         )
       }
 
-      it 'returns 200 when authenticated' do
+      it 'returns 302 when authenticated' do
         login_as(user, scope: :user)
         get new_event_path
         expect(response.status).to eql(302)
       end
 
       it 'returns 200 when authorised' do
-        login_as(admin_user, scope: :user)
+        login_as admin_user
         get new_event_path
         expect(response.status).to eql(200)
       end

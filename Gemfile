@@ -36,14 +36,15 @@ gem 'cancancan', '~> 1.10'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 
 group :test, :development do
   gem 'rspec'
   gem 'rspec-rails'
   # allows reset of db for testing
-  gem 'database_cleaner'
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'factory_girl_rails'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
@@ -54,6 +55,7 @@ end
 
 # Code climate CI integration
 group :test do
+  gem 'database_cleaner'
   gem "codeclimate-test-reporter", require: nil
 end
 
