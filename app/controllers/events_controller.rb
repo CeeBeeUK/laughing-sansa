@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   load_and_authorize_resource
 
   before_action :set_event, only: [:show, :edit, :update, :join, :sign_up]
-  before_action :get_countries, only: [:new, :edit, :create, :update]
+  before_action :load_variables, only: [:new, :edit, :create, :update]
   respond_to :html
 
   def index
@@ -39,12 +39,7 @@ class EventsController < ApplicationController
 
   def sign_up
     authorize! :sign_up, Event
-    @participating_player = ParticipatingPlayer.new(
-        participating_player_params.merge(
-            player_id: current_user.id,
-            event_id: @event.id
-        )
-    )
+    @participating_player = build_sign_up_pp
     if @participating_player.valid?
       @participating_player.save
       redirect_to event_path(@participating_player.event)
@@ -59,11 +54,21 @@ class EventsController < ApplicationController
   end
 
 private
+
+  def build_sign_up_pp
+    ParticipatingPlayer.new(
+      participating_player_params.merge(
+        player_id: current_user.id,
+        event_id: @event.id
+      )
+    )
+  end
+
   def set_event
     @event = Event.find_by(year: params[:year])
   end
 
-  def get_countries
+  def load_variables
     @countries = Country.sorted_by_name
     @users = User.all
   end
@@ -73,22 +78,8 @@ private
   end
 
   def event_params
-    params.require(:event)
-      .permit(
-        :year,
-        :host_city,
-        :active,
-        :country_id,
-        :real_winner_id,
-        :real_player_id,
-        :real_score,
-        :real_player_name,
-        :home_winner_id,
-        :home_player_id,
-        :home_score,
-        :home_player_name,
-        :status,
-        :date
-      )
+    params.require(:event).permit(:year, :host_city, :active, :country_id, :real_winner_id,
+      :real_player_id, :real_score, :real_player_name, :home_winner_id, :home_player_id,
+      :home_score, :home_player_name, :status, :date)
   end
 end

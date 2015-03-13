@@ -40,12 +40,15 @@ gem 'cancancan', '~> 1.10'
 group :test, :development do
   gem 'rspec'
   gem 'rspec-rails'
-  #allows reset of db for testing
+  # allows reset of db for testing
   gem 'database_cleaner'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'factory_girl_rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
   gem 'guard-rspec'
+  gem 'guard-rubocop'
   gem 'guard'
 end
 
@@ -56,4 +59,3 @@ end
 
 # gem for heroku deployment
 gem 'rails_12factor', group: :production
-

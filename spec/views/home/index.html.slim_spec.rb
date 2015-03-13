@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe "home/index.html.slim", :type => :view do
+RSpec.describe "home/index.html.slim", type: :view do
 
   include Devise::TestHelpers
 
   let(:user) { create(:user) }
 
-  it 'should have a Main Page header' do
+  it 'has a Main Page header' do
     render
     expect(rendered).to include('Bruce-Burton Eurovision scoring')
   end

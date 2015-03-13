@@ -9,15 +9,16 @@ class Event < ActiveRecord::Base
   validates :year, :country_id, :host_city, presence: true
   validates :year, uniqueness: true
 
-  enum status: [ :setup, :active, :archived ]
+  enum status: [:setup, :active, :archived]
 
   scope :last_to_first, -> { all.order(year: :desc) }
 
   def display_name
-    "#{self.host_city} #{self.year}"
+    "#{host_city} #{year}"
   end
+
   def to_param
-    self.year.to_s
+    year.to_s
   end
 
   def can_be_joined?
@@ -31,6 +32,7 @@ class Event < ActiveRecord::Base
   def real_winner_complete?
     real_winner_id.present? && (real_player_name.present? || real_player_id.present? || false)
   end
+
   def home_winner_complete?
     home_winner_id.present? && (home_player_name.present? || home_player_id.present? || false)
   end
@@ -38,6 +40,7 @@ class Event < ActiveRecord::Base
   def real_winning_country
     real_winner.name if real_winner_id
   end
+
   def real_winning_player
     if real_player
       real_player.display_name
@@ -45,9 +48,11 @@ class Event < ActiveRecord::Base
       real_player_name
     end
   end
+
   def home_winning_country
     home_winner.name if home_winner_id
   end
+
   def home_winning_player
     if home_player
       home_player.display_name

@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe CountriesController, :type => :controller do
+RSpec.describe CountriesController, type: :controller do
 
   include Devise::TestHelpers
-
 
   let(:valid_attributes) {
     { name: "United Kingdom #{SecureRandom.hex(4)}" }
@@ -17,7 +16,7 @@ RSpec.describe CountriesController, :type => :controller do
 
   let(:user) { create(:user) }
   let(:admin_user) { create(:admin_user) }
-  
+
   context 'as a logged in admin' do
 
     before(:each) { sign_in admin_user }

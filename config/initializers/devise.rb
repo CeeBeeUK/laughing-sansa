@@ -4,7 +4,8 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = '638ecb1787110fd618c1fa9e1be272a7ad21fe078f26dafd69374d53c66fc6abc3bceebde0705ca655488608699cd4c6afc88312c20d02a80acd5f1332e77768'
+  # config.secret_key = '638ecb1787110fd618c1fa9e1be272a7ad21fe078f26dafd69374d53c66fc6ab' \
+  #  'c3bceebde0705ca655488608699cd4c6afc88312c20d02a80acd5f1332e77768'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -41,12 +42,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email ]
+  config.case_insensitive_keys = [:email]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -97,7 +98,8 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '11d39a88a1aa67ce40c87415fb5b11ab8a11ff65c72df79ad58daecf46f303755d465a4e85becdfccad1771a27252da50012bfdf8d458dc569373d26d754f23e'
+  # config.pepper = '11d39a88a1aa67ce40c87415fb5b11ab8a11ff65c72df79ad58daecf46f' \
+  # '303755d465a4e85becdfccad1771a27252da50012bfdf8d458dc569373d26d754f23e'
 
   # ==> Configuration for :invitable
   # The period the generated invitation token is valid, after
@@ -273,13 +275,12 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"],
-    {
-      scope: 'email, profile',
-      prompt: 'select_account',
-      access_type: 'online',
-      image_aspect_ratio: "square",
-      image_size: 25
-    }
+    scope: 'email, profile',
+    prompt: 'select_account',
+    access_type: 'online',
+    image_aspect_ratio: "square",
+    image_size: 25
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

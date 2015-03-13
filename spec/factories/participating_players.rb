@@ -8,7 +8,7 @@ FactoryGirl.define do
     end
 
     factory :invalid_pp do
-    	predicted_uk_score nil
+      predicted_uk_score nil
     end
   end
 end

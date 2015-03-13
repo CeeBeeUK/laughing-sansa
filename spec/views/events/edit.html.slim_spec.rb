@@ -1,36 +1,42 @@
 require 'rails_helper'
 
 RSpec.describe "events/edit", type: :view do
-  before(:each) do
-    @event = assign(:event, Event.create!(
-      year: 999,
-      host_city: "MyString",
-      active: false,
-      country_id: 1,
-      real_winner_id: nil,
-      real_score: nil,
-      real_player_id: nil,
-      real_player_name: nil,
-      home_winner_id: nil,
-      home_score: nil,
-      home_player_id: nil,
-      home_player_name: nil,
-      status: nil
-    ))
-    assign(:countries, [
-                         Country.create(name: 'country 1'),
-                         Country.create(name: 'country 2')
-                     ])
-    assign(:users, [
-                    create(:user),
-                    create(:user)
-                 ])
-  end
-
+  let(:event) {
+    assign(:event,
+      Event.create!(
+        year: 999,
+        host_city: "MyString",
+        active: false,
+        country_id: 1,
+        real_winner_id: nil,
+        real_score: nil,
+        real_player_id: nil,
+        real_player_name: nil,
+        home_winner_id: nil,
+        home_score: nil,
+        home_player_id: nil,
+        home_player_name: nil,
+        status: nil
+      )
+    )
+  }
   it "renders the edit event form" do
+    event
+    assign(:countries,
+      [
+        Country.create(name: 'country 1'),
+        Country.create(name: 'country 2')
+      ]
+    )
+    assign(:users,
+      [
+        create(:user),
+        create(:user)
+      ]
+    )
     render
 
-    assert_select "form[action=?][method=?]", event_path(@event), "post" do
+    assert_select "form[action=?][method=?]", event_path(event), "post" do
 
       assert_select "input#event_year[name=?]", "event[year]"
 

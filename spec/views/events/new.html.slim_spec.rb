@@ -1,26 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe "events/new", type: :view do
-  before(:each) do
-    assign(:event, Event.new(
-      :year => 1,
-      :host_city => "MyString",
-      :active => false,
-      :country_id => 1
-    ))
-    assign(:countries, [
-                         Country.create(name: 'country 1'),
-                         Country.create(name: 'country 2')
-                     ])
-    assign(:users, [
-                     create(:user),
-                     create(:user)
-                 ])
-  end
 
   it "renders new event form" do
-    @countries
-    @event
+    assign(:event, Event.create(
+                     year: 1,
+                     host_city: "MyString",
+                     active: false,
+                     country_id: 1
+                 ))
+    assign(:countries,
+      [
+        Country.create(name: 'country 1'),
+        Country.create(name: 'country 2')
+      ]
+    )
+    assign(:users,
+      [
+        create(:user),
+        create(:user)
+      ]
+    )
     render
 
     assert_select "form[action=?][method=?]", events_path, "post" do
