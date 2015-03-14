@@ -11,6 +11,9 @@ h2
     =link_to edit_event_path(@event)
       i.fi-pencil.pad-left-large
 
+-if @event.active? && !current_user.in_event?(@event)
+  =link_to 'Join', game_join_path(@event)
+
 p
   strong Country:
   = @event.country.name
