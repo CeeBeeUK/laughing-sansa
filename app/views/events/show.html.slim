@@ -5,14 +5,16 @@ ul.breadcrumbs
     =link_to 'Events', events_path
   li.current
     =link_to @event.display_name, @event
-h2
-  =@event.display_name
-  -if current_user.admin?
-    =link_to edit_event_path(@event)
-      i.fi-pencil.pad-left-large
-
--if @event.active? && !current_user.in_event?(@event)
-  =link_to 'Join', game_join_path(@event)
+.row
+  .columns.small-8.medium-6
+    h2
+      =@event.display_name
+      -if current_user.admin?
+        =link_to edit_event_path(@event)
+          i.fi-pencil.pad-left-large
+  .columns.small-4.medium-6
+    -if @event.active? && !current_user.in_event?(@event)
+      =link_to 'Join', game_join_path(@event), { class: 'button info round' }
 
 p
   strong Country:
