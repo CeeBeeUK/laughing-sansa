@@ -15,4 +15,11 @@ RSpec.describe 'events/show', type: :view do
     expect(rendered).to match(/london/)
 
   end
+
+  it 'adds a join button if the event is active and the user is not currently playing' do
+    event.active!
+    sign_in user
+    render
+    assert_select 'a', text: 'Join', count: 1
+  end
 end

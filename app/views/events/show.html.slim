@@ -5,29 +5,36 @@ ul.breadcrumbs
     =link_to 'Events', events_path
   li.current
     =link_to @event.display_name, @event
-h2
-  =@event.display_name
-  -if current_user.admin?
-    =link_to edit_event_path(@event)
-      i.fi-pencil.pad-left-large
-
-p
-  strong Country:
-  = @event.country.name
-  img src= @event.country.large_image
+.row
+  .columns.small-12.medium-8
+    h2
+      =@event.display_name
+      -if current_user.admin?
+        =link_to edit_event_path(@event)
+          i.fi-pencil.pad-left-large
+.row
+  .columns.small-12
+    strong Country:
+    = @event.country.name
+    img src= @event.country.large_image
+.row
+  .columns.small-12.medium-4
+    -if @event.active? && !current_user.in_event?(@event)
+      =link_to 'Join', game_join_path(@event), { class: 'button info round' }
 
 -if @event.real_winner_complete?
-  div =@event.real_winner_display
+  .row
+    .columns.small-12.medium-6
+      =@event.real_winner_display
+    -if @event.home_winner_complete?
+      .columns.small-12.medium-6
+        =@event.home_winner_display
 
--if @event.home_winner_complete?
-  div =@event.home_winner_display
-
--if @event.participating_countries.count==0
-  p No data on participating countries
--else
-  p
-    strong Participating countries:
-    =@event.participating_countries.count
+-if @event.participating_countries.count > 0
+  .row
+    .columns.small-12
+      strong Participating countries:
+      =@event.participating_countries.count
 
   table
     tr
