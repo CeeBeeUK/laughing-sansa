@@ -41,6 +41,11 @@
         .small-7.medium-9.columns
           = f.select :status, Event.statuses.keys.to_a
     .small-12.medium-4.columns
+      .row.collapse.prefix-radius
+        .small-6.columns
+          = f.label :actual_uk_score, 'Final UK score ', class: 'prefix'
+        .small-6.columns
+          = f.number_field :actual_uk_score
   .row
     .small-12.columns
       h3 Real competition
