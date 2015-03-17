@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307172951) do
+ActiveRecord::Schema.define(version: 20150317201846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150307172951) do
     t.string   "home_player_name"
     t.integer  "status"
     t.date     "date"
+    t.integer  "actual_uk_score"
   end
 
   add_index "events", ["country_id"], name: "index_events_on_country_id", using: :btree
@@ -58,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150307172951) do
     t.datetime "updated_at"
   end
 
-  add_index "participating_countries", ["country_id", "event_id", "player_id"], name: "unique_player_and_country_for_event", unique: true, using: :btree
+  add_index "participating_countries", ["country_id", "event_id"], name: "unique_country_for_event", unique: true, using: :btree
   add_index "participating_countries", ["country_id"], name: "index_participating_countries_on_country_id", using: :btree
   add_index "participating_countries", ["event_id", "sequence"], name: "unique_sequence_for_event", unique: true, using: :btree
   add_index "participating_countries", ["event_id"], name: "index_participating_countries_on_event_id", using: :btree

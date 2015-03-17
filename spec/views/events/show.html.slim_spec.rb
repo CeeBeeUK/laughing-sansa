@@ -6,7 +6,7 @@ RSpec.describe 'events/show', type: :view do
 
   let(:user) { create(:user) }
   let(:event) { assign(:event, create(:event)) }
-
+  let(:current_user_prediction) { assign(:current_user_prediction, '69') }
   it 'renders attributes' do
     event
     sign_in user

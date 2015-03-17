@@ -69,7 +69,8 @@ RSpec.describe EventsController, type: :controller do
     describe 'GET #show' do
       it 'assigns the requested event as @event' do
         event = create(:event)
-        get :show, { year: event.to_param }, valid_session
+        participating_player = create(:participating_player, player: user, event: event)
+        get :show, { year: participating_player.event.to_param }, valid_session
         expect(assigns(:event)).to eq(event)
       end
     end
@@ -113,7 +114,8 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #show' do
       it 'assigns the requested event as @event' do
-        get :show, { year: event.to_param }, valid_session
+        participating_player = create(:participating_player, player: user, event: event)
+        get :show, { year: participating_player.event.to_param }, valid_session
         expect(assigns(:event)).to eq(event)
       end
     end

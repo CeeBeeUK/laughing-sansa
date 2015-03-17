@@ -12,6 +12,8 @@ class EventsController < ApplicationController
   end
 
   def show
+    pp = ParticipatingPlayer.find_by(player_id: current_user.id, event_id: @event.id)
+    @current_user_prediction = pp.nil? ? nil : pp.predicted_uk_score
     respond_with(@event)
   end
 
