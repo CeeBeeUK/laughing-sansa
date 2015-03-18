@@ -67,7 +67,7 @@ RSpec.describe MyController, type: :controller do
         it 'renders the event page' do
           event.active!
           get :game, year: event.to_param
-          expect(response).to redirect_to event_path(event)
+          expect(response).to redirect_to game_sign_up_path(event)
         end
       end
       context 'when the game cannot be joined' do

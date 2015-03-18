@@ -15,7 +15,7 @@ class MyController < ApplicationController
   def game
     return respond_with(@pp) if @pp
     if @event.active?
-      redirect_to event_path(@event)
+      redirect_to game_sign_up_path(@event)
     else
       flash[:alert] = 'This game cannot be joined'
       redirect_to root_path
