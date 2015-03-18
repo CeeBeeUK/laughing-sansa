@@ -1,6 +1,6 @@
 class MyController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_user, only: [:profile]
+  before_action :load_user, only: [:profile, :profile_update]
   respond_to :html
 
   def profile
