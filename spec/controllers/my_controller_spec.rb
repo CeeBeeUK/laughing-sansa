@@ -38,4 +38,39 @@ RSpec.describe MyController, type: :controller do
       end
     end
   end
+
+  describe 'GET #game' do
+
+    let(:event) { create(:event) }
+
+    before(:each) do
+      sign_in user
+    end
+    context 'when player has joined game' do
+      before(:each) do
+        participating_player = create(:participating_player, player: user, event: event)
+        get :game, year: participating_player.event.to_param
+      end
+      it 'returns success code' do
+        expect(response.status).to eq(200)
+      end
+      it 'renders the game template' do
+        expect(response).to render_template(:game)
+      end
+    end
+    context 'when player has not joined game' do
+      before(:each) do
+        get :game, year: event.to_param
+      end
+      it 'redirects' do
+        expect(response.status).to eq(302)
+      end
+      it 'renders root' do
+        expect(response).to redirect_to(root_path)
+      end
+      it 'displays a flash message' do
+        expect(flash[:alert]).to be_present
+      end
+    end
+  end
 end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'my/profile', to: 'my#profile'
   patch 'my/profile', to: 'my#profile_update'
+  get 'my/:year/game', to: 'my#game'
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks'
