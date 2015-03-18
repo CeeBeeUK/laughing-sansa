@@ -1,6 +1,7 @@
 class MyController < ApplicationController
   before_action :authenticate_user!
   before_action :load_user, only: [:profile, :profile_update, :game]
+  before_action :load_pp, only: [:game]
   respond_to :html
 
   def profile
@@ -12,13 +13,12 @@ class MyController < ApplicationController
   end
 
   def game
-    @event = Event.find_by(year: params[:year])
-    @pp = ParticipatingPlayer.find_by(player_id: current_user.id, event_id: @event.id)
-    if @pp.nil?
-      flash[:alert] = 'You have not joined this game'
-      redirect_to root_path
+    return respond_with(@pp) if @pp
+    if @event.active?
+      redirect_to event_path(@event)
     else
-      respond_with(@pp)
+      flash[:alert] = 'This game cannot be joined'
+      redirect_to root_path
     end
   end
 
@@ -26,6 +26,11 @@ private
 
   def load_user
     @user = User.find_by(email: current_user.email)
+  end
+
+  def load_pp
+    @event = Event.find_by(year: params[:year])
+    @pp = ParticipatingPlayer.find_by(player_id: current_user.id, event_id: @event.id)
   end
 
   def user_params

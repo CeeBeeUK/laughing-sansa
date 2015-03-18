@@ -59,17 +59,27 @@ RSpec.describe MyController, type: :controller do
       end
     end
     context 'when player has not joined game' do
-      before(:each) do
-        get :game, year: event.to_param
-      end
       it 'redirects' do
+        get :game, year: event.to_param
         expect(response.status).to eq(302)
       end
-      it 'renders root' do
-        expect(response).to redirect_to(root_path)
+      context 'when the game can be joined' do
+        it 'renders the event page' do
+          event.active!
+          get :game, year: event.to_param
+          expect(response).to redirect_to event_path(event)
+        end
       end
-      it 'displays a flash message' do
-        expect(flash[:alert]).to be_present
+      context 'when the game cannot be joined' do
+        before(:each) do
+          get :game, year: event.to_param
+        end
+        it 'renders root' do
+          expect(response).to redirect_to(root_path)
+        end
+        it 'displays a flash message' do
+          expect(flash[:alert]).to be_present
+        end
       end
     end
   end
