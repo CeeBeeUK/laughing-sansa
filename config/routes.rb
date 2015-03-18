@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   resources :events, param: :year
 
+  get 'my/profile', to: 'my#profile'
+  patch 'my/profile', to: 'my#profile_update'
+
   get 'my_profile', to: 'profile#show'
   patch 'my_profile', to: 'profile#update'
   devise_for :users, controllers: {
