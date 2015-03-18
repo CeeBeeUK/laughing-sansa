@@ -21,22 +21,7 @@ ul.breadcrumbs
   .columns.small-12.medium-4
     -if @event.active? && !current_user.in_event?(@event)
       =link_to 'Join', game_join_path(@event), { class: 'button info round' }
--if current_user.in_event?(@event)
 .row
-  .small-12.medium-6.columns
-    .row.collapse.prefix-radius
-      .small-6.medium-6.columns
-        label.prefix Your predicted UK score
-      .small-6.medium-6.columns
-        input type="text" disabled="true" value=@current_user_prediction
-  -if @event.archived? && @event.actual_uk_score.any?
-  .small-12.medium-6.columns
-    .row.collapse.prefix-radius
-      .small-6.medium-6.columns
-        label.prefix Actual UK score
-      .small-6.medium-6.columns
-        input type="text" disabled="true" value=@event.actual_uk_score
-
   .columns.small-12.medium-6
     =@event.real_winner_display
   -if @event.home_winner_complete?
