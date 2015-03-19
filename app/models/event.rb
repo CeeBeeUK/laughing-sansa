@@ -25,6 +25,14 @@ class Event < ActiveRecord::Base
     active?
   end
 
+  def can_be_joined_by?(player)
+    active? && ParticipatingPlayer.find_by(event: self, player: player).nil?
+  end
+
+  def being_played_by?(player)
+    active? && ParticipatingPlayer.find_by(event: self, player: player).present?
+  end
+
   def complete?
     archived? && (real_winner_complete? || home_winner_complete?)
   end

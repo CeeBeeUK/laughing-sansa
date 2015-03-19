@@ -143,6 +143,25 @@ RSpec.describe EventsController, type: :controller do
         expect(response).to render_template :join
       end
     end
+    describe 'GET #join' do
+      context 'when player has already joined' do
+        let(:participating_player) {
+          create(:participating_player,
+            event: create(:event, status: 1),
+            player: admin_user
+          )
+        }
+        before(:each) do
+          get :join, year: participating_player.event.to_param
+        end
+        it 'returns a redirect code' do
+          expect(response.status).to eql(302)
+        end
+        it 'renders the players game template' do
+          expect(response).to redirect_to my_game_path(participating_player.event)
+        end
+      end
+    end
     describe 'POST #sign_up' do
       context 'with valid params' do
         let(:participating_player) { build(:participating_player) }
