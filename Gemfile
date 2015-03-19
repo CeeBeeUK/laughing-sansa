@@ -33,6 +33,7 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 # and CanCan for authorization
 gem 'cancancan', '~> 1.10'
+gem 'rack-pratchett'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
