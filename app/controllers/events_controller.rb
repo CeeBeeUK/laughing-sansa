@@ -33,6 +33,11 @@ class EventsController < ApplicationController
 
   def join
     authorize! :join, Event
+    participating_player = ParticipatingPlayer.find_by(event: @event.id, player: current_user)
+    if participating_player
+      flash[:notice] = 'You have previously joined this game'
+      return redirect_to my_game_path(@event)
+    end
     @participating_player = ParticipatingPlayer.new
     @participating_player.event = @event
     @participating_player.player = current_user
