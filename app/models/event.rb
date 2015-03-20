@@ -26,11 +26,11 @@ class Event < ActiveRecord::Base
   end
 
   def can_be_joined_by?(player)
-    active? && ParticipatingPlayer.find_by(event: self, player: player).nil?
+    active? && EventPlayer.find_by(event: self, player: player).nil?
   end
 
   def being_played_by?(player)
-    active? && ParticipatingPlayer.find_by(event: self, player: player).present?
+    active? && EventPlayer.find_by(event: self, player: player).present?
   end
 
   def complete?

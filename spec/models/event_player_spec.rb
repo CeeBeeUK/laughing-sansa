@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe ParticipatingPlayer, type: :model do
-  let(:participant) { build(:participating_player) }
+RSpec.describe EventPlayer, type: :model do
+  let(:participant) { build(:event_player) }
   before(:each) { participant.event.active! }
   it 'passes factory build' do
     expect(participant).to be_valid

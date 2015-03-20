@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20150317201846) do
     t.datetime "updated_at"
   end
 
+  create_table "event_players", force: true do |t|
+    t.integer  "player_id"
+    t.integer  "event_id"
+    t.integer  "predicted_uk_score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_players", ["event_id"], name: "index_event_players_on_event_id", using: :btree
+  add_index "event_players", ["player_id", "event_id"], name: "unique_player_and_event", unique: true, using: :btree
+  add_index "event_players", ["player_id"], name: "index_event_players_on_player_id", using: :btree
+
   create_table "events", force: true do |t|
     t.integer  "year"
     t.integer  "country_id"
@@ -64,18 +76,6 @@ ActiveRecord::Schema.define(version: 20150317201846) do
   add_index "participating_countries", ["event_id", "sequence"], name: "unique_sequence_for_event", unique: true, using: :btree
   add_index "participating_countries", ["event_id"], name: "index_participating_countries_on_event_id", using: :btree
   add_index "participating_countries", ["player_id"], name: "index_participating_countries_on_player_id", using: :btree
-
-  create_table "participating_players", force: true do |t|
-    t.integer  "player_id"
-    t.integer  "event_id"
-    t.integer  "predicted_uk_score"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "participating_players", ["event_id"], name: "index_participating_players_on_event_id", using: :btree
-  add_index "participating_players", ["player_id", "event_id"], name: "unique_player_and_event", unique: true, using: :btree
-  add_index "participating_players", ["player_id"], name: "index_participating_players_on_player_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

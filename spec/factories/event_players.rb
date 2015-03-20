@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :participating_player do
+  factory :event_player do
     association :player, factory: 'user'
     association :event
     predicted_uk_score 1

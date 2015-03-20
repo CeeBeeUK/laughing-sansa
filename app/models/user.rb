@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   }
 
   def in_event?(event)
-    ParticipatingPlayer.find_by(event: event, player: self).present?
+    EventPlayer.find_by(event: event, player: self).present?
   end
 
   def self.find_for_google_oauth2(access_token, _signed_in_resource = nil)

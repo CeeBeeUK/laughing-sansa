@@ -69,8 +69,8 @@ RSpec.describe EventsController, type: :controller do
     describe 'GET #show' do
       it 'assigns the requested event as @event' do
         event = create(:event)
-        participating_player = create(:participating_player, player: user, event: event)
-        get :show, { year: participating_player.event.to_param }, valid_session
+        event_player = create(:event_player, player: user, event: event)
+        get :show, { year: event_player.event.to_param }, valid_session
         expect(assigns(:event)).to eq(event)
       end
     end
@@ -88,12 +88,12 @@ RSpec.describe EventsController, type: :controller do
       end
     end
     describe 'GET #join' do
-      let(:participating_player) { create(:participating_player) }
+      let(:event_player) { create(:event_player) }
       before :each do
-        get :join, year: participating_player.event.to_param
+        get :join, year: event_player.event.to_param
       end
-      it 'assigns the requested pp to @participating_player' do
-        expect(assigns(:participating_player)).to be_a_new(ParticipatingPlayer)
+      it 'assigns the requested pp to @event_player' do
+        expect(assigns(:event_player)).to be_a_new(EventPlayer)
       end
       it 'renders the view' do
         expect(response).to render_template :join
@@ -114,8 +114,8 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #show' do
       it 'assigns the requested event as @event' do
-        participating_player = create(:participating_player, player: user, event: event)
-        get :show, { year: participating_player.event.to_param }, valid_session
+        event_player = create(:event_player, player: user, event: event)
+        get :show, { year: event_player.event.to_param }, valid_session
         expect(assigns(:event)).to eq(event)
       end
     end
@@ -132,12 +132,12 @@ RSpec.describe EventsController, type: :controller do
       end
     end
     describe 'GET #join' do
-      let(:participating_player) { create(:participating_player) }
+      let(:event_player) { create(:event_player) }
       before :each do
-        get :join, year: participating_player.event.to_param
+        get :join, year: event_player.event.to_param
       end
-      it 'assigns the requested pp to @participating_player' do
-        expect(assigns(:participating_player)).to be_a_new(ParticipatingPlayer)
+      it 'assigns the requested pp to @event_player' do
+        expect(assigns(:event_player)).to be_a_new(EventPlayer)
       end
       it 'renders the view' do
         expect(response).to render_template :join
@@ -145,41 +145,41 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #join' do
       context 'when player has already joined' do
-        let(:participating_player) {
-          create(:participating_player,
+        let(:event_player) {
+          create(:event_player,
             event: create(:event, status: 1),
             player: admin_user
           )
         }
         before(:each) do
-          get :join, year: participating_player.event.to_param
+          get :join, year: event_player.event.to_param
         end
         it 'returns a redirect code' do
           expect(response.status).to eql(302)
         end
         it 'renders the players game template' do
-          expect(response).to redirect_to my_game_path(participating_player.event)
+          expect(response).to redirect_to my_game_path(event_player.event)
         end
       end
     end
     describe 'POST #sign_up' do
       context 'with valid params' do
-        let(:participating_player) { build(:participating_player) }
+        let(:event_player) { build(:event_player) }
         it 'creates a new participating player' do
           expect {
-            post :sign_up, year: participating_player.event.year, participating_player: participating_player.attributes
-          }.to change(ParticipatingPlayer, :count).by(1)
+            post :sign_up, year: event_player.event.year, event_player: event_player.attributes
+          }.to change(EventPlayer, :count).by(1)
         end
         it 'redirects to the event view' do
-          post :sign_up, year: participating_player.event.year, participating_player: participating_player.attributes
-          expect(response).to redirect_to(participating_player.event)
+          post :sign_up, year: event_player.event.year, event_player: event_player.attributes
+          expect(response).to redirect_to(event_player.event)
         end
       end
       context 'with invalid params' do
         let(:bad_pp) { build(:invalid_pp) }
 
         it 're-renders to the join view' do
-          post :sign_up, year: bad_pp.event.year, participating_player: bad_pp.attributes
+          post :sign_up, year: bad_pp.event.year, event_player: bad_pp.attributes
           expect(response).to render_template :join
         end
       end

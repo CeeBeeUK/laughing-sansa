@@ -48,8 +48,8 @@ RSpec.describe MyController, type: :controller do
     end
     context 'when player has joined game' do
       before(:each) do
-        participating_player = create(:participating_player, player: user, event: event)
-        get :game, year: participating_player.event.to_param
+        event_player = create(:event_player, player: user, event: event)
+        get :game, year: event_player.event.to_param
       end
       it 'returns success code' do
         expect(response.status).to eq(200)

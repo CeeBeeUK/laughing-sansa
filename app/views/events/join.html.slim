@@ -4,22 +4,22 @@ ul.breadcrumbs
   li
     =link_to 'Events', events_path
   li
-    =link_to @participating_player.event.display_name, @event
+    =link_to @event_player.event.display_name, @event
   li.current
-    =link_to 'Join', game_join_path(@participating_player.event.year)
+    =link_to 'Join', game_join_path(@event_player.event.year)
 
 .row
   .small-12.columns
     h2
-      |#{@participating_player.player.display_name}, thanks for joining #{@participating_player.event.display_name}
-      img.pad-left src= @participating_player.event.country.xl_image
-- if @participating_player.errors.any?
+      |#{@event_player.player.display_name}, thanks for joining #{@event_player.event.display_name}
+      img.pad-left src= @event_player.event.country.xl_image
+- if @event_player.errors.any?
   #error_explanation
-    h2 = "#{pluralize(@participating_player.errors.count, "error")} prohibited you from joining this event:"
+    h2 = "#{pluralize(@event_player.errors.count, "error")} prohibited you from joining this event:"
     ul
-      - @participating_player.errors.full_messages.each do |message|
+      - @event_player.errors.full_messages.each do |message|
         li = message
-=form_for @participating_player, html: { autocomplete: 'off' }, url: game_sign_up_path do |f|
+=form_for @event_player, html: { autocomplete: 'off' }, url: game_sign_up_path do |f|
   .row
     .small-12.columns
       h3
