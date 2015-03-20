@@ -24,7 +24,7 @@ RSpec.describe 'events/show', type: :view do
       assert_select 'a', text: 'Join', count: 1
     end
     it 'shows a link to the players game page if they have joined' do
-      create(:participating_player, event: event, player: user)
+      create(:event_player, event: event, player: user)
       render
       assert_select 'a', text: 'Go to your game', count: 1
     end

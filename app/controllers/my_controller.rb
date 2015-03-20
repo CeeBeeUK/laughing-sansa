@@ -30,7 +30,7 @@ private
 
   def load_pp
     @event = Event.find_by(year: params[:year])
-    @pp = ParticipatingPlayer.find_by(player_id: current_user.id, event_id: @event.id)
+    @pp = EventPlayer.find_by(player_id: current_user.id, event_id: @event.id)
   end
 
   def user_params

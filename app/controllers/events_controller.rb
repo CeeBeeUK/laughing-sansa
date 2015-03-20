@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    pp = ParticipatingPlayer.find_by(player_id: current_user.id, event_id: @event.id)
+    pp = EventPlayer.find_by(player_id: current_user.id, event_id: @event.id)
     @current_user_prediction = pp.nil? ? nil : pp.predicted_uk_score
     respond_with(@event)
   end
@@ -33,23 +33,23 @@ class EventsController < ApplicationController
 
   def join
     authorize! :join, Event
-    participating_player = ParticipatingPlayer.find_by(event: @event.id, player: current_user)
-    if participating_player
+    event_player = EventPlayer.find_by(event: @event.id, player: current_user)
+    if event_player
       flash[:notice] = 'You have previously joined this game'
       return redirect_to my_game_path(@event)
     end
-    @participating_player = ParticipatingPlayer.new
-    @participating_player.event = @event
-    @participating_player.player = current_user
-    respond_with(@participating_player)
+    @event_player = EventPlayer.new
+    @event_player.event = @event
+    @event_player.player = current_user
+    respond_with(@event_player)
   end
 
   def sign_up
     authorize! :sign_up, Event
-    @participating_player = build_sign_up_pp
-    if @participating_player.valid?
-      @participating_player.save
-      redirect_to event_path(@participating_player.event)
+    @event_player = build_sign_up_pp
+    if @event_player.valid?
+      @event_player.save
+      redirect_to event_path(@event_player.event)
     else
       render action: :join
     end
@@ -63,8 +63,8 @@ class EventsController < ApplicationController
 private
 
   def build_sign_up_pp
-    ParticipatingPlayer.new(
-      participating_player_params.merge(
+    EventPlayer.new(
+      event_player_params.merge(
         player_id: current_user.id,
         event_id: @event.id
       )
@@ -80,8 +80,8 @@ private
     @users = User.all
   end
 
-  def participating_player_params
-    params.require(:participating_player).permit(:predicted_uk_score)
+  def event_player_params
+    params.require(:event_player).permit(:predicted_uk_score)
   end
 
   def event_params
