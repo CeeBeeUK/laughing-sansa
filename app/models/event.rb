@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   belongs_to :real_player, class_name: 'User', foreign_key: 'real_player_id'
   belongs_to :home_player, class_name: 'User', foreign_key: 'home_player_id'
 
-  has_many :participating_countries
+  has_many :participating_countries, -> { order("position ASC") }
   has_many :event_players
 
   validates :year, :country_id, :host_city, presence: true
