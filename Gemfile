@@ -34,6 +34,7 @@ gem 'omniauth-google-oauth2'
 # and CanCan for authorization
 gem 'cancancan', '~> 1.10'
 gem 'rack-pratchett'
+gem 'acts_as_list'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
