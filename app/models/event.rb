@@ -43,6 +43,10 @@ class Event < ActiveRecord::Base
     event_players
   end
 
+  def players_predictions_high_to_low
+    event_players.order(predicted_uk_score: :desc)
+  end
+
   def real_winner_complete?
     real_winner_id.present? && (real_player_name.present? || real_player_id.present? || false)
   end
