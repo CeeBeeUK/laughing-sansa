@@ -6,6 +6,8 @@ class Event < ActiveRecord::Base
   belongs_to :home_player, class_name: 'User', foreign_key: 'home_player_id'
 
   has_many :participating_countries
+  has_many :event_players
+
   validates :year, :country_id, :host_city, presence: true
   validates :year, uniqueness: true
 
@@ -35,6 +37,10 @@ class Event < ActiveRecord::Base
 
   def complete?
     archived? && (real_winner_complete? || home_winner_complete?)
+  end
+
+  def players
+    event_players
   end
 
   def real_winner_complete?
