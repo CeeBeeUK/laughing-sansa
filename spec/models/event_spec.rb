@@ -15,7 +15,18 @@ RSpec.describe Event, type: :model do
     it 'responds to complete?' do
       expect(event).to respond_to(:complete?)
     end
+    it 'responds to players' do
+      expect(event).to respond_to(:players)
+    end
   end
+  describe 'players' do
+    let(:event)  { create(:event) }
+    it 'returns a list of players' do
+      create(:event_player, event: event, player: create(:user), predicted_uk_score: 1)
+      expect(event.players.count).to eq(1)
+    end
+  end
+
   describe '@complate?' do
     it 'responds true if status is archived and data complete' do
       event.archived!

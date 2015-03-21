@@ -29,6 +29,21 @@ ul.breadcrumbs
   -if @event.home_winner_complete?
     .columns.small-12.medium-6
       =@event.home_winner_display
+-if @event.players.count>0
+  .row
+    .columns.small-8
+      h3 Player
+    -if @event.being_played_by?(current_user)
+      .columns.small-4
+        h3 Prediction
+  -@event.players_predictions_high_to_low.each do |p|
+    .row.table
+      .columns.small-9
+        =p.player.display_name
+      -if @event.being_played_by?(current_user)
+        .columns.small-3
+          =p.predicted_uk_score
+
 
 -if @event.participating_countries.count > 0
   .row
