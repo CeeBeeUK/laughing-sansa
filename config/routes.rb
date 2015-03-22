@@ -5,6 +5,13 @@ Rails.application.routes.draw do
 
   get 'games/score/:id', to: 'games#score', as: 'test_score'
 
+  get 'events/:year/countries', to: 'participating_countries#manage', as: 'manage_countries'
+
+  post 'participating_countries/:year/sort', to: 'participating_countries#sort', as: 'event_country'
+  post 'participating_countries/:year/create',
+    to: 'participating_countries#create',
+    as: 'create_event_country'
+
   resources :events, param: :year
 
   get 'my/profile', to: 'my#profile'

@@ -22,22 +22,22 @@ RSpec.describe ParticipatingCountry, type: :model do
       expect(participant).to be_invalid
     end
 
-    it 'must have a sequence' do
-      participant.sequence = nil
+    it 'must have a position' do
+      participant.position = nil
       expect(participant).to be_invalid
     end
 
     context 'within an event' do
-      it 'must have a unique sequence and country' do
+      it 'must have a unique position and country' do
         first = create(:participating_country)
         duplicate = first.dup
 
         expect(duplicate).to be_invalid
-        duplicate.sequence += 1
+        duplicate.position += 1
         expect(duplicate).to be_invalid
         duplicate.country = create(:country)
         expect(duplicate).to be_valid
-        duplicate.sequence = first.sequence
+        duplicate.position = first.position
         expect(duplicate).to be_invalid
       end
     end

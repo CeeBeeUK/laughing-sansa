@@ -11,7 +11,9 @@ ul.breadcrumbs
       =@event.display_name
       -if current_user.admin?
         =link_to edit_event_path(@event)
-          i.fi-pencil.pad-left-large
+          i.fi-pencil.pad-left-large.pad-right
+        =link_to manage_countries_path(@event)
+          i.fi-flag.pad-left-large.pad-right
 .row
   .columns.small-12
     strong Country:
@@ -61,5 +63,5 @@ ul.breadcrumbs
       tr
         td =c.country.name
         td =c.real_final_score
-        td =c.player.name
+        td =c.player.name if c.player.present?
         td =c.home_final_score
