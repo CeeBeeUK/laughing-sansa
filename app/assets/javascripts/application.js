@@ -35,11 +35,11 @@ $(document).ready(function () {
                 type: 'post',
                 data: $('#PCL').sortable('serialize'),
                 dataType: 'script',
-                complete: function (request) {
+                complete: function () {
                     $('#PCL').effect('highlight');
                 },
                 url: $(this).data('url')
-            })
+            });
         }
     });
 });
