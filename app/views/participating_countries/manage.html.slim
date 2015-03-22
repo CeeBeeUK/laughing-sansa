@@ -8,15 +8,30 @@ ul.breadcrumbs
   li.current
     =link_to 'Countries', edit_country_path(@event)
 .row
-  .columns.small-12.medium-8
+  .columns.small-12
     h2
       img.pad-right src= @event.country.xl_image
       =@event.display_name
       |  countries
 hr
-  .row
-  .columns.small-12
-    h3 add new country button
+= form_for @participating_country, url: create_event_country_path(@event), html: { autocomplete: 'off' } do |f|
+  - if @event.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
+      ul
+        - @event.errors.full_messages.each do |message|
+          li = message
+  .row.collapse
+    .small-12.columns
+      .row.collapse.prefix-radius
+        .small-4.columns
+          = f.label :country, 'Country to add', class: 'prefix'
+        .small-4.columns
+          = f.collection_select :country_id, @countries, :id, :name, prompt: true
+        .small-4.columns
+          .row
+            .small-6.small-push-3.columns
+              button.tiny.success.inline Save
 -if @event.participating_countries.count > 0
 hr
   .row
