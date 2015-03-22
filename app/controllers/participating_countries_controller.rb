@@ -6,7 +6,6 @@ class ParticipatingCountriesController < ApplicationController
   respond_to :html
 
   def manage
-
   end
 
 private

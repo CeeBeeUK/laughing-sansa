@@ -61,5 +61,5 @@ ul.breadcrumbs
       tr
         td =c.country.name
         td =c.real_final_score
-        td =c.player.name
+        td =c.player.name if c.player.present?
         td =c.home_final_score
