@@ -1,0 +1,14 @@
+ul#PCL {
+  list-style: none;
+  margin-left: 0;
+  margin-bottom: 0px;
+  .handle {
+    font-size: 30px;
+    vertical-align: middle;
+    padding-right:0.5rem;
+    :hover {
+      cursor: move;
+      color: #008CBA;
+    }
+  }
+}
