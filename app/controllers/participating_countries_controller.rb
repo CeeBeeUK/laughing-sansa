@@ -17,11 +17,9 @@ class ParticipatingCountriesController < ApplicationController
 
   def create
     begin
-      @participating_country = ParticipatingCountry.new(
-        event: @event, country_id: participating_country_params[:country_id]
-      )
+      params = participating_country_params[:country_id]
+      @participating_country = ParticipatingCountry.new(event: @event, country_id: params)
       @participating_country.insert_at(1)
-      @participating_country.save
     rescue ActiveRecord::RecordNotUnique
       flash[:alert] = 'Country already in event'
     rescue => e
