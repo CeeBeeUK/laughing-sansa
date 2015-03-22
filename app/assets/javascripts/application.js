@@ -12,8 +12,33 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require foundation
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+
+$(document).ready(function () {
+    $('#PCL').sortable({
+        axis: 'y',
+        dropOnEmpty: false,
+        handle: '.handle',
+        cursor: 'crosshair',
+        items: 'li',
+        opacity: 0.4,
+        scroll: true,
+        update: function () {
+            $.ajax({
+                type: 'post',
+                data: $('#PCL').sortable('serialize'),
+                dataType: 'script',
+                complete: function (request) {
+                    $('#PCL').effect('highlight');
+                },
+                url: $(this).data('url')
+            })
+        }
+    });
+});

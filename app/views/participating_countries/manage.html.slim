@@ -1,5 +1,30 @@
-h1 show event details
-
-h2 show current country list
-
-h3 add new country button
+ul.breadcrumbs
+  li
+    =link_to 'Home', root_path
+  li
+    =link_to 'Events', events_path
+  li
+    =link_to @event.display_name, @event
+  li.current
+    =link_to 'Countries', edit_country_path(@event)
+.row
+  .columns.small-12.medium-8
+    h2
+      img.pad-right src= @event.country.xl_image
+      =@event.display_name
+      |  countries
+hr
+  .row
+  .columns.small-12
+    h3 add new country button
+-if @event.participating_countries.count > 0
+hr
+  .row
+    .columns.small-12
+      ul#PCL data-url=event_country_path(@event)
+        -@event.participating_countries.each do |c|
+          li id="pc_#{c.id}"
+            span.handle
+              i.fi-list.fi-large
+            =c.country.name
+hr
