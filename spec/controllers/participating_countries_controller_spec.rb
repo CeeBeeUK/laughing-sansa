@@ -25,7 +25,18 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       before(:each) do
         post :sort, pc: [2, 1], year: event.year
       end
-      it 'returns a 200 status code' do
+      it 'returns a 302 status code' do
+        expect(response.status).to eql(302)
+      end
+      it 'renders nothing' do
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    describe 'POST #create' do
+      before(:each) do
+        post :create, participating_country_id: create(:country).id, year: event.year
+      end
+      it 'returns a 302 status code' do
         expect(response.status).to eql(302)
       end
       it 'renders nothing' do
@@ -52,7 +63,19 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       before(:each) do
         post :sort, pc: [2, 1], year: event.year
       end
-      it 'returns a 200 status code' do
+      it 'returns a 302 status code' do
+        expect(response.status).to eql(302)
+      end
+      it 'renders nothing' do
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    describe 'POST #create' do
+      let(:participating_country) { create(:participating_country) }
+      before(:each) do
+        post :create, participating_country: { country_id: participating_country.country.id }, year: event.year
+      end
+      it 'returns a 302 status code' do
         expect(response.status).to eql(302)
       end
       it 'renders nothing' do
@@ -62,8 +85,8 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
   end
 
   context 'logged in as admin' do
+    let(:event) { create(:event) }
     describe 'GET #manage' do
-      let(:event) { create(:event) }
       before(:each) do
         sign_in admin
         get :manage, year: event.year
@@ -76,7 +99,6 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #sort' do
-      let(:event) { create(:event) }
       let(:pc_1) {
         create(:participating_country,
           event: event,
@@ -98,6 +120,19 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
       it 'renders nothing' do
         expect(response).to render_template(nil)
+      end
+    end
+    describe 'POST #create' do
+      let(:participating_country) { create(:participating_country) }
+      before(:each) do
+        sign_in admin
+        post :create, participating_country: { country_id: participating_country.country.id }, year: event.year
+      end
+      it 'returns a 200 status code' do
+        expect(response.status).to eql(302)
+      end
+      it 'renders nothing' do
+        expect(response).to redirect_to manage_countries_path(event)
       end
     end
   end
