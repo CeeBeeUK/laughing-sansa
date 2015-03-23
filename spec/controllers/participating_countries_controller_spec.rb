@@ -21,6 +21,17 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         expect(response).to redirect_to(root_path)
       end
     end
+    describe 'POST #sort' do
+      before(:each) do
+        post :sort, pc: [2, 1], year: event.year
+      end
+      it 'returns a 200 status code' do
+        expect(response.status).to eql(302)
+      end
+      it 'renders nothing' do
+        expect(response).to redirect_to(root_path)
+      end
+    end
   end
 
   context 'as a user' do
@@ -34,6 +45,17 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         expect(response.status).to eql(302)
       end
       it 'redirect to event page' do
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    describe 'POST #sort' do
+      before(:each) do
+        post :sort, pc: [2, 1], year: event.year
+      end
+      it 'returns a 200 status code' do
+        expect(response.status).to eql(302)
+      end
+      it 'renders nothing' do
         expect(response).to redirect_to(root_path)
       end
     end
