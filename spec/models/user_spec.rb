@@ -54,6 +54,15 @@ RSpec.describe User, type: :model do
       expect(user.display_name).to eql('wibble')
     end
   end
+  describe '@in_event?' do
+    it 'responds true if a player has joined an event' do
+      user = create(:user)
+      event = create(:event)
+      expect(user.in_event?(event)).to be false
+      create(:event_player, event: event, player: user)
+      expect(user.in_event?(event)).to be true
+    end
+  end
   describe '@display_name_set?' do
     it 'responds true if a name is explicitly set' do
       user.display_name = 'CeeBee'

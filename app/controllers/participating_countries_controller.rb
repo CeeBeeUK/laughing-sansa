@@ -22,8 +22,6 @@ class ParticipatingCountriesController < ApplicationController
       @participating_country.insert_at(1)
     rescue ActiveRecord::RecordNotUnique
       flash[:alert] = 'Country already in event'
-    rescue => e
-      flash[:alert] = e
     end
     redirect_to manage_countries_path(@event)
   end
