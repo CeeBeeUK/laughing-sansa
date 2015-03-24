@@ -123,16 +123,30 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #create' do
-      let(:participating_country) { create(:participating_country) }
-      before(:each) do
-        sign_in admin
-        post :create, participating_country: { country_id: participating_country.country.id }, year: event.year
+      context 'with valid params' do
+        let(:participating_country) { create(:participating_country) }
+        before(:each) do
+          sign_in admin
+          post :create, participating_country: { country_id: participating_country.country.id }, year: event.year
+        end
+        it 'returns a 302 status code' do
+          expect(response.status).to eql(302)
+        end
+        it 'renders the management view' do
+          expect(response).to redirect_to manage_countries_path(event)
+        end
       end
-      it 'returns a 200 status code' do
-        expect(response.status).to eql(302)
-      end
-      it 'renders nothing' do
-        expect(response).to redirect_to manage_countries_path(event)
+      context 'when attempting to create a duplicate participating country' do
+        let(:participating_country) { create(:participating_country) }
+        before(:each) do
+          sign_in admin
+          post :create, participating_country: { country_id: participating_country.country.id }, year: event.year
+          post :create, participating_country: { country_id: participating_country.country.id }, year: event.year
+        end
+        it 'displays a flash alert' do
+          expect(flash[:alert]).to be_present
+          expect(flash[:alert]).to eql('Country already in event')
+        end
       end
     end
   end
