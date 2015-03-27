@@ -26,7 +26,7 @@ $(document).ready(function () {
         axis: 'y',
         dropOnEmpty: false,
         handle: '.handle',
-        cursor: 'crosshair',
+        cursor: 'ns-resize',
         items: 'li',
         opacity: 0.4,
         scroll: true,
