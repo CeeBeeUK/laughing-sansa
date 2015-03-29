@@ -1,8 +1,9 @@
-ul.breadcrumbs
-  li
-    =link_to 'Home', root_path
-  li.current
-    =link_to 'Events', events_path
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li.current
+      =link_to 'Events', events_path
 h2 Listing events
 
 ul.events

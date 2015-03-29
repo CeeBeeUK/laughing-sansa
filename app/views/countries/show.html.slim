@@ -1,10 +1,11 @@
-ul.breadcrumbs
-  li
-    =link_to 'Home', root_path
-  li
-    =link_to 'Countries', countries_path
-  li.current
-    =link_to @country.name, @country
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li
+      =link_to 'Countries', countries_path
+    li.current
+      =link_to @country.name, @country
 h2
   |Name: #{@country.name}
   =link_to edit_country_path(@country)

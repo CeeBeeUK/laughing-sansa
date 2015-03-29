@@ -1,10 +1,11 @@
-ul.breadcrumbs
-  li
-    =link_to 'Home', root_path
-  li
-    =link_to 'Countries', countries_path
-  li.current
-    =link_to 'New country', new_country_path
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li
+      =link_to 'Countries', countries_path
+    li.current
+      =link_to 'New country', new_country_path
 h2 New country
 
 == render 'form'

@@ -1,12 +1,13 @@
-ul.breadcrumbs
-  li
-    =link_to 'Home', root_path
-  li
-    =link_to 'Events', events_path
-  li
-    =link_to @event.display_name, @event
-  li.current
-    =link_to 'Countries', edit_country_path(@event)
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li
+      =link_to 'Events', events_path
+    li
+      =link_to @event.display_name, @event
+    li.current
+      =link_to 'Countries', edit_country_path(@event)
 .row
   .columns.small-12
     h2

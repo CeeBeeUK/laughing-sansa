@@ -59,6 +59,9 @@ html[lang="en"]
         /.row
         /=render 'layouts/toolbar'
         .row
+          .columns.small-12
+            =yield(:breadcrumb)
+        .row
           .large-12.columns
             - flash.each do |key, value|
               .alert-box class="#{key}" data-alert=''

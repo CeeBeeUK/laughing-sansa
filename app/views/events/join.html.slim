@@ -1,12 +1,13 @@
-ul.breadcrumbs
-  li
-    =link_to 'Home', root_path
-  li
-    =link_to 'Events', events_path
-  li
-    =link_to @event_player.event.display_name, @event
-  li.current
-    =link_to 'Join', game_join_path(@event_player.event.year)
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li
+      =link_to 'Events', events_path
+    li
+      =link_to @event_player.event.display_name, @event
+    li.current
+      =link_to 'Join', game_join_path(@event_player.event.year)
 
 .row
   .small-12.columns

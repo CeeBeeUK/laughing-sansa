@@ -1,12 +1,13 @@
-ul.breadcrumbs
-  li
-    =link_to 'Home', root_path
-  li
-    =link_to 'Countries', countries_path
-  li
-    =link_to @country.name, @country
-  li.current
-    =link_to 'Editing', edit_country_path(@country)
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li
+      =link_to 'Countries', countries_path
+    li
+      =link_to @country.name, @country
+    li.current
+      =link_to 'Editing', edit_country_path(@country)
 h2 Editing #{@country.name}
 
 == render 'form'

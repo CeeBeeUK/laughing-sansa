@@ -1,10 +1,11 @@
-ul.breadcrumbs
-  li
-    =link_to 'Home', root_path
-  li
-    =link_to 'Events', events_path
-  li.current
-    =link_to 'New event', new_event_path
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li
+      =link_to 'Events', events_path
+    li.current
+      =link_to 'New event', new_event_path
 h1 New event
 
 == render 'form'

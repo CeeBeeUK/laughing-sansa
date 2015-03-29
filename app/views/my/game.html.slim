@@ -1,3 +1,13 @@
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li
+      =link_to 'Events', events_path
+    li
+      =link_to @event.display_name, @event
+    li.current
+      =link_to 'Scoring', my_game_path(@event)
 .row
   .columns.small-12.medium-8
     h2
