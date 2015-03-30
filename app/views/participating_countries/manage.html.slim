@@ -27,12 +27,12 @@ hr
       .row.collapse.prefix-radius
         .small-4.columns
           = f.label :country, 'Country to add', class: 'prefix'
-        .small-4.columns
+        .small-5.columns
           = f.collection_select :country_id, @countries, :id, :name, prompt: true
-        .small-4.columns
+        .small-3.columns
           .row
-            .small-6.small-push-3.columns
-              button.tiny.success.inline Save
+            .small-6.small-push-1.columns
+              button.tiny.success.inline Add
 -if @event.participating_countries.count > 0
 hr
   .row
@@ -43,4 +43,3 @@ hr
             span.handle
               i.fi-list.fi-large
             =c.country.name
-hr
