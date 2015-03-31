@@ -17,7 +17,18 @@ RSpec.describe EventPlayerScore, type: :model do
       expect(eps).to be_invalid
     end
   end
-
+  describe 'scores' do
+    it 'must be positive' do
+      eps.score = -1
+      expect(eps).to be_invalid
+    end
+    it 'must be in the array' do
+      GlobalConstants::VALID_SCORES.each do |s|
+        eps.score = s
+        expect(eps).to be_valid
+      end
+    end
+  end
   describe 'associations' do
     it 'responds to player' do
       expect(eps).to respond_to(:player)
