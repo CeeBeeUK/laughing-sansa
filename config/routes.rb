@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'my/:year/score/act/:act', to: 'my#score', as: 'my_scoring'
+
   get 'events/:year/join', to: 'events#join', as: 'game_join'
   post 'events/:year/join', to: 'events#sign_up', as: 'game_sign_up'
 
