@@ -2,6 +2,7 @@ class MyController < ApplicationController
   before_action :authenticate_user!
   before_action :load_user, only: [:profile, :profile_update, :game]
   before_action :load_pp, only: [:game]
+  before_action :load_eps, only: [:score]
   respond_to :html
 
   def profile
@@ -22,7 +23,17 @@ class MyController < ApplicationController
     end
   end
 
+  def score
+  end
+
 private
+
+  def load_eps
+    @eps = EventPlayerScore.find(
+      event_player_event_year: params[:year],
+      participating_country_sequence: params[:act]
+    )
+  end
 
   def load_user
     @user = User.find_by(email: current_user.email)
