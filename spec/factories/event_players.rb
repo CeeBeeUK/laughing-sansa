@@ -3,8 +3,8 @@ FactoryGirl.define do
     association :player, factory: 'user'
     association :event
     predicted_uk_score 1
-    after(:build) do |pp|
-      pp.event.active!
+    after(:build) do |ep|
+      ep.event.active!
     end
 
     factory :invalid_pp do
