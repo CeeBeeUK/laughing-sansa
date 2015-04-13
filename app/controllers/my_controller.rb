@@ -29,10 +29,13 @@ class MyController < ApplicationController
 private
 
   def load_eps
-    @eps = EventPlayerScore.find(
-      event_player_event_year: params[:year],
-      participating_country_sequence: params[:act]
-    )
+    @eps = EventPlayerScore.
+           joins(:event, :participating_country).
+           find_by(
+             'events.year = ? AND participating_countries.position = ?',
+             params[:year],
+             params[:act]
+           )
   end
 
   def load_user
