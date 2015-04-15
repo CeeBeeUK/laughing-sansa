@@ -13,5 +13,16 @@ FactoryGirl.define do
     association :home_player, factory: 'user'
     home_player_name nil
     status nil
+
+    trait :with_countries do
+      transient do
+        number_of_countries 3
+      end
+
+      after :create do |event, evaluator|
+        FactoryGirl.create_list :participating_country, evaluator.number_of_countries, event: event
+      end
+    end
+
   end
 end
