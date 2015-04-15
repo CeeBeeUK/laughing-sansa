@@ -8,7 +8,16 @@ RSpec.describe Event, type: :model do
     expect(event).to be_valid
   end
 
+  it 'sss' do
+    event = create(:event, :with_countries)
+    expect(event).to be_valid
+    expect(event.participating_countries.count).to eql(3)
+  end
+
   describe 'associations' do
+    it 'responds to participating_countries' do
+      expect(event).to respond_to(:participating_countries)
+    end
     it 'respond to country' do
       expect(event).to respond_to(:country)
     end

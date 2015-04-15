@@ -49,4 +49,14 @@ RSpec.describe EventPlayer, type: :model do
       expect(participant).to be_valid
     end
   end
+
+  context 'joining an event with countries' do
+    let(:event) { create(:event, :with_countries, number_of_countries: 2) }
+    it 'exposes the number of countries' do
+      event.active!
+      participant.event = event
+      expect(participant.event).to be_valid
+      expect(participant.event.participating_countries.count).to eql(2)
+    end
+  end
 end
