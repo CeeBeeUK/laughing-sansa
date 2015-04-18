@@ -36,5 +36,8 @@ RSpec.describe EventPlayerScore, type: :model do
     it 'responds to country' do
       expect(eps).to respond_to(:country)
     end
+    it 'responds to event (through event_player' do
+      expect(eps).to respond_to(:event)
+    end
   end
 end

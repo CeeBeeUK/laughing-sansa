@@ -28,3 +28,8 @@
 
 p List currently performing
 p order by sequence asc and score nil
+
+-@pp.scores.playing_order(@pp.id).each do |eps|
+  .row
+    .small-12.columns
+      label =eps.participating_country.country.name

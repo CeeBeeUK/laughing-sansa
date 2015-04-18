@@ -2,7 +2,7 @@ class MyController < ApplicationController
   before_action :authenticate_user!
   before_action :load_user, only: [:profile, :profile_update, :game]
   before_action :load_pp, only: [:game]
-  before_action :load_eps, only: [:score]
+  before_action :load_eps, only: [:game, :score]
   respond_to :html
 
   def profile
