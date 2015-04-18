@@ -6,6 +6,11 @@ RSpec.describe EventPlayer, type: :model do
   it 'passes factory build' do
     expect(participant).to be_valid
   end
+  context 'associations' do
+    it 'responds to scores' do
+      expect(participant). to respond_to(:scores)
+    end
+  end
   context 'validations' do
     it 'must require an event' do
       participant.event = nil
@@ -52,11 +57,16 @@ RSpec.describe EventPlayer, type: :model do
 
   context 'joining an event with countries' do
     let(:event) { create(:event, :with_countries, number_of_countries: 2) }
-    it 'exposes the number of countries' do
+    before(:each) do
       event.active!
       participant.event = event
-      expect(participant.event).to be_valid
+    end
+    it 'exposes the number of countries' do
       expect(participant.event.participating_countries.count).to eql(2)
+    end
+    it 'has a score for each participating country' do
+      participant.save!
+      expect(participant.scores.count).to eql(2)
     end
   end
 end
