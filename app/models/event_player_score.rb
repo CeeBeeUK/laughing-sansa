@@ -6,7 +6,11 @@ class EventPlayerScore < ActiveRecord::Base
   validates :event_player_id, :participating_country_id, presence: true
   validates :score, inclusion: { in: GlobalConstants::VALID_SCORES, allow_nil: true }
 
-  scope :playing_order, ->(id) { all.where(event_player_id: id) }
+  scope :playing_order, lambda { |id|
+    all.where(event_player_id: id).
+      joins(:participating_country).
+      order('participating_countries.position')
+  }
 
   def player
     event_player.player.display_name
