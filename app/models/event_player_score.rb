@@ -11,7 +11,12 @@ class EventPlayerScore < ActiveRecord::Base
       joins(:participating_country).
       order('participating_countries.position')
   }
-
+  scope :scoring_order, lambda { |id|
+    all.where(event_player_id: id).
+      joins(:participating_country).
+      order('participating_countries.position +
+        CASE WHEN event_player_scores.score=0 THEN 0 ELSE 40 end')
+  }
   def player
     event_player.player.display_name
   end

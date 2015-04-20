@@ -29,7 +29,26 @@
 p List currently performing
 p order by sequence asc and score nil
 
--@pp.scores.playing_order(@pp.id).each do |eps|
-  .row
-    .small-12.columns
-      label =eps.participating_country.country.name
+.row
+  .columns.small-12
+    table
+      thead
+        tr
+          th &nbsp;
+          th Country
+          th.angled Score
+          th.angled Weirdest
+          th.angled Fattest
+          th.angled Best Wail
+
+      -@pp.scores.scoring_order(@pp.id).each do |eps|
+        tbody
+          tr
+            td =eps.participating_country.position
+            td =eps.participating_country.country.name
+            td =eps.score
+            td
+              i.fi-check
+            td
+              i.fi-checkbox
+            td x

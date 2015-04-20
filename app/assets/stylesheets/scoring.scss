@@ -5,4 +5,23 @@ input[type="radio"]:checked + label {
 ul.button-group.even-3 > li,
 ul.button-group > li {
 	margin-bottom: 0.1rem;
-}	
+}
+@media screen and (max-width: 450px) {
+  th.angled {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+}
+
+@media screen and (max-width: 300px) {
+  th.angled {
+    -webkit-transform: rotate(-89deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+  }
+}
