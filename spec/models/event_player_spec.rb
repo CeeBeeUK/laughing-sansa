@@ -8,7 +8,10 @@ RSpec.describe EventPlayer, type: :model do
   end
   context 'associations' do
     it 'responds to scores' do
-      expect(participant). to respond_to(:scores)
+      expect(participant).to respond_to(:scores)
+    end
+    it 'must return scores completed' do
+      expect(participant).to respond_to(:completed_scores)
     end
   end
   context 'validations' do
@@ -64,9 +67,14 @@ RSpec.describe EventPlayer, type: :model do
     it 'exposes the number of countries' do
       expect(participant.event.participating_countries.count).to eql(2)
     end
-    it 'has a score for each participating country' do
-      participant.save!
-      expect(participant.scores.count).to eql(2)
+    context 'and saving the participant' do
+      before(:each) { participant.save! }
+      it 'has a score for each participating country' do
+        expect(participant.scores.count).to eql(2)
+      end
+      it 'has 0/3 for completed scores' do
+        expect(participant.completed_scores).to eql('0/2')
+      end
     end
   end
 end

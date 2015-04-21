@@ -1,0 +1,56 @@
+h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.position} - #{@eps.participating_country.country.name}
+
+
+.row
+  .columns.small-2.medium-3.large-4
+    h3 Notes
+  .columns.small-10.medium-9.large-8
+    textarea rows=6
+.row
+  .columns.small-2.medium-3.large-4
+    h3 Score
+  .columns.small-10.medium-9.large-8
+    .row
+      .columns.small-12
+        .button.small.primary.expand Nul points
+    .row
+      .columns.small-12
+        ul.button-group.even-3.aligned-button-row
+          li
+            input#score-1 name='score' type='radio' style='display:none;'
+            label.button.small.primary for='score-1' 1
+          li
+            input#score-2 name='score' type='radio' style='display:none;'
+              label.button.small.primary for='score-2' 2
+          li
+            input#score-3 name='score' type='radio' style='display:none;'
+              label.button.small.primary for='score-3' 3
+          li
+            input#score-4 name='score' type='radio' style='display:none;'
+              label.button.small.primary for='score-4' 4
+          li
+            input#score-5 name='score' type='radio' style='display:none;'
+              label.button.small.primary for='score-5' 5
+          li
+            input#score-6 name='score' type='radio' style='display:none;'
+              label.button.small.primary for='score-6' 6
+          li
+            input#score-7 name='score' type='radio' style='display:none;'
+              label.button.small.primary for='score-7' 7
+          li
+            input#score-8 name='score' type='radio' style='display:none;'
+              label.button.small.primary for='score-8' 8
+          li
+            input#score-10 name='score' type='radio' style='display:none;'
+              label.button.small.primary for='score-10' 10
+    .row
+      .columns.small-12
+        ul.button-group.aligned-button-row
+          li
+            input#score-12 name='score' type='radio' style='display:none;'
+              label.button.small.primary.expand for='score-12' 12
+p =@eps.inspect
+p =@eps.event_player.inspect
+p =@eps.participating_country.inspect
+p =@eps.participating_country.country.inspect
+p =@eps.event.inspect

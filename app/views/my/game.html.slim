@@ -10,6 +10,7 @@
   .columns.small-12.medium-8
     h2
       =@event.display_name
+
 .row
   .small-12.medium-6.columns
     .row.collapse.prefix-radius
@@ -17,6 +18,8 @@
         label.prefix Your UK score prediction
       .small-6.medium-6.columns
         input type="text" disabled="true" value=@pp.predicted_uk_score
+  .small-12.medium-6.columns
+    label.inline You have scored #{@pp.completed_scores} acts
 -if @event.archived? && @event.actual_uk_score.any?
   .row
     .small-12.medium-6.columns
@@ -26,15 +29,12 @@
         .small-6.medium-6.columns
           input type="text" disabled="true" value=@event.actual_uk_score
 
-p List currently performing
-p order by sequence asc and score nil
-
 .row
   .columns.small-12
     table
       thead
         tr
-          th &nbsp;
+          th act
           th Country
           th.angled Score
           th.angled Weirdest
@@ -45,10 +45,16 @@ p order by sequence asc and score nil
         tbody
           tr
             td =eps.participating_country.position
-            td =eps.participating_country.country.name
-            td =eps.score
-            td
-              i.fi-check
-            td
-              i.fi-checkbox
-            td x
+            -if eps.score.blank?
+              td =eps.participating_country.country.name
+              td colspan='4'
+                =link_to 'Record your score', my_scoring_path(year: @event.year, act: eps.participating_country.position)
+            -else
+              td
+                =link_to eps.participating_country.country.name, my_scoring_path(year: @event.year, act: eps.participating_country.position)
+              td =eps.score
+              td
+                i.fi-check
+              td
+                i.fi-checkbox
+              td x

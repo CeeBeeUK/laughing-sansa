@@ -15,7 +15,9 @@ class EventPlayerScore < ActiveRecord::Base
     all.where(event_player_id: id).
       joins(:participating_country).
       order('participating_countries.position +
-        CASE WHEN event_player_scores.score=0 THEN 0 ELSE 40 end')
+        CASE WHEN (event_player_scores.score=0 OR event_player_scores.score IS NULL)
+        THEN 0
+        ELSE 40 END')
   }
   def player
     event_player.player.display_name

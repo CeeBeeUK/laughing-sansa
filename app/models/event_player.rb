@@ -11,6 +11,10 @@ class EventPlayer < ActiveRecord::Base
 
   before_save :build_scores
 
+  def completed_scores
+    "#{scores.where('score>=0').count}/#{scores.count}"
+  end
+
 private
 
   def event_can_be_joined
