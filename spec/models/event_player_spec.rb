@@ -81,9 +81,17 @@ RSpec.describe EventPlayer, type: :model do
         expect(participant.completed_scores).to eql('0/2')
       end
       describe 'methods' do
+        context 'when no acts are marked as fattest' do
+          it 'returns nil' do
+            participant.scores.each do |p|
+              p.fattest = false
+              p.save
+            end
+            expect(participant.fattest?).to eql(nil)
+          end
+        end
         context 'when an act is marked as fattest' do
           it 'returns the country name' do
-            expect(participant.fattest?).to eql(nil)
             score = participant.scores.first
             score.fattest = true
             score.save!
