@@ -31,11 +31,10 @@
 
 .row
   .columns.small-12
-    table
+    table.scores-list
       thead
         tr
-          th act
-          th Country
+          th Act
           th.angled Score
           th.angled Weirdest
           th.angled Fattest
@@ -44,17 +43,16 @@
       -@pp.scores.scoring_order(@pp.id).each do |eps|
         tbody
           tr
-            td =eps.participating_country.position
             -if eps.score.blank?
-              td =eps.participating_country.country.name
+              td #{eps.participating_country.position}. #{eps.participating_country.country.name}
               td colspan='4'
                 =link_to 'Record your score', my_scoring_path(year: @event.year, act: eps.participating_country.position)
             -else
-              td
-                =link_to eps.participating_country.country.name, my_scoring_path(year: @event.year, act: eps.participating_country.position)
-              td =eps.score
-              td
+              td.center
+                =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position)
+              td.center =eps.score
+              td.center
                 i.fi-check
-              td
+              td.center
                 i.fi-checkbox
-              td x
+              td.center x
