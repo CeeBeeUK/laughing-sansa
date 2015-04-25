@@ -2,10 +2,8 @@
   ul.breadcrumbs
     li
       =link_to 'Home', root_path
-    li
-      =link_to @event.display_name, @event
     li.current
-      =link_to 'Scoring', my_game_path(@event)
+      =link_to "My #{@event.display_name}", my_game_path(@event)
 .row
   .columns.small-12.medium-8
     h2
@@ -19,7 +17,11 @@
       .small-6.medium-6.columns
         input type="text" disabled="true" value=@pp.predicted_uk_score
   .small-12.medium-6.columns
-    label.inline You have scored #{@pp.completed_scores} acts
+    .row.collapse.prefix-radius
+      .small-6.medium-6.columns
+        label.prefix You have scored
+      .small-6.medium-6.columns
+        input type="text" disabled="true" value="#{@pp.completed_scores} acts"
 -if @event.archived? && @event.actual_uk_score.any?
   .row
     .small-12.medium-6.columns
@@ -44,15 +46,20 @@
         tbody
           tr
             -if eps.score.blank?
-              td #{eps.participating_country.position}. #{eps.participating_country.country.name}
+              td.small
+                =link_to my_scoring_path(year: @event.year, act: eps.participating_country.position) do
+                  =eps.participating_country.position
+                  |.
+                  =eps.participating_country.country.name
+                end
               td colspan='4'
-                =link_to 'Record your score', my_scoring_path(year: @event.year, act: eps.participating_country.position)
             -else
-              td.center
+              td.small
                 =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position)
               td.center =eps.score
-              td.center
+              td.center.flagged style='background-image: url("#{eps.participating_country.country.large_image}");'
                 i.fi-check
-              td.center
+              td.center.flagged style='background-image: url("#{eps.participating_country.country.large_image}");'
                 i.fi-checkbox
-              td.center x
+              td.center.flagged style='background-image: url("#{eps.participating_country.country.large_image}");'
+                i.fi-check

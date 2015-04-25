@@ -1,3 +1,11 @@
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li
+      =link_to "My #{@eps.event.display_name}", my_game_path(@eps.event)
+    li.current
+      |Act #{@eps.participating_country.position}
 h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.position} - #{@eps.participating_country.country.name}
 
 

@@ -26,7 +26,15 @@ ul.button-group > li {
   }
 }
 table.scores-list {
+  td.small {
+    font-size: 12px;
+  }
   td.center {
     text-align: center;
+  }
+  td.flagged {
+    color: antiquewhite;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
