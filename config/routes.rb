@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   get 'events/:year/join', to: 'events#join', as: 'game_join'
   post 'events/:year/join', to: 'events#sign_up', as: 'game_sign_up'
 
-  get 'games/score/:id', to: 'games#score', as: 'test_score'
-
   get 'events/:year/countries', to: 'participating_countries#manage', as: 'manage_countries'
 
   post 'participating_countries/:year/sort', to: 'participating_countries#sort', as: 'event_country'
