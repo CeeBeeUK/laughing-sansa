@@ -15,6 +15,11 @@ class EventPlayer < ActiveRecord::Base
     "#{scores.where('score>=0').count}/#{scores.count}"
   end
 
+  def fattest?
+    fattest = scores.find_by(fattest: true)
+    fattest.participating_country.country.name if fattest.present?
+  end
+
 private
 
   def event_can_be_joined

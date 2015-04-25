@@ -13,6 +13,11 @@ RSpec.describe EventPlayer, type: :model do
     it 'must return scores completed' do
       expect(participant).to respond_to(:completed_scores)
     end
+    it 'responds to fattest?' do
+      expect(participant).to respond_to :fattest?
+    end
+    it 'responds to best_wail?'
+    it 'repsponds to wackiest?'
   end
   context 'validations' do
     it 'must require an event' do
@@ -72,8 +77,19 @@ RSpec.describe EventPlayer, type: :model do
       it 'has a score for each participating country' do
         expect(participant.scores.count).to eql(2)
       end
-      it 'has 0/3 for completed scores' do
+      it 'has 0/2 for completed scores' do
         expect(participant.completed_scores).to eql('0/2')
+      end
+      describe 'methods' do
+        context 'when an act is marked as fattest' do
+          it 'returns the country name' do
+            expect(participant.fattest?).to eql(nil)
+            score = participant.scores.first
+            score.fattest = true
+            score.save!
+            expect(participant.fattest?).to eql(score.participating_country.country.name)
+          end
+        end
       end
     end
   end
