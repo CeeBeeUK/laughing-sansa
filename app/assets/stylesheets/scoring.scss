@@ -6,6 +6,14 @@ ul.button-group.even-3 > li,
 ul.button-group > li {
 	margin-bottom: 0.1rem;
 }
+ul.score-board-row.even-3 {
+  margin-left:-6px;
+  margin-right:7px;
+}
+ul.score-board-row.even-2 {
+  margin-left:-6px;
+  margin-right:6px;
+}
 @media screen and (max-width: 450px) {
   th.angled {
     -webkit-transform: rotate(-45deg);
