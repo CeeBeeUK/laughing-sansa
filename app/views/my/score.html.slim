@@ -8,93 +8,95 @@
       |Act #{@eps.participating_country.position}
 h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.position} - #{@eps.participating_country.country.name}
 
-.row
-  .columns.small-2.medium-3.large-4
-    h3 Notes
-  .columns.small-10.medium-9.large-8
-    textarea rows=6
-.row
-  .columns.small-2.medium-3.large-4
-    h3 Score
-  .columns.small-10.medium-9.large-8
-    .row
-      .columns.small-12
-        ul.button-group.even-3.aligned-button-row.score-board-row
-          li
-            input#score-0 name='score' type='radio' style='display:none;'
-            label.button.small.primary for='score-0' Nul
-          li
-            input#score-1 name='score' type='radio' style='display:none;'
-            label.button.small.primary for='score-1' 1
-          li
-            input#score-2 name='score' type='radio' style='display:none;'
-              label.button.small.primary for='score-2' 2
-          li
-            input#score-3 name='score' type='radio' style='display:none;'
-              label.button.small.primary for='score-3' 3
-          li
-            input#score-4 name='score' type='radio' style='display:none;'
-              label.button.small.primary for='score-4' 4
-          li
-            input#score-5 name='score' type='radio' style='display:none;'
-              label.button.small.primary for='score-5' 5
-          li
-            input#score-6 name='score' type='radio' style='display:none;'
-              label.button.small.primary for='score-6' 6
-          li
-            input#score-7 name='score' type='radio' style='display:none;'
-              label.button.small.primary for='score-7' 7
-          li
-            input#score-8 name='score' type='radio' style='display:none;'
-              label.button.small.primary for='score-8' 8
-      .columns.small-12
-        ul.button-group.even-2.aligned-button-row.score-board-row
-          li
-            input#score-10 name='score' type='radio' style='display:none;'
-              label.button.small.primary for='score-10' 10
-          li
-            input#score-12 name='score' type='radio' style='display:none;'
-              label.button.small.primary.expand for='score-12' 12
+= form_for @eps, url: { action: "score_create" }, html: {autocomplete: 'off'} do |f|
+  - if @eps.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@eps.errors.count, "error")} prohibited this score from being recorded:"
+      ul
+        - @eps.errors.full_messages.each do |message|
+          li = message
+
+  .row
+    .columns.small-2.medium-3.large-4
+      h3 Notes
+    .columns.small-10.medium-9.large-8
+      =f.text_area :notes, rows:6
+  .row
+    .columns.small-2.medium-3.large-4
+      h3 Score
+    .columns.small-10.medium-9.large-8
+      .row
+        .columns.small-12
+          ul.button-group.even-3.aligned-button-row.score-board-row
+            li
+              input#score-0 name='score' type='radio' style='display:none;'
+              label.button.small.primary for='score-0' Nul
+            li
+              input#score-1 name='score' type='radio' style='display:none;'
+              label.button.small.primary for='score-1' 1
+            li
+              input#score-2 name='score' type='radio' style='display:none;'
+                label.button.small.primary for='score-2' 2
+            li
+              input#score-3 name='score' type='radio' style='display:none;'
+                label.button.small.primary for='score-3' 3
+            li
+              input#score-4 name='score' type='radio' style='display:none;'
+                label.button.small.primary for='score-4' 4
+            li
+              input#score-5 name='score' type='radio' style='display:none;'
+                label.button.small.primary for='score-5' 5
+            li
+              input#score-6 name='score' type='radio' style='display:none;'
+                label.button.small.primary for='score-6' 6
+            li
+              input#score-7 name='score' type='radio' style='display:none;'
+                label.button.small.primary for='score-7' 7
+            li
+              input#score-8 name='score' type='radio' style='display:none;'
+                label.button.small.primary for='score-8' 8
+        .columns.small-12
+          ul.button-group.even-2.aligned-button-row.score-board-row
+            li
+              input#score-10 name='score' type='radio' style='display:none;'
+                label.button.small.primary for='score-10' 10
+            li
+              input#score-12 name='score' type='radio' style='display:none;'
+                label.button.small.primary.expand for='score-12' 12
 
 
-.row style='margin-top:1rem;'
-  .small-3.columns
-    .inline-cb Best Wail
-  .small-1.columns
-    .switch.radius.small
-      input.inline-cb#bestWailSwitch type="checkbox"
-      label for="bestWailSwitch"
-  .small-7.columns
-    .inline-cb
-      -if @eps.event_player.best_wail? && (@eps.event_player.best_wail? != @eps.participating_country.country.name)
-        |Better wail than #{@eps.event_player.best_wail?}?
-.row
-  .small-3.columns
-    .inline-cb Wackiest
-  .small-1.columns
-    .switch.radius.small
-      input.inline-cb#wackiestSwitch type="checkbox"
-      label for="wackiestSwitch"
-  .small-7.columns
-    .inline-cb
-      -if @eps.event_player.wackiest? && (@eps.event_player.wackiest? != @eps.participating_country.country.name)
-        |Wackier than #{@eps.event_player.wackiest?}?
-.row
-  .small-3.columns
-    .inline-cb Fattest
-  .small-1.columns
-    .switch.radius.small
-      input.inline-cb#fattestSwitch type="checkbox"
-      label for="fattestSwitch"
-  .small-7.columns
-    .inline-cb
-      -if @eps.event_player.fattest? && (@eps.event_player.fattest? != @eps.participating_country.country.name)
-        |Fatter than #{@eps.event_player.fattest?}?
-.row
-  .columns.small-12
-    button.button.tiny.radius Fake submit - does nothing!
-p =@eps.inspect
-p =@eps.event_player.inspect
-p =@eps.participating_country.inspect
-p =@eps.participating_country.country.inspect
-p =@eps.event.inspect
+  .row style='margin-top:1rem;'
+    .small-3.columns
+      .inline-cb Best Wail
+    .small-1.columns
+      .switch.radius.small
+        =f.check_box :best_wail, class: 'inline-cb'
+        =f.label :best_wail
+    .small-7.columns
+      .inline-cb
+        -if @eps.event_player.best_wail? && (@eps.event_player.best_wail? != @eps.participating_country.country.name)
+          |Better wail than #{@eps.event_player.best_wail?}?
+  .row
+    .small-3.columns
+      .inline-cb Wackiest
+    .small-1.columns
+      .switch.radius.small
+        =f.check_box :wackiest, class: 'inline-cb'
+        =f.label :wackiest
+    .small-7.columns
+      .inline-cb
+        -if @eps.event_player.wackiest? && (@eps.event_player.wackiest? != @eps.participating_country.country.name)
+          |Wackier than #{@eps.event_player.wackiest?}?
+  .row
+    .small-3.columns
+      .inline-cb Fattest
+    .small-1.columns
+      .switch.radius.small
+        =f.check_box :fattest, class: 'inline-cb'
+        =f.label :fattest
+    .small-7.columns
+      .inline-cb
+        -if @eps.event_player.fattest? && (@eps.event_player.fattest? != @eps.participating_country.country.name)
+          |Fatter than #{@eps.event_player.fattest?}?
+
+  .actions = f.submit class: 'button tiny radius'

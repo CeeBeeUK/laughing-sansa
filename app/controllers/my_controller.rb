@@ -2,7 +2,7 @@ class MyController < ApplicationController
   before_action :authenticate_user!
   before_action :load_user, only: [:profile, :profile_update, :game]
   before_action :load_pp, only: [:game]
-  before_action :load_eps, only: [:game, :score]
+  before_action :load_eps, only: [:game, :score, :score_create]
   respond_to :html
 
   def profile
@@ -24,6 +24,11 @@ class MyController < ApplicationController
   end
 
   def score
+  end
+
+  def score_create
+    @eps.update(score_params)
+    redirect_to my_game_path(@eps.event)
   end
 
 private
@@ -49,5 +54,9 @@ private
 
   def user_params
     params.require(:user).permit(:display_name)
+  end
+
+  def score_params
+    params.require(:event_player_score).permit(:notes, :score, :best_wail, :wackiest, :fattest)
   end
 end
