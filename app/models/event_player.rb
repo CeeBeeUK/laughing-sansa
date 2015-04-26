@@ -20,6 +20,16 @@ class EventPlayer < ActiveRecord::Base
     fattest.participating_country.country.name if fattest.present?
   end
 
+  def wackiest?
+    wackiest = scores.find_by(wackiest: true)
+    wackiest.participating_country.country.name if wackiest.present?
+  end
+
+  def best_wail?
+    best_wail = scores.find_by(best_wail: true)
+    best_wail.participating_country.country.name if best_wail.present?
+  end
+
 private
 
   def event_can_be_joined

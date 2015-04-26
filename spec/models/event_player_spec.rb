@@ -16,8 +16,12 @@ RSpec.describe EventPlayer, type: :model do
     it 'responds to fattest?' do
       expect(participant).to respond_to :fattest?
     end
-    it 'responds to best_wail?'
-    it 'repsponds to wackiest?'
+    it 'responds to best_wail?' do
+      expect(participant).to respond_to :best_wail?
+    end
+    it 'repsponds to wackiest?' do
+      expect(participant).to respond_to :wackiest?
+    end
   end
   context 'validations' do
     it 'must require an event' do
@@ -81,21 +85,51 @@ RSpec.describe EventPlayer, type: :model do
         expect(participant.completed_scores).to eql('0/2')
       end
       describe 'methods' do
-        context 'when no acts are marked as fattest' do
-          it 'returns nil' do
-            participant.scores.each do |p|
-              p.fattest = false
-              p.save
+        describe 'when number of acts marked as' do
+          context 'fattest' do
+            it 'is zero, returns nil' do
+              participant.scores.each do |p|
+                p.fattest = false
+                p.save
+              end
+              expect(participant.fattest?).to eql(nil)
             end
-            expect(participant.fattest?).to eql(nil)
+            it 'is one, returns the country name' do
+              score = participant.scores.first
+              score.fattest = true
+              score.save!
+              expect(participant.fattest?).to eql(score.participating_country.country.name)
+            end
           end
-        end
-        context 'when an act is marked as fattest' do
-          it 'returns the country name' do
-            score = participant.scores.first
-            score.fattest = true
-            score.save!
-            expect(participant.fattest?).to eql(score.participating_country.country.name)
+          context 'wackiest' do
+            it 'is zero, returns nil' do
+              participant.scores.each do |p|
+                p.wackiest = false
+                p.save
+              end
+              expect(participant.wackiest?).to eql(nil)
+            end
+            it 'is one, returns the country name' do
+              score = participant.scores.first
+              score.wackiest = true
+              score.save!
+              expect(participant.wackiest?).to eql(score.participating_country.country.name)
+            end
+          end
+          context 'best_wail' do
+            it 'is zero, returns nil' do
+              participant.scores.each do |p|
+                p.best_wail = false
+                p.save
+              end
+              expect(participant.best_wail?).to eql(nil)
+            end
+            it 'is one, returns the country name' do
+              score = participant.scores.first
+              score.best_wail = true
+              score.save!
+              expect(participant.best_wail?).to eql(score.participating_country.country.name)
+            end
           end
         end
       end

@@ -59,22 +59,37 @@ h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.p
 
 .row style='margin-top:1rem;'
   .small-3.columns
-    label.inline Best Wail
-  .small-3.columns
-    .switch.radius.small.inline
-      input#bestWailSwitch type="checkbox"
-      label.inline for="bestWailSwitch"
-  .small-6.columns
-    label.inline Replace Moldova?
+    .inline-cb Best Wail
+  .small-1.columns
+    .switch.radius.small
+      input.inline-cb#bestWailSwitch type="checkbox"
+      label for="bestWailSwitch"
+  .small-7.columns
+    .inline-cb
+      -if @eps.event_player.best_wail? && (@eps.event_player.best_wail? != @eps.participating_country.country.name)
+        |Better wail than #{@eps.event_player.best_wail?}?
 .row
-  .small-3.medium-3.large-2.columns style="line-height: 2.5;"
-    |Weirdest
-  .small-3.medium-4.large-4.columns
-    .switch.radius.large
-      input#weirdestSwitch type="checkbox"
-      label for="weirdestSwitch"
-  .small-5.medium-5.large-6.columns style="line-height: 2.5;"
-
+  .small-3.columns
+    .inline-cb Wackiest
+  .small-1.columns
+    .switch.radius.small
+      input.inline-cb#wackiestSwitch type="checkbox"
+      label for="wackiestSwitch"
+  .small-7.columns
+    .inline-cb
+      -if @eps.event_player.wackiest? && (@eps.event_player.wackiest? != @eps.participating_country.country.name)
+        |Wackier than #{@eps.event_player.wackiest?}?
+.row
+  .small-3.columns
+    .inline-cb Fattest
+  .small-1.columns
+    .switch.radius.small
+      input.inline-cb#fattestSwitch type="checkbox"
+      label for="fattestSwitch"
+  .small-7.columns
+    .inline-cb
+      -if @eps.event_player.fattest? && (@eps.event_player.fattest? != @eps.participating_country.country.name)
+        |Fatter than #{@eps.event_player.fattest?}?
 .row
   .columns.small-12
     button.button.tiny.radius Fake submit - does nothing!
