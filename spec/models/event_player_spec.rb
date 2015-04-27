@@ -95,7 +95,7 @@ RSpec.describe EventPlayer, type: :model do
             score.fattest = true
             score.save!
             expect(participant.fattest?).to eql(score.participating_country)
-            participant.set_attribute_to('fattest', participant.scores.last)
+            participant.set_attribute_to_true('fattest', participant.scores.last)
             expect(participant.fattest?).to eql(participant.scores.last.participating_country)
           end
         end

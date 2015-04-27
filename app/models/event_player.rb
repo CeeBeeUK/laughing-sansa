@@ -30,7 +30,10 @@ class EventPlayer < ActiveRecord::Base
     best_wail.participating_country if best_wail.present?
   end
 
-  def set_attribute_to(attribute, new_country)
+  def set_attribute_to_true(attribute, new_country)
+    puts '-----------------'
+    puts 'set_attribute_to_true'
+    puts '-----------------'
     scores.each do |s|
       s[attribute.to_sym] = s == new_country
       s.save

@@ -38,32 +38,16 @@
         tr
           th Act
           th.angled Score
-          th.angled Weirdest
+          th.angled Wackiest
           th.angled Fattest
           th.angled Best Wail
 
       -@pp.scores.scoring_order(@pp.id).each do |eps|
         tbody
           tr
-            -if eps.score.blank?
-              td.small
-                =link_to my_scoring_path(year: @event.year, act: eps.participating_country.position) do
-                  =eps.participating_country.position
-                  |.
-                  =eps.participating_country.country.name
-                end
-              td colspan='4'
-            -else
-              td.small
-                =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position)
-              td.center =eps.score
-              /-if eps.wackiest = true
-              /  td.center.flagged style='background-image: url("#{eps.participating_country.country.large_image}");'
-              /    i.fi-check
-              /-else
-              /  td.center &nbsp;
-              =render partial: 'true_check', locals: {value: eps.wackiest, image: eps.participating_country.country.large_image}
-              =render partial: 'true_check', locals: {value: eps.fattest, image: eps.participating_country.country.large_image}
-              =render partial: 'true_check', locals: {value: eps.best_wail, image: eps.participating_country.country.large_image}
-              /td.center.flagged style='background-image: url("#{eps.participating_country.country.large_image}");'
-              /  i.fi-checkbox
+            td.small
+              =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position)
+            td.center =eps.score
+            =render partial: 'true_check', locals: {value: eps.wackiest, image: eps.participating_country.country.large_image}
+            =render partial: 'true_check', locals: {value: eps.fattest, image: eps.participating_country.country.large_image}
+            =render partial: 'true_check', locals: {value: eps.best_wail, image: eps.participating_country.country.large_image}

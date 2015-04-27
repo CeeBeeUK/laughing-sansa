@@ -27,8 +27,10 @@ class MyController < ApplicationController
   end
 
   def score_create
+    @eps.event_player.set_attribute_to_true('fattest', @eps.participating_country) if score_params[:fattest]=='1'
+    @eps.event_player.set_attribute_to_true('wackiest', @eps.participating_country) if score_params[:wackiest]=='1'
+    @eps.event_player.set_attribute_to_true('best_wail', @eps.participating_country) if score_params[:best_wail]=='1'
     @eps.update(score_params)
-
     redirect_to my_game_path(@eps.event)
   end
 
