@@ -28,6 +28,7 @@ class MyController < ApplicationController
 
   def score_create
     @eps.update(score_params)
+
     redirect_to my_game_path(@eps.event)
   end
 

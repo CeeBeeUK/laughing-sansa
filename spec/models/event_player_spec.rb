@@ -85,6 +85,20 @@ RSpec.describe EventPlayer, type: :model do
         expect(participant.completed_scores).to eql('0/2')
       end
       describe 'methods' do
+        describe 'reset_values' do
+          it 'when passed two strings clears original value and sets new one' do
+            participant.scores.each do |p|
+              p.fattest = false
+              p.save
+            end
+            score = participant.scores.first
+            score.fattest = true
+            score.save!
+            expect(participant.fattest?).to eql(score.participating_country)
+            participant.set_attribute_to('fattest', participant.scores.last)
+            expect(participant.fattest?).to eql(participant.scores.last.participating_country)
+          end
+        end
         describe 'when number of acts marked as' do
           context 'fattest' do
             it 'is zero, returns nil' do
@@ -98,7 +112,7 @@ RSpec.describe EventPlayer, type: :model do
               score = participant.scores.first
               score.fattest = true
               score.save!
-              expect(participant.fattest?).to eql(score.participating_country.country.name)
+              expect(participant.fattest?).to eql(score.participating_country)
             end
           end
           context 'wackiest' do
@@ -113,7 +127,7 @@ RSpec.describe EventPlayer, type: :model do
               score = participant.scores.first
               score.wackiest = true
               score.save!
-              expect(participant.wackiest?).to eql(score.participating_country.country.name)
+              expect(participant.wackiest?).to eql(score.participating_country)
             end
           end
           context 'best_wail' do
@@ -124,11 +138,11 @@ RSpec.describe EventPlayer, type: :model do
               end
               expect(participant.best_wail?).to eql(nil)
             end
-            it 'is one, returns the country name' do
+            it 'is one, returns the country' do
               score = participant.scores.first
               score.best_wail = true
               score.save!
-              expect(participant.best_wail?).to eql(score.participating_country.country.name)
+              expect(participant.best_wail?).to eql(score.participating_country)
             end
           end
         end

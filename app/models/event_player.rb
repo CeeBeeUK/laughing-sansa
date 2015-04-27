@@ -17,17 +17,24 @@ class EventPlayer < ActiveRecord::Base
 
   def fattest?
     fattest = scores.find_by(fattest: true)
-    fattest.participating_country.country.name if fattest.present?
+    fattest.participating_country if fattest.present?
   end
 
   def wackiest?
     wackiest = scores.find_by(wackiest: true)
-    wackiest.participating_country.country.name if wackiest.present?
+    wackiest.participating_country if wackiest.present?
   end
 
   def best_wail?
     best_wail = scores.find_by(best_wail: true)
-    best_wail.participating_country.country.name if best_wail.present?
+    best_wail.participating_country if best_wail.present?
+  end
+
+  def set_attribute_to(attribute, new_country)
+    scores.each do |s|
+      s[attribute.to_sym] = s == new_country
+      s.save
+    end
   end
 
 private

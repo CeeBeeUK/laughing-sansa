@@ -74,8 +74,8 @@ h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.p
         =f.label :best_wail
     .small-7.columns
       .inline-cb
-        -if @eps.event_player.best_wail? && (@eps.event_player.best_wail? != @eps.participating_country.country.name)
-          |Better wail than #{@eps.event_player.best_wail?}?
+        -if @eps.event_player.best_wail? && (@eps.event_player.best_wail? != @eps.participating_country)
+          |Better wail than #{@eps.event_player.best_wail?.country.name}?
   .row
     .small-3.columns
       .inline-cb Wackiest
@@ -85,8 +85,8 @@ h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.p
         =f.label :wackiest
     .small-7.columns
       .inline-cb
-        -if @eps.event_player.wackiest? && (@eps.event_player.wackiest? != @eps.participating_country.country.name)
-          |Wackier than #{@eps.event_player.wackiest?}?
+        -if @eps.event_player.wackiest? && (@eps.event_player.wackiest? != @eps.participating_country)
+          |Wackier than #{@eps.event_player.wackiest?.country.name}?
   .row
     .small-3.columns
       .inline-cb Fattest
@@ -96,7 +96,7 @@ h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.p
         =f.label :fattest
     .small-7.columns
       .inline-cb
-        -if @eps.event_player.fattest? && (@eps.event_player.fattest? != @eps.participating_country.country.name)
-          |Fatter than #{@eps.event_player.fattest?}?
+        -if @eps.event_player.fattest? && (@eps.event_player.fattest? != @eps.participating_country)
+          |Fatter than #{@eps.event_player.fattest?.country.name}?
 
   .actions = f.submit class: 'button tiny radius'
