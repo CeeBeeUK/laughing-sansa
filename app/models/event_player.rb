@@ -31,11 +31,8 @@ class EventPlayer < ActiveRecord::Base
   end
 
   def set_attribute_to_true(attribute, new_country)
-    puts '-----------------'
-    puts 'set_attribute_to_true'
-    puts '-----------------'
     scores.each do |s|
-      s[attribute.to_sym] = s == new_country
+      s[attribute] = s == new_country
       s.save
     end
   end

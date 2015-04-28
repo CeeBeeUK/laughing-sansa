@@ -93,10 +93,13 @@ RSpec.describe EventPlayer, type: :model do
             end
             score = participant.scores.first
             score.fattest = true
+            score.best_wail = true
             score.save!
             expect(participant.fattest?).to eql(score.participating_country)
+            expect(participant.best_wail?).to eql(score.participating_country)
             participant.set_attribute_to_true('fattest', participant.scores.last)
             expect(participant.fattest?).to eql(participant.scores.last.participating_country)
+            expect(participant.best_wail?).to eql(score.participating_country)
           end
         end
         describe 'when number of acts marked as' do
