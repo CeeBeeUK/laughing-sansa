@@ -27,10 +27,15 @@ class MyController < ApplicationController
   end
 
   def score_create
-    reset_event_attribute(@eps, :fattest)
-    reset_event_attribute(@eps, :wackiest)
-    reset_event_attribute(@eps, :best_wail)
+    puts '>>>>>>>>>>>>>>starting reset block'
+    reset_event_attribute(@eps, 'fattest')
+    reset_event_attribute(@eps, 'wackiest')
+    reset_event_attribute(@eps, 'best_wail')
+    puts '<<<<<<<<<<<<<<end reset block'
+    puts "score_params=#{score_params}"
+    puts "@eps=#{@eps.inspect}"
     @eps.update(score_params)
+    puts '---------redirecting'
     redirect_to my_game_path(@eps.event)
   end
 
