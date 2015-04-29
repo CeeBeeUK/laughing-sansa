@@ -30,14 +30,14 @@ h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.p
           ul.button-group.even-3.aligned-button-row.score-board-row
             -(0..8).each do |i|
               li
-                =f.radio_button :score, i, name: 'score', style: 'display:none;'
-                =f.label :score, i, value: i, class: 'button small primary'
+                =f.radio_button :score, i, style: 'display:none;'
+                =f.label "score_#{i}".to_sym, i, class: 'button small primary'
         .columns.small-12
           ul.button-group.even-2.aligned-button-row.score-board-row
             -[10,12].each do |i|
               li
-                =f.radio_button :score, i, name: 'score', style: 'display:none;'
-                =f.label :score, i, value: i, class: 'button small primary'
+                =f.radio_button :score, i, style: 'display:none;'
+                =f.label "score_#{i}".to_sym, i, class: 'button small primary'
 
 
   .row
