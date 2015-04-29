@@ -27,27 +27,24 @@ class MyController < ApplicationController
   end
 
   def score_create
-    puts '>>>>>>>>>>>>>>starting reset block'
-    reset_event_attribute(@eps, 'fattest')
-    reset_event_attribute(@eps, 'wackiest')
-    reset_event_attribute(@eps, 'best_wail')
-    puts '<<<<<<<<<<<<<<end reset block'
-    puts "score_params=#{score_params}"
-    puts "@eps=#{@eps.inspect}"
     if @eps.update(score_params)
-      puts '---------redirecting'
+      reset_event_attribute('fattest', @eps)
+      reset_event_attribute('wackiest', @eps)
+      reset_event_attribute('best_wail', @eps)
       redirect_to my_game_path(@eps.event)
     else
-      respond_with @eps
+      render :score
     end
   end
 
 private
 
-  def reset_event_attribute(eps, attribute)
-    @pp = eps.event_player
-    @pc = eps.participating_country
-    @pp.set_attribute_to_true(attribute, @pc) if score_params[attribute.to_sym] == '1'
+  def reset_event_attribute(attribute, eps)
+    if score_params[attribute.to_sym] == '1'
+      @pp = eps.event_player
+      @pc = eps.participating_country
+      @pp.set_attribute_to_true(attribute, @pc)
+    end
   end
 
   def load_eps

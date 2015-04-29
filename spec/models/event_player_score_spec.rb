@@ -8,6 +8,10 @@ RSpec.describe EventPlayerScore, type: :model do
   end
 
   describe 'validation' do
+    it 'requires a score' do
+      eps.score = nil
+      expect(eps).to be_invalid
+    end
     it 'requires an event_player' do
       eps.event_player = nil
       expect(eps).to be_invalid

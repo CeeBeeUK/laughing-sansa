@@ -8,14 +8,16 @@
       |Act #{@eps.participating_country.position}
 h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.position} - #{@eps.participating_country.country.name}
 
-= form_for @eps, url: { action: "score_create" }, html: {autocomplete: 'off'} do |f|
-  - if @eps.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@eps.errors.count, "error")} prohibited this score from being recorded:"
-      ul
-        - @eps.errors.full_messages.each do |message|
-          li = message
+- if @eps.errors.any?
+  .row
+    .columns.small-offset-2.small-10
+      #error_explanation
+        h3 = "#{pluralize(@eps.errors.count, "error")} prohibited this score from being recorded:"
+        ul
+          - @eps.errors.full_messages.each do |message|
+            li = message
 
+= form_for @eps, url: { action: "score_create" }, html: {autocomplete: 'off'} do |f|
   .row
     .columns.small-2.medium-3.large-4
       h3 Notes
