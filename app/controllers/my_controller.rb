@@ -34,9 +34,12 @@ class MyController < ApplicationController
     puts '<<<<<<<<<<<<<<end reset block'
     puts "score_params=#{score_params}"
     puts "@eps=#{@eps.inspect}"
-    @eps.update(score_params)
-    puts '---------redirecting'
-    redirect_to my_game_path(@eps.event)
+    if @eps.update(score_params)
+      puts '---------redirecting'
+      redirect_to my_game_path(@eps.event)
+    else
+      respond_with @eps
+    end
   end
 
 private

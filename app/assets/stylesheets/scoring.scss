@@ -53,3 +53,7 @@ input.inline-cb, label.inline-cb {
 div.switch.radius.small {
   //height: 42px;
 }
+img.desaturate {
+  -webkit-filter: greyscale(100%);
+  filter: greyscale(100%);
+}
