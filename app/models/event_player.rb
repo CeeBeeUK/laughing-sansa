@@ -33,11 +33,6 @@ class EventPlayer < ActiveRecord::Base
   def set_attribute_to_true(attribute, new_country)
     scores.each do |s|
       value = (s.participating_country == new_country)
-      Rails.logger.info('+++++++')
-      Rails.logger.info("s.participating_country=#{s.participating_country.inspect}")
-      Rails.logger.info("new_country=#{new_country.inspect}")
-      Rails.logger.info("Setting #{attribute} to #{value} for #{s.inspect}")
-      Rails.logger.info('+++++++')
       s[attribute] = value
       s.save
     end

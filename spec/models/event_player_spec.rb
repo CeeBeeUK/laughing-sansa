@@ -86,7 +86,7 @@ RSpec.describe EventPlayer, type: :model do
       end
       describe 'methods' do
         describe 'reset_values' do
-          it 'when passed two strings clears original value and sets new one' do
+          xit 'when passed two strings clears original value and sets new one' do
             participant.scores.each do |p|
               p.fattest = false
               p.save
