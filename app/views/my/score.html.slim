@@ -1,0 +1,70 @@
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li
+      =link_to "My #{@eps.event.display_name}", my_game_path(@eps.event)
+    li.current
+      |Act #{@eps.participating_country.position}
+h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.position} - #{@eps.participating_country.country.name}
+
+= form_for @eps, url: { action: "score_create" }, html: {autocomplete: 'off'} do |f|
+  .row
+    .columns.small-2.medium-3.large-4
+      h3 Notes
+    .columns.small-10.medium-9.large-8
+      =f.text_area :notes, rows:6
+  .row
+    .columns.small-2.medium-3.large-4
+      h3 Score
+    .columns.small-10.medium-9.large-8
+      .row
+        .columns.small-12
+          ul.button-group.even-3.aligned-button-row.score-board-row
+            -(0..8).each do |i|
+              li
+                =f.radio_button :score, i, style: 'display:none;'
+                =f.label "score_#{i}".to_sym, i, class: 'button small primary'
+        .columns.small-12
+          ul.button-group.even-2.aligned-button-row.score-board-row
+            -[10,12].each do |i|
+              li
+                =f.radio_button :score, i, style: 'display:none;'
+                =f.label "score_#{i}".to_sym, i, class: 'button small primary'
+
+
+  .row
+    .small-3.columns
+      .inline-cb Wackiest
+    .small-1.columns
+      .switch.radius.small
+        =f.check_box :wackiest, class: 'inline-cb'
+        =f.label :wackiest
+    .small-7.columns
+      .inline-cb
+        -if @eps.event_player.wackiest? && (@eps.event_player.wackiest? != @eps.participating_country)
+          |Wackier than #{@eps.event_player.wackiest?.country.name}?
+  .row
+    .small-3.columns
+      .inline-cb Fattest
+    .small-1.columns
+      .switch.radius.small
+        =f.check_box :fattest, class: 'inline-cb'
+        =f.label :fattest
+    .small-7.columns
+      .inline-cb
+        -if @eps.event_player.fattest? && (@eps.event_player.fattest? != @eps.participating_country)
+          |Fatter than #{@eps.event_player.fattest?.country.name}?
+  .row
+    .small-3.columns
+      .inline-cb Best Wail
+    .small-1.columns
+      .switch.radius.small
+        =f.check_box :best_wail, class: 'inline-cb'
+        =f.label :best_wail
+    .small-7.columns
+      .inline-cb
+        -if @eps.event_player.best_wail? && (@eps.event_player.best_wail? != @eps.participating_country)
+          |Better wail than #{@eps.event_player.best_wail?.country.name}?
+
+  .actions = f.submit class: 'button tiny radius'

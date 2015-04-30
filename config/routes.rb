@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'my/:year/score/act/:act', to: 'my#score', as: 'my_scoring'
+  patch 'my/:year/score/act/:act', to: 'my#score_create'
+
   get 'events/:year/join', to: 'events#join', as: 'game_join'
   post 'events/:year/join', to: 'events#sign_up', as: 'game_sign_up'
-
-  get 'games/score/:id', to: 'games#score', as: 'test_score'
 
   get 'events/:year/countries', to: 'participating_countries#manage', as: 'manage_countries'
 

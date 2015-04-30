@@ -2,21 +2,26 @@
   ul.breadcrumbs
     li
       =link_to 'Home', root_path
-    li
-      =link_to @event.display_name, @event
     li.current
-      =link_to 'Scoring', my_game_path(@event)
+      =link_to "My #{@event.display_name}", my_game_path(@event)
 .row
   .columns.small-12.medium-8
     h2
       =@event.display_name
+
 .row
   .small-12.medium-6.columns
     .row.collapse.prefix-radius
-      .small-6.medium-6.columns
+      .small-8.columns
         label.prefix Your UK score prediction
-      .small-6.medium-6.columns
+      .small-4.columns
         input type="text" disabled="true" value=@pp.predicted_uk_score
+  .small-12.medium-6.columns
+    .row.collapse.prefix-radius
+      .small-8.columns
+        label.prefix You have scored
+      .small-4.columns
+        input type="text" disabled="true" value="#{@pp.completed_scores} acts"
 -if @event.archived? && @event.actual_uk_score.any?
   .row
     .small-12.medium-6.columns
@@ -26,5 +31,23 @@
         .small-6.medium-6.columns
           input type="text" disabled="true" value=@event.actual_uk_score
 
-p List currently performing
-p order by sequence asc and score nil
+.row
+  .columns.small-12
+    table.scores-list
+      thead
+        tr
+          th Act
+          th.angled Score
+          th.angled Wackiest
+          th.angled Fattest
+          th.angled Best Wail
+
+      -@pp.scores.scoring_order(@pp.id).each do |eps|
+        tbody
+          tr
+            td.small
+              =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position)
+            td.center =eps.score
+            =render partial: 'true_check', locals: {value: eps.wackiest, image: eps.participating_country.country.large_image}
+            =render partial: 'true_check', locals: {value: eps.fattest, image: eps.participating_country.country.large_image}
+            =render partial: 'true_check', locals: {value: eps.best_wail, image: eps.participating_country.country.large_image}
