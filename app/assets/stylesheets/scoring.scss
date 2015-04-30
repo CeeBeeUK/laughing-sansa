@@ -57,3 +57,10 @@ img.desaturate {
   -webkit-filter: greyscale(100%);
   filter: greyscale(100%);
 }
+
+.boolean-tick {
+  color: springgreen;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
