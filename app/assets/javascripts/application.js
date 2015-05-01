@@ -19,27 +19,3 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
-
-
-$(document).ready(function () {
-    $('#PCL').sortable({
-        axis: 'y',
-        dropOnEmpty: false,
-        handle: '.handle',
-        cursor: 'ns-resize',
-        items: 'li',
-        opacity: 0.4,
-        scroll: true,
-        update: function () {
-            $.ajax({
-                type: 'post',
-                data: $('#PCL').sortable('serialize'),
-                dataType: 'script',
-                complete: function () {
-                    $('#PCL').effect('highlight');
-                },
-                url: $(this).data('url')
-            });
-        }
-    });
-});
