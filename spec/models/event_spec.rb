@@ -8,7 +8,7 @@ RSpec.describe Event, type: :model do
     expect(event).to be_valid
   end
 
-  it 'sss' do
+  it 'passes factory build with countries' do
     event = create(:event, :with_countries)
     expect(event).to be_valid
     expect(event.participating_countries.count).to eql(3)

@@ -37,8 +37,8 @@ RSpec.configure do |config|
   end
   # reset database before all tests
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.clean
     DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
 end
