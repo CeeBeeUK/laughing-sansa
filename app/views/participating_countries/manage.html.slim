@@ -40,6 +40,12 @@ hr
       ul#PCL data-url=event_country_path(@event)
         -@event.participating_countries.each do |c|
           li id="pc_#{c.id}"
-            span.handle
-              i.fi-list.fi-large
-            =c.country.name
+            .row
+              .columns.small-3
+                span.handle
+                  i.fi-list.fi-large
+                =c.country.name
+              .columns.small-6
+                input type="text" placeholder="choose a player"
+              .columns.small-3
+                button.tiny.success.inline Save
