@@ -15,6 +15,8 @@ class Event < ActiveRecord::Base
 
   scope :last_to_first, -> { all.order(year: :desc) }
 
+  scope :latest_active, -> { all.where('status=?', Event.statuses[:active]).order(:year) }
+
   def display_name
     "#{host_city} #{year}"
   end

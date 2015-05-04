@@ -52,7 +52,10 @@ Style/ClassAndModuleChildren:
   EnforcedStyle: nested
   Exclude:
     - app/controllers/users/omniauth_callbacks_controller.rb
-
+RSpec/FilePath:
+  Exclude:
+    - spec/controllers/omniauth_callbacks_controller_spec.rb
+    - spec/routing/*
 Style/CollectionMethods:
   PreferredMethods:
     collect: 'map'
