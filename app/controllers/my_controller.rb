@@ -31,10 +31,8 @@ class MyController < ApplicationController
       reset_event_attribute('fattest', @eps)
       reset_event_attribute('wackiest', @eps)
       reset_event_attribute('best_wail', @eps)
-      redirect_to my_game_path(@eps.event)
-    else
-      render :score
     end
+    redirect_to my_game_path(@eps.event)
   end
 
 private

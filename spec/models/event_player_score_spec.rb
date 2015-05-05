@@ -29,6 +29,16 @@ RSpec.describe EventPlayerScore, type: :model do
       end
     end
   end
+  describe 'methods' do
+    it 'returns the players display name' do
+      eps.event_player = create(:event_player)
+      expect(eps.player).to eql(eps.event_player.player.display_name)
+    end
+    it 'returns the participating_country' do
+      eps.participating_country = create(:participating_country)
+      expect(eps.country).to eql(eps.participating_country.country.name)
+    end
+  end
   describe 'associations' do
     it 'responds to player' do
       expect(eps).to respond_to(:player)
@@ -38,6 +48,28 @@ RSpec.describe EventPlayerScore, type: :model do
     end
     it 'responds to event (through event_player' do
       expect(eps).to respond_to(:event)
+    end
+  end
+  describe 'scopes' do
+    before(:each) { described_class.delete_all }
+    let(:ep) { create(:event_player) }
+
+    describe 'scoring_order' do
+      it 'lists by position and score' do
+        create_list :event_player_score, 3, event_player: ep, score: nil
+        result = described_class.scoring_order(ep.id)
+        expect(result.count).to eq 3
+        result.first.update(score: 10)
+        expect(described_class.scoring_order(ep.id).last.score).to eql(10)
+      end
+    end
+    describe 'playing_order' do
+      it 'lists by participating_country.position' do
+        create_list :event_player_score, 4, event_player: ep
+        result = described_class.playing_order(ep.id)
+        expect(result.count).to eq 4
+        expect(result.first.participating_country.position).to be < result.last.participating_country.position
+      end
     end
   end
 end

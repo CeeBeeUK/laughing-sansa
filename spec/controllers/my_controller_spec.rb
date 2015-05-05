@@ -13,7 +13,6 @@ RSpec.describe MyController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
-
   describe 'PUT #profile_update' do
     context 'with valid params' do
       let(:new_attributes) { user.attributes  }
@@ -38,7 +37,6 @@ RSpec.describe MyController, type: :controller do
       end
     end
   end
-
   describe 'GET #game' do
 
     let(:event) { create(:event) }
@@ -80,6 +78,31 @@ RSpec.describe MyController, type: :controller do
         it 'displays a flash message' do
           expect(flash[:alert]).to be_present
         end
+      end
+    end
+  end
+  describe 'PUT #score_create' do
+    let(:event_player_score) { create(:event_player_score) }
+    before(:each) do
+      sign_in user
+    end
+    context 'with valid params' do
+      before(:each) do
+        event_player_score.fattest = true
+        post :score_create,
+          year: event_player_score.event.year,
+          act: event_player_score.participating_country.position,
+          event_player_score: event_player_score.attributes
+      end
+      it 'updates the score data' do
+        event_player_score.reload
+        expect(event_player_score.fattest).to eql(true)
+      end
+      it 'returns a redirect code' do
+        expect(response.status).to eql(302)
+      end
+      it 'redirects to the game view' do
+        expect(response).to redirect_to(my_game_path(event_player_score.event))
       end
     end
   end
