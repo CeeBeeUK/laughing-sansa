@@ -7,6 +7,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
 
   before do
     DatabaseCleaner.clean
+    Event.delete_all
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:default] = OmniAuth::AuthHash.new(
       provider: 'google_oauth2',
