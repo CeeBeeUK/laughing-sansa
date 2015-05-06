@@ -41,7 +41,7 @@ RSpec.describe EventPlayer, type: :model do
       expect(participant).to be_invalid
     end
     it 'player must be unique for an event' do
-      first = described_class.create(player: create(:user), event_id: 1, predicted_uk_score: 1)
+      first = described_class.create(player: create(:user), event: create(:event), predicted_uk_score: 1)
       first.event.active!
       first.save!
       duplicate = first.dup
