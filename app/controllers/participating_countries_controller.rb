@@ -3,6 +3,7 @@ class ParticipatingCountriesController < ApplicationController
   load_and_authorize_resource
 
   before_action :load_variables, only: [:manage, :sort, :create]
+  before_action :find_pc, only: [:allocate]
   respond_to :html
 
   def manage
@@ -26,7 +27,19 @@ class ParticipatingCountriesController < ApplicationController
     redirect_to manage_countries_path(@event)
   end
 
+  def allocate
+    @pc.update(player_id: allocate_params[:player_id])
+    unless @pc.save
+      flash[:alert] = @pc.errors.full_messages
+    end
+    redirect_to manage_countries_path(@pc.event)
+  end
+
 private
+
+  def find_pc
+    @pc = ParticipatingCountry.find(params[:participating_country][:id])
+  end
 
   def load_variables
     @event = Event.find_by(year: params[:year])
@@ -37,5 +50,9 @@ private
 
   def participating_country_params
     params.require(:participating_country).permit(:country_id)
+  end
+
+  def allocate_params
+    params.require(:participating_country).permit(:player_id)
   end
 end

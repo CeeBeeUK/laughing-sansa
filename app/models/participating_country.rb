@@ -8,4 +8,6 @@ class ParticipatingCountry < ActiveRecord::Base
   validates :country_id, :player_id, :event_id, :position, presence: true
   validates :position, uniqueness: { scope: :event_id }
   validates :country_id, uniqueness: { scope: :event_id }
+  validates :player_id, numericality: { greater_than_or_equal_to: 0 }
+
 end

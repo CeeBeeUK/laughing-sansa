@@ -43,6 +43,17 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         expect(response).to redirect_to(root_path)
       end
     end
+    describe 'POST #allocate' do
+      before(:each) do
+        post :allocate, participating_country_id: create(:country).id, year: event.year, player_id: create(:user).id
+      end
+      it 'returns a 302 status code' do
+        expect(response.status).to eql(302)
+      end
+      it 'renders nothing' do
+        expect(response).to redirect_to(root_path)
+      end
+    end
   end
 
   context 'as a user' do
@@ -74,6 +85,17 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       let(:participating_country) { create(:participating_country) }
       before(:each) do
         post :create, participating_country: { country_id: participating_country.country.id }, year: event.year
+      end
+      it 'returns a 302 status code' do
+        expect(response.status).to eql(302)
+      end
+      it 'renders nothing' do
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    describe 'POST #allocate' do
+      before(:each) do
+        post :allocate, participating_country_id: create(:country).id, year: event.year, player_id: create(:user).id
       end
       it 'returns a 302 status code' do
         expect(response.status).to eql(302)
@@ -146,6 +168,51 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         it 'displays a flash alert' do
           expect(flash[:alert]).to be_present
           expect(flash[:alert]).to eql('Country already in event')
+        end
+      end
+    end
+    describe 'POST allocate' do
+      context 'with valid params' do
+        let(:participating_country) { create(:participating_country) }
+        let(:player) { create(:user) }
+        before(:each) do
+          sign_in admin
+          post :allocate, year: event.year, participating_country: { id: participating_country.id, player_id: player.id }
+        end
+        it 'returns a 302 code' do
+          expect(response.status).to eql(302)
+        end
+        it 'renders the management view' do
+          expect(response).to redirect_to manage_countries_path(participating_country.event)
+        end
+        it 'does not set a flash message' do
+          expect(flash[:alert]).to_not be_present
+        end
+        it 'sets the player on the PC' do
+          participating_country.reload
+          expect(participating_country.player_id).to eql(player.id)
+        end
+      end
+      context 'with invalid params' do
+        let(:participating_country) { create(:participating_country) }
+        let(:player) { create(:user) }
+        before(:each) do
+          sign_in admin
+          post :allocate, year: event.year, participating_country: { id: participating_country.id, player_id: 'bob' }
+        end
+        it 'returns a 302 code' do
+          expect(response.status).to eql(302)
+        end
+        it 'renders the management view' do
+          expect(response).to redirect_to manage_countries_path(participating_country.event)
+        end
+        it 'sets a flash message' do
+          expect(flash[:alert]).to be_present
+          expect(flash[:alert]).to eql(['Player is not a number'])
+        end
+        it 'does not amend the player on the PC' do
+          participating_country.reload
+          expect(participating_country.player_id).to_not eql(player.id)
         end
       end
     end
