@@ -13,7 +13,7 @@ RSpec.describe ParticipatingCountriesController, type: :routing do
       expect(post: 'participating_countries/2014/create').to route_to('participating_countries#create', year: '2014')
     end
     it 'routes to #allocate' do
-      expect(put: '/participating_countries/2014/allocate').to route_to('participating_countries#allocate', year: '2014')
+      expect(patch: '/participating_countries/2014/allocate').to route_to('participating_countries#allocate', year: '2014')
     end
   end
 end
