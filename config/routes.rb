@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post 'participating_countries/:year/create',
     to: 'participating_countries#create',
     as: 'create_event_country'
-  put 'participating_countries/:year/allocate',
+  patch 'participating_countries/:year/allocate',
     to: 'participating_countries#allocate',
     as: 'allocate_country_player'
 
