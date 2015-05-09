@@ -1,20 +1,22 @@
 class MyController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
   before_action :load_user, only: [:profile, :profile_update, :game]
   before_action :load_pp, only: [:game]
   before_action :load_eps, only: [:game, :score, :score_create]
   respond_to :html
 
   def profile
+    authorize! :read, User
   end
 
   def profile_update
+    authorize! :update, User
     @user.update_column(:display_name, user_params[:display_name])
     redirect_to my_profile_path
   end
 
   def game
+    authorize! :read, Event
     return respond_with(@pp) if @pp
     if @event.active?
       redirect_to game_sign_up_path(@event)
@@ -25,9 +27,11 @@ class MyController < ApplicationController
   end
 
   def score
+    authorize! :read, EventPlayerScore
   end
 
   def score_create
+    authorize! :update, EventPlayerScore
     if @eps.update(score_params)
       reset_event_attribute('fattest', @eps)
       reset_event_attribute('wackiest', @eps)
