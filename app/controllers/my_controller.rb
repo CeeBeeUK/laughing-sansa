@@ -43,10 +43,18 @@ class MyController < ApplicationController
 private
 
   def reset_event_attribute(attribute, eps)
-    if score_params[attribute.to_sym]
+    if true? score_params[attribute.to_sym]
       @pp = eps.event_player
       @pc = eps.participating_country
       @pp.set_attribute_to_true(attribute, @pc)
+    end
+  end
+
+  def true?(value)
+    if value == true || value == '1'
+      true
+    else
+      false
     end
   end
 
