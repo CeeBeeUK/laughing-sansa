@@ -60,7 +60,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'codeclimate-test-reporter', require: nil
-  gem 'webmock'
+  # gem 'webmock'
   # gem 'capybara'
   # gem 'launchy'
   # # install qt and xvfb in the travis script
