@@ -61,9 +61,11 @@ group :test do
   gem 'database_cleaner'
   gem 'codeclimate-test-reporter', require: nil
   gem 'webmock'
-  gem 'capybara'
-  gem 'launchy'
-  gem 'capybara-webkit'
+  # gem 'capybara'
+  # gem 'launchy'
+  # # install qt and xvfb in the travis script
+  # # before uncommenting capybara webkit
+  # gem 'capybara-webkit'
 end
 
 # gem for heroku deployment
