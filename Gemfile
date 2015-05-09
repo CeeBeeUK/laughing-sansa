@@ -48,13 +48,15 @@ end
 group :test, :development do
   gem 'rspec'
   gem 'rspec-rails'
-  # allows reset of db for testing
   gem 'factory_girl_rails'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
   gem 'guard-rspec'
   gem 'guard-rubocop'
   gem 'guard'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'capybara-webkit'
 end
 
 # Code climate CI integration
