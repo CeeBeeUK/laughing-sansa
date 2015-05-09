@@ -1,5 +1,6 @@
 class MyController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
   before_action :load_user, only: [:profile, :profile_update, :game]
   before_action :load_pp, only: [:game]
   before_action :load_eps, only: [:game, :score, :score_create]
