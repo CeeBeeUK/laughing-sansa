@@ -54,15 +54,16 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'guard-rubocop'
   gem 'guard'
-  gem 'capybara'
-  gem 'launchy'
-  gem 'capybara-webkit'
 end
 
 # Code climate CI integration
 group :test do
   gem 'database_cleaner'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'webmock'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'capybara-webkit'
 end
 
 # gem for heroku deployment
