@@ -67,12 +67,14 @@ h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.p
         -if @eps.event_player.best_wail? && (@eps.event_player.best_wail? != @eps.participating_country)
           |Better wail than #{@eps.event_player.best_wail?.country.name}?
 
-  .actions = f.submit class: 'button tiny radius', id: 'submit-button'
+  .actions = f.submit class: 'button tiny radius secondary', id: 'submit-button', value: 'Submit score'
 
 javascript:
   $(document).ready( function() {
-    $('#submit-button').prop('disabled', true);
+    if ($("input:radio[name='event_player_score[score]']").val() != "") {
+      $('#submit-button').prop('disabled', false).removeClass('secondary').addClass('success');
+    }
     $('input[name="event_player_score[score]"]:radio').on('change', function() {
-      $('#submit-button').prop('disabled', false);
+      $('#submit-button').prop('disabled', false).removeClass('secondary').addClass('success');
     });
   });
