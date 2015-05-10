@@ -71,6 +71,8 @@ h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.p
 
 javascript:
   $(document).ready( function() {
+    ele = $('h2');
+    $(window).scrollTop(ele.offset().top).scrollLeft(ele.offset().left);
     if ($("input:radio[name='event_player_score[score]']").val() != "") {
       $('#submit-button').prop('disabled', false).removeClass('secondary').addClass('success');
     }
