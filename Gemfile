@@ -48,7 +48,6 @@ end
 group :test, :development do
   gem 'rspec'
   gem 'rspec-rails'
-  # allows reset of db for testing
   gem 'factory_girl_rails'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
@@ -61,6 +60,12 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'codeclimate-test-reporter', require: nil
+  # gem 'webmock'
+  # gem 'capybara'
+  # gem 'launchy'
+  # # install qt and xvfb in the travis script
+  # # before uncommenting capybara webkit
+  # gem 'capybara-webkit'
 end
 
 # gem for heroku deployment

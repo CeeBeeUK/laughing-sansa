@@ -6,14 +6,17 @@ class MyController < ApplicationController
   respond_to :html
 
   def profile
+    authorize! :read, User
   end
 
   def profile_update
+    authorize! :update, User
     @user.update_column(:display_name, user_params[:display_name])
     redirect_to my_profile_path
   end
 
   def game
+    authorize! :read, Event
     return respond_with(@pp) if @pp
     if @event.active?
       redirect_to game_sign_up_path(@event)
@@ -24,9 +27,11 @@ class MyController < ApplicationController
   end
 
   def score
+    authorize! :read, EventPlayerScore
   end
 
   def score_create
+    authorize! :update, EventPlayerScore
     if @eps.update(score_params)
       reset_event_attribute('fattest', @eps)
       reset_event_attribute('wackiest', @eps)
@@ -38,10 +43,18 @@ class MyController < ApplicationController
 private
 
   def reset_event_attribute(attribute, eps)
-    if score_params[attribute.to_sym]
+    if true? score_params[attribute.to_sym]
       @pp = eps.event_player
       @pc = eps.participating_country
       @pp.set_attribute_to_true(attribute, @pc)
+    end
+  end
+
+  def true?(value)
+    if value == true || value == '1'
+      true
+    else
+      false
     end
   end
 
