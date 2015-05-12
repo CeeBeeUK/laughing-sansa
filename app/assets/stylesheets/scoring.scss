@@ -50,8 +50,11 @@ input.inline-cb, label.inline-cb {
   vertical-align:middle;
   margin-bottom:0px;
 }
-div.switch.radius.small {
-  //height: 42px;
+.boolean-row {
+  height: 2em;
+}
+.boolean-row.first {
+  margin-top: 1em;
 }
 img.desaturate {
   -webkit-filter: greyscale(100%);
