@@ -33,44 +33,40 @@ h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.p
                 =f.label "score_#{i}".to_sym, i, class: 'button small primary'
 
 
-  .row
-    .small-3.columns
-      .inline-cb Wackiest
-    .small-1.columns
-      .switch.radius.small
-        =f.check_box :wackiest, class: 'inline-cb'
+  .row.boolean-row.first
+    .small-4.columns Wackiest
+    .small-2.columns
+      .switch.radius.tiny
+        =f.check_box :wackiest
         =f.label :wackiest
-    .small-7.columns
+    .small-6.columns
       .inline-cb
         -if @eps.event_player.wackiest? && (@eps.event_player.wackiest? != @eps.participating_country)
           |Wackier than #{@eps.event_player.wackiest?.country.name}?
-  .row
-    .small-3.columns
-      .inline-cb Fattest
-    .small-1.columns
-      .switch.radius.small
-        =f.check_box :fattest, class: 'inline-cb'
+  .row.boolean-row
+    .small-4.columns Fattest
+    .small-2.columns
+      .switch.radius.tiny
+        =f.check_box :fattest
         =f.label :fattest
-    .small-7.columns
-      .inline-cb
-        -if @eps.event_player.fattest? && (@eps.event_player.fattest? != @eps.participating_country)
-          |Fatter than #{@eps.event_player.fattest?.country.name}?
-  .row
-    .small-3.columns
-      .inline-cb Best Wail
-    .small-1.columns
-      .switch.radius.small
-        =f.check_box :best_wail, class: 'inline-cb'
+    .small-6.columns
+      -if @eps.event_player.fattest? && (@eps.event_player.fattest? != @eps.participating_country)
+        |Fatter than #{@eps.event_player.fattest?.country.name}?
+  .row.boolean-row
+    .small-4.columns Best Wail
+    .small-2.columns
+      .switch.radius.tiny
+        =f.check_box :best_wail
         =f.label :best_wail
-    .small-7.columns
-      .inline-cb
-        -if @eps.event_player.best_wail? && (@eps.event_player.best_wail? != @eps.participating_country)
-          |Better wail than #{@eps.event_player.best_wail?.country.name}?
+    .small-6.columns
+      -if @eps.event_player.best_wail? && (@eps.event_player.best_wail? != @eps.participating_country)
+        |Better wail than #{@eps.event_player.best_wail?.country.name}?
 
   .actions = f.submit class: 'button tiny radius secondary', id: 'submit-button', value: 'Submit score'
 
 javascript:
   $(document).ready( function() {
+    window.scrollTo(0,200);
     if ($("input:radio[name='event_player_score[score]']").val() != "") {
       $('#submit-button').prop('disabled', false).removeClass('secondary').addClass('success');
     }
