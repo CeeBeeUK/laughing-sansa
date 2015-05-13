@@ -3,7 +3,7 @@
     li
       =link_to 'Home', root_path
     li.current
-      =link_to "My #{@event.display_name}", my_game_path(@event)
+      =link_to @event.display_name, my_game_path(@event)
 .row
   .columns.small-12.medium-8
     h2
@@ -44,7 +44,7 @@
 
       -@pp.scores.scoring_order(@pp.id).each do |eps|
         tbody
-          tr
+          tr class=('scored' if eps.score.present?)
             td.small
               =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position)
             td.center =eps.score

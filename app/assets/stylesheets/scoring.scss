@@ -34,6 +34,15 @@ ul.score-board-row.even-2 {
   }
 }
 table.scores-list {
+  width:100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  tr {
+    border-top:1px #dddddd solid;
+    &.scored {
+      background-color: #eeeeee;
+    }
+  }
   td.small {
     font-size: 12px;
   }
@@ -70,3 +79,4 @@ img.desaturate {
   -1px 1px 0 #000,
   1px 1px 0 #000;
 }
+
