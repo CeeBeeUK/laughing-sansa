@@ -34,34 +34,41 @@ h2 #{@eps.participating_country.event.year} - Act #{@eps.participating_country.p
 
 
   .row.boolean-row.first
-    .small-4.columns Wackiest
-    .small-2.columns
+    .small-9.medium-10.columns
+      label for='event_player_score_wackiest'
+        h3
+          -if @eps.event_player.wackiest? && (@eps.event_player.wackiest? != @eps.participating_country)
+            |Wackier than #{@eps.event_player.wackiest?.country.name}?
+          -else
+            |Wackiest?
+    .small-3.medium-2.columns
       .switch.radius.tiny
         =f.check_box :wackiest
         =f.label :wackiest
-    .small-6.columns
-      .inline-cb
-        -if @eps.event_player.wackiest? && (@eps.event_player.wackiest? != @eps.participating_country)
-          |Wackier than #{@eps.event_player.wackiest?.country.name}?
   .row.boolean-row
-    .small-4.columns Fattest
-    .small-2.columns
+    .small-9.medium-10.columns
+      label for='event_player_score_fattest'
+        h3
+          -if @eps.event_player.fattest? && (@eps.event_player.fattest? != @eps.participating_country)
+            |Fatter than #{@eps.event_player.fattest?.country.name}?
+          -else
+            |Fattest?
+    .small-3.medium-2.columns
       .switch.radius.tiny
         =f.check_box :fattest
         =f.label :fattest
-    .small-6.columns
-      -if @eps.event_player.fattest? && (@eps.event_player.fattest? != @eps.participating_country)
-        |Fatter than #{@eps.event_player.fattest?.country.name}?
   .row.boolean-row
-    .small-4.columns Best Wail
-    .small-2.columns
+    .small-9.medium-10.columns
+      label for='event_player_score_best_wail'
+        h3
+          -if @eps.event_player.best_wail? && (@eps.event_player.best_wail? != @eps.participating_country)
+            |Better wail than #{@eps.event_player.best_wail?.country.name}?
+          -else
+            |Best Wail?
+    .small-3.medium-2.columns
       .switch.radius.tiny
         =f.check_box :best_wail
         =f.label :best_wail
-    .small-6.columns
-      -if @eps.event_player.best_wail? && (@eps.event_player.best_wail? != @eps.participating_country)
-        |Better wail than #{@eps.event_player.best_wail?.country.name}?
-
   .actions = f.submit class: 'button tiny radius secondary', id: 'submit-button', value: 'Submit score'
 
 javascript:
