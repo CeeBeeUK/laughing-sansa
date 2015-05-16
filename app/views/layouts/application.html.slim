@@ -3,6 +3,9 @@ html[lang="en"]
   head
     meta[charset="utf-8"]
     meta[name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"]
+
+    = favicon_link_tag 'favicon-austria2015.ico'
+
     title
       = content_for?(:title) ? yield(:title) : "Eurovision"
     = stylesheet_link_tag    "application"
