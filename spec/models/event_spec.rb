@@ -90,14 +90,14 @@ RSpec.describe Event, type: :model do
       country = create(:country)
       event.real_winner = country
       event.real_player_name = 'Bob'
-      expect(event.real_winner_display).to eql("Won by #{event.real_winning_player} with #{country.name}")
+      expect(event.real_winner_display).to eql("#{event.real_winning_player} with #{country.name}")
     end
     it 'displays set text if country and player is set' do
       country = create(:country)
       player = create(:user)
       event.real_winner = country
       event.real_player = player
-      expect(event.real_winner_display).to eql("Won by #{event.real_winning_player} with #{country.name}")
+      expect(event.real_winner_display).to eql("#{event.real_winning_player} with #{country.name}")
     end
   end
   describe 'home_winner_display' do
@@ -105,14 +105,14 @@ RSpec.describe Event, type: :model do
       country = create(:country)
       event.home_winner = country
       event.home_player_name = 'Bob'
-      expect(event.home_winner_display).to eql("Home champion was #{event.home_winning_player} with #{country.name}")
+      expect(event.home_winner_display).to eql("#{event.home_winning_player} with #{country.name}")
     end
     it 'displays set text if country and player is set' do
       country = create(:country)
       player = create(:user)
       event.home_winner = country
       event.home_player = player
-      expect(event.home_winner_display).to eql("Home champion was #{event.home_winning_player} with #{country.name}")
+      expect(event.home_winner_display).to eql("#{event.home_winning_player} with #{country.name}")
     end
   end
   describe 'home_winning_player' do

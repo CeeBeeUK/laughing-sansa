@@ -81,6 +81,23 @@ RSpec.describe MyController, type: :controller do
       end
     end
   end
+  describe 'GET #{game}score' do
+    let(:event_player_score) { create(:event_player_score) }
+
+    before(:each) do
+      sign_in user
+      get :score,
+        year: event_player_score.event.year,
+        act: event_player_score.participating_country.position,
+        event_player_score: event_player_score.attributes
+    end
+    it 'renders the score page' do
+      expect(response).to render_template(:score)
+    end
+    it 'returns a 200 code' do
+      expect(response.status).to eq(200)
+    end
+  end
   describe 'PUT #score_create' do
     let(:event_player_score) { create(:event_player_score) }
     before(:each) do

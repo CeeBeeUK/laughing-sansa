@@ -47,6 +47,7 @@
           tr class=('scored' if eps.score.present?)
             td.small
               =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position)
+              #player #{eps.player}
             td.center =eps.score
             =render partial: 'true_check', locals: {value: eps.wackiest, image: eps.participating_country.country.large_image}
             =render partial: 'true_check', locals: {value: eps.fattest, image: eps.participating_country.country.large_image}
