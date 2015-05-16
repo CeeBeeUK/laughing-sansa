@@ -22,12 +22,12 @@ RSpec.describe 'events/show', type: :view do
     end
     it 'displays a join button if the event can be joined by the current user' do
       render
-      assert_select 'a', text: 'Join', count: 1
+      assert_select 'a', text: 'Join game', count: 1
     end
     it 'shows a link to the players game page if they have joined' do
       create(:event_player, event: event, player: user)
       render
-      assert_select 'a', text: 'Go to your game', count: 1
+      assert_select 'a', text: 'Play game', count: 1
     end
     it 'hides the edit links' do
       render

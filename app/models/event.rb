@@ -82,10 +82,10 @@ class Event < ActiveRecord::Base
   end
 
   def real_winner_display
-    "Won by #{real_winning_player} with #{real_winning_country}" if real_winner_complete?
+    "#{real_winning_player} with #{real_winning_country}" if real_winner_complete?
   end
 
   def home_winner_display
-    "Home champion was #{home_winning_player} with #{home_winning_country}" if home_winner_complete?
+    "#{home_winning_player} with #{home_winning_country}" if home_winner_complete?
   end
 end

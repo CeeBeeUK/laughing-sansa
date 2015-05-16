@@ -14,6 +14,10 @@ ul.score-board-row.even-2 {
   margin-left:-6px;
   margin-right:11px;
 }
+
+th.angled {
+  text-align: center;
+}
 @media screen and (max-width: 450px) {
   th.angled {
     -webkit-transform: rotate(-45deg);

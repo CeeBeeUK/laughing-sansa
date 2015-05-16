@@ -10,4 +10,5 @@ class ParticipatingCountry < ActiveRecord::Base
   validates :country_id, uniqueness: { scope: :event_id }
   validates :player_id, numericality: { greater_than_or_equal_to: 0 }
 
+  scope :by_position, -> { all.order(:position) }
 end
