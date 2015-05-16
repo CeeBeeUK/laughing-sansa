@@ -3,9 +3,11 @@ require 'rails_helper'
 RSpec.describe 'layouts/application.html.slim', type: :view do
 
   include Devise::TestHelpers
-
+  before { Event.delete_all }
   let(:user) { create(:user) }
   let(:admin) { create(:admin_user) }
+  let(:country) { create(:country, name: 'Albania') }
+  let(:event) { create(:event, country: country) }
 
   context 'all visitors' do
     it 'have access to an off canvas menu' do
