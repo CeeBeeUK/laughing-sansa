@@ -5,9 +5,14 @@ RSpec.describe 'Events', type: :request do
   include Warden::Test::Helpers
   Warden.test_mode!
 
+  before do
+    Event.delete_all
+    Country.delete_all
+  end
+
   let(:user) { create(:user) }
   let(:admin_user) { create(:admin_user) }
-  let(:event) { create(:event) }
+  let(:event) { create(:event, country: create(:country, name: 'Albania')) }
 
   describe 'GET /events' do
     it 'redirects when user not authenticated' do

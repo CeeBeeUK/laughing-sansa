@@ -1,5 +1,10 @@
 class Country < ActiveRecord::Base
 
+  # install imagemagick
+  # sudo apt-get install imagemagick
+  # convert xx.png -colorspace gray xx.png
+  # convert ireland.png -resize 16x16 ./../16/ireland.png
+
   scope :sorted_by_name, -> { all.order(:name) }
 
   validates :name, presence: true
