@@ -1,6 +1,20 @@
 h2 Bruce-Burton Eurovision scoring
 -if current_user
-  p Welcome to the 2015+ scoring system for the Eurovision Song Contest
-  p This is currently a work in progress, you can use the menu in the top left corner to check the menu/logout
+  dl
+    dd Welcome to the 2015+ scoring system for the Eurovision Song Contest.
+    dd You can use the menu icon in the top left corner to check for previous games and to log out or, you can click on the logo in the top right to set your display name
+  -Event.all.each do |e|
+    #join
+      -if e.being_played_by?(current_user)
+        .row.collapse
+          .columns.small-12
+            =link_to "Play #{e.year} game", my_game_path(e), { class: 'button success radius tiny expand' }
+      -if e.can_be_joined_by?(current_user)
+        .row.collapse
+          .columns.small-12
+            = link_to "Click here to join #{e.year}", game_join_path(e), {class: 'button primary radius tiny expand'}
 -else
-  p Use the G+ icon in the top right to login using your google account.
+  #sign-in-instructions
+    span.pad-right To sign in, click the
+    i.fi-social-google-plus.login-icon
+    span.pad-left in the top right to sign-in using your google account that comes with your phone.
