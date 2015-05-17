@@ -13,7 +13,7 @@ RSpec.describe 'home/index.html.slim', type: :view do
   context 'logged out user' do
     it 'will see a log in prompt' do
       render
-      expect(rendered).to include('Use the G+ icon')
+      expect(rendered).to include('To sign in, click the')
     end
   end
   context 'logged in user' do
