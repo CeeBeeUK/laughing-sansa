@@ -7,8 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 puts 'Clear tables'
-ActiveRecord::Base.connection.execute("TRUNCATE TABLE Countries RESTART IDENTITY;")
-ActiveRecord::Base.connection.execute("TRUNCATE TABLE Events RESTART IDENTITY;")
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE countries RESTART IDENTITY;")
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE event_player_scores RESTART IDENTITY;")
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE event_players RESTART IDENTITY;")
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE events RESTART IDENTITY;")
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE participating_countries RESTART IDENTITY;")
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE users RESTART IDENTITY;")
 
 puts 'Countries'
 Country.create([
