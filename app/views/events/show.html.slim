@@ -42,7 +42,7 @@
           label.prefix Home champion
         .small-6.columns
           input type="text" disabled="true" value=@event.home_winner_display
--if @event.players.count>0 && @event.being_played_by?(current_user)
+-if @event.players.count>0 && (@event.being_played_by?(current_user) or current_user.in_event?(@event))
   table width="100%"
     tr
       th Player
@@ -69,4 +69,4 @@
         td =c.country.name
         td.centered =c.player.display_name if c.player.present?
         td.centered =c.real_final_score
-        td.centered =c.home_final_score
+        td.centered =c.sum

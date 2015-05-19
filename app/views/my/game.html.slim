@@ -9,7 +9,7 @@
     h2
       =@event.display_name
   .columns.small-4.medium-6
-      = link_to 'Back to event', event_path(@event), {class: 'button success radius tiny expand'}
+    = link_to 'Back to event', event_path(@event), {class: 'button success radius tiny expand'}
 .row
   .small-12.medium-6.columns
     .row.collapse.prefix-radius
@@ -27,9 +27,9 @@
   .row
     .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-6.medium-6.columns
+        .small-8.columns
           label.prefix Actual UK score
-        .small-6.medium-6.columns
+        .small-4.columns
           input type="text" disabled="true" value=@event.actual_uk_score
 
 .row
