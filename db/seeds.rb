@@ -107,6 +107,7 @@ Event.create([
                      real_player_name: 'Joe',
                      home_winner_id: Country.find_by(name: 'Denmark').id,
                      home_player_name: 'Ros',
-                     home_score: 58
+                     home_score: 58,
+                     actual_uk_score: 40
                  },
              ])

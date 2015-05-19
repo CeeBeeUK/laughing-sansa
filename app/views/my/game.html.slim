@@ -4,11 +4,12 @@
       =link_to 'Home', root_path
     li.current
       =link_to @event.display_name, my_game_path(@event)
-.row
-  .columns.small-12.medium-8
+.row.collapse
+  .columns.small-8.medium-6
     h2
       =@event.display_name
-
+  .columns.small-4.medium-6
+    = link_to 'Back to event', event_path(@event), {class: 'button success radius tiny expand'}
 .row
   .small-12.medium-6.columns
     .row.collapse.prefix-radius
@@ -22,13 +23,13 @@
         label.prefix You have scored
       .small-4.columns
         input type="text" disabled="true" value="#{@pp.completed_scores} acts"
--if @event.archived? && @event.actual_uk_score.any?
+-if @event.archived? && @event.actual_uk_score.present?
   .row
     .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-6.medium-6.columns
+        .small-8.columns
           label.prefix Actual UK score
-        .small-6.medium-6.columns
+        .small-4.columns
           input type="text" disabled="true" value=@event.actual_uk_score
 
 .row
@@ -47,7 +48,10 @@
           tr class=('scored' if eps.score.present?)
             td.small
               =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position)
-              #player #{eps.player}
+              span.pad-left
+                |(#{eps.player})
+              -if @event.archived?
+                #notes #{eps.notes.html_safe}
             td.center =eps.score
             =render partial: 'true_check', locals: {value: eps.wackiest, image: eps.participating_country.country.large_image}
             =render partial: 'true_check', locals: {value: eps.fattest, image: eps.participating_country.country.large_image}

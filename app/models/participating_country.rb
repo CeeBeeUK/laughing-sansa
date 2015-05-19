@@ -11,4 +11,8 @@ class ParticipatingCountry < ActiveRecord::Base
   validates :player_id, numericality: { greater_than_or_equal_to: 0 }
 
   scope :by_position, -> { all.order(:position) }
+
+  def sum
+    EventPlayerScore.where(participating_country_id: id).sum(:score)
+  end
 end
