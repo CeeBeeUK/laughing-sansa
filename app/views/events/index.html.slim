@@ -22,8 +22,7 @@ ul.events
             span.host-city =event.host_city
             span.year =event.year
           - if event.complete?
-            .winner
-              = event.real_winner_display
+            .winner Won by #{event.real_winner_display}
           - else
             - if event.date
               .event-date Will take place on #{event.date.strftime("#{event.date.day.ordinalize} %B %Y")}
