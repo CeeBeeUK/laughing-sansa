@@ -68,5 +68,11 @@
       tr
         td =c.country.name
         td.centered =c.player.display_name if c.player.present?
-        td.centered =c.real_final_score
-        td.centered =c.sum
+        td.centered
+          =c.real_final_score
+          -if c.country_id == @event.real_winner.id
+            i.fi-trophy.trophy-icon
+        td.centered
+          =c.sum
+          -if c.country.id == @event.home_winner.id
+            i.fi-trophy.trophy-icon
