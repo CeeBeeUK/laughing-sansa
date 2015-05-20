@@ -74,3 +74,11 @@ html[lang="en"]
           .large-12.columns
             = yield
         a.exit-off-canvas
+
+
+javascript:
+  $(document).ready(function () {
+    setTimeout(function() {
+      $('div.alert-box').slideUp(1000);
+    }, 3000);
+  });
