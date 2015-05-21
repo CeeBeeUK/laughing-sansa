@@ -9,7 +9,7 @@ RSpec.describe ParticipatingCountry, type: :model do
 
   context 'methods' do
     it 'returns a sum value' do
-      expects(participant).to respond_to(:sum)
+      expect(participant).to respond_to(:sum)
     end
   end
   context 'validations' do

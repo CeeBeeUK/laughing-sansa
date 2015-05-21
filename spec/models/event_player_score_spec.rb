@@ -38,6 +38,9 @@ RSpec.describe EventPlayerScore, type: :model do
       eps.participating_country = create(:participating_country)
       expect(eps.country).to eql(eps.participating_country.country.name)
     end
+    it 'sets a sum for the particpating country' do
+      expect(eps.participating_country.sum).to eql(0)
+    end
   end
   describe 'associations' do
     it 'responds to player' do
