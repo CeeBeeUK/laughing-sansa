@@ -54,6 +54,8 @@ html[lang="en"]
                   |Admin functions
               li
                 =link_to 'Countries', countries_path
+              li
+                =link_to 'Users', users_path
             -if current_user.present?
               li
                 =link_to destroy_session_path, :method => :delete do

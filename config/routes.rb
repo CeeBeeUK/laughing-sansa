@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :events, param: :year
 
+  get 'users', to: 'users#index'
   get 'my/profile', to: 'my#profile'
   patch 'my/profile', to: 'my#profile_update'
   get 'my/:year/game', to: 'my#game', as: 'my_game'
