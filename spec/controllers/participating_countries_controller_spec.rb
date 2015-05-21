@@ -7,9 +7,6 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
   let(:admin) { create(:admin_user) }
   let(:valid_session) { {} }
 
-  # sort
-  # create
-
   context 'as a guest' do
     let(:event) { create(:event) }
     describe 'GET #manage' do

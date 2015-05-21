@@ -6,6 +6,12 @@ RSpec.describe ParticipatingCountry, type: :model do
   it 'passes the factory build' do
     expect(participant).to be_valid
   end
+
+  context 'methods' do
+    it 'returns a sum value' do
+      expect(participant).to respond_to(:sum)
+    end
+  end
   context 'validations' do
     it 'must require a country' do
       participant.country = nil

@@ -1,0 +1,29 @@
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li.current
+      =link_to 'Users', users_path
+h2 User list
+
+.row
+  .columns.small-12
+    table width="100%"
+      thead
+        tr
+          th Name
+          th email
+          th Role
+          th Last login
+      tbody
+        - @users.each do |user|
+          tr
+            th.bold #{user.display_name} (#{user.first_name} #{user.last_name})
+            td #{user.email}
+            td #{user.role}
+            td =timeago(user.updated_at)
+
+javascript:
+  $(document).ready( function () {
+    $("abbr.timeago").timeago();
+  });
