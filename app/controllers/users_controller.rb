@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
+    authorize! :list, User
     @users = User.all.order(:id)
   end
 end
