@@ -70,9 +70,9 @@
         td.centered =c.player.display_name if c.player.present?
         td.centered
           =c.real_final_score
-          -if c.country_id == @event.real_winner.id
+          -if @event.real_winner.present? and (c.country_id == @event.real_winner.id)
             i.fi-trophy.trophy-icon
         td.centered
           =c.sum
-          -if c.country.id == @event.home_winner.id
+          -if @event.home_winner.present? and (c.country.id == @event.home_winner.id)
             i.fi-trophy.trophy-icon
