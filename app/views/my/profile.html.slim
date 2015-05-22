@@ -18,29 +18,62 @@ h2 #{@user.display_name}'s profile
         .small-7.medium-9.columns
           = f.text_field :display_name   
   .actions = f.submit class: 'button tiny radius'
-  .alert-box.secondary.radius data-alert='' Below is what Google told us. You can't change it!
-  .row
-    .small-12.medium-6.columns
-      .row.collapse.prefix-radius
-        .small-5.medium-3.columns
-          = f.label :first_name, class: 'prefix'
-        .small-7.medium-9.columns
-          = f.text_field :first_name, disabled: true
-    .small-12.medium-6.columns
-      .row.collapse.prefix-radius
-        .small-5.medium-3.columns
-          = f.label :last_name, class: 'prefix'
-        .small-7.medium-9.columns
-          = f.text_field :last_name, disabled: true
-    .small-12.medium-6.columns
-      .row.collapse.prefix-radius
-        .small-5.medium-3.columns
-          = f.label :name, class: 'prefix'
-        .small-7.medium-9.columns
-          = f.text_field :name, disabled: true
-    .small-12.medium-6.columns
-      .row.collapse.prefix-radius
-        .small-5.medium-3.columns
-          = f.label :email, class: 'prefix'
-        .small-7.medium-9.columns
-          = f.text_field :email, disabled: true
+
+  .row.collapse
+    .columns.small-12
+      details
+        summary Below is what Google told us. You can't change it!
+        .row.collapse.pad-top
+          .small-12.medium-6.columns
+            .row.collapse.prefix-radius
+              .small-5.medium-3.columns
+                = f.label :first_name, class: 'prefix'
+              .small-7.medium-9.columns
+                = f.text_field :first_name, disabled: true
+          .small-12.medium-6.columns
+            .row.collapse.prefix-radius
+              .small-5.medium-3.columns
+                = f.label :last_name, class: 'prefix'
+              .small-7.medium-9.columns
+                = f.text_field :last_name, disabled: true
+          .small-12.medium-6.columns
+            .row.collapse.prefix-radius
+              .small-5.medium-3.columns
+                = f.label :name, class: 'prefix'
+              .small-7.medium-9.columns
+                = f.text_field :name, disabled: true
+          .small-12.medium-6.columns
+            .row.collapse.prefix-radius
+              .small-5.medium-3.columns
+                = f.label :email, class: 'prefix'
+              .small-7.medium-9.columns
+                = f.text_field :email, disabled: true
+
+- Event.last_to_first().each do |event|
+  -if current_user.in_event?(event) and event.archived?
+    .row.collapse
+      .columns.small-12
+        details
+          summary =event.display_name
+          .row.pad-top
+            .small-6.columns
+              |Countries you played
+              - ParticipatingCountry.player_for_event(event.id, current_user.id).each do |pc|
+                .row
+                  .small-12.columns =pc.country.name
+            .small-6.columns
+              |Trophies you won
+              -if event.player_won?(current_user.id)
+                -if event.real_player_id == current_user.id
+                  .row
+                    .small-12.columns
+                      i.fi-trophy.trophy-icon
+                      |&nbsp;You won Eurovision!
+                -if event.home_player_id == current_user.id
+                  .row
+                    .small-12.columns
+                      i.fi-trophy.trophy-icon
+                      |&nbsp;You won at home
+              -else
+                .row
+                  .small-12.columns None
