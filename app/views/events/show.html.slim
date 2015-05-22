@@ -42,15 +42,21 @@
           label.prefix Home champion
         .small-6.columns
           input type="text" disabled="true" value=@event.home_winner_display
--if @event.players.count>0 && (@event.being_played_by?(current_user) or current_user.in_event?(@event))
-  table width="100%"
-    tr
-      th Player
-      th.centered Prediction
-    -@event.players_predictions_high_to_low.each do |p|
-      tr
-        td =p.player.display_name
-        td.centered =p.predicted_uk_score
+-if @event.players.count>0 && (@event.archived? || current_user.  admin?)
+  .row
+    .columns.small-12
+      details
+        summary Player predictions
+        .row
+          .columns.small-12
+            table width="100%"
+              tr
+                th Player
+                th.centered Prediction
+              -@event.players_predictions_high_to_low.each do |p|
+                tr
+                  td =p.player.display_name
+                  td.centered =p.predicted_uk_score
 
 -if @event.participating_countries.count > 0
   .row
@@ -76,3 +82,10 @@
           =c.sum
           -if @event.home_winner.present? and (c.country.id == @event.home_winner.id)
             i.fi-trophy.trophy-icon
+
+javascript:
+  $(document).ready( function() {
+    $('details').on('click', function() {
+      $(this).blur;
+    });
+  });

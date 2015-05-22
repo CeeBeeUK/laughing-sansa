@@ -17,6 +17,7 @@
 //= require jquery.timeago
 //= require turbolinks
 //= require foundation
+//= require details.polyfill
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

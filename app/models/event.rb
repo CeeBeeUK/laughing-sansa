@@ -88,4 +88,8 @@ class Event < ActiveRecord::Base
   def home_winner_display
     "#{home_winning_player} with #{home_winning_country}" if home_winner_complete?
   end
+
+  def player_won?(id)
+    (real_player.present? && real_player_id == id) || (home_player.present? && home_player_id == id)
+  end
 end
