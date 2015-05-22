@@ -20,7 +20,7 @@ class EventPlayerScore < ActiveRecord::Base
         ELSE 40 END')
   }
   def player
-    participating_country.player.display_name
+    participating_country.player.display_name unless participating_country.player.nil?
   end
 
   def country

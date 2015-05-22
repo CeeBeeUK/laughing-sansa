@@ -48,7 +48,8 @@
           tr class=('scored' if eps.score.present?)
             td.small
               =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position)
-              span.pad-left
+              -if eps.player.present?
+                span.pad-left
                 |(#{eps.player})
               -if @event.archived?
                 #notes #{eps.notes.html_safe}
