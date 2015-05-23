@@ -57,6 +57,7 @@ RSpec.describe MyController, type: :controller do
       end
     end
     context 'when player has not joined game' do
+
       it 'redirects' do
         get :game, year: event.to_param
         expect(response.status).to eq(302)
@@ -69,6 +70,9 @@ RSpec.describe MyController, type: :controller do
         end
       end
       context 'when the game cannot be joined' do
+        let(:event_player) { create(:event_player, player: user) }
+        let(:event_player_score) { create(:event_player_score, event_player: event_player) }
+
         before(:each) do
           get :game, year: event.to_param
         end
@@ -82,7 +86,8 @@ RSpec.describe MyController, type: :controller do
     end
   end
   describe 'GET #{game}score' do
-    let(:event_player_score) { create(:event_player_score) }
+    let(:event_player) { create(:event_player, player: user) }
+    let(:event_player_score) { create(:event_player_score, event_player: event_player) }
 
     before(:each) do
       sign_in user
@@ -99,7 +104,8 @@ RSpec.describe MyController, type: :controller do
     end
   end
   describe 'PUT #score_create' do
-    let(:event_player_score) { create(:event_player_score) }
+    let(:event_player) { create(:event_player, player: user) }
+    let(:event_player_score) { create(:event_player_score, event_player: event_player) }
     before(:each) do
       sign_in user
     end
