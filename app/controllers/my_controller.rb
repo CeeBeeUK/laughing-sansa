@@ -59,12 +59,17 @@ private
   end
 
   def load_eps
+    @user = User.find_by(email: current_user.email)
+    @event = Event.find_by(year: params[:year])
+    Rails.logger.info ":: load_eps = Setting finding EventPlayer using player_id:#{@user.id} and event_id=#{@event.id}"
+    @pp = EventPlayer.find_by(player_id: @user.id, event_id: @event.id)
     @eps = EventPlayerScore.
            joins(:event, :participating_country).
            find_by(
-             'events.year = ? AND participating_countries.position = ?',
+             'events.year = ? AND participating_countries.position = ? AND event_player_id = ?',
              params[:year],
-             params[:act]
+             params[:act],
+             @pp.id
            )
   end
 
@@ -75,7 +80,7 @@ private
   def load_pp
     @user = User.find_by(email: current_user.email)
     @event = Event.find_by(year: params[:year])
-    Rails.logger.info "----->Setting finding EventPlayer using player_id:#{@user.id} and event_id=#{@event.id}"
+    Rails.logger.info "** load_pp = Setting finding EventPlayer using player_id:#{@user.id} and event_id=#{@event.id}"
     @pp = EventPlayer.find_by(player_id: @user.id, event_id: @event.id)
   end
 
