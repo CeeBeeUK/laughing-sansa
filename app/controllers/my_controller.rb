@@ -75,8 +75,8 @@ private
   def load_pp
     @user = User.find_by(email: current_user.email)
     @event = Event.find_by(year: params[:year])
-    Rails.logger.info "----->Setting finding EventPlayer using player_id:#{@user.id} and event_id=#{@event_id}"
-    @pp = EventPlayer.find_by(player_id: current_user.id, event_id: @event.id)
+    Rails.logger.info "----->Setting finding EventPlayer using player_id:#{@user.id} and event_id=#{@event.id}"
+    @pp = EventPlayer.find_by(player_id: @user.id, event_id: @event.id)
   end
 
   def user_params
