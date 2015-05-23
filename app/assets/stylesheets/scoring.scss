@@ -20,7 +20,7 @@ a.back-to-event {
 th.angled {
   text-align: center;
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
   th.angled {
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
@@ -30,9 +30,9 @@ th.angled {
   }
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 400px) {
   th.angled {
-    -webkit-transform: rotate(-89deg);
+    -webkit-transform: rotate(90deg);
     -moz-transform: rotate(-90deg);
     -o-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
