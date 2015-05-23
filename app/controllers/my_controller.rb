@@ -59,13 +59,15 @@ private
   end
 
   def load_eps
+    load_pp
     @eps = EventPlayerScore.
            joins(:event, :participating_country).
            find_by(
-             'events.year = ? AND participating_countries.position = ?',
+             'events.year = ? AND participating_countries.position = ? AND event_player_id = ?',
              params[:year],
-             params[:act]
-           )
+             params[:act],
+             @pp.id
+           ) if @pp
   end
 
   def load_user
@@ -73,8 +75,9 @@ private
   end
 
   def load_pp
+    @user = User.find_by(email: current_user.email)
     @event = Event.find_by(year: params[:year])
-    @pp = EventPlayer.find_by(player_id: current_user.id, event_id: @event.id)
+    @pp = EventPlayer.find_by(player_id: @user.id, event_id: @event.id)
   end
 
   def user_params
