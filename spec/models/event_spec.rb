@@ -60,8 +60,22 @@ RSpec.describe Event, type: :model do
       expect(event.players.count).to eq(1)
     end
   end
-
-  describe '@complate?' do
+  describe 'scopes' do
+    describe 'players_predictions_high_to_low' do
+      it 'returns players in descending prediction order' do
+        event = create(:event)
+        create(:event_player, event: event, predicted_uk_score: 45, player: create(:user))
+        create(:event_player, event: event, predicted_uk_score: 102, player: create(:user))
+        create(:event_player, event: event, predicted_uk_score: 3, player: create(:user))
+        event.save!
+        results = event.players_predictions_high_to_low
+        expect(results.count).to eql(3)
+        expect(results.first.predicted_uk_score).to eql(102)
+        expect(results.last.predicted_uk_score).to eql(3)
+      end
+    end
+  end
+  describe '@complete?' do
     it 'responds true if status is archived and data complete' do
       event.archived!
       event.real_winner_id = 1
@@ -94,7 +108,20 @@ RSpec.describe Event, type: :model do
       expect(event.complete?).to eql(false)
     end
   end
-
+  describe 'player_won?' do
+    it 'returns true when the real player value is set' do
+      player = create(:user)
+      event.home_player = nil
+      event.real_player = player
+      expect(event.player_won?(player.id)).to be true
+    end
+    it 'returns true when the home player value is set' do
+      player = create(:user)
+      event.real_player = nil
+      event.home_player = player
+      expect(event.player_won?(player.id)).to be true
+    end
+  end
   describe 'real_winning_player' do
     describe 'outputs' do
       it 'real_winner_name if set' do
