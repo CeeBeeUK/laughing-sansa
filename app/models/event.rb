@@ -92,4 +92,14 @@ class Event < ActiveRecord::Base
   def player_won?(id)
     (real_player.present? && real_player_id == id) || (home_player.present? && home_player_id == id)
   end
+
+  def add_big_five
+    GlobalConstants::BIG5.each_with_index do |c, i|
+      ParticipatingCountry.new(event: self, country: Country.find_by(name: c)).insert_at(i + 1)
+    end
+    unless GlobalConstants::BIG5.include?(country.name)
+      ParticipatingCountry.new(event: self, country: country).insert_at(1)
+    end
+    self.save!
+  end
 end

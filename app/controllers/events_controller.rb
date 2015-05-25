@@ -27,7 +27,11 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.save
+    if @event.country.present?
+      @event.add_big_five
+    else
+      @event.save
+    end
     respond_with(@event)
   end
 

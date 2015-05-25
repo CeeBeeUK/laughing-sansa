@@ -14,6 +14,31 @@ RSpec.describe Event, type: :model do
     expect(event.participating_countries.count).to eql(3)
   end
 
+  context 'automatically adds the "big 5" when created' do
+    let(:uk) { create(:country, name: 'United Kingdom') }
+    let(:host) { create(:country, name: 'Host country') }
+    before do
+      Country.delete_all
+      described_class.delete_all
+      create(:country, name: 'Italy')
+      create(:country, name: 'Spain')
+      create(:country, name: 'Germany')
+      create(:country, name: 'France')
+      create(:country, name: 'Host country')
+    end
+    it 'and the host is non-big 5' do
+      create(:event, country: create(:country, name: 'Serbia'))
+      event.add_big_five
+      expect(event.participating_countries.count).to eql(6)
+    end
+    it 'and the host is one of the big 5' do
+      build(:event)
+      event.country = uk
+      event.add_big_five
+      expect(event.participating_countries.count).to eql(5)
+    end
+  end
+
   describe 'associations' do
     it 'responds to participating_countries' do
       expect(event).to respond_to(:participating_countries)
