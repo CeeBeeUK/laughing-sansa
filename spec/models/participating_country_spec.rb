@@ -12,6 +12,25 @@ RSpec.describe ParticipatingCountry, type: :model do
       expect(participant).to respond_to(:sum)
     end
   end
+
+  describe 'scopes' do
+    describe 'player_for_event' do
+      it 'lists countries for player in the given event' do
+        user = create(:user)
+        event1 = create(:event)
+        event2 = create(:event)
+
+        create_list :participating_country, 3, event: event1, player: user
+        create_list :participating_country, 3, event: event2, player: user
+        event1.save!
+
+        result = described_class.player_for_event(event1, user)
+        expect(result.count).to eql(3)
+
+      end
+    end
+  end
+
   context 'validations' do
     it 'must require a country' do
       participant.country = nil
