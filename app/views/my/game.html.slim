@@ -32,31 +32,31 @@
         .small-4.columns
           input type="text" disabled="true" value=@event.actual_uk_score
 
-.row
+.contain-to-grid.sticky
+  nav.top-bar data-topbar="" role="navigation"
+    .row.collapse
+      .columns.small-5.center.score-header Act
+      .columns.small-1.score-header.center Score
+      .columns.small-2.score-header.center Wacky
+      .columns.small-2.score-header.center Fattest
+      .columns.small-2.score-header.center Best wail
+    section
+.row.score-data
   .columns.small-12
-    table.scores-list
-      thead
-        tr
-          th Act
-          th.angled Score
-          th.angled Wacky
-          th.angled Fattest
-          th.angled Best Wail
-
-      -@pp.scores.scoring_order(@pp.id).each do |eps|
-        tbody
-          tr class=('scored' if eps.score.present?)
-            td.small
-              -if @event.archived?
-                |#{eps.participating_country.position}. #{eps.participating_country.country.name}
-              -elsif @event.active?
-                =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position)
-              -if eps.player.present?
-                span.pad-left
-                |(#{eps.player})
-              -if @event.archived?
-                #notes #{eps.notes.html_safe}
-            td.center =eps.score
-            =render partial: 'true_check', locals: {value: eps.wackiest, image: eps.participating_country.country.large_image}
-            =render partial: 'true_check', locals: {value: eps.fattest, image: eps.participating_country.country.large_image}
-            =render partial: 'true_check', locals: {value: eps.best_wail, image: eps.participating_country.country.large_image}
+    -@pp.scores.scoring_order(@pp.id).each do |eps|
+      .row
+        .columns.small-5.small
+          -if @event.archived?
+            |#{eps.participating_country.position}. #{eps.participating_country.country.name}
+          -elsif @event.active?
+            =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position)
+          -if eps.player.present?
+            span.pad-left
+            |(#{eps.player})
+        .columns.small-1.center =eps.score
+        =render partial: 'true_column', locals: {value: eps.wackiest, image: eps.participating_country.country.large_image}
+        =render partial: 'true_column', locals: {value: eps.fattest, image: eps.participating_country.country.large_image}
+        =render partial: 'true_column', locals: {value: eps.best_wail, image: eps.participating_country.country.large_image}
+      -if @event.archived?
+        .row.notes
+          .columns.small-12.small =eps.notes.html_safe

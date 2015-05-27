@@ -1,0 +1,33 @@
+.score-header {
+  color:antiquewhite;
+  &.center {
+    text-align: center;
+  }
+}
+.score-data {
+  .row.hide-top:first-child { border-top: none;}
+  .row:last-child { border-bottom: 1px solid #bfc1c3; }
+  .row {
+    border-top: 1px solid #bfc1c3;
+    padding: 0.5625rem 0.625rem 0;
+    &.notes {
+      border-top:none;
+      padding-bottom: 0.5625rem;
+    }
+    .small {
+      font-size: 12px;
+    }
+    .highlight {
+      font-weight:bold;
+    }
+    .center {
+      text-align: center;
+    }
+
+    .flagged {
+      color: antiquewhite;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}
