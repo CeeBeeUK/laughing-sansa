@@ -9,7 +9,11 @@
   .row:last-child { border-bottom: 1px solid #bfc1c3; }
   .row {
     border-top: 1px solid #bfc1c3;
-    padding: 0.5625rem 0.625rem;
+    padding: 0.5625rem 0.625rem 0;
+    &.notes {
+      border-top:none;
+      padding-bottom: 0.5625rem;
+    }
     .small {
       font-size: 12px;
     }

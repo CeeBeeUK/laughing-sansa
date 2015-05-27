@@ -40,10 +40,10 @@
       .columns.small-2.score-header.center Wacky
       .columns.small-2.score-header.center Fattest
       .columns.small-2.score-header.center Best wail
-.row.collapse.score-data
+.row.score-data
   .columns.small-12
     -@pp.scores.scoring_order(@pp.id).each do |eps|
-      .row.collapse
+      .row
         .columns.small-5.small
           -if @event.archived?
             |#{eps.participating_country.position}. #{eps.participating_country.country.name}
@@ -52,9 +52,10 @@
           -if eps.player.present?
             span.pad-left
             |(#{eps.player})
-          -if @event.archived?
-            #notes #{eps.notes.html_safe}
         .columns.small-1.center =eps.score
         =render partial: 'true_column', locals: {value: eps.wackiest, image: eps.participating_country.country.large_image}
         =render partial: 'true_column', locals: {value: eps.fattest, image: eps.participating_country.country.large_image}
         =render partial: 'true_column', locals: {value: eps.best_wail, image: eps.participating_country.country.large_image}
+      -if @event.archived?
+        .row.notes
+          .columns.small-12.small =eps.notes.html_safe
