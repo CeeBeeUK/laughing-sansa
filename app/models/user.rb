@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   def self.find_for_google_oauth2(access_token, _signed_in_resource = nil)
     data = access_token.info
     # data[:last_sign_in_at] = DateTime.now
-    user = User.where(email: data['email']).first
+    user = User.find_by(email: data['email'])
     if user
       user = update_user(user, data)
     else
@@ -48,8 +48,7 @@ class User < ActiveRecord::Base
                  first_name: data['first_name'],
                  encrypted_password: Devise.friendly_token[0, 20],
                  image: data['image'],
-                 role: 'user'
-    )
+                 role: 'user')
   end
 
   def self.update_user(user, data)

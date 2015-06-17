@@ -118,18 +118,18 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #sort' do
-      let(:pc_1) {
+      let(:pc_1) do
         create(:participating_country,
           event: event,
           country: create(:country),
           position: 1)
-      }
-      let(:pc_2) {
+      end
+      let(:pc_2) do
         create(:participating_country,
           event: event,
           country: create(:country),
           position: 2)
-      }
+      end
       before(:each) do
         sign_in admin
         post :sort, pc: [pc_2.position, pc_1.position], year: event.year

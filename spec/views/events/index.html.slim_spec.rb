@@ -41,7 +41,7 @@ RSpec.describe 'events/index', type: :view do
         home_winner: nil,
         real_player_name: nil,
         home_player_name: nil,
-        date: Date.today
+        date: Time.zone.today
       )
     ])
   end
@@ -53,6 +53,6 @@ RSpec.describe 'events/index', type: :view do
     assert_select 'li span.year', text: 2011.to_s, count: 1
     assert_select 'li span.host-city', text: 'Host City'.to_s, count: 3
     assert_select 'li div.winner', text: /bob with/, count: 2
-    assert_select 'li div.event-date', text: "Will take place on #{Date.today.strftime("#{Date.today.day.ordinalize} %B %Y")}", count: 1
+    assert_select 'li div.event-date', text: "Will take place on #{Time.zone.today.strftime("#{Time.zone.today.day.ordinalize} %B %Y")}", count: 1
   end
 end

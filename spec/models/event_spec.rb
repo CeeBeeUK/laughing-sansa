@@ -183,7 +183,7 @@ RSpec.describe Event, type: :model do
     end
   end
   it 'allows a date to be set' do
-    event.date = Date.today
+    event.date = Time.zone.today
     expect(event).to be_valid
   end
   context 'validations' do

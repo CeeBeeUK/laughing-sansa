@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'events/edit', type: :view do
-  let(:event) {
+  let(:event) do
     assign(:event,
       Event.create!(
         year: 999,
@@ -17,23 +17,20 @@ RSpec.describe 'events/edit', type: :view do
         home_player_id: nil,
         home_player_name: nil,
         status: nil
-      )
-    )
-  }
+      ))
+  end
   it 'renders the edit event form' do
     event
     assign(:countries,
       [
         Country.create(name: 'country 1'),
         Country.create(name: 'country 2')
-      ]
-    )
+      ])
     assign(:users,
       [
         create(:user),
         create(:user)
-      ]
-    )
+      ])
     render
 
     assert_select 'form[action=?][method=?]', event_path(event), 'post' do

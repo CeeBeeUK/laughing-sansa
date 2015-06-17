@@ -4,13 +4,9 @@ RSpec.describe CountriesController, type: :controller do
 
   include Devise::TestHelpers
 
-  let(:valid_attributes) {
-    { name: "United Kingdom #{SecureRandom.hex(4)}" }
-  }
+  let(:valid_attributes) { { name: "United Kingdom #{SecureRandom.hex(4)}" } }
 
-  let(:invalid_attributes) {
-    { name: nil }
-  }
+  let(:invalid_attributes) { { name: nil } }
 
   let(:valid_session) { {} }
 
@@ -55,9 +51,9 @@ RSpec.describe CountriesController, type: :controller do
     describe 'POST create' do
       describe 'with valid params' do
         it 'creates a new Country' do
-          expect {
+          expect do
             post :create, { country: valid_attributes }, valid_session
-          }.to change(Country, :count).by(1)
+          end.to change(Country, :count).by(1)
         end
 
         it 'assigns a newly created country as @country' do
@@ -87,9 +83,7 @@ RSpec.describe CountriesController, type: :controller do
 
     describe 'PUT update' do
       describe 'with valid params' do
-        let(:new_attributes) {
-          { name: 'uk' }
-        }
+        let(:new_attributes) { { name: 'uk' } }
 
         it 'updates the requested country' do
           country = Country.create! valid_attributes
@@ -129,9 +123,9 @@ RSpec.describe CountriesController, type: :controller do
     describe 'DELETE destroy' do
       it 'destroys the requested country' do
         country = Country.create! valid_attributes
-        expect {
+        expect do
           delete :destroy, { name: country.to_param }, valid_session
-        }.to change(Country, :count).by(-1)
+        end.to change(Country, :count).by(-1)
       end
 
       it 'redirects to the countries list' do
