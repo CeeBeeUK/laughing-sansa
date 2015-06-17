@@ -4,21 +4,21 @@ RSpec.describe EventsController, type: :controller do
 
   include Devise::TestHelpers
 
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     {
       year: 2016,
       country_id: 1,
       host_city: 'london'
     }
-  }
+  end
 
-  let(:invalid_attributes) {
+  let(:invalid_attributes) do
     {
       year: nil,
       country_id: nil,
       host_city: nil
     }
-  }
+  end
 
   let(:valid_session) { {} }
 
@@ -145,12 +145,11 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #join' do
       context 'when player has already joined' do
-        let(:event_player) {
+        let(:event_player) do
           create(:event_player,
             event: create(:event, status: 1),
-            player: admin_user
-          )
-        }
+            player: admin_user)
+        end
         before(:each) do
           get :join, year: event_player.event.to_param
         end
@@ -166,9 +165,9 @@ RSpec.describe EventsController, type: :controller do
       context 'with valid params' do
         let(:event_player) { build(:event_player) }
         it 'creates a new participating player' do
-          expect {
+          expect do
             post :sign_up, year: event_player.event.year, event_player: event_player.attributes
-          }.to change(EventPlayer, :count).by(1)
+          end.to change(EventPlayer, :count).by(1)
         end
         it 'redirects to the event view' do
           post :sign_up, year: event_player.event.year, event_player: event_player.attributes
@@ -189,9 +188,9 @@ RSpec.describe EventsController, type: :controller do
         let(:event) { build(:event) }
 
         it 'creates a new Event' do
-          expect {
+          expect do
             post :create, { event: event.attributes }, valid_session
-          }.to change(Event, :count).by(1)
+          end.to change(Event, :count).by(1)
         end
 
         it 'assigns a newly created event as @event' do
