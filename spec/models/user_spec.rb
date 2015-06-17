@@ -97,9 +97,9 @@ RSpec.describe User, type: :model do
         'name' => 'Test User'
       }
     )
-    expect {
+    expect do
       described_class.find_for_google_oauth2(user_struct)
-    }.not_to change(described_class, :count)
+    end.not_to change(described_class, :count)
     user2 = described_class.find_for_google_oauth2(user_struct)
     expect(user2).to be_valid
   end
@@ -110,8 +110,8 @@ RSpec.describe User, type: :model do
         'name' => 'Test User'
       }
     )
-    expect {
+    expect do
       described_class.find_for_google_oauth2(user_struct)
-    }.to change(described_class, :count).by(1)
+    end.to change(described_class, :count).by(1)
   end
 end
