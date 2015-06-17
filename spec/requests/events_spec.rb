@@ -39,13 +39,13 @@ RSpec.describe 'Events', type: :request do
     end
     context 'valid user' do
 
-      let(:countries) {
+      let(:countries) do
         assign(:countries,
           [
             Country.create(name: 'country 1'),
             Country.create(name: 'country 2')
           ])
-      }
+      end
 
       it 'returns 302 when authenticated' do
         login_as(user, scope: :user)
