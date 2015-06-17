@@ -44,8 +44,7 @@ RSpec.describe 'Events', type: :request do
           [
             Country.create(name: 'country 1'),
             Country.create(name: 'country 2')
-          ]
-        )
+          ])
       }
 
       it 'returns 302 when authenticated' do
