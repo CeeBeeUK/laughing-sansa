@@ -41,7 +41,7 @@ RSpec.describe 'events/index', type: :view do
         home_winner: nil,
         real_player_name: nil,
         home_player_name: nil,
-        date: Date.today
+        date: Time.zone.today
       )
     ])
   end
