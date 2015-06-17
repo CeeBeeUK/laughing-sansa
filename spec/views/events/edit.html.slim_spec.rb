@@ -26,14 +26,12 @@ RSpec.describe 'events/edit', type: :view do
       [
         Country.create(name: 'country 1'),
         Country.create(name: 'country 2')
-      ]
-    )
+      ])
     assign(:users,
       [
         create(:user),
         create(:user)
-      ]
-    )
+      ])
     render
 
     assert_select 'form[action=?][method=?]', event_path(event), 'post' do
