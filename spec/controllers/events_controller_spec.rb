@@ -221,7 +221,7 @@ RSpec.describe EventsController, type: :controller do
     describe 'PUT #update' do
       let(:event) { create(:event) }
       context 'with valid params' do
-        let(:new_attributes) { event.attributes  }
+        let(:new_attributes) { event.attributes }
         before(:each) { new_attributes['host_city'] += 'test' }
         it 'updates the requested event' do
           expect = "#{event.host_city}test"

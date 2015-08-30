@@ -54,7 +54,7 @@ RSpec.describe Event, type: :model do
     end
   end
   describe 'players' do
-    let(:event)  { create(:event) }
+    let(:event) { create(:event) }
     it 'returns a list of players' do
       create(:event_player, event: event, player: create(:user), predicted_uk_score: 1)
       expect(event.players.count).to eq(1)

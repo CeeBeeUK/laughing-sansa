@@ -15,7 +15,7 @@ RSpec.describe MyController, type: :controller do
   end
   describe 'PUT #profile_update' do
     context 'with valid params' do
-      let(:new_attributes) { user.attributes  }
+      let(:new_attributes) { user.attributes }
       before(:each) do
         sign_in user
         new_attributes['display_name'] = 'test display'
