@@ -1,8 +1,7 @@
 language: ruby
+sudo: false
 rvm:
-- 2.1.5
-before_install:
-- sudo apt-get update -qq
+- 2.2.3
 before_script:
 - psql -c 'create role euro login createdb;' -U postgres
 addons:
@@ -22,5 +21,3 @@ deploy:
   app: laughing-sansa
   on:
     repo: CeeBeeUK/laughing-sansa
-  run:
-  - "rake db:migrate"
