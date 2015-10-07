@@ -59,4 +59,4 @@
         =render partial: 'true_column', locals: {value: eps.best_wail, image: eps.participating_country.country.large_image}
       -if @event.archived?
         .row.notes
-          .columns.small-12.small =eps.notes.html_safe
+          .columns.small-12.small =h(eps.notes)
