@@ -8,42 +8,12 @@ RSpec.describe 'events/index', type: :view do
 
   before(:each) do
     country = create(:country)
-    assign(:events, [
-      Event.create!(
-        year: 2010,
-        host_city: 'Host City',
-        active: false,
-        country: country,
-        status: 'archived',
-        real_winner: country,
-        home_winner: country,
-        real_player_name: 'bob',
-        home_player_name: 'bob'
-      ),
-      Event.create!(
-        year: 2011,
-        host_city: 'Host City',
-        active: false,
-        country: country,
-        status: 'archived',
-        real_winner: country,
-        home_winner: country,
-        real_player_name: 'bob',
-        home_player_name: 'bob'
-      ),
-      Event.create!(
-        year: 2012,
-        host_city: 'Host City',
-        active: true,
-        country: country,
-        status: 'setup',
-        real_winner: nil,
-        home_winner: nil,
-        real_player_name: nil,
-        home_player_name: nil,
-        date: Time.zone.today
-      )
-    ])
+    assign(:events,
+      [
+        Event.create!(year: 2010, host_city: 'Host City', active: false, country: country, status: 'archived', real_winner: country, home_winner: country, real_player_name: 'bob', home_player_name: 'bob'),
+        Event.create!(year: 2011, host_city: 'Host City', active: false, country: country, status: 'archived', real_winner: country, home_winner: country, real_player_name: 'bob', home_player_name: 'bob'),
+        Event.create!(year: 2012, host_city: 'Host City', active: true, country: country, status: 'setup', real_winner: nil, home_winner: nil, real_player_name: nil, home_player_name: nil, date: Time.zone.today)
+      ])
   end
 
   it 'renders a list of events' do

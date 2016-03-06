@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, omniauth_providers: [:google_oauth2]
 
-  ROLES = %w[admin user]
+  ROLES = %w[admin user].freeze
 
   validates :email, format: Devise.email_regexp
   validates :email, uniqueness: true
@@ -21,11 +21,11 @@ class User < ActiveRecord::Base
     data = access_token.info
     # data[:last_sign_in_at] = DateTime.now
     user = User.find_by(email: data['email'])
-    if user
-      user = update_user(user, data)
-    else
-      user = add_new_user(data)
-    end
+    user = if user
+             update_user(user, data)
+           else
+             add_new_user(data)
+           end
     user
   end
 
