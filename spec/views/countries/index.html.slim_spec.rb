@@ -7,10 +7,11 @@ RSpec.describe 'countries/index', type: :view do
   let(:user) { create(:user) }
 
   before(:each) do
-    assign(:countries, [
-      Country.create(name: 'country 1'),
-      Country.create(name: 'country 2')
-    ])
+    assign(:countries,
+      [
+        Country.create(name: 'country 1'),
+        Country.create(name: 'country 2')
+      ])
   end
 
   it 'renders a list of countries' do

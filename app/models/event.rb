@@ -100,6 +100,6 @@ class Event < ActiveRecord::Base
     unless GlobalConstants::BIG5.include?(country.name)
       ParticipatingCountry.new(event: self, country: country).insert_at(1)
     end
-    self.save!
+    save!
   end
 end

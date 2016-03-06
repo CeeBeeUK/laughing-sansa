@@ -183,7 +183,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
           expect(response).to redirect_to manage_countries_path(participating_country.event)
         end
         it 'does not set a flash message' do
-          expect(flash[:alert]).to_not be_present
+          expect(flash[:alert]).not_to be_present
         end
         it 'sets the player on the PC' do
           participating_country.reload
@@ -209,7 +209,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         end
         it 'does not amend the player on the PC' do
           participating_country.reload
-          expect(participating_country.player_id).to_not eql(player.id)
+          expect(participating_country.player_id).not_to eql(player.id)
         end
       end
     end
