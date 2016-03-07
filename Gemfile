@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.5.1'
-gem 'sprockets-rails', '2.3.3'
+gem 'rails', '~> 4.2.5'
+gem 'sprockets-rails', '~>3.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -15,7 +15,7 @@ gem 'coffee-rails'
 # gem 'therubyracer',  platforms: :ruby
 # template
 gem 'slim-rails'
-gem 'foundation-rails', '5.5.3.2'
+gem 'foundation-rails', '~>5.5'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
