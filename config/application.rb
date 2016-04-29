@@ -23,5 +23,6 @@ module Eurovision
     # keep the name alive
     config.middleware.use Rack::Pratchett
 
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

@@ -34,7 +34,7 @@ html[lang="en"]
               =link_to my_profile_path do
                 img src=current_user.image
             - else
-              = link_to user_omniauth_authorize_path(:google_oauth2)
+              = link_to user_google_oauth2_omniauth_authorize_path
                 i.fi-social-google-plus.login-icon
         nav.left-off-canvas-menu
           ul.off-canvas-list
