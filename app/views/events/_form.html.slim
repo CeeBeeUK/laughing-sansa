@@ -9,86 +9,92 @@
     .small-12.medium-4.columns
       h3 Host
   .row
-    .small-12.medium-4.columns
+    .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-5.medium-3.columns
+        .small-6.medium-4.columns
           = f.label :year, class: 'prefix'
-        .small-7.medium-9.columns
+        .small-6.medium-8.columns
           = f.number_field :year, autofocus: true
-    .small-12.medium-4.columns
+    .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-5.medium-3.columns
+        .small-6.medium-4.columns
           = f.label :country, 'Host country', class: 'prefix'
-        .small-7.medium-9.columns
+        .small-6.medium-8.columns
           = f.collection_select :country_id, @countries, :id, :name, prompt: true
-    .small-12.medium-4.columns
-      .row.collapse.prefix-radius
-        .small-5.medium-3.columns
-          = f.label :host_city, class: 'prefix'
-        .small-7.medium-9.columns
-          = f.text_field :host_city
   .row
-    .small-12.medium-4.columns
+    .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-5.medium-3.columns
+        .small-6.medium-4.columns
+          = f.label :host_city, class: 'prefix'
+        .small-6.medium-8.columns
+          = f.text_field :host_city
+    .small-12.medium-6.columns
+      .row.collapse.prefix-radius
+        .small-6.medium-4.columns
           = f.label :date, class: 'prefix'
-        .small-7.medium-9.columns
+        .small-6.medium-8.columns
           = f.date_field :date
-    .small-12.medium-4.columns
+  .row
+    .small-12.columns
+      h3 Event
+  .row
+    .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-5.medium-3.columns
+        .small-6.medium-4.columns
           = f.label :status, class: 'prefix'
-        .small-7.medium-9.columns
+        .small-6.medium-8.columns
           = f.select :status, Event.statuses.keys.to_a
-    .small-12.medium-4.columns
+    .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-5.medium-6.columns
+        .small-6.medium-6.columns
           = f.label :actual_uk_score, 'Final UK score ', class: 'prefix'
-        .small-7.medium-6.columns
+        .small-6.medium-6.columns
           = f.number_field :actual_uk_score
   .row
     .small-12.columns
       h3 Real competition
   .row
-    .small-12.medium-4.columns
+    .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-5.medium-3.columns
-          = f.label :real_winner_id, 'Winner', class: 'prefix'
-        .small-7.medium-9.columns
+        .small-6.medium-4.columns
+          = f.label :real_winner_id, 'Winning country', class: 'prefix'
+        .small-6.medium-8.columns
           = f.collection_select :real_winner_id, @countries, :id, :name, prompt: true
-    .small-12.medium-4.columns
+  .row
+    .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-5.medium-3.columns
+        .small-6.medium-4.columns
           = f.label :real_player_id, 'Player', class: 'prefix'
-        .small-7.medium-9.columns
+        .small-6.medium-8.columns
           = f.collection_select :real_player_id, @users, :id, :display_name, prompt: true
-    .small-12.medium-4.columns
+    .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-5.medium-3.columns
+        .small-6.medium-4.columns
           = f.label :real_player_name, 'or static name', class: 'prefix'
-        .small-7.medium-9.columns
+        .small-6.medium-8.columns
           = f.text_field :real_player_name
   .row
     .small-12.medium-6.columns
       h3 Home competition
   .row
-    .small-12.medium-4.columns
+    .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-5.medium-3.columns
-          = f.label :real_winner_id, 'Home winner', class: 'prefix'
-        .small-7.medium-9.columns
+        .small-6.medium-4.columns
+          = f.label :real_winner_id, 'Winning country', class: 'prefix'
+        .small-6.medium-8.columns
           = f.collection_select :home_winner_id, @countries, :id, :name, prompt: true
-    .small-12.medium-4.columns
+  .row
+    .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-5.medium-3.columns
+        .small-6.medium-4.columns
           = f.label :real_winner_id, 'Home player', class: 'prefix'
-        .small-7.medium-9.columns
+        .small-6.medium-8.columns
           = f.collection_select :home_player_id, @users, :id, :display_name, prompt: true
-    .small-12.medium-4.columns
+    .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-5.medium-3.columns
+        .small-6.medium-4.columns
           = f.label :home_player_name, 'or static name', class: 'prefix'
-        .small-7.medium-9.columns
+        .small-6.medium-8.columns
           = f.text_field :home_player_name
   = f.hidden_field :active, value: true
   .actions = f.submit class: 'button tiny radius'
