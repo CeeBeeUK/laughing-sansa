@@ -134,7 +134,7 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #new' do
       it 'assigns a new event to @event' do
-        get :new, {}, valid_session
+        get :new, params: {}, session: valid_session
         expect(assigns(:event)).to be_a_new(Event)
       end
     end

@@ -13,4 +13,10 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.infer_spec_type_from_file_location!
   config.include FactoryGirl::Syntax::Methods
+
+  [:controller, :view, :request].each do |type|
+    config.include ::Rails::Controller::Testing::TestProcess, :type => type
+    config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type
+    config.include ::Rails::Controller::Testing::Integration, :type => type
+  end
 end
