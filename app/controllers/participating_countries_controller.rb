@@ -28,7 +28,10 @@ class ParticipatingCountriesController < ApplicationController
   end
 
   def allocate
-    @pc.update(player_id: allocate_params[:player_id])
+    @pc.update(
+      player_id: allocate_params[:player_id],
+      real_final_score: allocate_params[:real_final_score]
+    )
     unless @pc.save
       flash[:alert] = @pc.errors.full_messages
     end
@@ -53,6 +56,6 @@ private
   end
 
   def allocate_params
-    params.require(:participating_country).permit(:player_id)
+    params.require(:participating_country).permit(:player_id, :real_final_score)
   end
 end

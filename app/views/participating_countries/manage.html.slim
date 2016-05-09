@@ -48,7 +48,9 @@ hr
                   span.handle
                     i.fi-list.fi-large
                   =c.country.name
-                .columns.small-6
+                .columns.small-4
                   = f.collection_select :player_id, @users, :id, :display_name, prompt: true
+                .columns.small-2
+                  = f.text_field :real_final_score
                 .columns.small-3
                   button.tiny.success.inline Save
