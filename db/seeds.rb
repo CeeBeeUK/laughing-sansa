@@ -23,6 +23,7 @@ Country.create([
                    {name: 'Azerbaijan'},
                    {name: 'Belarus'},
                    {name: 'Belgium'},
+                   {name: 'Bulgaria'},
                    {name: 'Croatia'},
                    {name: 'Cyprus'},
                    {name: 'Czech Republic'},
