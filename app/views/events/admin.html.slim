@@ -17,8 +17,8 @@ table
   thead
     tr
       td Act
-      td Scores
-      td Score
+      td Votes
+      td Total
       td Wacky
       td Fat
       td
@@ -26,7 +26,7 @@ table
   tbody
     - @data.countries.each do |eps|
       tr
-        td =eps[0]
+        td style="font-size: smaller;" =eps[0]
         td =eps[1][0]
         td =eps[1][1]
         td =eps[1][2]

@@ -6,6 +6,9 @@
       =link_to 'Events', events_path
     li.current
       =link_to @event.display_name, @event
+    - if current_user.admin?
+      li
+        = link_to 'Admin', game_admin_path(@event)
 .row
   .columns.small-12.medium-8
     h2
