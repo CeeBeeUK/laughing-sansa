@@ -147,7 +147,8 @@ RSpec.describe EventsController, type: :controller do
     describe 'GET #admin' do
       it 'assigns the requested event as @event' do
         get :admin, { year: event.to_param }, valid_session
-        expect(assigns(:event)).to eq(event)
+        expect(assigns(:event)).to be_a Event
+        expect(assigns(:data)).to be_a AdminData
       end
     end
     describe 'GET #join' do

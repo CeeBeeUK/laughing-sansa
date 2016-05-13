@@ -1,1 +1,34 @@
-h1 Admin page
+= content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      = link_to 'Home', root_path
+    li
+      = link_to @event.display_name, my_game_path(@event)
+    li.current
+      = link_to 'Admin', game_admin_path(@event)
+.row.collapse
+  .columns.small-8.medium-6
+    h2
+      .host-flag
+        img src =@data.host_flag
+        = @data.name
+
+table
+  thead
+    tr
+      td Act
+      td Scores
+      td Score
+      td Wacky
+      td Fat
+      td
+        i.fi-music
+  tbody
+    - @data.countries.each do |eps|
+      tr
+        td =eps[0]
+        td =eps[1][0]
+        td =eps[1][1]
+        td =eps[1][2]
+        td =eps[1][3]
+        td =eps[1][4]

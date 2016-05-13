@@ -65,6 +65,7 @@ class EventsController < ApplicationController
   end
 
   def admin
+    @data = AdminData.new(params[:year])
   end
 
 private
