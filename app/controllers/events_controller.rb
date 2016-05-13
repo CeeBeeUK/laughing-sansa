@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
-  before_action :set_event, only: [:show, :edit, :update, :join, :sign_up]
+  before_action :set_event, only: [:show, :edit, :update, :join, :sign_up, :admin]
   before_action :load_variables, only: [:new, :edit, :create, :update]
   respond_to :html
 
@@ -62,6 +62,10 @@ class EventsController < ApplicationController
   def update
     @event.update(event_params)
     respond_with(@event)
+  end
+
+  def admin
+    @data = AdminData.new(params[:year])
   end
 
 private

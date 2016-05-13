@@ -36,5 +36,9 @@ RSpec.describe EventsController, type: :routing do
     it 'routes to #sign_up' do
       expect(post: '/events/2015/join').to route_to('events#sign_up', year: '2015')
     end
+
+    it 'has a admin page' do
+      expect(get: '/events/2016/admin').to route_to('events#admin', year: '2016')
+    end
   end
 end

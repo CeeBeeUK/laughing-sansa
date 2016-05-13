@@ -52,7 +52,13 @@ RSpec.describe EventsController, type: :controller do
         expect(response).to redirect_to(root_path)
       end
     end
-
+    describe 'GET #admin' do
+      it 'redirects to login page' do
+        event = create(:event)
+        get :edit, { year: event.to_param }, valid_session
+        expect(response).to redirect_to(root_path)
+      end
+    end
   end
 
   context 'logged in as user' do
@@ -72,6 +78,13 @@ RSpec.describe EventsController, type: :controller do
         event_player = create(:event_player, player: user, event: event)
         get :show, { year: event_player.event.to_param }, valid_session
         expect(assigns(:event)).to eq(event)
+      end
+    end
+    describe 'GET #admin' do
+      it 'redirects to login page' do
+        event = create(:event)
+        get :edit, { year: event.to_param }, valid_session
+        expect(response).to redirect_to(root_path)
       end
     end
     describe 'GET #new' do
@@ -129,6 +142,13 @@ RSpec.describe EventsController, type: :controller do
       it 'assigns the requested event as @event' do
         get :edit, { year: event.to_param }, valid_session
         expect(assigns(:event)).to eq(event)
+      end
+    end
+    describe 'GET #admin' do
+      it 'assigns the requested event as @event' do
+        get :admin, { year: event.to_param }, valid_session
+        expect(assigns(:event)).to be_a Event
+        expect(assigns(:data)).to be_a AdminData
       end
     end
     describe 'GET #join' do

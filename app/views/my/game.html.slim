@@ -4,6 +4,9 @@
       =link_to 'Home', root_path
     li.current
       =link_to @event.display_name, my_game_path(@event)
+    -if current_user.admin?
+      li
+        =link_to 'Admin', game_admin_path(@event)
 .row.collapse
   .columns.small-8.medium-6
     h2
