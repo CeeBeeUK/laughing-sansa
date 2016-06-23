@@ -16,7 +16,7 @@ gem 'coffee-rails'
 # template
 gem 'slim-rails'
 gem 'foundation-rails', '~>5.5'
-
+gem 'nokogiri', '>=1.6.8'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'touchpunch-rails'
