@@ -21,18 +21,18 @@ RSpec.describe MyController, type: :controller do
         new_attributes['display_name'] = 'test display'
       end
       it 'updates the requested event' do
-        put :profile_update, { id: user.to_param, user: new_attributes }, valid_session
+        put :profile_update, params: { id: user.to_param, user: new_attributes }, session: valid_session
         user.reload
         expect(user.display_name).to eql('test display')
       end
 
       it 'assigns the requested user as @user' do
-        put :profile_update, { id: user.to_param, user: new_attributes }, valid_session
+        put :profile_update, params: { id: user.to_param, user: new_attributes }, session: valid_session
         expect(assigns(:user)).to eq(user)
       end
 
       it 'redirects to the user' do
-        put :profile_update, { id: user.to_param, user: new_attributes }, valid_session
+        put :profile_update, params: { id: user.to_param, user: new_attributes }, session: valid_session
         expect(response).to redirect_to(my_profile_path)
       end
     end
@@ -47,7 +47,7 @@ RSpec.describe MyController, type: :controller do
     context 'when player has joined game' do
       before(:each) do
         event_player = create(:event_player, player: user, event: event)
-        get :game, year: event_player.event.to_param
+        get :game, params: { year: event_player.event.to_param }
       end
       it 'returns success code' do
         expect(response.status).to eq(200)
@@ -59,13 +59,13 @@ RSpec.describe MyController, type: :controller do
     context 'when player has not joined game' do
 
       it 'redirects' do
-        get :game, year: event.to_param
+        get :game, params: { year: event.to_param }
         expect(response.status).to eq(302)
       end
       context 'when the game can be joined' do
         it 'renders the event page' do
           event.active!
-          get :game, year: event.to_param
+          get :game, params: { year: event.to_param }
           expect(response).to redirect_to game_sign_up_path(event)
         end
       end
@@ -74,7 +74,7 @@ RSpec.describe MyController, type: :controller do
         let(:event_player_score) { create(:event_player_score, event_player: event_player) }
 
         before(:each) do
-          get :game, year: event.to_param
+          get :game, params: { year: event.to_param }
         end
         it 'renders root' do
           expect(response).to redirect_to(root_path)
@@ -92,9 +92,11 @@ RSpec.describe MyController, type: :controller do
     before(:each) do
       sign_in user
       get :score,
-        year: event_player_score.event.year,
-        act: event_player_score.participating_country.position,
-        event_player_score: event_player_score.attributes
+        params: {
+          year: event_player_score.event.year,
+          act: event_player_score.participating_country.position,
+          event_player_score: event_player_score.attributes
+        }
     end
     it 'renders the score page' do
       expect(response).to render_template(:score)
@@ -113,9 +115,11 @@ RSpec.describe MyController, type: :controller do
       before(:each) do
         event_player_score.fattest = true
         post :score_create,
-          year: event_player_score.event.year,
-          act: event_player_score.participating_country.position,
-          event_player_score: event_player_score.attributes
+          params: {
+            year: event_player_score.event.year,
+            act: event_player_score.participating_country.position,
+            event_player_score: event_player_score.attributes
+          }
       end
       it 'updates the score data' do
         event_player_score.reload
