@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'events/index', type: :view do
 
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
 
   let(:user) { create(:user) }
 

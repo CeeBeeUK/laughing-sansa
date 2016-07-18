@@ -13,7 +13,7 @@ class ParticipatingCountriesController < ApplicationController
     params[:pc].each_with_index do |id, index|
       ParticipatingCountry.where(event: @event, id: id).update_all(position: index + 1)
     end
-    render nothing: true
+    head :ok
   end
 
   def create

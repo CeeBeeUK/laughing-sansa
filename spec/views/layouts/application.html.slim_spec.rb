@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'layouts/application.html.slim', type: :view do
 
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   before { Event.delete_all }
   let(:user) { create(:user) }
   let(:admin) { create(:admin_user) }
