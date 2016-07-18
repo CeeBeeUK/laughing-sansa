@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
 
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
 
   let(:valid_attributes) do
     {

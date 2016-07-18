@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'home/index.html.slim', type: :view do
 
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
 
   let(:user) { create(:user) }
 

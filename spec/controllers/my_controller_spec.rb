@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MyController, type: :controller do
 
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   let(:user) { create(:user) }
   let(:valid_session) { {} }
 

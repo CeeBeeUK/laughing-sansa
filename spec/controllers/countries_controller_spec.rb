@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CountriesController, type: :controller do
 
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
 
   let(:valid_attributes) { { name: "United Kingdom #{SecureRandom.hex(4)}" } }
 

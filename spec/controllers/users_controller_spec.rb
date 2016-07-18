@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   let(:user) { create(:user) }
   let(:admin) { create(:admin_user) }
 
