@@ -10,7 +10,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
   context 'as a guest' do
     let(:event) { create(:event) }
     describe 'GET #manage' do
-      before(:each) { get :manage, year: event.year }
+      before(:each) { get :manage, params: { year: event.year } }
       it 'returns a 302 status code' do
         expect(response.status).to eql(302)
       end
@@ -20,7 +20,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     end
     describe 'POST #sort' do
       before(:each) do
-        post :sort, pc: [2, 1], year: event.year
+        post :sort, params: { pc: [2, 1], year: event.year }
       end
       it 'returns a 302 status code' do
         expect(response.status).to eql(302)
@@ -31,7 +31,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     end
     describe 'POST #create' do
       before(:each) do
-        post :create, participating_country_id: create(:country).id, year: event.year
+        post :create, params: { participating_country_id: create(:country).id, year: event.year }
       end
       it 'returns a 302 status code' do
         expect(response.status).to eql(302)
@@ -42,7 +42,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     end
     describe 'POST #allocate' do
       before(:each) do
-        post :allocate, participating_country_id: create(:country).id, year: event.year, player_id: create(:user).id
+        post :allocate, params: { participating_country_id: create(:country).id, year: event.year, player_id: create(:user).id }
       end
       it 'returns a 302 status code' do
         expect(response.status).to eql(302)
@@ -59,7 +59,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       sign_in user
     end
     describe 'GET #manage' do
-      before(:each) { get :manage, year: event.year }
+      before(:each) { get :manage, params: { year: event.year } }
       it 'returns a 302 status code' do
         expect(response.status).to eql(302)
       end
@@ -69,7 +69,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     end
     describe 'POST #sort' do
       before(:each) do
-        post :sort, pc: [2, 1], year: event.year
+        post :sort, params: { pc: [2, 1], year: event.year }
       end
       it 'returns a 302 status code' do
         expect(response.status).to eql(302)
@@ -81,7 +81,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     describe 'POST #create' do
       let(:participating_country) { create(:participating_country) }
       before(:each) do
-        post :create, participating_country: { country_id: participating_country.country.id }, year: event.year
+        post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
       end
       it 'returns a 302 status code' do
         expect(response.status).to eql(302)
@@ -92,7 +92,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     end
     describe 'POST #allocate' do
       before(:each) do
-        post :allocate, participating_country_id: create(:country).id, year: event.year, player_id: create(:user).id
+        post :allocate, params: { participating_country_id: create(:country).id, year: event.year, player_id: create(:user).id }
       end
       it 'returns a 302 status code' do
         expect(response.status).to eql(302)
@@ -108,7 +108,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     describe 'GET #manage' do
       before(:each) do
         sign_in admin
-        get :manage, year: event.year
+        get :manage, params: { year: event.year }
       end
       it 'returns a 200 status code' do
         expect(response.status).to eql(200)
@@ -132,7 +132,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
       before(:each) do
         sign_in admin
-        post :sort, pc: [pc_2.position, pc_1.position], year: event.year
+        post :sort, params: { pc: [pc_2.position, pc_1.position], year: event.year }
       end
       it 'returns a 200 status code' do
         expect(response.status).to eql(200)
@@ -146,7 +146,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         let(:participating_country) { create(:participating_country) }
         before(:each) do
           sign_in admin
-          post :create, participating_country: { country_id: participating_country.country.id }, year: event.year
+          post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
         end
         it 'returns a 302 status code' do
           expect(response.status).to eql(302)
@@ -159,8 +159,8 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         let(:participating_country) { create(:participating_country) }
         before(:each) do
           sign_in admin
-          post :create, participating_country: { country_id: participating_country.country.id }, year: event.year
-          post :create, participating_country: { country_id: participating_country.country.id }, year: event.year
+          post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
+          post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
         end
         it 'displays a flash alert' do
           expect(flash[:alert]).to be_present
@@ -174,7 +174,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         let(:player) { create(:user) }
         before(:each) do
           sign_in admin
-          post :allocate, year: event.year, participating_country: { id: participating_country.id, player_id: player.id }
+          post :allocate, params: { year: event.year, participating_country: { id: participating_country.id, player_id: player.id } }
         end
         it 'returns a 302 code' do
           expect(response.status).to eql(302)
@@ -195,7 +195,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         let(:player) { create(:user) }
         before(:each) do
           sign_in admin
-          post :allocate, year: event.year, participating_country: { id: participating_country.id, player_id: 'bob' }
+          post :allocate, params: { year: event.year, participating_country: { id: participating_country.id, player_id: 'bob' } }
         end
         it 'returns a 302 code' do
           expect(response.status).to eql(302)
