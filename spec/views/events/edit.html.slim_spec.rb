@@ -19,7 +19,7 @@ RSpec.describe 'events/edit', type: :view do
         status: nil
       ))
   end
-  it 'renders the edit event form' do
+  before do
     event
     assign(:countries,
       [
@@ -32,13 +32,12 @@ RSpec.describe 'events/edit', type: :view do
         create(:user)
       ])
     render
+  end
 
+  it 'renders the edit event form' do
     assert_select 'form[action=?][method=?]', event_path(event), 'post' do
-
       assert_select 'input#event_year[name=?]', 'event[year]'
-
       assert_select 'input#event_host_city[name=?]', 'event[host_city]'
-
       assert_select 'input#event_active[name=?]', 'event[active]'
     end
   end

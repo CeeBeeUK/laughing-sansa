@@ -62,13 +62,16 @@ RSpec.describe Event, type: :model do
   end
   describe 'scopes' do
     describe 'players_predictions_high_to_low' do
-      it 'returns players in descending prediction order' do
-        event = create(:event)
+
+      let!(:event) { create(:event) }
+      let(:results) { event.players_predictions_high_to_low }
+
+      before do
         create(:event_player, event: event, predicted_uk_score: 45, player: create(:user))
         create(:event_player, event: event, predicted_uk_score: 102, player: create(:user))
         create(:event_player, event: event, predicted_uk_score: 3, player: create(:user))
-        event.save!
-        results = event.players_predictions_high_to_low
+      end
+      it 'returns players in descending prediction order' do
         expect(results.count).to eql(3)
         expect(results.first.predicted_uk_score).to eql(102)
         expect(results.last.predicted_uk_score).to eql(3)
@@ -76,31 +79,49 @@ RSpec.describe Event, type: :model do
     end
   end
   describe '@complete?' do
-    it 'responds true if status is archived and data complete' do
-      event.archived!
-      event.real_winner_id = 1
-      event.home_winner_id = 1
-      event.real_player_id = 1
-      event.home_player_id = 1
-      expect(event.complete?).to eql(true)
-    end
-    it 'responds true if status is archived and data complete' do
-      event.archived!
-      event.real_winner_id = 1
-      event.home_winner_id = 1
-      event.real_player_id = nil
-      event.real_player_name = 'Winner'
-      event.home_player_id = 1
-      expect(event.complete?).to eql(true)
-    end
+    context 'when status is archived' do
+      before do
+        event.archived!
+      end
 
-    it 'responds false if status is archived but data incomplete' do
-      event.archived!
-      event.real_winner_id = nil
-      event.home_winner_id = nil
-      event.real_player_id = nil
-      event.home_player_id = nil
-      expect(event.complete?).to eql(false)
+      context 'when data complete' do
+        before do
+          event.real_winner_id = 1
+          event.home_winner_id = 1
+          event.real_player_id = 1
+          event.home_player_id = 1
+        end
+
+        it 'responds true' do
+          expect(event.complete?).to eql(true)
+        end
+      end
+      context 'when data partially complete' do
+        before do
+          event.real_winner_id = 1
+          event.home_winner_id = 1
+          event.real_player_id = nil
+          event.real_player_name = 'Winner'
+          event.home_player_id = 1
+        end
+
+        it 'responds true when data partial' do
+          expect(event.complete?).to eql(true)
+        end
+      end
+
+      context 'when data incomplete' do
+        before do
+          event.real_winner_id = nil
+          event.home_winner_id = nil
+          event.real_player_id = nil
+          event.home_player_id = nil
+        end
+
+        it 'responds false' do
+          expect(event.complete?).to eql(false)
+        end
+      end
     end
 
     it 'responds false if status not archived' do
@@ -196,16 +217,8 @@ RSpec.describe Event, type: :model do
       expect(event).to be_invalid
     end
     it 'requires a unique year' do
-      described_class.create(
-        year: 2015,
-        country_id: 1,
-        host_city: 'london'
-      )
-      duplicate = described_class.new(
-        year: 2015,
-        country_id: 1,
-        host_city: 'london'
-      )
+      described_class.create(year: 2015, country_id: 1, host_city: 'london')
+      duplicate = described_class.new(year: 2015, country_id: 1, host_city: 'london')
       expect(duplicate).to be_invalid
     end
     context 'status' do

@@ -21,14 +21,8 @@ RSpec.describe User, type: :model do
     end
 
     it 'requires a unique email' do
-      described_class.create(
-        email: 'test@duplicate.com',
-        role: 'user'
-      )
-      duplicate = described_class.new(
-        role: 'admin',
-        email: 'test@duplicate.com'
-      )
+      described_class.create(email: 'test@duplicate.com', role: 'user')
+      duplicate = described_class.new(role: 'admin', email: 'test@duplicate.com')
       expect(duplicate).to be_invalid
     end
 
@@ -55,9 +49,9 @@ RSpec.describe User, type: :model do
     end
   end
   describe '@in_event?' do
+    let(:user) { create :user }
+    let(:event) { create :event }
     it 'responds true if a player has joined an event' do
-      user = create(:user)
-      event = create(:event)
       expect(user.in_event?(event)).to be false
       create(:event_player, event: event, player: user)
       expect(user.in_event?(event)).to be true
@@ -85,33 +79,30 @@ RSpec.describe User, type: :model do
       expect(user.admin?).to be false
     end
   end
-  it 'can find existing user' do
-    described_class.create(
-      email: 'test_create@example.com',
-      name: 'Test User',
-      role: 'user'
-    )
-    user_struct = OpenStruct.new(
-      info: {
-        'email' => 'test_create@example.com',
-        'name' => 'Test User'
-      }
-    )
-    expect do
-      described_class.find_for_google_oauth2(user_struct)
-    end.not_to change(described_class, :count)
-    user2 = described_class.find_for_google_oauth2(user_struct)
-    expect(user2).to be_valid
+  context 'an existing user' do
+    before do
+      described_class.create(email: 'test_create@example.com', name: 'Test User', role: 'user')
+      expect do
+        described_class.find_for_google_oauth2(user_struct)
+      end.not_to change(described_class, :count)
+    end
+    let(:user_struct) { OpenStruct.new(info: { 'email' => 'test_create@example.com', 'name' => 'Test User' }) }
+
+    let(:user2) { described_class.find_for_google_oauth2(user_struct) }
+
+    it 'can be found' do
+      expect(user2).to be_valid
+    end
   end
-  it 'will create a new user if credentials valid' do
-    user_struct = OpenStruct.new(
-      info: {
-        'email' => 'test_create_unique@example.com',
-        'name' => 'Test User'
-      }
-    )
-    expect do
-      described_class.find_for_google_oauth2(user_struct)
-    end.to change(described_class, :count).by(1)
+  context 'when credentials valid' do
+    let(:user_struct) do
+      OpenStruct.new(info: { 'email' => 'test_create_unique@example.com', 'name' => 'Test User' })
+    end
+
+    it 'will create a new user' do
+      expect do
+        described_class.find_for_google_oauth2(user_struct)
+      end.to change(described_class, :count).by(1)
+    end
   end
 end
