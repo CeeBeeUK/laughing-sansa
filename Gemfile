@@ -49,8 +49,8 @@ group :test, :development do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'rubocop', '~>0.39.0', require: false
-  gem 'rubocop-rspec', '~>1.4.1', require: false
+  gem 'rubocop', '~>0.39', require: false
+  gem 'rubocop-rspec', '~>1', require: false
   gem 'guard-rspec'
   gem 'guard-rubocop'
   gem 'guard'
