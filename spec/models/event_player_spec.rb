@@ -86,17 +86,20 @@ RSpec.describe EventPlayer, type: :model do
       end
       describe 'methods' do
         describe 'reset_values' do
-          it 'when passed two strings clears original value and sets new one' do
+          before do
             participant.scores.each do |p|
               p.fattest = false
               p.save
             end
-            score = participant.scores.first
-            score2 = participant.scores.last
-
             score.fattest = true
             score.best_wail = true
             score.save!
+          end
+
+          let(:score) { participant.scores.first }
+          let(:score2) { participant.scores.last }
+
+          it 'when passed two strings clears original value and sets new one' do
             expect(participant.fattest?).to eql(score.participating_country)
             expect(participant.best_wail?).to eql(score.participating_country)
 

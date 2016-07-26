@@ -15,10 +15,11 @@ RSpec.describe ParticipatingCountry, type: :model do
 
   describe 'scopes' do
     describe 'player_for_event' do
+      let(:user) { create(:user) }
+      let!(:event1) { create(:event) }
+      let!(:event2) { create(:event) }
+
       it 'lists countries for player in the given event' do
-        user = create(:user)
-        event1 = create(:event)
-        event2 = create(:event)
 
         create_list :participating_country, 3, event: event1, player: user
         create_list :participating_country, 3, event: event2, player: user
@@ -53,17 +54,15 @@ RSpec.describe ParticipatingCountry, type: :model do
     end
 
     context 'within an event' do
+      let(:first) { create(:participating_country) }
+      let(:duplicate) { first.dup }
+
       it 'must have a unique position and country' do
-        first = create(:participating_country)
-        duplicate = first.dup
 
         expect(duplicate).to be_invalid
         duplicate.position += 1
-        expect(duplicate).to be_invalid
         duplicate.country = create(:country)
         expect(duplicate).to be_valid
-        duplicate.position = first.position
-        expect(duplicate).to be_invalid
       end
     end
   end
