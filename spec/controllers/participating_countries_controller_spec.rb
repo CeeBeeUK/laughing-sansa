@@ -12,7 +12,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     describe 'GET #manage' do
       before(:each) { get :manage, params: { year: event.year } }
       it 'returns a 302 status code' do
-        expect(response.status).to eql(302)
+        expect(response.status).to be 302
       end
       it 'redirect to event page' do
         expect(response).to redirect_to(root_path)
@@ -23,7 +23,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         post :sort, params: { pc: [2, 1], year: event.year }
       end
       it 'returns a 302 status code' do
-        expect(response.status).to eql(302)
+        expect(response.status).to be 302
       end
       it 'renders nothing' do
         expect(response).to redirect_to(root_path)
@@ -34,7 +34,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         post :create, params: { participating_country_id: create(:country).id, year: event.year }
       end
       it 'returns a 302 status code' do
-        expect(response.status).to eql(302)
+        expect(response.status).to be 302
       end
       it 'renders nothing' do
         expect(response).to redirect_to(root_path)
@@ -45,7 +45,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         post :allocate, params: { participating_country_id: create(:country).id, year: event.year, player_id: create(:user).id }
       end
       it 'returns a 302 status code' do
-        expect(response.status).to eql(302)
+        expect(response.status).to be 302
       end
       it 'renders nothing' do
         expect(response).to redirect_to(root_path)
@@ -61,7 +61,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     describe 'GET #manage' do
       before(:each) { get :manage, params: { year: event.year } }
       it 'returns a 302 status code' do
-        expect(response.status).to eql(302)
+        expect(response.status).to be 302
       end
       it 'redirect to event page' do
         expect(response).to redirect_to(root_path)
@@ -72,7 +72,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         post :sort, params: { pc: [2, 1], year: event.year }
       end
       it 'returns a 302 status code' do
-        expect(response.status).to eql(302)
+        expect(response.status).to be 302
       end
       it 'renders nothing' do
         expect(response).to redirect_to(root_path)
@@ -84,7 +84,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
       end
       it 'returns a 302 status code' do
-        expect(response.status).to eql(302)
+        expect(response.status).to be 302
       end
       it 'renders nothing' do
         expect(response).to redirect_to(root_path)
@@ -95,7 +95,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         post :allocate, params: { participating_country_id: create(:country).id, year: event.year, player_id: create(:user).id }
       end
       it 'returns a 302 status code' do
-        expect(response.status).to eql(302)
+        expect(response.status).to be 302
       end
       it 'renders nothing' do
         expect(response).to redirect_to(root_path)
@@ -111,7 +111,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         get :manage, params: { year: event.year }
       end
       it 'returns a 200 status code' do
-        expect(response.status).to eql(200)
+        expect(response.status).to be 200
       end
       it 'renders the template' do
         expect(response).to render_template :manage
@@ -135,7 +135,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         post :sort, params: { pc: [pc_2.position, pc_1.position], year: event.year }
       end
       it 'returns a 200 status code' do
-        expect(response.status).to eql(200)
+        expect(response.status).to be 200
       end
       it 'renders nothing' do
         expect(response).to render_template(nil)
@@ -149,7 +149,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
           post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
         end
         it 'returns a 302 status code' do
-          expect(response.status).to eql(302)
+          expect(response.status).to be 302
         end
         it 'renders the management view' do
           expect(response).to redirect_to manage_countries_path(event)
@@ -177,7 +177,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
           post :allocate, params: { year: event.year, participating_country: { id: participating_country.id, player_id: player.id } }
         end
         it 'returns a 302 code' do
-          expect(response.status).to eql(302)
+          expect(response.status).to be 302
         end
         it 'renders the management view' do
           expect(response).to redirect_to manage_countries_path(participating_country.event)
@@ -198,7 +198,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
           post :allocate, params: { year: event.year, participating_country: { id: participating_country.id, player_id: 'bob' } }
         end
         it 'returns a 302 code' do
-          expect(response.status).to eql(302)
+          expect(response.status).to be 302
         end
         it 'renders the management view' do
           expect(response).to redirect_to manage_countries_path(participating_country.event)

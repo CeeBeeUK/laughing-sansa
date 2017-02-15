@@ -17,25 +17,25 @@ RSpec.describe 'Events', type: :request do
   describe 'GET /events' do
     it 'redirects when user not authenticated' do
       get events_path
-      expect(response.status).to eql(302)
+      expect(response.status).to be 302
     end
 
     it 'returns 200 when authenticated' do
       login_as user
       get events_path
-      expect(response.status).to eql(200)
+      expect(response.status).to be 200
     end
 
     it 'returns 200 when authorised' do
       login_as(admin_user, scope: :user)
       get events_path
-      expect(response.status).to eql(200)
+      expect(response.status).to be 200
     end
   end
   describe 'GET /events/new' do
     it 'redirects when not authenticated' do
       get new_event_path
-      expect(response.status).to eql(302)
+      expect(response.status).to be 302
     end
     context 'valid user' do
 
@@ -50,13 +50,13 @@ RSpec.describe 'Events', type: :request do
       it 'returns 302 when authenticated' do
         login_as(user, scope: :user)
         get new_event_path
-        expect(response.status).to eql(302)
+        expect(response.status).to be 302
       end
 
       it 'returns 200 when authorised' do
         login_as admin_user
         get new_event_path
-        expect(response.status).to eql(200)
+        expect(response.status).to be 200
       end
     end
   end
