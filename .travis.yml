@@ -22,3 +22,5 @@ deploy:
   app: laughing-sansa
   on:
     repo: CeeBeeUK/laughing-sansa
+after_success:
+- bundle exec codeclimate-test-reporter

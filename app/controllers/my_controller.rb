@@ -11,7 +11,7 @@ class MyController < ApplicationController
 
   def profile_update
     authorize! :update, User
-    @user.update_column(:display_name, user_params[:display_name])
+    @user.update_attributes(display_name: user_params[:display_name])
     redirect_to my_profile_path
   end
 
@@ -60,14 +60,14 @@ private
 
   def load_eps
     load_pp
-    @eps = EventPlayerScore.
-           joins(:event, :participating_country).
-           find_by(
-             'events.year = ? AND participating_countries.position = ? AND event_player_id = ?',
-             params[:year],
-             params[:act],
-             @pp.id
-           ) if @pp
+    if @pp
+      @eps = EventPlayerScore.
+             joins(:event, :participating_country).
+             find_by(
+               'events.year = ? AND participating_countries.position = ? AND event_player_id = ?',
+               params[:year], params[:act], @pp.id
+             )
+    end
   end
 
   def load_user

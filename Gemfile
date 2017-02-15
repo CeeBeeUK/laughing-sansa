@@ -13,9 +13,9 @@ gem 'coffee-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 # template
-gem 'slim-rails'
 gem 'foundation-rails', '~>5.5'
 gem 'nokogiri', '>=1.6.8'
+gem 'slim-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -27,16 +27,16 @@ gem 'jbuilder'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring', group: :development
 gem 'rails-controller-testing'
+gem 'spring', group: :development
 
 # Devise for user authentication
 gem 'devise'
 gem 'omniauth-google-oauth2'
 # and CanCan for authorization
+gem 'acts_as_list'
 gem 'cancancan'
 gem 'rack-pratchett'
-gem 'acts_as_list'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -46,20 +46,20 @@ group :development do
 end
 
 group :test, :development do
-  gem 'rspec'
-  gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'rubocop', '~>0.39', require: false
-  gem 'rubocop-rspec', '~>1', require: false
+  gem 'guard'
   gem 'guard-rspec'
   gem 'guard-rubocop'
-  gem 'guard'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'rubocop', '~>0.39', require: false
+  gem 'rubocop-rspec', '~>1', require: false
 end
 
 # Code climate CI integration
 group :test do
-  gem 'database_cleaner'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'database_cleaner'
 end
 
 group :production do

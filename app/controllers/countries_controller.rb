@@ -19,8 +19,7 @@ class CountriesController < ApplicationController
     respond_with(@country)
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @country = Country.new(country_params)
