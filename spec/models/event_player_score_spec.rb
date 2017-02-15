@@ -39,7 +39,7 @@ RSpec.describe EventPlayerScore, type: :model do
       expect(eps.country).to eql(eps.participating_country.country.name)
     end
     it 'sets a sum for the particpating country' do
-      expect(eps.participating_country.sum).to eql(0)
+      expect(eps.participating_country.sum).to be 0
     end
   end
   describe 'associations' do
@@ -63,7 +63,7 @@ RSpec.describe EventPlayerScore, type: :model do
         result = described_class.scoring_order(ep.id)
         expect(result.count).to eq 3
         result.first.update(score: 10)
-        expect(described_class.scoring_order(ep.id).last.score).to eql(10)
+        expect(described_class.scoring_order(ep.id).last.score).to be 10
       end
     end
     describe 'playing_order' do

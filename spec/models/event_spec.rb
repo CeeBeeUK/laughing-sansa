@@ -11,7 +11,7 @@ RSpec.describe Event, type: :model do
   it 'passes factory build with countries' do
     event = create(:event, :with_countries)
     expect(event).to be_valid
-    expect(event.participating_countries.count).to eql(3)
+    expect(event.participating_countries.count).to be 3
   end
 
   context 'automatically adds the "big 5" when created' do
@@ -29,13 +29,13 @@ RSpec.describe Event, type: :model do
     it 'and the host is non-big 5' do
       create(:event, country: create(:country, name: 'Serbia'))
       event.add_big_five
-      expect(event.participating_countries.count).to eql(6)
+      expect(event.participating_countries.count).to be 6
     end
     it 'and the host is one of the big 5' do
       build(:event)
       event.country = uk
       event.add_big_five
-      expect(event.participating_countries.count).to eql(5)
+      expect(event.participating_countries.count).to be 5
     end
   end
 
@@ -72,9 +72,9 @@ RSpec.describe Event, type: :model do
         create(:event_player, event: event, predicted_uk_score: 3, player: create(:user))
       end
       it 'returns players in descending prediction order' do
-        expect(results.count).to eql(3)
-        expect(results.first.predicted_uk_score).to eql(102)
-        expect(results.last.predicted_uk_score).to eql(3)
+        expect(results.count).to be 3
+        expect(results.first.predicted_uk_score).to be 102
+        expect(results.last.predicted_uk_score).to be 3
       end
     end
   end
@@ -93,7 +93,7 @@ RSpec.describe Event, type: :model do
         end
 
         it 'responds true' do
-          expect(event.complete?).to eql(true)
+          expect(event.complete?).to be true
         end
       end
       context 'when data partially complete' do
@@ -106,7 +106,7 @@ RSpec.describe Event, type: :model do
         end
 
         it 'responds true when data partial' do
-          expect(event.complete?).to eql(true)
+          expect(event.complete?).to be true
         end
       end
 
@@ -119,14 +119,14 @@ RSpec.describe Event, type: :model do
         end
 
         it 'responds false' do
-          expect(event.complete?).to eql(false)
+          expect(event.complete?).to be false
         end
       end
     end
 
     it 'responds false if status not archived' do
       event.setup!
-      expect(event.complete?).to eql(false)
+      expect(event.complete?).to be false
     end
   end
   describe 'player_won?' do
@@ -224,17 +224,17 @@ RSpec.describe Event, type: :model do
     context 'status' do
       it 'allows being set to active' do
         event.active!
-        expect(event.active?).to eql(true)
+        expect(event.active?).to be true
         expect(event.status).to eql('active')
       end
       it 'allows being set to setup' do
         event.setup!
-        expect(event.setup?).to eql(true)
+        expect(event.setup?).to be true
         expect(event.status).to eql('setup')
       end
       it 'allows being set to archived' do
         event.archived!
-        expect(event.archived?).to eql(true)
+        expect(event.archived?).to be true
         expect(event.status).to eql('archived')
       end
       it 'fails if set to invalid value' do

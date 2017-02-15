@@ -123,10 +123,10 @@ RSpec.describe MyController, type: :controller do
       end
       it 'updates the score data' do
         event_player_score.reload
-        expect(event_player_score.fattest).to eql(true)
+        expect(event_player_score.fattest).to be true
       end
       it 'returns a redirect code' do
-        expect(response.status).to eql(302)
+        expect(response.status).to be 302
       end
       it 'redirects to the game view' do
         expect(response).to redirect_to(my_game_path(event_player_score.event))

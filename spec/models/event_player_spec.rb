@@ -74,12 +74,12 @@ RSpec.describe EventPlayer, type: :model do
       participant.event = event
     end
     it 'exposes the number of countries' do
-      expect(participant.event.participating_countries.count).to eql(2)
+      expect(participant.event.participating_countries.count).to be 2
     end
     context 'and saving the participant' do
       before(:each) { participant.save! }
       it 'has a score for each participating country' do
-        expect(participant.scores.count).to eql(2)
+        expect(participant.scores.count).to be 2
       end
       it 'has 0/2 for completed scores' do
         expect(participant.completed_scores).to eql('0/2')
@@ -116,7 +116,7 @@ RSpec.describe EventPlayer, type: :model do
                 p.fattest = false
                 p.save
               end
-              expect(participant.fattest?).to eql(nil)
+              expect(participant.fattest?).to be nil
             end
             it 'is one, returns the country name' do
               score = participant.scores.first
@@ -131,7 +131,7 @@ RSpec.describe EventPlayer, type: :model do
                 p.wackiest = false
                 p.save
               end
-              expect(participant.wackiest?).to eql(nil)
+              expect(participant.wackiest?).to be nil
             end
             it 'is one, returns the country name' do
               score = participant.scores.first
@@ -146,7 +146,7 @@ RSpec.describe EventPlayer, type: :model do
                 p.best_wail = false
                 p.save
               end
-              expect(participant.best_wail?).to eql(nil)
+              expect(participant.best_wail?).to be nil
             end
             it 'is one, returns the country' do
               score = participant.scores.first

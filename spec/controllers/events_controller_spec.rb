@@ -174,7 +174,7 @@ RSpec.describe EventsController, type: :controller do
           get :join, params: { year: event_player.event.to_param }
         end
         it 'returns a redirect code' do
-          expect(response.status).to eql(302)
+          expect(response.status).to be 302
         end
         it 'renders the players game template' do
           expect(response).to redirect_to my_game_path(event_player.event)

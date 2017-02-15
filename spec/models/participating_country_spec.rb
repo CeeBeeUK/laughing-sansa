@@ -26,7 +26,7 @@ RSpec.describe ParticipatingCountry, type: :model do
         event1.save!
 
         result = described_class.player_for_event(event1, user)
-        expect(result.count).to eql(3)
+        expect(result.count).to be 3
 
       end
     end

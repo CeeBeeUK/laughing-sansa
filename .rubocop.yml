@@ -139,4 +139,11 @@ Style/WordArray:
   Exclude:
     - 'spec/**/*'
 
+RSpec/NestedGroups:
+  Max: 10
+
+RSpec/ExpectActual:
+  Exclude:
+    - 'spec/routing/**/*'
+
 require: rubocop-rspec
