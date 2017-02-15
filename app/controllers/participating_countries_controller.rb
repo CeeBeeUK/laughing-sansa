@@ -6,8 +6,7 @@ class ParticipatingCountriesController < ApplicationController
   before_action :find_pc, only: [:allocate]
   respond_to :html
 
-  def manage
-  end
+  def manage; end
 
   def sort
     params[:pc].each_with_index do |id, index|
