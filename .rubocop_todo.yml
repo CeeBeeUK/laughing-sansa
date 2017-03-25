@@ -11,18 +11,6 @@
 Metrics/BlockLength:
   Max: 254
 
-# Offense count: 28
-RSpec/EmptyLineAfterFinalLet:
-  Exclude:
-#    - 'spec/controllers/my_controller_spec.rb'
-#    - 'spec/controllers/omniauth_callbacks_controller_spec.rb'
-#    - 'spec/controllers/participating_countries_controller_spec.rb'
-#    - 'spec/models/event_player_spec.rb'
-    - 'spec/models/event_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/views/events/edit.html.slim_spec.rb'
-    - 'spec/views/my/profile.html.slim_spec.rb'
-
 # Offense count: 46
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: implicit, each, example

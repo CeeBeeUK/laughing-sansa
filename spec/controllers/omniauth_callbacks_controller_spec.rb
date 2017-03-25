@@ -31,6 +31,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
     end
     context 'when there is an active event' do
       let(:event) { create(:event) }
+
       before(:each) do
         event.active!
         get :google_oauth2
@@ -44,6 +45,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
 
       context 'and the user has previously signed up' do
         let(:event_player) { create(:event_player, player: user, event: event) }
+
         it 'redirects to the active game' do
           event.active!
           event.reload

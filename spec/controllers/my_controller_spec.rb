@@ -16,6 +16,7 @@ RSpec.describe MyController, type: :controller do
   describe 'PUT #profile_update' do
     context 'with valid params' do
       let(:new_attributes) { user.attributes }
+
       before(:each) do
         sign_in user
         new_attributes['display_name'] = 'test display'
@@ -108,6 +109,7 @@ RSpec.describe MyController, type: :controller do
   describe 'PUT #score_create' do
     let(:event_player) { create(:event_player, player: user) }
     let(:event_player_score) { create(:event_player_score, event_player: event_player) }
+
     before(:each) do
       sign_in user
     end

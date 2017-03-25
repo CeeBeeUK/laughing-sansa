@@ -17,6 +17,7 @@ RSpec.describe Event, type: :model do
   context 'automatically adds the "big 5" when created' do
     let(:uk) { create(:country, name: 'United Kingdom') }
     let(:host) { create(:country, name: 'Host country') }
+
     before do
       Country.delete_all
       described_class.delete_all
@@ -55,6 +56,7 @@ RSpec.describe Event, type: :model do
   end
   describe 'players' do
     let(:event) { create(:event) }
+
     it 'returns a list of players' do
       create(:event_player, event: event, player: create(:user), predicted_uk_score: 1)
       expect(event.players.count).to eq(1)

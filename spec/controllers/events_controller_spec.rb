@@ -102,6 +102,7 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #join' do
       let(:event_player) { create(:event_player) }
+
       before :each do
         get :join, params: { year: event_player.event.to_param }
       end
@@ -116,6 +117,7 @@ RSpec.describe EventsController, type: :controller do
 
   context 'logged in as admin' do
     let(:event) { create(:event) }
+
     before(:each) do
       sign_in admin_user
     end
@@ -153,6 +155,7 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #join' do
       let(:event_player) { create(:event_player) }
+
       before :each do
         get :join, params: { year: event_player.event.to_param }
       end
@@ -170,6 +173,7 @@ RSpec.describe EventsController, type: :controller do
             event: create(:event, status: 1),
             player: admin_user)
         end
+
         before(:each) do
           get :join, params: { year: event_player.event.to_param }
         end
@@ -184,6 +188,7 @@ RSpec.describe EventsController, type: :controller do
     describe 'POST #sign_up' do
       context 'with valid params' do
         let(:event_player) { build(:event_player) }
+
         it 'creates a new participating player' do
           expect do
             post :sign_up, params: { year: event_player.event.year, event_player: event_player.attributes }
@@ -240,8 +245,10 @@ RSpec.describe EventsController, type: :controller do
 
     describe 'PUT #update' do
       let(:event) { create(:event) }
+
       context 'with valid params' do
         let(:new_attributes) { event.attributes }
+
         before(:each) { new_attributes['host_city'] += 'test' }
         it 'updates the requested event' do
           expect = "#{event.host_city}test"

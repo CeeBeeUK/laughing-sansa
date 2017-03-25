@@ -51,6 +51,7 @@ RSpec.describe User, type: :model do
   describe '@in_event?' do
     let(:user) { create :user }
     let(:event) { create :event }
+
     it 'responds true if a player has joined an event' do
       expect(user.in_event?(event)).to be false
       create(:event_player, event: event, player: user)

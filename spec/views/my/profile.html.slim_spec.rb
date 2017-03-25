@@ -5,6 +5,7 @@ RSpec.describe 'my/profile.html.slim', type: :view do
   include Devise::Test::ControllerHelpers
 
   let(:user) { assign(:user, create(:user)) }
+
   before(:each) do
     sign_in user
   end

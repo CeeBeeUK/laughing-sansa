@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe EventPlayer, type: :model do
   let(:participant) { build(:event_player) }
+
   before(:each) { participant.event.active! }
   it 'passes factory build' do
     expect(participant).to be_valid
@@ -50,6 +51,7 @@ RSpec.describe EventPlayer, type: :model do
   end
   context 'joining an event' do
     let(:event) { build(:event) }
+
     it 'in setup should fail' do
       event.setup!
       participant.event = event
@@ -69,6 +71,7 @@ RSpec.describe EventPlayer, type: :model do
 
   context 'joining an event with countries' do
     let(:event) { create(:event, :with_countries, number_of_countries: 2) }
+
     before(:each) do
       event.active!
       participant.event = event

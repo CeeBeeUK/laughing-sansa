@@ -9,6 +9,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
 
   context 'as a guest' do
     let(:event) { create(:event) }
+
     describe 'GET #manage' do
       before(:each) { get :manage, params: { year: event.year } }
       it 'returns a 302 status code' do
@@ -55,6 +56,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
 
   context 'as a user' do
     let(:event) { create(:event) }
+
     before(:each) do
       sign_in user
     end
@@ -80,6 +82,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     end
     describe 'POST #create' do
       let(:participating_country) { create(:participating_country) }
+
       before(:each) do
         post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
       end
@@ -105,6 +108,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
 
   context 'logged in as admin' do
     let(:event) { create(:event) }
+
     describe 'GET #manage' do
       before(:each) do
         sign_in admin
@@ -130,6 +134,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
           country: create(:country),
           position: 2)
       end
+
       before(:each) do
         sign_in admin
         post :sort, params: { pc: [pc_2.position, pc_1.position], year: event.year }
@@ -144,6 +149,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     describe 'POST #create' do
       context 'with valid params' do
         let(:participating_country) { create(:participating_country) }
+
         before(:each) do
           sign_in admin
           post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
@@ -157,6 +163,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
       context 'when attempting to create a duplicate participating country' do
         let(:participating_country) { create(:participating_country) }
+
         before(:each) do
           sign_in admin
           post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
@@ -172,6 +179,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       context 'with valid params' do
         let(:participating_country) { create(:participating_country) }
         let(:player) { create(:user) }
+
         before(:each) do
           sign_in admin
           post :allocate, params: { year: event.year, participating_country: { id: participating_country.id, player_id: player.id } }
@@ -193,6 +201,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       context 'with invalid params' do
         let(:participating_country) { create(:participating_country) }
         let(:player) { create(:user) }
+
         before(:each) do
           sign_in admin
           post :allocate, params: { year: event.year, participating_country: { id: participating_country.id, player_id: 'bob' } }
