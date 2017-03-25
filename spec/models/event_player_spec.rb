@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe EventPlayer, type: :model do
   let(:participant) { build(:event_player) }
 
-  before(:each) { participant.event.active! }
+  before { participant.event.active! }
   it 'passes factory build' do
     expect(participant).to be_valid
   end
@@ -72,7 +72,7 @@ RSpec.describe EventPlayer, type: :model do
   context 'joining an event with countries' do
     let(:event) { create(:event, :with_countries, number_of_countries: 2) }
 
-    before(:each) do
+    before do
       event.active!
       participant.event = event
     end
@@ -80,7 +80,7 @@ RSpec.describe EventPlayer, type: :model do
       expect(participant.event.participating_countries.count).to be 2
     end
     context 'and saving the participant' do
-      before(:each) { participant.save! }
+      before { participant.save! }
       it 'has a score for each participating country' do
         expect(participant.scores.count).to be 2
       end

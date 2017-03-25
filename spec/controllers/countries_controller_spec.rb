@@ -15,7 +15,7 @@ RSpec.describe CountriesController, type: :controller do
 
   context 'as a logged in admin' do
 
-    before(:each) { sign_in admin_user }
+    before { sign_in admin_user }
 
     describe 'GET index' do
       it 'assigns all countries as @countries' do

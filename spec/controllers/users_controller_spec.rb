@@ -7,7 +7,7 @@ RSpec.describe UsersController, type: :controller do
   let(:admin) { create(:admin_user) }
 
   context 'as a guest' do
-    before(:each) do
+    before do
       get :index
     end
     it 'returns a redirect status' do
@@ -18,7 +18,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
   context 'as a user' do
-    before(:each) do
+    before do
       sign_in user
       get :index
     end
@@ -30,7 +30,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
   context 'as an admin' do
-    before(:each) do
+    before do
       sign_in admin
       get :index
     end

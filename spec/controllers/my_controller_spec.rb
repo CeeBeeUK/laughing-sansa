@@ -17,7 +17,7 @@ RSpec.describe MyController, type: :controller do
     context 'with valid params' do
       let(:new_attributes) { user.attributes }
 
-      before(:each) do
+      before do
         sign_in user
         new_attributes['display_name'] = 'test display'
       end
@@ -42,11 +42,11 @@ RSpec.describe MyController, type: :controller do
 
     let(:event) { create(:event) }
 
-    before(:each) do
+    before do
       sign_in user
     end
     context 'when player has joined game' do
-      before(:each) do
+      before do
         event_player = create(:event_player, player: user, event: event)
         get :game, params: { year: event_player.event.to_param }
       end
@@ -74,7 +74,7 @@ RSpec.describe MyController, type: :controller do
         let(:event_player) { create(:event_player, player: user) }
         let(:event_player_score) { create(:event_player_score, event_player: event_player) }
 
-        before(:each) do
+        before do
           get :game, params: { year: event.to_param }
         end
         it 'renders root' do
@@ -90,7 +90,7 @@ RSpec.describe MyController, type: :controller do
     let(:event_player) { create(:event_player, player: user) }
     let(:event_player_score) { create(:event_player_score, event_player: event_player) }
 
-    before(:each) do
+    before do
       sign_in user
       get :score,
         params: {
@@ -110,11 +110,11 @@ RSpec.describe MyController, type: :controller do
     let(:event_player) { create(:event_player, player: user) }
     let(:event_player_score) { create(:event_player_score, event_player: event_player) }
 
-    before(:each) do
+    before do
       sign_in user
     end
     context 'with valid params' do
-      before(:each) do
+      before do
         event_player_score.fattest = true
         post :score_create,
           params: {

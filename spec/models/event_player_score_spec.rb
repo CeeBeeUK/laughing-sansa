@@ -54,7 +54,7 @@ RSpec.describe EventPlayerScore, type: :model do
     end
   end
   describe 'scopes' do
-    before(:each) { described_class.delete_all }
+    before { described_class.delete_all }
     let(:ep) { create(:event_player) }
 
     describe 'scoring_order' do

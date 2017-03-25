@@ -6,7 +6,7 @@ RSpec.describe 'countries/index', type: :view do
 
   let(:user) { create(:user) }
 
-  before(:each) do
+  before do
     assign(:countries,
       [
         Country.create(name: 'country 1'),

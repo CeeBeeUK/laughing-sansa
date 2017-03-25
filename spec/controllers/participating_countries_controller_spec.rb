@@ -11,7 +11,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     let(:event) { create(:event) }
 
     describe 'GET #manage' do
-      before(:each) { get :manage, params: { year: event.year } }
+      before { get :manage, params: { year: event.year } }
       it 'returns a 302 status code' do
         expect(response.status).to be 302
       end
@@ -20,7 +20,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #sort' do
-      before(:each) do
+      before do
         post :sort, params: { pc: [2, 1], year: event.year }
       end
       it 'returns a 302 status code' do
@@ -31,7 +31,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #create' do
-      before(:each) do
+      before do
         post :create, params: { participating_country_id: create(:country).id, year: event.year }
       end
       it 'returns a 302 status code' do
@@ -42,7 +42,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #allocate' do
-      before(:each) do
+      before do
         post :allocate, params: { participating_country_id: create(:country).id, year: event.year, player_id: create(:user).id }
       end
       it 'returns a 302 status code' do
@@ -57,11 +57,11 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
   context 'as a user' do
     let(:event) { create(:event) }
 
-    before(:each) do
+    before do
       sign_in user
     end
     describe 'GET #manage' do
-      before(:each) { get :manage, params: { year: event.year } }
+      before { get :manage, params: { year: event.year } }
       it 'returns a 302 status code' do
         expect(response.status).to be 302
       end
@@ -70,7 +70,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #sort' do
-      before(:each) do
+      before do
         post :sort, params: { pc: [2, 1], year: event.year }
       end
       it 'returns a 302 status code' do
@@ -83,7 +83,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     describe 'POST #create' do
       let(:participating_country) { create(:participating_country) }
 
-      before(:each) do
+      before do
         post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
       end
       it 'returns a 302 status code' do
@@ -94,7 +94,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #allocate' do
-      before(:each) do
+      before do
         post :allocate, params: { participating_country_id: create(:country).id, year: event.year, player_id: create(:user).id }
       end
       it 'returns a 302 status code' do
@@ -110,7 +110,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     let(:event) { create(:event) }
 
     describe 'GET #manage' do
-      before(:each) do
+      before do
         sign_in admin
         get :manage, params: { year: event.year }
       end
@@ -135,7 +135,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
           position: 2)
       end
 
-      before(:each) do
+      before do
         sign_in admin
         post :sort, params: { pc: [pc_2.position, pc_1.position], year: event.year }
       end
@@ -150,7 +150,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       context 'with valid params' do
         let(:participating_country) { create(:participating_country) }
 
-        before(:each) do
+        before do
           sign_in admin
           post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
         end
@@ -164,7 +164,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       context 'when attempting to create a duplicate participating country' do
         let(:participating_country) { create(:participating_country) }
 
-        before(:each) do
+        before do
           sign_in admin
           post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
           post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
@@ -180,7 +180,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         let(:participating_country) { create(:participating_country) }
         let(:player) { create(:user) }
 
-        before(:each) do
+        before do
           sign_in admin
           post :allocate, params: { year: event.year, participating_country: { id: participating_country.id, player_id: player.id } }
         end
@@ -202,7 +202,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         let(:participating_country) { create(:participating_country) }
         let(:player) { create(:user) }
 
-        before(:each) do
+        before do
           sign_in admin
           post :allocate, params: { year: event.year, participating_country: { id: participating_country.id, player_id: 'bob' } }
         end

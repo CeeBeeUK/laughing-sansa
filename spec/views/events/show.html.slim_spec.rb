@@ -16,7 +16,7 @@ RSpec.describe 'events/show', type: :view do
     expect(rendered).to match(/london/)
   end
   context 'with a signed in user' do
-    before(:each) do
+    before do
       event.active!
       sign_in user
     end
@@ -35,7 +35,7 @@ RSpec.describe 'events/show', type: :view do
     end
   end
   context 'as an admin' do
-    before(:each) do
+    before do
       event.active!
       sign_in admin
       render
