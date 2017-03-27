@@ -10,8 +10,3 @@
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/BlockLength:
   Max: 254
-
-# Offense count: 19
-RSpec/MultipleExpectations:
-  Max: 1
-

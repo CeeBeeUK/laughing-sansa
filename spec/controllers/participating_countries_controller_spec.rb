@@ -169,9 +169,14 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
           post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
           post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
         end
-        it 'displays a flash alert' do
-          expect(flash[:alert]).to be_present
-          expect(flash[:alert]).to eql('Country already in event')
+        describe 'a flash alert' do
+          it 'is displayed' do
+            expect(flash[:alert]).to be_present
+          end
+
+          it 'has the correct text' do
+            expect(flash[:alert]).to eql('Country already in event')
+          end
         end
       end
     end
@@ -212,9 +217,13 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         it 'renders the management view' do
           expect(response).to redirect_to manage_countries_path(participating_country.event)
         end
-        it 'sets a flash message' do
-          expect(flash[:alert]).to be_present
-          expect(flash[:alert]).to eql(['Player is not a number'])
+        describe 'flash message' do
+          it 'is set' do
+            expect(flash[:alert]).to be_present
+          end
+          it 'has the right text' do
+            expect(flash[:alert]).to eql(['Player is not a number'])
+          end
         end
         it 'does not amend the player on the PC' do
           participating_country.reload

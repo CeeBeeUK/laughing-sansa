@@ -8,12 +8,15 @@ RSpec.describe 'events/show', type: :view do
   let(:admin) { create(:admin_user) }
   let(:event) { assign(:event, create(:event)) }
 
-  it 'renders attributes' do
-    event
-    sign_in user
-    render
-    expect(rendered).to match(/#{event.year}/)
-    expect(rendered).to match(/london/)
+  describe 'renders attributes' do
+    before do
+      event
+      sign_in user
+      render
+    end
+
+    it { expect(rendered).to match(/#{event.year}/) }
+    it { expect(rendered).to match(/london/) }
   end
   context 'with a signed in user' do
     before do

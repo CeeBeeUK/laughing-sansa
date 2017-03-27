@@ -147,10 +147,10 @@ RSpec.describe EventsController, type: :controller do
       end
     end
     describe 'GET #admin' do
-      it 'assigns the requested event as @event' do
-        get :admin, params: { year: event.to_param }, session: valid_session
-        expect(assigns(:event)).to be_a Event
-        expect(assigns(:data)).to be_a AdminData
+      describe 'assigns the requested event as @event' do
+        before { get :admin, params: { year: event.to_param }, session: valid_session }
+        it { expect(assigns(:event)).to be_a Event }
+        it { expect(assigns(:data)).to be_a AdminData }
       end
     end
     describe 'GET #join' do
@@ -218,10 +218,10 @@ RSpec.describe EventsController, type: :controller do
           end.to change(Event, :count).by(1)
         end
 
-        it 'assigns a newly created event as @event' do
-          post :create, params: { event: event.attributes }, session: valid_session
-          expect(assigns(:event)).to be_a(Event)
-          expect(assigns(:event)).to be_persisted
+        describe 'assigns a newly created event as @event' do
+          before { post :create, params: { event: event.attributes }, session: valid_session }
+          it { expect(assigns(:event)).to be_a(Event) }
+          it { expect(assigns(:event)).to be_persisted }
         end
 
         it 'redirects to the created event' do

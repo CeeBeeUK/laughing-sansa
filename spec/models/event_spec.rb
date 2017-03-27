@@ -8,12 +8,6 @@ RSpec.describe Event, type: :model do
     expect(event).to be_valid
   end
 
-  it 'passes factory build with countries' do
-    event = create(:event, :with_countries)
-    expect(event).to be_valid
-    expect(event.participating_countries.count).to be 3
-  end
-
   context 'automatically adds the "big 5" when created' do
     let(:uk) { create(:country, name: 'United Kingdom') }
     let(:host) { create(:country, name: 'Host country') }
@@ -224,20 +218,20 @@ RSpec.describe Event, type: :model do
       expect(duplicate).to be_invalid
     end
     context 'status' do
-      it 'allows being set to active' do
-        event.active!
-        expect(event.active?).to be true
-        expect(event.status).to eql('active')
+      describe 'allows being set to active' do
+        before { event.active! }
+        it { expect(event.active?).to be true }
+        it { expect(event.status).to eql('active') }
       end
-      it 'allows being set to setup' do
-        event.setup!
-        expect(event.setup?).to be true
-        expect(event.status).to eql('setup')
+      describe 'allows being set to setup' do
+        before { event.setup! }
+        it { expect(event.setup?).to be true }
+        it { expect(event.status).to eql('setup') }
       end
-      it 'allows being set to archived' do
-        event.archived!
-        expect(event.archived?).to be true
-        expect(event.status).to eql('archived')
+      describe 'allows being set to archived' do
+        before { event.archived! }
+        it { expect(event.archived?).to be true }
+        it { expect(event.status).to eql('archived') }
       end
       it 'fails if set to invalid value' do
         expect { event.status = 'wrong' }.to raise_error(ArgumentError, "'wrong' is not a valid status")
