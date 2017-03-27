@@ -32,9 +32,12 @@ RSpec.describe User, type: :model do
       expect(user.errors[:role]).to eq ["can't be blank"]
     end
 
-    it 'requires a valid role' do
+    before do
       user.role = 'student'
       expect(user).to be_invalid
+    end
+
+    it 'requires a valid role' do
       expect(user.errors[:role]).to eq ['student is not a valid role']
     end
 

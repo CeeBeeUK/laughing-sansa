@@ -73,10 +73,10 @@ RSpec.describe Event, type: :model do
         create(:event_player, event: event, predicted_uk_score: 102, player: create(:user))
         create(:event_player, event: event, predicted_uk_score: 3, player: create(:user))
       end
-      it 'returns players in descending prediction order' do
-        expect(results.count).to be 3
-        expect(results.first.predicted_uk_score).to be 102
-        expect(results.last.predicted_uk_score).to be 3
+      describe 'returns players in descending prediction order' do
+        it { expect(results.count).to be 3 }
+        it { expect(results.first.predicted_uk_score).to be 102 }
+        it { expect(results.last.predicted_uk_score).to be 3 }
       end
     end
   end
