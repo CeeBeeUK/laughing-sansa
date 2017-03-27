@@ -25,7 +25,7 @@ RSpec.describe 'layouts/application.html.slim', type: :view do
     end
   end
   context 'signed in admin' do
-    before(:each) { sign_in admin }
+    before { sign_in admin }
     it 'have a sign out option' do
       render
       assert_select 'nav.left-off-canvas-menu>ul.off-canvas-list>li>a', text: 'Sign out', count: 1

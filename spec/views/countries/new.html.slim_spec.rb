@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'countries/new', type: :view do
-  before(:each) do
-    @country =  Country.create(name: nil)
+  before do
+    @country = Country.create(name: nil)
   end
 
   it 'renders new country form' do

@@ -6,7 +6,7 @@ RSpec.describe 'events/index', type: :view do
 
   let(:user) { create(:user) }
 
-  before(:each) do
+  before do
     country = create(:country)
     assign(:events,
       [

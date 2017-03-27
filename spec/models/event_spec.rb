@@ -8,15 +8,10 @@ RSpec.describe Event, type: :model do
     expect(event).to be_valid
   end
 
-  it 'passes factory build with countries' do
-    event = create(:event, :with_countries)
-    expect(event).to be_valid
-    expect(event.participating_countries.count).to be 3
-  end
-
   context 'automatically adds the "big 5" when created' do
     let(:uk) { create(:country, name: 'United Kingdom') }
     let(:host) { create(:country, name: 'Host country') }
+
     before do
       Country.delete_all
       described_class.delete_all
@@ -55,6 +50,7 @@ RSpec.describe Event, type: :model do
   end
   describe 'players' do
     let(:event) { create(:event) }
+
     it 'returns a list of players' do
       create(:event_player, event: event, player: create(:user), predicted_uk_score: 1)
       expect(event.players.count).to eq(1)
@@ -71,10 +67,10 @@ RSpec.describe Event, type: :model do
         create(:event_player, event: event, predicted_uk_score: 102, player: create(:user))
         create(:event_player, event: event, predicted_uk_score: 3, player: create(:user))
       end
-      it 'returns players in descending prediction order' do
-        expect(results.count).to be 3
-        expect(results.first.predicted_uk_score).to be 102
-        expect(results.last.predicted_uk_score).to be 3
+      describe 'returns players in descending prediction order' do
+        it { expect(results.count).to be 3 }
+        it { expect(results.first.predicted_uk_score).to be 102 }
+        it { expect(results.last.predicted_uk_score).to be 3 }
       end
     end
   end
@@ -222,20 +218,20 @@ RSpec.describe Event, type: :model do
       expect(duplicate).to be_invalid
     end
     context 'status' do
-      it 'allows being set to active' do
-        event.active!
-        expect(event.active?).to be true
-        expect(event.status).to eql('active')
+      describe 'allows being set to active' do
+        before { event.active! }
+        it { expect(event.active?).to be true }
+        it { expect(event.status).to eql('active') }
       end
-      it 'allows being set to setup' do
-        event.setup!
-        expect(event.setup?).to be true
-        expect(event.status).to eql('setup')
+      describe 'allows being set to setup' do
+        before { event.setup! }
+        it { expect(event.setup?).to be true }
+        it { expect(event.status).to eql('setup') }
       end
-      it 'allows being set to archived' do
-        event.archived!
-        expect(event.archived?).to be true
-        expect(event.status).to eql('archived')
+      describe 'allows being set to archived' do
+        before { event.archived! }
+        it { expect(event.archived?).to be true }
+        it { expect(event.status).to eql('archived') }
       end
       it 'fails if set to invalid value' do
         expect { event.status = 'wrong' }.to raise_error(ArgumentError, "'wrong' is not a valid status")

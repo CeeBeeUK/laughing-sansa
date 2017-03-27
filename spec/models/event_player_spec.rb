@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe EventPlayer, type: :model do
   let(:participant) { build(:event_player) }
-  before(:each) { participant.event.active! }
+
+  before { participant.event.active! }
   it 'passes factory build' do
     expect(participant).to be_valid
   end
@@ -50,6 +51,7 @@ RSpec.describe EventPlayer, type: :model do
   end
   context 'joining an event' do
     let(:event) { build(:event) }
+
     it 'in setup should fail' do
       event.setup!
       participant.event = event
@@ -69,7 +71,8 @@ RSpec.describe EventPlayer, type: :model do
 
   context 'joining an event with countries' do
     let(:event) { create(:event, :with_countries, number_of_countries: 2) }
-    before(:each) do
+
+    before do
       event.active!
       participant.event = event
     end
@@ -77,7 +80,7 @@ RSpec.describe EventPlayer, type: :model do
       expect(participant.event.participating_countries.count).to be 2
     end
     context 'and saving the participant' do
-      before(:each) { participant.save! }
+      before { participant.save! }
       it 'has a score for each participating country' do
         expect(participant.scores.count).to be 2
       end
@@ -94,19 +97,15 @@ RSpec.describe EventPlayer, type: :model do
             score.fattest = true
             score.best_wail = true
             score.save!
+            participant.set_attribute_to_true('fattest', score2.participating_country)
           end
 
           let(:score) { participant.scores.first }
           let(:score2) { participant.scores.last }
 
-          it 'when passed two strings clears original value and sets new one' do
-            expect(participant.fattest?).to eql(score.participating_country)
-            expect(participant.best_wail?).to eql(score.participating_country)
-
-            participant.set_attribute_to_true('fattest', score2.participating_country)
-
-            expect(participant.fattest?).to eql(score2.participating_country)
-            expect(participant.best_wail?).to eql(score.participating_country)
+          describe 'when passed two strings clears original value and sets new one' do
+            it { expect(participant.fattest?).to eql(score2.participating_country) }
+            it { expect(participant.best_wail?).to eql(score.participating_country) }
           end
         end
         describe 'when number of acts marked as' do

@@ -145,5 +145,10 @@ RSpec/NestedGroups:
 RSpec/ExpectActual:
   Exclude:
     - 'spec/routing/**/*'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'config/**/*'
+    - 'lib/tasks/**/*'
 
 require: rubocop-rspec

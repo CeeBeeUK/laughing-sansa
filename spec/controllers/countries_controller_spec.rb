@@ -15,7 +15,7 @@ RSpec.describe CountriesController, type: :controller do
 
   context 'as a logged in admin' do
 
-    before(:each) { sign_in admin_user }
+    before { sign_in admin_user }
 
     describe 'GET index' do
       it 'assigns all countries as @countries' do
@@ -56,10 +56,10 @@ RSpec.describe CountriesController, type: :controller do
           end.to change(Country, :count).by(1)
         end
 
-        it 'assigns a newly created country as @country' do
-          post :create, params: { country: valid_attributes }, session: valid_session
-          expect(assigns(:country)).to be_a(Country)
-          expect(assigns(:country)).to be_persisted
+        describe 'assigns a newly created country as @country' do
+          before { post :create, params: { country: valid_attributes }, session: valid_session }
+          it { expect(assigns(:country)).to be_a(Country) }
+          it { expect(assigns(:country)).to be_persisted }
         end
 
         it 'redirects to the created country' do

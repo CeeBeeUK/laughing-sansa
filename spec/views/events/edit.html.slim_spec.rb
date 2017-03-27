@@ -19,6 +19,7 @@ RSpec.describe 'events/edit', type: :view do
         status: nil
       ))
   end
+
   before do
     event
     assign(:countries,

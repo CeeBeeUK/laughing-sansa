@@ -57,9 +57,11 @@ RSpec.describe ParticipatingCountry, type: :model do
       let(:first) { create(:participating_country) }
       let(:duplicate) { first.dup }
 
-      it 'must have a unique position and country' do
-
+      it 'is invalid with a duplicate number' do
         expect(duplicate).to be_invalid
+      end
+
+      it 'must have a unique position and country' do
         duplicate.position += 1
         duplicate.country = create(:country)
         expect(duplicate).to be_valid

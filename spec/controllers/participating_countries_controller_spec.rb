@@ -9,8 +9,9 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
 
   context 'as a guest' do
     let(:event) { create(:event) }
+
     describe 'GET #manage' do
-      before(:each) { get :manage, params: { year: event.year } }
+      before { get :manage, params: { year: event.year } }
       it 'returns a 302 status code' do
         expect(response.status).to be 302
       end
@@ -19,7 +20,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #sort' do
-      before(:each) do
+      before do
         post :sort, params: { pc: [2, 1], year: event.year }
       end
       it 'returns a 302 status code' do
@@ -30,7 +31,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #create' do
-      before(:each) do
+      before do
         post :create, params: { participating_country_id: create(:country).id, year: event.year }
       end
       it 'returns a 302 status code' do
@@ -41,7 +42,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #allocate' do
-      before(:each) do
+      before do
         post :allocate, params: { participating_country_id: create(:country).id, year: event.year, player_id: create(:user).id }
       end
       it 'returns a 302 status code' do
@@ -55,11 +56,12 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
 
   context 'as a user' do
     let(:event) { create(:event) }
-    before(:each) do
+
+    before do
       sign_in user
     end
     describe 'GET #manage' do
-      before(:each) { get :manage, params: { year: event.year } }
+      before { get :manage, params: { year: event.year } }
       it 'returns a 302 status code' do
         expect(response.status).to be 302
       end
@@ -68,7 +70,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #sort' do
-      before(:each) do
+      before do
         post :sort, params: { pc: [2, 1], year: event.year }
       end
       it 'returns a 302 status code' do
@@ -80,7 +82,8 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     end
     describe 'POST #create' do
       let(:participating_country) { create(:participating_country) }
-      before(:each) do
+
+      before do
         post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
       end
       it 'returns a 302 status code' do
@@ -91,7 +94,7 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
     end
     describe 'POST #allocate' do
-      before(:each) do
+      before do
         post :allocate, params: { participating_country_id: create(:country).id, year: event.year, player_id: create(:user).id }
       end
       it 'returns a 302 status code' do
@@ -105,8 +108,9 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
 
   context 'logged in as admin' do
     let(:event) { create(:event) }
+
     describe 'GET #manage' do
-      before(:each) do
+      before do
         sign_in admin
         get :manage, params: { year: event.year }
       end
@@ -130,7 +134,8 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
           country: create(:country),
           position: 2)
       end
-      before(:each) do
+
+      before do
         sign_in admin
         post :sort, params: { pc: [pc_2.position, pc_1.position], year: event.year }
       end
@@ -144,7 +149,8 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
     describe 'POST #create' do
       context 'with valid params' do
         let(:participating_country) { create(:participating_country) }
-        before(:each) do
+
+        before do
           sign_in admin
           post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
         end
@@ -157,14 +163,20 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       end
       context 'when attempting to create a duplicate participating country' do
         let(:participating_country) { create(:participating_country) }
-        before(:each) do
+
+        before do
           sign_in admin
           post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
           post :create, params: { participating_country: { country_id: participating_country.country.id }, year: event.year }
         end
-        it 'displays a flash alert' do
-          expect(flash[:alert]).to be_present
-          expect(flash[:alert]).to eql('Country already in event')
+        describe 'a flash alert' do
+          it 'is displayed' do
+            expect(flash[:alert]).to be_present
+          end
+
+          it 'has the correct text' do
+            expect(flash[:alert]).to eql('Country already in event')
+          end
         end
       end
     end
@@ -172,7 +184,8 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       context 'with valid params' do
         let(:participating_country) { create(:participating_country) }
         let(:player) { create(:user) }
-        before(:each) do
+
+        before do
           sign_in admin
           post :allocate, params: { year: event.year, participating_country: { id: participating_country.id, player_id: player.id } }
         end
@@ -193,7 +206,8 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
       context 'with invalid params' do
         let(:participating_country) { create(:participating_country) }
         let(:player) { create(:user) }
-        before(:each) do
+
+        before do
           sign_in admin
           post :allocate, params: { year: event.year, participating_country: { id: participating_country.id, player_id: 'bob' } }
         end
@@ -203,9 +217,13 @@ RSpec.describe ParticipatingCountriesController, type: :controller do
         it 'renders the management view' do
           expect(response).to redirect_to manage_countries_path(participating_country.event)
         end
-        it 'sets a flash message' do
-          expect(flash[:alert]).to be_present
-          expect(flash[:alert]).to eql(['Player is not a number'])
+        describe 'flash message' do
+          it 'is set' do
+            expect(flash[:alert]).to be_present
+          end
+          it 'has the right text' do
+            expect(flash[:alert]).to eql(['Player is not a number'])
+          end
         end
         it 'does not amend the player on the PC' do
           participating_country.reload

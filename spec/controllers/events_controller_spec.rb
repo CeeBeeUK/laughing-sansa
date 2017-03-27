@@ -62,7 +62,7 @@ RSpec.describe EventsController, type: :controller do
   end
 
   context 'logged in as user' do
-    before(:each) do
+    before do
       sign_in user
     end
     describe 'GET #index' do
@@ -102,7 +102,8 @@ RSpec.describe EventsController, type: :controller do
     end
     describe 'GET #join' do
       let(:event_player) { create(:event_player) }
-      before :each do
+
+      before do
         get :join, params: { year: event_player.event.to_param }
       end
       it 'assigns the requested pp to @event_player' do
@@ -116,7 +117,8 @@ RSpec.describe EventsController, type: :controller do
 
   context 'logged in as admin' do
     let(:event) { create(:event) }
-    before(:each) do
+
+    before do
       sign_in admin_user
     end
     describe 'GET #index' do
@@ -145,15 +147,16 @@ RSpec.describe EventsController, type: :controller do
       end
     end
     describe 'GET #admin' do
-      it 'assigns the requested event as @event' do
-        get :admin, params: { year: event.to_param }, session: valid_session
-        expect(assigns(:event)).to be_a Event
-        expect(assigns(:data)).to be_a AdminData
+      describe 'assigns the requested event as @event' do
+        before { get :admin, params: { year: event.to_param }, session: valid_session }
+        it { expect(assigns(:event)).to be_a Event }
+        it { expect(assigns(:data)).to be_a AdminData }
       end
     end
     describe 'GET #join' do
       let(:event_player) { create(:event_player) }
-      before :each do
+
+      before do
         get :join, params: { year: event_player.event.to_param }
       end
       it 'assigns the requested pp to @event_player' do
@@ -170,7 +173,8 @@ RSpec.describe EventsController, type: :controller do
             event: create(:event, status: 1),
             player: admin_user)
         end
-        before(:each) do
+
+        before do
           get :join, params: { year: event_player.event.to_param }
         end
         it 'returns a redirect code' do
@@ -184,6 +188,7 @@ RSpec.describe EventsController, type: :controller do
     describe 'POST #sign_up' do
       context 'with valid params' do
         let(:event_player) { build(:event_player) }
+
         it 'creates a new participating player' do
           expect do
             post :sign_up, params: { year: event_player.event.year, event_player: event_player.attributes }
@@ -213,10 +218,10 @@ RSpec.describe EventsController, type: :controller do
           end.to change(Event, :count).by(1)
         end
 
-        it 'assigns a newly created event as @event' do
-          post :create, params: { event: event.attributes }, session: valid_session
-          expect(assigns(:event)).to be_a(Event)
-          expect(assigns(:event)).to be_persisted
+        describe 'assigns a newly created event as @event' do
+          before { post :create, params: { event: event.attributes }, session: valid_session }
+          it { expect(assigns(:event)).to be_a(Event) }
+          it { expect(assigns(:event)).to be_persisted }
         end
 
         it 'redirects to the created event' do
@@ -240,9 +245,11 @@ RSpec.describe EventsController, type: :controller do
 
     describe 'PUT #update' do
       let(:event) { create(:event) }
+
       context 'with valid params' do
         let(:new_attributes) { event.attributes }
-        before(:each) { new_attributes['host_city'] += 'test' }
+
+        before { new_attributes['host_city'] += 'test' }
         it 'updates the requested event' do
           expect = "#{event.host_city}test"
           put :update, params: { year: event.to_param, event: new_attributes }, session: valid_session
