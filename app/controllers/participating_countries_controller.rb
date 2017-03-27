@@ -10,7 +10,7 @@ class ParticipatingCountriesController < ApplicationController
 
   def sort
     params[:pc].each_with_index do |id, index|
-      ParticipatingCountry.where(event: @event, id: id).update_all(position: index + 1)
+      ParticipatingCountry.where(event: @event, id: id).update(position: index + 1)
     end
     head :ok
   end
