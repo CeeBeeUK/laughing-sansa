@@ -13,5 +13,5 @@ Metrics/BlockLength:
 
 # Offense count: 19
 RSpec/MultipleExpectations:
-  Max: 2
+  Max: 1
 

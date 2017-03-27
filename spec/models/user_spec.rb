@@ -26,19 +26,25 @@ RSpec.describe User, type: :model do
       expect(duplicate).to be_invalid
     end
 
-    it 'requires a non-nil role' do
-      user.role = nil
-      expect(user).to be_invalid
-      expect(user.errors[:role]).to eq ["can't be blank"]
+    describe 'requires a non-nil role' do
+      subject(:user_valid) { user.valid? }
+
+      before do
+        user.role = nil
+        user.valid?
+      end
+
+      it { expect(user_valid).to be false }
+      it { expect(user.errors[:role]).to eq ["can't be blank"] }
     end
 
-    before do
-      user.role = 'student'
-      expect(user).to be_invalid
-    end
+    describe 'requires a valid role' do
+      before do
+        user.role = 'student'
+        expect(user).to be_invalid
+      end
 
-    it 'requires a valid role' do
-      expect(user.errors[:role]).to eq ['student is not a valid role']
+      it { expect(user.errors[:role]).to eq ['student is not a valid role'] }
     end
 
     it 'returns the oaauth first name if display name empty' do
@@ -55,9 +61,8 @@ RSpec.describe User, type: :model do
     let(:user) { create :user }
     let(:event) { create :event }
 
+    before { create(:event_player, event: event, player: user) }
     it 'responds true if a player has joined an event' do
-      expect(user.in_event?(event)).to be false
-      create(:event_player, event: event, player: user)
       expect(user.in_event?(event)).to be true
     end
   end
@@ -67,11 +72,22 @@ RSpec.describe User, type: :model do
       expect(user.display_name_set?).to be true
     end
 
-    it 'responds false if not admin user' do
-      user.display_name = nil
-      expect(user.display_name_set?).to be false
-      user.display_name = ''
-      expect(user.display_name_set?).to be false
+    describe 'returns false' do
+      subject { user.display_name_set? }
+
+      before { user.display_name = display_name }
+
+      describe 'when it is nil' do
+        let(:display_name) { nil }
+
+        it { is_expected.to be false }
+      end
+
+      describe 'when it is an empty string' do
+        let(:display_name) { '' }
+
+        it { is_expected.to be false }
+      end
     end
   end
   describe '@admin?' do
