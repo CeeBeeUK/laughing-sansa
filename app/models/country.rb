@@ -5,7 +5,7 @@ class Country < ActiveRecord::Base
   # convert xx.png -colorspace gray xx.png
   # convert ireland.png -resize 16x16 ./../16/ireland.png
 
-  scope :sorted_by_name, -> { all.order(:name) }
+  scope :sorted_by_name, (-> { all.order(:name) })
 
   validates :name, presence: true
   validates :name, uniqueness: true
