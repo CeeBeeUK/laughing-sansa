@@ -2,8 +2,8 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
-  before_action :set_event, only: [:show, :edit, :update, :join, :sign_up, :admin]
-  before_action :load_variables, only: [:new, :edit, :create, :update]
+  before_action :set_event, only: %i[show edit update join sign_up admin]
+  before_action :load_variables, only: %i[new edit create update]
   respond_to :html
 
   def index

@@ -33,7 +33,7 @@ RSpec.configure do |config|
   end
   config.order = 'random'
   config.expect_with :rspec do |c|
-    c.syntax = [:should, :expect]
+    c.syntax = %i[should expect]
   end
   # reset database before all tests
   config.before(:suite) do

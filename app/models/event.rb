@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
   validates :year, :country_id, :host_city, presence: true
   validates :year, uniqueness: true
 
-  enum status: [:setup, :active, :archived]
+  enum status: %i[setup active archived]
 
   scope :last_to_first, -> { all.order(year: :desc) }
 

@@ -2,7 +2,7 @@ class ParticipatingCountriesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
-  before_action :load_variables, only: [:manage, :sort, :create]
+  before_action :load_variables, only: %i[manage sort create]
   before_action :find_pc, only: [:allocate]
   respond_to :html
 
