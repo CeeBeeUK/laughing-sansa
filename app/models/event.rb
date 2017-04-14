@@ -5,17 +5,17 @@ class Event < ActiveRecord::Base
   belongs_to :real_player, class_name: 'User', foreign_key: 'real_player_id'
   belongs_to :home_player, class_name: 'User', foreign_key: 'home_player_id'
 
-  has_many :participating_countries, -> { order('position ASC') }
+  has_many :participating_countries, (-> { order('position ASC') })
   has_many :event_players
 
   validates :year, :country_id, :host_city, presence: true
   validates :year, uniqueness: true
 
-  enum status: [:setup, :active, :archived]
+  enum status: %i[setup active archived]
 
-  scope :last_to_first, -> { all.order(year: :desc) }
+  scope :last_to_first, (-> { all.order(year: :desc) })
 
-  scope :latest_active, -> { all.where('status=?', Event.statuses[:active]).order(:year) }
+  scope :latest_active, (-> { all.where('status=?', Event.statuses[:active]).order(:year) })
 
   def display_name
     "#{host_city} #{year}"

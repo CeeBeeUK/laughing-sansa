@@ -10,7 +10,7 @@ class Ability
       can :read, Event
       can :join, Event
       can :sign_up, Event
-      can [:read, :update], [User, EventPlayerScore]
+      can %i[read update], [User, EventPlayerScore]
     end
   end
 end
