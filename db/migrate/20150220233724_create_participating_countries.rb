@@ -1,4 +1,4 @@
-class CreateParticipatingCountries < ActiveRecord::Migration
+class CreateParticipatingCountries < ActiveRecord::Migration[4.2]
   def change
     create_table :participating_countries do |t|
       t.references :country, index: true

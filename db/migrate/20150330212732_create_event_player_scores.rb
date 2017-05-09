@@ -1,4 +1,4 @@
-class CreateEventPlayerScores < ActiveRecord::Migration
+class CreateEventPlayerScores < ActiveRecord::Migration[4.2]
   def change
     create_table :event_player_scores do |t|
       t.references :event_player, index: true
