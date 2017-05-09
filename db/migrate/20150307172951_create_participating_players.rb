@@ -1,4 +1,4 @@
-class CreateParticipatingPlayers < ActiveRecord::Migration
+class CreateParticipatingPlayers < ActiveRecord::Migration[4.2]
   def change
     create_table :participating_players do |t|
       t.references :player, references: :users, index: true
