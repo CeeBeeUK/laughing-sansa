@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.3.1'
-gem 'rails', '>= 5.0'
+gem 'rails', '>= 5.1'
 gem 'sprockets-rails', '~>3.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -31,7 +31,7 @@ gem 'rails-controller-testing'
 gem 'spring', group: :development
 
 # Devise for user authentication
-gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
 gem 'omniauth-google-oauth2'
 # and CanCan for authorization
 gem 'acts_as_list'
