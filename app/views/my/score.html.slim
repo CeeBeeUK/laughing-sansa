@@ -47,18 +47,6 @@ h2 Act #{@eps.participating_country.position} - #{@eps.participating_country.cou
         =f.label :wackiest
   .row.boolean-row
     .small-9.medium-10.columns
-      label for='event_player_score_fattest'
-        h3
-          -if @eps.event_player.fattest? && (@eps.event_player.fattest? != @eps.participating_country)
-            |Fatter than #{@eps.event_player.fattest?.country.name}?
-          -else
-            |Fattest?
-    .small-3.medium-2.columns
-      .switch.radius.tiny
-        =f.check_box :fattest
-        =f.label :fattest
-  .row.boolean-row
-    .small-9.medium-10.columns
       label for='event_player_score_best_wail'
         h3
           -if @eps.event_player.best_wail? && (@eps.event_player.best_wail? != @eps.participating_country)
