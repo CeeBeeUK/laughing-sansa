@@ -38,17 +38,16 @@
 .contain-to-grid.sticky
   nav.top-bar data-topbar="" role="navigation"
     .row.collapse
-      .columns.small-5.center.score-header Act
+      .columns.small-7.center.score-header Act
       .columns.small-1.score-header.center Score
       .columns.small-2.score-header.center Wacky
-      .columns.small-2.score-header.center Fattest
       .columns.small-2.score-header.center Best wail
     section
 .row.score-data
   .columns.small-12
     -@pp.scores.scoring_order(@pp.id).each do |eps|
       .row
-        .columns.small-5.small
+        .columns.small-7.small
           -if @event.archived?
             |#{eps.participating_country.position}. #{eps.participating_country.country.name}
           -elsif @event.active?
@@ -58,7 +57,6 @@
             |(#{eps.player})
         .columns.small-1.center =eps.score
         =render partial: 'true_column', locals: {value: eps.wackiest, image: eps.participating_country.country.large_image}
-        =render partial: 'true_column', locals: {value: eps.fattest, image: eps.participating_country.country.large_image}
         =render partial: 'true_column', locals: {value: eps.best_wail, image: eps.participating_country.country.large_image}
       -if @event.archived?
         .row.notes
