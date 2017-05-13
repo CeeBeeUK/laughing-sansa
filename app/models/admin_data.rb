@@ -16,7 +16,11 @@ class AdminData
 
   def countries
     @event.participating_countries.map do |pc|
-      ["#{pc.country.name} #{" (#{pc.player.display_name})" if pc.present?}"] << eps_counts(@eps.where(participating_country_id: pc.id))
+      if pc.player.present?
+        ["#{pc.country.name}#{" (#{pc.player.display_name})"}"]
+      else
+        [pc.country.name]
+      end << eps_counts(@eps.where(participating_country_id: pc.id))
     end
   end
 

@@ -30,7 +30,7 @@ RSpec.describe AdminData, type: :model do
       end
 
       it 'returns a country name' do
-        expect(countries.first[0]).to eq event.participating_countries.first.country.name
+        expect(countries.first[0]).to eq "#{event.participating_countries.first.country.name} (test)"
       end
 
       describe 'returns an array of score data' do
