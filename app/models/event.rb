@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
   belongs_to :country
   belongs_to :real_winner, class_name: 'Country', foreign_key: 'real_winner_id'
   belongs_to :home_winner, class_name: 'Country', foreign_key: 'home_winner_id'
