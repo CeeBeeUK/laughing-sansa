@@ -51,7 +51,7 @@ private
   end
 
   def true?(value)
-    if value == true || value == '1'
+    if [true, '1'].include?(value)
       true
     else
       false
