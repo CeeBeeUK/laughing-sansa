@@ -17,6 +17,8 @@ AllCops:
     - 'lib/tasks/cucumber.rake'
     - 'features/support/env.rb'
     - 'script/cucumber'
+    - 'spec/**/*'
+
 Rails:
   Enabled: true
 
@@ -24,13 +26,6 @@ Rails:
 # expectations into 80 characters.
 Metrics/LineLength:
   Max: 100
-  Exclude:
-    - 'spec/**/*'
-
-# Don't worry about long methods in specs.
-Metrics/MethodLength:
-  Exclude:
-    - 'spec/**/*'
 
 # No need to check for describe class param in support files.
 RSpec/DescribeClass:
@@ -59,7 +54,7 @@ Style/ClassAndModuleChildren:
 RSpec/FilePath:
   Exclude:
     - spec/controllers/omniauth_callbacks_controller_spec.rb
-    - spec/routing/*
+
 Style/CollectionMethods:
   PreferredMethods:
     collect: 'map'
@@ -124,22 +119,14 @@ Style/PercentLiteralDelimiters:
     '%W': '[]'
     '%i': '[]'
 
-# %w doesn't always make for clearer test data
-Style/WordArray:
-  Exclude:
-    - 'spec/**/*'
-
 RSpec/NestedGroups:
   Max: 10
 
-RSpec/ExpectActual:
-  Exclude:
-    - 'spec/routing/**/*'
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*'
     - 'config/**/*'
     - 'lib/tasks/**/*'
+
 Style/FormatStringToken:
   EnforcedStyle: template
 
