@@ -10,11 +10,11 @@ Rails.application.routes.draw do
 
   post 'participating_countries/:year/sort', to: 'participating_countries#sort', as: 'event_country'
   post 'participating_countries/:year/create',
-    to: 'participating_countries#create',
-    as: 'create_event_country'
+       to: 'participating_countries#create',
+       as: 'create_event_country'
   patch 'participating_countries/:year/allocate',
-    to: 'participating_countries#allocate',
-    as: 'allocate_country_player'
+        to: 'participating_countries#allocate',
+        as: 'allocate_country_player'
 
   resources :events, param: :year
 

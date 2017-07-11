@@ -24,7 +24,7 @@ class AdminData
     end
   end
 
-private
+  private
 
   def eps_counts(particpating_country_eps)
     [

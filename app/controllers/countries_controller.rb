@@ -37,7 +37,7 @@ class CountriesController < ApplicationController
     respond_with(@country)
   end
 
-private
+  private
 
   def set_country
     @country = Country.find_by(name: params[:name])

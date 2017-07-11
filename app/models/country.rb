@@ -29,7 +29,7 @@ class Country < ApplicationRecord
     name
   end
 
-private
+  private
 
   def return_image_path
     name.parameterize.underscore

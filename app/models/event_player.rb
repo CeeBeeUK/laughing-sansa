@@ -38,12 +38,11 @@ class EventPlayer < ApplicationRecord
     end
   end
 
-private
+  private
 
   def event_can_be_joined
-    if event && !event.can_be_joined?
-      errors.add(:event, 'is not active.')
-    end
+    return unless event && !event.can_be_joined?
+    errors.add(:event, 'is not active.')
   end
 
   def build_scores
