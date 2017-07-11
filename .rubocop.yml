@@ -150,5 +150,7 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'config/**/*'
     - 'lib/tasks/**/*'
+Style/FormatStringToken:
+  EnforcedStyle: template
 
 require: rubocop-rspec
