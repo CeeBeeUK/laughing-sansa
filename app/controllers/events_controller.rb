@@ -67,7 +67,7 @@ class EventsController < ApplicationController
     @data = AdminData.new(params[:year])
   end
 
-private
+  private
 
   def build_sign_up_pp
     EventPlayer.new(
@@ -93,7 +93,7 @@ private
 
   def event_params
     params.require(:event).permit(:year, :host_city, :active, :country_id, :real_winner_id,
-      :real_player_id, :real_score, :real_player_name, :home_winner_id, :home_player_id,
-      :home_score, :home_player_name, :status, :date, :actual_uk_score)
+                                  :real_player_id, :real_score, :real_player_name, :home_winner_id, :home_player_id,
+                                  :home_score, :home_player_name, :status, :date, :actual_uk_score)
   end
 end

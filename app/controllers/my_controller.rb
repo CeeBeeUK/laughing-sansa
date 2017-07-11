@@ -40,14 +40,13 @@ class MyController < ApplicationController
     redirect_to my_game_path(@eps.event)
   end
 
-private
+  private
 
   def reset_event_attribute(attribute, eps)
-    if true? score_params[attribute.to_sym]
-      @pp = eps.event_player
-      @pc = eps.participating_country
-      @pp.set_attribute_to_true(attribute, @pc)
-    end
+    return unless true? score_params[attribute.to_sym]
+    @pp = eps.event_player
+    @pc = eps.participating_country
+    @pp.set_attribute_to_true(attribute, @pc)
   end
 
   def true?(value)
@@ -60,14 +59,13 @@ private
 
   def load_eps
     load_pp
-    if @pp
-      @eps = EventPlayerScore.
-             joins(:event, :participating_country).
-             find_by(
-               'events.year = ? AND participating_countries.position = ? AND event_player_id = ?',
-               params[:year], params[:act], @pp.id
-             )
-    end
+    return unless @pp
+    @eps = EventPlayerScore
+           .joins(:event, :participating_country)
+           .find_by(
+             'events.year = ? AND participating_countries.position = ? AND event_player_id = ?',
+             params[:year], params[:act], @pp.id
+           )
   end
 
   def load_user

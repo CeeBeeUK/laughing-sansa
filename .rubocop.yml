@@ -25,35 +25,7 @@ Rails:
 # Allow long lines in specs, as it's almost impossible to fit RSpec's
 # expectations into 80 characters.
 Metrics/LineLength:
-  Max: 100
-
-# No need to check for describe class param in support files.
-RSpec/DescribeClass:
-  Exclude:
-    - spec/support/*
-    - spec/views/**/*
-    - spec/requests/**/*
-
-RSpec/FilePath:
-  Exclude:
-    - spec/routing/**/*
-
-# private/protected/public
-Layout/AccessModifierIndentation:
-  EnforcedStyle: outdent
-
-# Just indent parameters by two spaces. It's less volatile if methods change,
-# and there's less busy work lining things up.
-Layout/AlignParameters:
-  EnforcedStyle: with_fixed_indentation
-
-Style/ClassAndModuleChildren:
-  EnforcedStyle: nested
-  Exclude:
-    - app/controllers/users/omniauth_callbacks_controller.rb
-RSpec/FilePath:
-  Exclude:
-    - spec/controllers/omniauth_callbacks_controller_spec.rb
+  Max: 120
 
 Style/CollectionMethods:
   PreferredMethods:
@@ -65,52 +37,10 @@ Style/CollectionMethods:
     detect: 'find'
     find_all: 'select'
 
-# Chain methods with trailing dots.
-Layout/DotPosition:
-  EnforcedStyle: trailing
-
-# No, we don't prefer each_with_object
-Style/EachWithObject:
-  Enabled: false
-
-# We have a mixture at the moment, so don't enforce anything.
-Style/FormatString:
-  Enabled: true
-
-# It's not really clearer to replace every if with a return if.
-Style/GuardClause:
-  Enabled: false
-
-# Groups of three is not always the right thing for numeric literals
-Style/NumericLiterals:
-  Enabled: false
-
-# Percent-formatting and hash interpolation both have their place. Don't
-# enforce any particular one.
-Style/StringLiterals:
-  Enabled: true
-
-# I'm happy with raise, thanks.
-Style/SignalException:
-  Enabled: false
-
-# Let us use foo? methods
-Style/TrivialAccessors:
-  AllowPredicates: true
-
 # Prefer sensible naming to comments everywhere.
 Documentation:
   Description: Document classes and non-namespace modules.
   Enabled: false
-
-# Would enforce do_y if x over if x / do y / end. As with GuardClause above,
-# this enforces code organisation that doesn't necesarily make things clearer.
-IfUnlessModifier:
-  Enabled: false
-
-# Allow safe assignment in conditions.
-Lint/AssignmentInCondition:
-  AllowSafeAssignment: false
 
 # Just a preference to use %w[] over %w()
 Style/PercentLiteralDelimiters:
@@ -125,7 +55,6 @@ RSpec/NestedGroups:
 Metrics/BlockLength:
   Exclude:
     - 'config/**/*'
-    - 'lib/tasks/**/*'
 
 Style/FormatStringToken:
   EnforcedStyle: template

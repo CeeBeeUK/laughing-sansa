@@ -31,13 +31,11 @@ class ParticipatingCountriesController < ApplicationController
       player_id: allocate_params[:player_id],
       real_final_score: allocate_params[:real_final_score]
     )
-    unless @pc.save
-      flash[:alert] = @pc.errors.full_messages
-    end
+    flash[:alert] = @pc.errors.full_messages unless @pc.save
     redirect_to manage_countries_path(@pc.event)
   end
 
-private
+  private
 
   def find_pc
     @pc = ParticipatingCountry.find(params[:participating_country][:id])
