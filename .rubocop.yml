@@ -44,12 +44,12 @@ RSpec/FilePath:
     - spec/routing/**/*
 
 # private/protected/public
-Style/AccessModifierIndentation:
+Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
 # Just indent parameters by two spaces. It's less volatile if methods change,
 # and there's less busy work lining things up.
-Style/AlignParameters:
+Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
 Style/ClassAndModuleChildren:
@@ -71,21 +71,11 @@ Style/CollectionMethods:
     find_all: 'select'
 
 # Chain methods with trailing dots.
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: trailing
 
 # No, we don't prefer each_with_object
 Style/EachWithObject:
-  Enabled: false
-
-# Prefer blank line after class/module start.
-Style/EmptyLinesAroundClassBody:
-  Enabled: false
-
-Style/EmptyLinesAroundModuleBody:
-  Enabled: false
-
-Style/EmptyLinesAroundBlockBody:
   Enabled: false
 
 # We have a mixture at the moment, so don't enforce anything.
@@ -150,5 +140,7 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'config/**/*'
     - 'lib/tasks/**/*'
+Style/FormatStringToken:
+  EnforcedStyle: template
 
 require: rubocop-rspec

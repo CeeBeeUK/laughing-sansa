@@ -7,9 +7,7 @@ RSpec.describe 'countries/edit', type: :view do
     country
     render
     assert_select 'form[action=?][method=?]', country_path(country), 'post' do
-
       assert_select 'input#country_name[name=?]', 'country[name]'
-
     end
   end
 end

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get 'my/:year/score/act/:act', to: 'my#score', as: 'my_scoring'
   patch 'my/:year/score/act/:act', to: 'my#score_create'
 
@@ -36,5 +35,4 @@ Rails.application.routes.draw do
   resources :countries, param: :name
 
   root to: 'home#index'
-
 end

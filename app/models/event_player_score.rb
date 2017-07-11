@@ -1,5 +1,4 @@
-class EventPlayerScore < ActiveRecord::Base
-
+class EventPlayerScore < ApplicationRecord
   belongs_to :event_player
   belongs_to :participating_country
   has_one :event, through: :event_player

@@ -20,14 +20,12 @@ RSpec.describe ParticipatingCountry, type: :model do
       let!(:event2) { create(:event) }
 
       it 'lists countries for player in the given event' do
-
         create_list :participating_country, 3, event: event1, player: user
         create_list :participating_country, 3, event: event2, player: user
         event1.save!
 
         result = described_class.player_for_event(event1, user)
         expect(result.count).to be 3
-
       end
     end
   end

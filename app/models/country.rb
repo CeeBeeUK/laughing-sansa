@@ -1,5 +1,4 @@
-class Country < ActiveRecord::Base
-
+class Country < ApplicationRecord
   # install imagemagick
   # sudo apt-get install imagemagick
   # convert xx.png -colorspace gray xx.png

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'events/new', type: :view do
-
   let(:event) { assign(:event, create(:event)) }
 
   before do

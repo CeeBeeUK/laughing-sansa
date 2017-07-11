@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-
   let(:event) { build(:event) }
 
   it 'passes factory build' do
@@ -58,7 +57,6 @@ RSpec.describe Event, type: :model do
   end
   describe 'scopes' do
     describe 'players_predictions_high_to_low' do
-
       let!(:event) { create(:event) }
       let(:results) { event.players_predictions_high_to_low }
 

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'events/show', type: :view do
-
   include Devise::Test::ControllerHelpers
 
   let(:user) { create(:user) }
