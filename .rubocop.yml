@@ -2,61 +2,27 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   TargetRubyVersion: 2.2
-  # Exclude anything that isn't really part of our code.
-  # rails_helper is excluded because it's full of solecisms, but it's mostly
-  # generated code and copy-and-pasted snipets from READMEs.
   Exclude:
-    - 'Guardfile'
-    - 'vendor/**/*'
+    - './*'
     - 'db/**/*'
     - 'bin/**/*'
-    - '**/*.gemspec'
-    - '**/Rakefile'
-    - '**/Vagrantfile'
-    - 'spec/rails_helper.rb'
-    - 'lib/tasks/cucumber.rake'
-    - 'features/support/env.rb'
-    - 'script/cucumber'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'lib/demo_data/**/*'
+    - 'lib/tasks/**/*'
+    - 'features/**/*'
+    - 'old_features/**/*'
     - 'spec/**/*'
+    - 'vendor/**/*'
 
-Rails:
-  Enabled: true
+Documentation:
+  Enabled: false
 
-# Allow long lines in specs, as it's almost impossible to fit RSpec's
-# expectations into 80 characters.
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Metrics/LineLength:
   Max: 120
 
-Style/CollectionMethods:
-  PreferredMethods:
-    collect: 'map'
-    collect!: 'map!'
-    each_with_object: 'inject'
-    inject: 'inject'
-    reduce: 'inject'
-    detect: 'find'
-    find_all: 'select'
-
-# Prefer sensible naming to comments everywhere.
-Documentation:
-  Description: Document classes and non-namespace modules.
-  Enabled: false
-
-# Just a preference to use %w[] over %w()
-Style/PercentLiteralDelimiters:
-  PreferredDelimiters:
-    '%w': '[]'
-    '%W': '[]'
-    '%i': '[]'
-
-RSpec/NestedGroups:
-  Max: 10
-
-Metrics/BlockLength:
-  Exclude:
-    - 'config/**/*'
-
 Style/FormatStringToken:
   EnforcedStyle: template
-
-require: rubocop-rspec
