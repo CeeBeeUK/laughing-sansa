@@ -23,6 +23,5 @@ FactoryGirl.define do
         FactoryGirl.create_list :participating_country, evaluator.number_of_countries, event: event
       end
     end
-
   end
 end

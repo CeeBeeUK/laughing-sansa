@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'my/profile.html.slim', type: :view do
-
   include Devise::Test::ControllerHelpers
 
   let(:user) { assign(:user, create(:user)) }

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Events', type: :request do
-
   include Warden::Test::Helpers
   Warden.test_mode!
 
@@ -38,7 +37,6 @@ RSpec.describe 'Events', type: :request do
       expect(response.status).to be 302
     end
     context 'valid user' do
-
       let(:countries) do
         assign(:countries,
           [

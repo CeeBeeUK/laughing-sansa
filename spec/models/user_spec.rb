@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   let(:user)          { build(:user) }
   let(:admin_user)    { build(:admin_user) }
 

@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe ParticipatingCountriesController, type: :routing do
   describe 'routing' do
-
     it 'routes to #manage' do
       expect(get: '/events/2014/countries').to route_to('participating_countries#manage', year: '2014')
     end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe MyController, type: :controller do
-
   include Devise::Test::ControllerHelpers
   let(:user) { create(:user) }
   let(:valid_session) { {} }
@@ -39,7 +38,6 @@ RSpec.describe MyController, type: :controller do
     end
   end
   describe 'GET #game' do
-
     let(:event) { create(:event) }
 
     before do
@@ -58,7 +56,6 @@ RSpec.describe MyController, type: :controller do
       end
     end
     context 'when player has not joined game' do
-
       it 'redirects' do
         get :game, params: { year: event.to_param }
         expect(response.status).to eq(302)

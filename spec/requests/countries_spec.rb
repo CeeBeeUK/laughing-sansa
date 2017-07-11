@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Countries', type: :request do
-
   include Warden::Test::Helpers
   Warden.test_mode!
 
