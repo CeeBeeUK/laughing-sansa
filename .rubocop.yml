@@ -80,13 +80,13 @@ Style/EachWithObject:
 
 # Prefer blank line after class/module start.
 Layout/EmptyLinesAroundClassBody:
-  Enabled: false
+  Enabled: true
 
 Layout/EmptyLinesAroundModuleBody:
-  Enabled: false
+  Enabled: true
 
 Layout/EmptyLinesAroundBlockBody:
-  Enabled: false
+  Enabled: true
 
 # We have a mixture at the moment, so don't enforce anything.
 Style/FormatString:
