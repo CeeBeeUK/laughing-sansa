@@ -61,6 +61,7 @@ GEM
     binding_of_caller (0.7.3)
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
+    byebug (9.1.0)
     cancancan (2.0.0)
     codeclimate-test-reporter (1.0.8)
       simplecov (<= 0.13)
@@ -175,6 +176,11 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.5.0)
+      byebug (~> 9.1)
+      pry (~> 0.10)
+    pry-rails (0.3.6)
+      pry (>= 0.10.4)
     rack (2.0.3)
     rack-pratchett (0.1.1)
     rack-test (0.7.0)
@@ -328,6 +334,8 @@ DEPENDENCIES
   nokogiri (>= 1.7)
   omniauth-google-oauth2
   pg
+  pry-byebug
+  pry-rails
   rack-pratchett
   rails (>= 5.1)
   rails-controller-testing
@@ -349,4 +357,4 @@ RUBY VERSION
    ruby 2.4.2p198
 
 BUNDLED WITH
-   1.15.4
+   1.16.0

@@ -50,6 +50,8 @@ group :test, :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-rubocop'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'rubocop', '~>0.39', require: false
