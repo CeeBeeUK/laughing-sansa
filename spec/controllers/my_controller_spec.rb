@@ -104,21 +104,25 @@ RSpec.describe MyController, type: :controller do
     end
   end
   describe 'PUT #score_create' do
-    let(:event_player) { create(:event_player, player: user) }
-    let(:event_player_score) { create(:event_player_score, event_player: event_player) }
+    let(:event) { create :event }
+    let(:participating_country_one) { create(:participating_country, event: event) }
+    let(:participating_country_two) { create(:participating_country, event: event) }
+    let(:event_player) { create(:event_player, event: event, player: user) }
+    let(:event_player_score) { create(:event_player_score, event_player: event_player, participating_country: participating_country_one) }
 
     before do
       sign_in user
     end
+
     context 'with valid params' do
       before do
         event_player_score.fattest = true
         post :score_create,
-          params: {
-            year: event_player_score.event.year,
-            act: event_player_score.participating_country.position,
-            event_player_score: event_player_score.attributes
-          }
+                    params: {
+                      year: event_player_score.event.year,
+                      act: event_player_score.participating_country.position,
+                      event_player_score: event_player_score.attributes
+                    }
       end
       it 'updates the score data' do
         event_player_score.reload
@@ -129,6 +133,22 @@ RSpec.describe MyController, type: :controller do
       end
       it 'redirects to the game view' do
         expect(response).to redirect_to(my_game_path(event_player_score.event))
+      end
+
+      context 'when a previous act is already fattest' do
+        let!(:prev_fattest) do
+          create(
+            :event_player_score,
+            event_player: event_player,
+            participating_country: participating_country_two,
+            fattest: true
+          )
+        end
+
+        it { binding.pry }
+        it 'resets the previous scores' do
+          expect(prev_fattest.fattest).to be false
+        end
       end
     end
   end
