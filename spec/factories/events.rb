@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :event do
     sequence(:year)
     host_city 'london'
@@ -20,7 +20,7 @@ FactoryGirl.define do
       end
 
       after :create do |event, evaluator|
-        FactoryGirl.create_list :participating_country, evaluator.number_of_countries, event: event
+        FactoryBot.create_list :participating_country, evaluator.number_of_countries, event: event
       end
     end
   end

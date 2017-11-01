@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :event_player do
     association :player, factory: 'user'
     association :event
@@ -16,7 +16,7 @@ FactoryGirl.define do
       end
 
       after :build do |this, evaluator|
-        FactoryGirl.create_list :event_player_score, evaluator.number_of_scores, event_player: this
+        FactoryBot.create_list :event_player_score, evaluator.number_of_scores, event_player: this
       end
     end
   end
