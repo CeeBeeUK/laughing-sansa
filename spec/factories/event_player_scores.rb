@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :event_player_score do
     association :event_player
     association :participating_country

@@ -12,7 +12,7 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.infer_spec_type_from_file_location!
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   [:controller, :view, :request].each do |type|
     config.include ::Rails::Controller::Testing::TestProcess, :type => type

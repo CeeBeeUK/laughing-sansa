@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Users::OmniauthCallbacksController, type: :controller do
   include Devise::Test::ControllerHelpers
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   before do
     DatabaseCleaner.clean
