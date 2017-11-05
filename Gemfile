@@ -46,10 +46,13 @@ group :development do
 end
 
 group :test, :development do
+  gem 'capybara'
+  gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-rubocop'
+  gem 'launchy'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec'
