@@ -104,11 +104,9 @@ RSpec.describe MyController, type: :controller do
     end
   end
   describe 'PUT #score_create' do
-    let(:event) { create :event }
-    let(:participating_country_one) { create(:participating_country, event: event) }
-    let(:participating_country_two) { create(:participating_country, event: event) }
+    let(:event) { create :event, :with_countries }
     let(:event_player) { create(:event_player, event: event, player: user) }
-    let(:event_player_score) { create(:event_player_score, event_player: event_player, participating_country: participating_country_one) }
+    let(:event_player_score) { create(:event_player_score, event_player: event_player, participating_country: event.participating_countries.second) }
 
     before do
       sign_in user
@@ -118,11 +116,11 @@ RSpec.describe MyController, type: :controller do
       before do
         event_player_score.fattest = true
         post :score_create,
-                    params: {
-                      year: event_player_score.event.year,
-                      act: event_player_score.participating_country.position,
-                      event_player_score: event_player_score.attributes
-                    }
+             params: {
+               year: event_player_score.event.year,
+               act: event_player_score.participating_country.position,
+               event_player_score: event_player_score.attributes
+             }
       end
       it 'updates the score data' do
         event_player_score.reload
@@ -140,13 +138,13 @@ RSpec.describe MyController, type: :controller do
           create(
             :event_player_score,
             event_player: event_player,
-            participating_country: participating_country_two,
+            participating_country: event.participating_countries.first,
             fattest: true
           )
         end
 
-        it { binding.pry }
         it 'resets the previous scores' do
+          prev_fattest.reload
           expect(prev_fattest.fattest).to be false
         end
       end
