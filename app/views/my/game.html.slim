@@ -51,7 +51,7 @@
           -if @event.archived?
             |#{eps.participating_country.position}. #{eps.participating_country.country.name}
           -elsif @event.active?
-            =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position)
+            =link_to "#{eps.participating_country.position}. #{eps.participating_country.country.name}", my_scoring_path(year: @event.year, act: eps.participating_country.position), id: "score_act_#{eps.participating_country.position}"
           -if eps.player.present?
             span.pad-left
             |(#{eps.player})
