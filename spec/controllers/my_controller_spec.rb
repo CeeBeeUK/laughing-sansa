@@ -132,22 +132,6 @@ RSpec.describe MyController, type: :controller do
       it 'redirects to the game view' do
         expect(response).to redirect_to(my_game_path(event_player_score.event))
       end
-
-      context 'when a previous act is already fattest' do
-        let!(:prev_fattest) do
-          create(
-            :event_player_score,
-            event_player: event_player,
-            participating_country: event.participating_countries.first,
-            fattest: true
-          )
-        end
-
-        it 'resets the previous scores' do
-          prev_fattest.reload
-          expect(prev_fattest.fattest).to be false
-        end
-      end
     end
   end
 end
