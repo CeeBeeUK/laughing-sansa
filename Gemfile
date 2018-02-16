@@ -31,7 +31,7 @@ gem 'rails-controller-testing'
 gem 'spring', group: :development
 
 # Devise for user authentication
-gem 'devise', github: 'plataformatec/devise'
+gem 'devise'
 gem 'omniauth-google-oauth2'
 # and CanCan for authorization
 gem 'acts_as_list'
