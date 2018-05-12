@@ -28,6 +28,9 @@ class MyController < ApplicationController
 
   def score
     authorize! :read, EventPlayerScore
+    return if @event.active?
+    flash[:alert] = 'Scoring is locked'
+    redirect_to my_game_path
   end
 
   def score_create
