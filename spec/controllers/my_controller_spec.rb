@@ -84,24 +84,65 @@ RSpec.describe MyController, type: :controller do
     end
   end
   describe 'GET #{game}score' do
-    let(:event_player) { create(:event_player, player: user) }
-    let(:event_player_score) { create(:event_player_score, event_player: event_player) }
+    let!(:event) { create(:event) }
+    let!(:event_player) { create(:event_player, player: user, event: event) }
+    let!(:event_player_score) { create(:event_player_score, event_player: event_player) }
 
     before do
       sign_in user
-      get :score,
-        params: {
-          year: event_player_score.event.year,
-          act: event_player_score.participating_country.position,
-          event_player_score: event_player_score.attributes
-        }
     end
-    it 'renders the score page' do
-      expect(response).to render_template(:score)
+
+    context 'when the game is `active``' do
+      before do
+        event.active!
+        get :score,
+            params: {
+                year: event_player_score.event.year,
+                act: event_player_score.participating_country.position,
+                event_player_score: event_player_score.attributes
+            }
+      end
+
+      it 'renders the score page' do
+        expect(response).to render_template(:score)
+      end
+
+      it 'returns a 200 code' do
+        expect(response.status).to eq(200)
+      end
     end
-    it 'returns a 200 code' do
-      expect(response.status).to eq(200)
+
+    context 'when the game is not `active``' do
+
+      before do
+        event.archived!
+        get :score,
+            params: {
+                year: event_player_score.event.year,
+                act: event_player_score.participating_country.position,
+                event_player_score: event_player_score.attributes
+            }
+      end
+
+      it 'redirects to the game path' do
+        expect(response).to redirect_to(my_game_path)
+      end
+
+      it 'returns a 302 code' do
+        expect(response.status).to eq(302)
+      end
+
+      describe 'a flash alert' do
+        it 'is displayed' do
+          expect(flash[:alert]).to be_present
+        end
+
+        it 'has the correct text' do
+          expect(flash[:alert]).to eql('Scoring is locked')
+        end
+      end
     end
+
   end
   describe 'PUT #score_create' do
     let(:event_player) { create(:event_player, player: user) }
