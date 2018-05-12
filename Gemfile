@@ -43,9 +43,12 @@ gem 'rack-pratchett'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'byebug'
 end
 
 group :test, :development do
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'factory_bot_rails'
   gem 'guard'
   gem 'guard-rspec'
