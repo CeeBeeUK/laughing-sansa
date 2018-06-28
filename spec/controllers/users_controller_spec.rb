@@ -34,7 +34,7 @@ RSpec.describe UsersController, type: :controller do
       get :index
     end
     it 'returns a success status' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
     it 'renders the template' do
       expect(response).to render_template :index

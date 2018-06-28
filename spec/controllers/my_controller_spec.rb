@@ -9,7 +9,7 @@ RSpec.describe MyController, type: :controller do
     it 'returns http success' do
       sign_in user
       get :profile
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
   describe 'PUT #profile_update' do
