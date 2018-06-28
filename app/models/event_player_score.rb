@@ -13,10 +13,10 @@ class EventPlayerScore < ApplicationRecord
   scope :scoring_order, (lambda { |id|
     all.where(event_player_id: id)
       .joins(:participating_country)
-      .order('participating_countries.position +
+      .order(Arel.sql('participating_countries.position +
         CASE WHEN (event_player_scores.score IS NULL)
         THEN 0
-        ELSE 40 END')
+        ELSE 40 END'))
   })
   def player
     participating_country.player.display_name unless participating_country.player.nil?
