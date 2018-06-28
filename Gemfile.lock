@@ -54,7 +54,7 @@ GEM
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
-    byebug (10.0.0)
+    byebug (10.0.2)
     cancancan (2.2.0)
     codeclimate-test-reporter (1.0.8)
       simplecov (<= 0.13)
