@@ -42,6 +42,7 @@ class EventPlayer < ApplicationRecord
 
   def event_can_be_joined
     return unless event && !event.can_be_joined?
+
     errors.add(:event, 'is not active.')
   end
 

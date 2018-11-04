@@ -18,6 +18,7 @@ class MyController < ApplicationController
   def game
     authorize! :read, Event
     return respond_with(@pp) if @pp
+
     if @event.active?
       redirect_to game_sign_up_path(@event)
     else
@@ -29,6 +30,7 @@ class MyController < ApplicationController
   def score
     authorize! :read, EventPlayerScore
     return if @event.active?
+
     flash[:alert] = 'Scoring is locked'
     redirect_to my_game_path
   end
@@ -47,6 +49,7 @@ class MyController < ApplicationController
 
   def reset_event_attribute(attribute, eps)
     return unless true? score_params[attribute.to_sym]
+
     @pp = eps.event_player
     @pc = eps.participating_country
     @pp.set_attribute_to_true(attribute, @pc)
@@ -63,6 +66,7 @@ class MyController < ApplicationController
   def load_eps
     load_pp
     return unless @pp
+
     @eps = EventPlayerScore
            .joins(:event, :participating_country)
            .find_by(
