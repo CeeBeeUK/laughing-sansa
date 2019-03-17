@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :participating_country do
-    country
+    association :country
     event
     sequence(:position)
     association :player, factory: 'user'

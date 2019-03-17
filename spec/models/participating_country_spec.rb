@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ParticipatingCountry, type: :model do
-  let(:participant) { build(:participating_country) }
+  let(:participant) { create(:participating_country) }
 
   it 'passes the factory build' do
     expect(participant).to be_valid
