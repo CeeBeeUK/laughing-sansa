@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-  let(:event) { build(:event) }
+  let(:event) { create(:event) }
 
   it 'passes factory build' do
     expect(event).to be_valid
@@ -21,15 +21,15 @@ RSpec.describe Event, type: :model do
       create(:country, name: 'Host country')
     end
     it 'and the host is non-big 5' do
-      create(:event, country: create(:country, name: 'Serbia'))
+      event = create(:event, country: create(:country, name: 'Serbia'))
       event.add_big_five
-      expect(event.participating_countries.count).to be 6
+      expect(event.participating_countries.count).to eq 6
     end
+
     it 'and the host is one of the big 5' do
-      build(:event)
-      event.country = uk
+      event = create(:event, country: uk)
       event.add_big_five
-      expect(event.participating_countries.count).to be 5
+      expect(event.participating_countries.count).to eq 5
     end
   end
 
