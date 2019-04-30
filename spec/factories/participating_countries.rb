@@ -4,7 +4,7 @@ FactoryBot.define do
     event
     sequence(:position)
     association :player, factory: 'user'
-    real_final_score nil
-    home_final_score nil
+    real_final_score { nil }
+    home_final_score { nil }
   end
 end
