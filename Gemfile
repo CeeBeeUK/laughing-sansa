@@ -13,7 +13,7 @@ gem 'coffee-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 # template
-gem 'foundation-rails', '~>5.5'
+gem 'foundation-rails', '~>6.5'
 gem 'nokogiri', '>=1.7'
 gem 'slim-rails'
 # Use jquery as the JavaScript library
