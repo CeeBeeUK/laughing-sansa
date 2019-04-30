@@ -2,17 +2,17 @@ FactoryBot.define do
   factory :event_player do
     association :player, factory: 'user'
     association :event
-    predicted_uk_score 1
+    predicted_uk_score { 1 }
     after(:build) do |ep|
       ep.event.active!
     end
 
     factory :invalid_pp do
-      predicted_uk_score nil
+      predicted_uk_score { nil }
     end
     trait :with_scores do
       transient do
-        number_of_scores 3
+        number_of_scores { 3 }
       end
 
       after :build do |this, evaluator|
