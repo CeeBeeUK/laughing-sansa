@@ -19,7 +19,7 @@ class EventPlayerScore < ApplicationRecord
         ELSE 40 END'))
   })
   def player
-    participating_country.player.display_name unless participating_country.player.nil?
+    participating_country.player&.display_name
   end
 
   def country
