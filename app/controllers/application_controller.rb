@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
   end
   def after_sign_in_path_for(user)
     game_in_progress = Event.latest_active.last
-    if game_in_progress && game_in_progress.being_played_by?(user)
+    if game_in_progress&.being_played_by?(user)
       my_game_path(game_in_progress)
-    elsif game_in_progress && game_in_progress.can_be_joined_by?(user)
+    elsif game_in_progress&.can_be_joined_by?(user)
       game_join_path(game_in_progress)
     else
       root_path
