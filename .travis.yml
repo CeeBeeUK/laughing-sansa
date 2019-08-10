@@ -3,13 +3,15 @@ sudo: false
 rvm:
 - 2.6.3
 cache: bundler
+services:
+- postgresql
 before_install:
 - gem update --system
 - gem install bundler
 before_script:
 - psql -c 'create role euro login createdb;' -U postgres
 addons:
-  postgresql: 9.3
+  postgresql: 9.6
   code_climate:
     repo_token: 352f320ede2f679be5d89f246dc321cea7839db59bfe0b9d88c5de5c90505e53
 script:
