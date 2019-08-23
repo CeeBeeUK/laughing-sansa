@@ -11,7 +11,7 @@ class MyController < ApplicationController
 
   def profile_update
     authorize! :update, User
-    @user.update_attributes(display_name: user_params[:display_name])
+    @user.update(display_name: user_params[:display_name])
     redirect_to my_profile_path
   end
 
