@@ -19,13 +19,12 @@ class User < ApplicationRecord
   def self.find_for_google_oauth2(access_token, _signed_in_resource = nil)
     data = access_token.info
     # data[:last_sign_in_at] = DateTime.now
-    user = User.find_by(email: data['email'])
-    user = if user
-             update_user(user, data)
-           else
-             add_new_user(data)
-           end
-    user
+    existing_user = User.find_by(email: data['email'])
+    if existing_user
+      update_user(existing_user, data)
+    else
+      add_new_user(data)
+    end
   end
 
   def display_name
