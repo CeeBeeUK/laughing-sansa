@@ -16,5 +16,5 @@
 // const imagePath = (name) => images(name, true)
 
 $(function () {
-    console.log('Hello World from Webpacker');
+    console.log('Replace with JS when migrated');
 });
