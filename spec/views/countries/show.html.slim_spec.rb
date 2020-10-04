@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'countries/show', type: :view do
   before do
-    @country = create(:country)
+    @country = create(:country, name: 'Albania')
   end
 
   it 'renders attributes in <p>' do
