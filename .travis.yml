@@ -1,9 +1,5 @@
-language:
-  - ruby
-  - node_js
+language: ruby
 sudo: false
-node_js:
-- 12
 rvm:
 - 2.6.3
 cache: bundler
@@ -14,7 +10,6 @@ before_install:
 - gem install bundler
 - nvm install 12
 - nvm use 12
-- yarn --version
 - yarn
 before_script:
 - psql -c 'create role euro login createdb;' -U postgres
