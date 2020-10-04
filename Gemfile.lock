@@ -381,6 +381,7 @@ DEPENDENCIES
   sdoc (~> 1)
   slim-rails
   spring
+  sprockets (~> 3.0)
   sprockets-rails (~> 3.0)
   turbolinks
   uglifier
