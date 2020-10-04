@@ -1,4 +1,6 @@
-language: ruby
+language:
+  - ruby
+  - node_js
 sudo: false
 node_js:
 - 12
