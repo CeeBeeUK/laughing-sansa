@@ -70,3 +70,5 @@ group :production do
 end
 # gem for heroku deployment
 gem 'rails_12factor', group: :production
+
+gem "webpacker", "~> 5.2"
