@@ -5,7 +5,7 @@ RSpec.describe 'events/show', type: :view do
 
   let(:user) { create(:user) }
   let(:admin) { create(:admin_user) }
-  let(:event) { assign(:event, create(:event)) }
+  let(:event) { assign(:event, create(:event, country: create(:country, name: 'Albania'))) }
 
   describe 'renders attributes' do
     before do

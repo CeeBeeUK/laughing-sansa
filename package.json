@@ -1,6 +1,25 @@
 {
+  "name": "bruce_burton_eurovision",
+  "description": "Eurovision Scoring App",
+  "version": "1.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CeeBeeUK/laughing-sansa.git"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "author": "Colin Bruce",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CeeBeeUK/laughing-sansa/issues"
+  },
+  "scripts": {
+  },
   "dependencies": {
-    "@rails/webpacker": "5.2.1"
+    "@rails/webpacker": "5.2.1",
+    "webpack": "^4.44.2"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"

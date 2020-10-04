@@ -8,6 +8,9 @@ services:
 before_install:
 - gem update --system
 - gem install bundler
+- nvm install 12
+- nvm use 12
+- yarn
 before_script:
 - psql -c 'create role euro login createdb;' -U postgres
 addons:

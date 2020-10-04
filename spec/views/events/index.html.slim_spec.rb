@@ -6,7 +6,7 @@ RSpec.describe 'events/index', type: :view do
   let(:user) { create(:user) }
 
   before do
-    country = create(:country)
+    country = create(:country, name: 'Albania')
     assign(:events,
       [
         Event.create!(year: 2010, host_city: 'Host City', active: false, country: country, status: 'archived', real_winner: country, home_winner: country, real_player_name: 'bob', home_player_name: 'bob'),
