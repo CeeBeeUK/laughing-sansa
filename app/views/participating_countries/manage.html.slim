@@ -11,7 +11,8 @@
 .row
   .columns.small-12
     h2
-      img.pad-right src= @event.country.xl_image
+      span.pad-right
+        =image_pack_tag(@event.country.xl_image)
       =@event.display_name
       |  countries
 hr
