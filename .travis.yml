@@ -1,5 +1,7 @@
 language: ruby
 sudo: false
+node_js:
+- 12
 rvm:
 - 2.6.3
 cache: bundler
