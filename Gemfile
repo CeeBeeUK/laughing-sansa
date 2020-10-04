@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.6.3'
 gem 'rails', '~> 6.0'
+gem 'sprockets', '~>3.0'
 gem 'sprockets-rails', '~>3.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -70,3 +71,5 @@ group :production do
 end
 # gem for heroku deployment
 gem 'rails_12factor', group: :production
+
+gem "webpacker", "~> 5.2"
