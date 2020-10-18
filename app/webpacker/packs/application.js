@@ -15,3 +15,11 @@ const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
 
 console.log('Hello World from Webpacker')
+
+import '../stylesheets/countries.css.scss'
+import '../stylesheets/events.scss'
+import '../stylesheets/home.css.scss'
+import '../stylesheets/participating_country.scss'
+import '../stylesheets/profile.scss'
+import '../stylesheets/scoring.scss'
+import '../stylesheets/tables.scss'
