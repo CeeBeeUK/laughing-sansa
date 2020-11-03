@@ -292,7 +292,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sdoc (1.1.0)
+    sdoc (2.0.0)
       rdoc (>= 5.0)
     semantic_range (2.3.0)
     shellany (0.0.1)
@@ -376,7 +376,7 @@ DEPENDENCIES
   rubocop (~> 0.93)
   rubocop-rspec (~> 1)
   sass-rails
-  sdoc (~> 1)
+  sdoc (~> 2)
   slim-rails
   spring
   sprockets
