@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.6.3'
-gem 'rails', '~> 6.0'
+gem 'rails', '~> 6.1'
 gem 'sprockets'
 gem 'sprockets-rails'
 # Use postgresql as the database for Active Record
