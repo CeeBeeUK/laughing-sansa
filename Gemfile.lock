@@ -1,5 +1,7 @@
-GEM
-  remote: https://rubygems.org/
+GIT
+  remote: https://github.com/rails/rails.git
+  revision: 65847ee7b14cb5282c78d41e1d2657d86ac74731
+  branch: 6-1-stable
   specs:
     actioncable (6.1.0)
       actionpack (= 6.1.0)
@@ -60,6 +62,31 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    rails (6.1.0)
+      actioncable (= 6.1.0)
+      actionmailbox (= 6.1.0)
+      actionmailer (= 6.1.0)
+      actionpack (= 6.1.0)
+      actiontext (= 6.1.0)
+      actionview (= 6.1.0)
+      activejob (= 6.1.0)
+      activemodel (= 6.1.0)
+      activerecord (= 6.1.0)
+      activestorage (= 6.1.0)
+      activesupport (= 6.1.0)
+      bundler (>= 1.15.0)
+      railties (= 6.1.0)
+      sprockets-rails (>= 2.0.0)
+    railties (6.1.0)
+      actionpack (= 6.1.0)
+      activesupport (= 6.1.0)
+      method_source
+      rake (>= 0.8.7)
+      thor (~> 1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
     acts_as_list (0.9.12)
       activerecord (>= 3.0)
     ast (2.4.1)
@@ -204,21 +231,6 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
-    rails (6.1.0)
-      actioncable (= 6.1.0)
-      actionmailbox (= 6.1.0)
-      actionmailer (= 6.1.0)
-      actionpack (= 6.1.0)
-      actiontext (= 6.1.0)
-      actionview (= 6.1.0)
-      activejob (= 6.1.0)
-      activemodel (= 6.1.0)
-      activerecord (= 6.1.0)
-      activestorage (= 6.1.0)
-      activesupport (= 6.1.0)
-      bundler (>= 1.15.0)
-      railties (= 6.1.0)
-      sprockets-rails (>= 2.0.0)
     rails-controller-testing (1.0.5)
       actionpack (>= 5.0.1.rc1)
       actionview (>= 5.0.1.rc1)
@@ -233,14 +245,8 @@ GEM
       rails_stdout_logging
     rails_serve_static_assets (0.0.5)
     rails_stdout_logging (0.0.5)
-    railties (6.1.0)
-      actionpack (= 6.1.0)
-      activesupport (= 6.1.0)
-      method_source
-      rake (>= 0.8.7)
-      thor (~> 1.0)
     rainbow (3.0.0)
-    rake (13.0.1)
+    rake (13.0.2)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -329,7 +335,7 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    tzinfo (2.0.3)
+    tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
@@ -373,7 +379,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   rack-pratchett
-  rails (~> 6.1)
+  rails!
   rails-controller-testing
   rails_12factor
   redis
