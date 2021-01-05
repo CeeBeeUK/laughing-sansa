@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 0a38e725f8f44f45a5a6045b11afdf25a5e629ae
+  revision: b469be4901b61d018d6855e01b0dcfd446666a4a
   branch: 6-1-stable
   specs:
     actioncable (6.1.0)
@@ -157,7 +157,7 @@ GEM
       guard (~> 2.0)
       rubocop (< 2.0)
     hashie (4.1.0)
-    i18n (1.8.6)
+    i18n (1.8.7)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
