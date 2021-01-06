@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: b469be4901b61d018d6855e01b0dcfd446666a4a
+  revision: 4e8fa5ce13c1ce8d91e8bee4b7e496c3496ded61
   branch: 6-1-stable
   specs:
     actioncable (6.1.0)
@@ -184,7 +184,7 @@ GEM
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.5.0)
-    minitest (5.14.2)
+    minitest (5.14.3)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
