@@ -1,7 +1,5 @@
-GIT
-  remote: https://github.com/rails/rails.git
-  revision: 5f3ff60084ab5d5921ca3499814e4697f8350ee7
-  branch: 6-1-stable
+GEM
+  remote: https://rubygems.org/
   specs:
     actioncable (6.1.1)
       actionpack (= 6.1.1)
@@ -62,31 +60,6 @@ GIT
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
-    rails (6.1.1)
-      actioncable (= 6.1.1)
-      actionmailbox (= 6.1.1)
-      actionmailer (= 6.1.1)
-      actionpack (= 6.1.1)
-      actiontext (= 6.1.1)
-      actionview (= 6.1.1)
-      activejob (= 6.1.1)
-      activemodel (= 6.1.1)
-      activerecord (= 6.1.1)
-      activestorage (= 6.1.1)
-      activesupport (= 6.1.1)
-      bundler (>= 1.15.0)
-      railties (= 6.1.1)
-      sprockets-rails (>= 2.0.0)
-    railties (6.1.1)
-      actionpack (= 6.1.1)
-      activesupport (= 6.1.1)
-      method_source
-      rake (>= 0.8.7)
-      thor (~> 1.0)
-
-GEM
-  remote: https://rubygems.org/
-  specs:
     acts_as_list (0.9.12)
       activerecord (>= 3.0)
     ast (2.4.1)
@@ -233,6 +206,21 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rails (6.1.1)
+      actioncable (= 6.1.1)
+      actionmailbox (= 6.1.1)
+      actionmailer (= 6.1.1)
+      actionpack (= 6.1.1)
+      actiontext (= 6.1.1)
+      actionview (= 6.1.1)
+      activejob (= 6.1.1)
+      activemodel (= 6.1.1)
+      activerecord (= 6.1.1)
+      activestorage (= 6.1.1)
+      activesupport (= 6.1.1)
+      bundler (>= 1.15.0)
+      railties (= 6.1.1)
+      sprockets-rails (>= 2.0.0)
     rails-controller-testing (1.0.5)
       actionpack (>= 5.0.1.rc1)
       actionview (>= 5.0.1.rc1)
@@ -247,6 +235,12 @@ GEM
       rails_stdout_logging
     rails_serve_static_assets (0.0.5)
     rails_stdout_logging (0.0.5)
+    railties (6.1.1)
+      actionpack (= 6.1.1)
+      activesupport (= 6.1.1)
+      method_source
+      rake (>= 0.8.7)
+      thor (~> 1.0)
     rainbow (3.0.0)
     rake (13.0.3)
     rb-fsevent (0.10.4)
@@ -381,7 +375,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   rack-pratchett
-  rails!
+  rails (~> 6.1)
   rails-controller-testing
   rails_12factor
   redis
