@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/heartcombo/devise.git
-  revision: 743b6937e2251cdfd0e857d6d4fa97df4aca5791
+  revision: 1bb5fcbbecfb9452e194341e030fdc1d364f6ee4
   branch: master
   specs:
     devise (4.7.3)
@@ -143,7 +143,7 @@ GEM
       guard (~> 2.0)
       rubocop (< 2.0)
     hashie (4.1.0)
-    i18n (1.8.7)
+    i18n (1.8.8)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
@@ -158,7 +158,7 @@ GEM
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.8.0)
+    loofah (2.9.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.2.8)
@@ -342,7 +342,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     temple (0.8.1)
-    thor (1.0.1)
+    thor (1.1.0)
     tilt (2.0.10)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
