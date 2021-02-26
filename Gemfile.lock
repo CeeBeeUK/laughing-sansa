@@ -262,7 +262,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    rdoc (6.2.1)
+    rdoc (6.3.0)
     redis (4.2.5)
     regexp_parser (2.0.3)
     responders (3.0.1)
@@ -317,7 +317,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sdoc (2.0.3)
+    sdoc (2.0.4)
       rdoc (>= 5.0)
     semantic_range (2.3.0)
     shellany (0.0.1)
