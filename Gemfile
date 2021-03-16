@@ -33,7 +33,9 @@ gem 'spring', group: :development
 
 # Devise for user authentication
 gem 'devise', github: 'heartcombo/devise', branch: 'master'
-gem "omniauth", "~> 1.9.1"
+gem "omniauth"
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
 # and CanCan for authorization
 gem 'acts_as_list'
 gem 'cancancan'
