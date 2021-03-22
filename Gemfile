@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.6.3'
-gem 'rails', '~> 6.0'
+ruby '2.7.2'
+gem 'rails', '~> 6.1'
 gem 'sprockets'
 gem 'sprockets-rails'
 # Use postgresql as the database for Active Record
@@ -25,15 +25,17 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 1', group: :doc
+gem 'sdoc', '~> 2', group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'rails-controller-testing'
 gem 'spring', group: :development
 
 # Devise for user authentication
-gem 'devise'
+gem 'devise', github: 'heartcombo/devise', branch: 'master'
+gem "omniauth"
 gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
 # and CanCan for authorization
 gem 'acts_as_list'
 gem 'cancancan'
@@ -55,9 +57,9 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'guard-rubocop'
   gem 'rspec'
-  gem 'rspec-rails', '~> 4.0.1'
-  gem 'rubocop', '~>0.93', require: false
-  gem 'rubocop-rspec', '~>1', require: false
+  gem 'rspec-rails', '~> 5.0.1'
+  gem 'rubocop', '~>1.11', require: false
+  gem 'rubocop-rspec', '~>2', require: false
 end
 
 # Code climate CI integration
