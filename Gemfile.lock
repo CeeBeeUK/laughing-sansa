@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/heartcombo/devise.git
-  revision: ef9a2f410413b02b5234d80a73b42e296ebcc863
+  revision: e8e0c275999dd98150197cab03acb5509cb16b6a
   branch: master
   specs:
     devise (4.7.3)
@@ -143,7 +143,7 @@ GEM
       guard (~> 2.0)
       rubocop (< 2.0)
     hashie (4.1.0)
-    i18n (1.8.9)
+    i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
