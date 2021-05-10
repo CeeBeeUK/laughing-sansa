@@ -28,6 +28,7 @@
     "is-svg": "^4.2.2",
     "ssri": "^8.0.1",
     "lodash": "^4.17.21",
-    "hosted-git-info": "^2.8.9"
+    "hosted-git-info": "^2.8.9",
+    "postcss": "^8.2.10"
   }
 }
