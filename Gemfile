@@ -74,4 +74,4 @@ end
 # gem for heroku deployment
 gem 'rails_12factor', group: :production
 
-gem "webpacker", "~> 5.3"
+gem "webpacker", "~> 5.4"
