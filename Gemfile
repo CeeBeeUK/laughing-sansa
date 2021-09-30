@@ -58,7 +58,7 @@ group :test, :development do
   gem 'guard-rubocop'
   gem 'rspec'
   gem 'rspec-rails', '~> 5.0.2'
-  gem 'rubocop', '~>1.21', require: false
+  gem 'rubocop', '~>1.22', require: false
   gem 'rubocop-rspec', '~>2', require: false
 end
 
