@@ -18,7 +18,7 @@
   "scripts": {
   },
   "dependencies": {
-    "@rails/webpacker": "5.2.1",
+    "@rails/webpacker": "5.4.3",
     "webpack": "^4.44.2"
   },
   "devDependencies": {
