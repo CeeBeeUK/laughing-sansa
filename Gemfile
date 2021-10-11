@@ -32,7 +32,7 @@ gem 'rails-controller-testing'
 gem 'spring', group: :development
 
 # Devise for user authentication
-gem 'devise', github: 'heartcombo/devise', branch: 'master'
+gem 'devise'
 gem "omniauth"
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
