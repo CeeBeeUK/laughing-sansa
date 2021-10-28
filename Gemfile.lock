@@ -299,7 +299,7 @@ GEM
     rubocop-rspec (2.5.0)
       rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
-    ruby2_keywords (0.0.4)
+    ruby2_keywords (0.0.5)
     sass (3.4.25)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
