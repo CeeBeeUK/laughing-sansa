@@ -8,15 +8,14 @@
     "url": "git+https://github.com/CeeBeeUK/laughing-sansa.git"
   },
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "author": "Colin Bruce",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CeeBeeUK/laughing-sansa/issues"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "dependencies": {
     "@rails/webpacker": "5.4.3"
   },
