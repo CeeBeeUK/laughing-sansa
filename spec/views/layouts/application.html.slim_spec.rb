@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'layouts/application.html.slim', type: :view do
+RSpec.describe 'layouts/application', type: :view do
   include Devise::Test::ControllerHelpers
   before { Event.delete_all }
   let(:user) { create(:user) }
