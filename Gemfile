@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.7.2'
+ruby '3.0.3'
 gem 'rails', '~> 7.0'
 gem 'sprockets'
 gem 'sprockets-rails'
