@@ -20,7 +20,7 @@
     "@rails/webpacker": "5.4.3"
   },
   "devDependencies": {
-    "webpack-dev-server": "^4.7.1"
+    "webpack-dev-server": "^4.7.2"
   },
   "resolutions": {
     "is-svg": "^4.2.2",
