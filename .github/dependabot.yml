@@ -29,6 +29,7 @@ updates:
   - yarn-dependencies
 - package-ecosystem: npm
   directory: "/"
+  target-branch: main
   allow:
     - dependency-type: "all"
   schedule:
