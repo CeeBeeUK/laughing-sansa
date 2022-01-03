@@ -20,10 +20,20 @@ updates:
     - "> 5.5.3.2"
 - package-ecosystem: npm
   directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  reviewers:
+  - CeeBeeUK
+  labels:
+  - yarn-dependencies
+- package-ecosystem: npm
+  directory: "/"
   allow:
     - dependency-type: "all"
   schedule:
-    interval: daily
+    interval: weekly
+    day: friday
   open-pull-requests-limit: 10
   reviewers:
   - CeeBeeUK
