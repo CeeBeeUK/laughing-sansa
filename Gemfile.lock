@@ -307,7 +307,7 @@ GEM
       ffi (~> 1.0)
     rdoc (6.3.3)
     redis (4.6.0)
-    regexp_parser (2.2.0)
+    regexp_parser (2.2.1)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
