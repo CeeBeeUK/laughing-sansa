@@ -60,6 +60,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 5.1.1'
   gem 'rubocop', '~>1.26', require: false
   gem 'rubocop-rspec', '~>2', require: false
+  gem 'webrick'
 end
 
 # Code climate CI integration
