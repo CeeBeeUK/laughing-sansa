@@ -3,6 +3,7 @@ ruby '3.0.3'
 gem 'rails', '~> 7.0'
 gem 'sprockets'
 gem 'sprockets-rails'
+gem 'webrick'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -60,7 +61,6 @@ group :test, :development do
   gem 'rspec-rails', '~> 5.1.1'
   gem 'rubocop', '~>1.26', require: false
   gem 'rubocop-rspec', '~>2', require: false
-  gem 'webrick'
 end
 
 # Code climate CI integration
