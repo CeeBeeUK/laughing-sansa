@@ -287,7 +287,7 @@ GEM
       ffi (~> 1.0)
     rdoc (6.3.3)
     redis (4.6.0)
-    regexp_parser (2.2.1)
+    regexp_parser (2.3.0)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -313,7 +313,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.11.0)
-    rubocop (1.26.1)
+    rubocop (1.27.0)
       parallel (~> 1.10)
       parser (>= 3.1.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -322,7 +322,7 @@ GEM
       rubocop-ast (>= 1.16.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.16.0)
+    rubocop-ast (1.17.0)
       parser (>= 3.1.1.0)
     rubocop-rspec (2.9.0)
       rubocop (~> 1.19)
@@ -424,7 +424,7 @@ DEPENDENCIES
   redis
   rspec
   rspec-rails (~> 5.1.1)
-  rubocop (~> 1.26)
+  rubocop (~> 1.27)
   rubocop-rspec (~> 2)
   sass-rails
   sdoc (~> 2)
