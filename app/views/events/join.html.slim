@@ -25,9 +25,12 @@
     .small-12.columns
       h3
   .row
+    .small-12.medium-12.columns.inline
+      |As the UK has had very low scores for two years, this year you need to predict the score that <strong>Ukraine</strong> will score
+  .row
     .small-8.medium-8.columns
       = f.label :predicted_uk_score, class: 'inline'
-        |What score do you think the UK will get in total?
+        |What score do you think Ukraine will get in total?
     .small-4.medium-4.columns
       = f.number_field :predicted_uk_score, autofocus: true
   .row
