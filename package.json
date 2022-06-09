@@ -21,7 +21,7 @@
     "postcss": "^8.4.14"
   },
   "devDependencies": {
-    "webpack-dev-server": "^4.9.0"
+    "webpack-dev-server": "^4.9.2"
   },
   "resolutions": {
     "is-svg": "^4.2.2",
