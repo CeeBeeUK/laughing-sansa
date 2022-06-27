@@ -287,7 +287,7 @@ GEM
       ffi (~> 1.0)
     rdoc (6.4.0)
       psych (>= 4.0.0)
-    redis (4.6.0)
+    redis (4.7.0)
     regexp_parser (2.5.0)
     responders (3.0.1)
       actionpack (>= 5.0)
