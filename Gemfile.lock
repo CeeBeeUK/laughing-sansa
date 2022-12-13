@@ -165,7 +165,7 @@ GEM
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.18.0)
+    loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.2.8)
@@ -236,7 +236,7 @@ GEM
       pry (>= 0.10.4)
     psych (4.0.4)
       stringio
-    racc (1.6.0)
+    racc (1.6.1)
     rack (2.2.4)
     rack-pratchett (0.1.1)
     rack-protection (2.2.0)
