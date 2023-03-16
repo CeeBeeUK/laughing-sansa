@@ -13,7 +13,7 @@ class EventsController < ApplicationController
 
   def show
     pp = EventPlayer.find_by(player_id: current_user.id, event_id: @event.id)
-    @current_user_prediction = pp.nil? ? nil : pp.predicted_uk_score
+    @current_user_prediction = pp&.predicted_uk_score
     respond_with(@event)
   end
 
