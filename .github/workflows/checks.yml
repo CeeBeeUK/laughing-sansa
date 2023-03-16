@@ -40,18 +40,18 @@ jobs:
         run: |
           wget http://mirrors.kernel.org/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_amd64.deb
           sudo apt install ./libffi6_3.2.1-8_amd64.deb
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
       - name: Cache bundle
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
       - name: Cache yarn
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -64,6 +64,11 @@ jobs:
           bundle install --jobs 4 --retry 3
       - name: Install Yarn packages
         run: yarn --frozen-lockfile
+      - name: Precompile assets
+        env:
+          RAILS_ENV: test
+          NODE_OPTIONS: --openssl-legacy-provider
+        run: rake webpacker:compile
       - name: Configure database
         env:
           PGHOST: localhost
@@ -80,7 +85,7 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rspec
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: coverage-report
