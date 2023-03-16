@@ -67,6 +67,7 @@ jobs:
       - name: Precompile assets
         env:
           RAILS_ENV: test
+          NODE_OPTIONS: --openssl-legacy-provider
         run: rake webpacker:compile
       - name: Configure database
         env:
