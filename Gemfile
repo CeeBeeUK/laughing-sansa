@@ -3,7 +3,8 @@ ruby '3.2.1'
 gem 'rails', '~> 7.0'
 gem 'sprockets'
 gem 'sprockets-rails'
-gem 'webrick'
+
+gem 'puma'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
