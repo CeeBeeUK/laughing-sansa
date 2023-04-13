@@ -204,7 +204,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 4)
-    omniauth (2.1.0)
+    omniauth (2.1.1)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
       rack-protection
@@ -239,7 +239,7 @@ GEM
     racc (1.6.2)
     rack (2.2.6.4)
     rack-pratchett (0.1.1)
-    rack-protection (3.0.5)
+    rack-protection (3.0.6)
       rack
     rack-proxy (0.7.2)
       rack
