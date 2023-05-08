@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/heartcombo/devise
-  revision: 7d1dc56fdba2402c452c4224567077b23184637e
+  revision: 4b72064bfcf076478c5c87818b9536b203f6584f
   branch: main
   specs:
-    devise (4.9.0)
+    devise (4.9.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
