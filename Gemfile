@@ -34,7 +34,7 @@ gem 'rails-controller-testing'
 gem 'spring', group: :development
 
 # Devise for user authentication
-gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
+gem 'devise'
 gem "omniauth"
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"

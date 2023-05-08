@@ -1,15 +1,3 @@
-GIT
-  remote: https://github.com/heartcombo/devise
-  revision: 7d1dc56fdba2402c452c4224567077b23184637e
-  branch: main
-  specs:
-    devise (4.9.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -112,6 +100,12 @@ GEM
     database_cleaner-core (2.0.1)
     date (3.3.3)
     debug_inspector (1.1.0)
+    devise (4.9.2)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     diff-lcs (1.5.0)
     docile (1.1.5)
     erubi (1.12.0)
@@ -417,7 +411,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails
   database_cleaner
-  devise!
+  devise
   factory_bot_rails
   foundation-rails (~> 5.5)
   guard
