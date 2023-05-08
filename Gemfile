@@ -34,7 +34,7 @@ gem 'rails-controller-testing'
 gem 'spring', group: :development
 
 # Devise for user authentication
-gem 'devise', git: 'https://github.com/heartcombo/devise', branch: 'main'
+gem 'devise'
 gem "omniauth"
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
@@ -59,7 +59,7 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'guard-rubocop'
   gem 'rspec'
-  gem 'rspec-rails', '~> 5.1.2'
+  gem 'rspec-rails'
   gem 'rubocop', '~>1.35', require: false
   gem 'rubocop-rspec', '~>2', require: false
 end
