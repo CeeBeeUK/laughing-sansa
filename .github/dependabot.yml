@@ -11,22 +11,17 @@ updates:
   - CeeBeeUK
   labels:
   - dependencies
+  groups:
+      bundler:
+        patterns:
+          - '*'
   ignore:
-  - dependency-name: acts_as_list
-    versions:
-    - "> 0.9.12"
-  - dependency-name: foundation-rails
-    versions:
-    - "> 5.5.3.2"
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-  reviewers:
-  - CeeBeeUK
-  labels:
-  - yarn-dependencies
+    - dependency-name: acts_as_list
+      versions:
+      - "> 0.9.12"
+    - dependency-name: foundation-rails
+      versions:
+      - "> 5.5.3.2"
 - package-ecosystem: npm
   directory: "/"
   target-branch: main
@@ -40,3 +35,7 @@ updates:
   - CeeBeeUK
   labels:
   - yarn-dependencies
+  groups:
+    node:
+      patterns:
+        - '*'
