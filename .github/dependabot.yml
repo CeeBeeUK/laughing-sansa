@@ -5,7 +5,8 @@ updates:
   allow:
     - dependency-type: "all"
   schedule:
-    interval: daily
+    interval: weekly
+    day: thursday
   open-pull-requests-limit: 10
   reviewers:
   - CeeBeeUK
