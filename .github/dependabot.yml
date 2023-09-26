@@ -12,9 +12,9 @@ updates:
   labels:
   - dependencies
   groups:
-      bundler:
-        patterns:
-          - '*'
+    bundler:
+      patterns:
+        - '*'
   ignore:
     - dependency-name: acts_as_list
       versions:
