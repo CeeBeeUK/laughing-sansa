@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '3.2.1'
-gem 'rails', '~> 7.0'
+gem 'rails', '~> 7.1'
 gem 'sprockets'
 gem 'sprockets-rails'
 
@@ -60,7 +60,7 @@ group :test, :development do
   gem 'guard-rubocop'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'rubocop', '~>1.56', require: false
+  gem 'rubocop', '~>1.57', require: false
   gem 'rubocop-rspec', '~>2', require: false
 end
 
