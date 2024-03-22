@@ -77,4 +77,4 @@ USER 1000
 ENV PORT 3000
 EXPOSE $PORT
 
-ENTRYPOINT ["./docker-entrypoint"]
+ENTRYPOINT ["./docker/entrypoint"]
