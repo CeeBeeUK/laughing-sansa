@@ -14,14 +14,13 @@ RUN apk --no-cache add --virtual build-dependencies \
                     libxml2-dev \
                     libxslt-dev \
                     libpq-dev \
-		    gcompat \
                     git \
                     curl \
 && apk --no-cache add \
                   postgresql-client \
                   nodejs \
                   yarn \
-                  jq \
+                  gcompat \
                   linux-headers \
                   bash
 
@@ -43,8 +42,9 @@ WORKDIR /usr/src/app
 COPY Gemfile* ./
 # only install production dependencies,
 # build nokogiri using libxml2-dev, libxslt-dev
-RUN gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ") && \
-    bundler -v && \
+RUN gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ") 
+RUN gem install nokogiri -- --use-system-libraries
+RUN bundler -v && \
     bundle config set frozen 'true' && \
     bundle config set no-cache 'true' && \
     bundle config set no-binstubs 'true' && \
