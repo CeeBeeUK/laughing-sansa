@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.hosts << "eurovision.colinbruce.com"
+  config.hosts << ENV.fetch("HOST", nil)
 	
   # Code is not reloaded between requests.
   config.cache_classes = true
