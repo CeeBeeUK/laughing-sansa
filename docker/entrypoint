@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Remove irb prompts from rails console
+echo 'IRB.conf[:USE_AUTOCOMPLETE] = false' >> ~/.irbrc
+
+# bundle exec bin/rails db:prepare db:seed # stop db interaction it seems to drop and recreate each time docker starts
+bundle exec pumactl -F config/puma.rb start
