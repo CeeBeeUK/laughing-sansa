@@ -17,7 +17,7 @@ gem 'coffee-rails'
 # gem 'therubyracer',  platforms: :ruby
 # template
 gem 'foundation-rails', '~>5.5'
-gem 'nokogiri', '>=1.7'
+gem 'nokogiri', '>=1.16'
 gem 'slim-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -13,7 +13,7 @@ RUN apk --no-cache add --virtual build-dependencies \
                     build-base \
                     libxml2-dev \
                     libxslt-dev \
-                    postgresql-dev \
+                    libpq-dev \
                     git \
                     curl \
 && apk --no-cache add \
@@ -42,10 +42,14 @@ WORKDIR /usr/src/app
 COPY Gemfile* ./
 # only install production dependencies,
 # build nokogiri using libxml2-dev, libxslt-dev
-RUN gem install bundler -v 2.0.2 \
-&& bundle config --global without test:development \
-&& bundle config build.nokogiri --use-system-libraries \
-&& bundle install
+RUN gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ") && \
+    bundler -v && \
+    bundle config set frozen 'true' && \
+    bundle config set no-cache 'true' && \
+    bundle config set no-binstubs 'true' && \
+    bundle config set without test:development && \
+    bundle install --jobs 5 --retry 5 && \
+    rm -rf /usr/local/bundle/cache
 COPY package.json yarn.lock ./
 RUN yarn --prod
 ####################
