@@ -233,7 +233,7 @@ GEM
       pry (>= 0.10.4)
     psych (5.1.1.1)
       stringio
-    puma (6.4.0)
+    puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
@@ -391,6 +391,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2023.3)
+      tzinfo (>= 1.0.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (2.5.0)
@@ -452,6 +454,7 @@ DEPENDENCIES
   sprockets
   sprockets-rails
   turbolinks
+  tzinfo-data
   uglifier
   webpacker (~> 5.4)
 

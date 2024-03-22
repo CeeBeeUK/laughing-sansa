@@ -77,3 +77,4 @@ end
 gem 'rails_12factor', group: :production
 
 gem "webpacker", "~> 5.4"
+gem "tzinfo-data"
