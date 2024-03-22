@@ -51,8 +51,11 @@ RUN gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ") && \
     bundle config set without test:development && \
     bundle install --jobs 5 --retry 5 && \
     rm -rf /usr/local/bundle/cache
+
+# install npm packages
 COPY package.json yarn.lock ./
-RUN yarn --prod
+RUN yarn install --frozen-lockfile --check-files --ignore-scripts
+
 ####################
 # DEPENDENCIES END #
 ####################
