@@ -14,6 +14,7 @@ RUN apk --no-cache add --virtual build-dependencies \
                     libxml2-dev \
                     libxslt-dev \
                     libpq-dev \
+		    gcompat \
                     git \
                     curl \
 && apk --no-cache add \
@@ -58,13 +59,12 @@ RUN yarn --prod
 ENV RAILS_ENV production
 ENV NODE_ENV production
 ENV RAILS_SERVE_STATIC_FILES true
-EXPOSE 3002
 COPY . .
 RUN bundle exec rake webpacker:compile SECRET_KEY_BASE=a-real-secret-key-is-not-needed-here NODE_OPTIONS=--openssl-legacy-provider
 # tidy up installation
 RUN apk del build-dependencies
 # non-root/appuser should own only what they need to
-RUN chown -R appuser:appgroup log tmp db
+RUN chown -R appuser:appgroup log tmp db docker
 # expect ping environment variablesARG COMMIT_ID
 ARG BUILD_DATE
 ARG BUILD_TAG
