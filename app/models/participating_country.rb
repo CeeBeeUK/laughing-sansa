@@ -10,10 +10,10 @@ class ParticipatingCountry < ApplicationRecord
   validates :country_id, uniqueness: { scope: :event_id }
   validates :player_id, numericality: { greater_than_or_equal_to: 0 }
 
-  scope :by_position, (-> { all.order(:position) })
-  scope :player_for_event, (lambda { |event, player|
+  scope :by_position, -> { all.order(:position) }
+  scope :player_for_event, lambda { |event, player|
     all.where(event_id: event, player_id: player).order(:country_id)
-  })
+  }
 
   def sum
     EventPlayerScore.where(participating_country_id: id).sum(:score)
