@@ -13,9 +13,9 @@ class Event < ApplicationRecord
 
   enum status: %i[setup active archived]
 
-  scope :last_to_first, (-> { all.order(year: :desc) })
+  scope :last_to_first, -> { all.order(year: :desc) }
 
-  scope :latest_active, (-> { all.where('status=?', Event.statuses[:active]).order(:year) })
+  scope :latest_active, -> { all.where('status=?', Event.statuses[:active]).order(:year) }
 
   def display_name
     "#{host_city} #{year}"
