@@ -40,7 +40,6 @@ module Eurovision
     # keep the name alive
     config.middleware.use Rack::Pratchett
     config.action_dispatch.return_only_media_type_on_content_type = false
-    config.active_record.legacy_connection_handling = false
     Rails.autoloaders.main.ignore(Rails.root.join('/app/app/webpacker/images/16'))
     Rails.autoloaders.main.ignore(Rails.root.join('/app/app/webpacker/images/32'))
     Rails.autoloaders.main.ignore(Rails.root.join('/app/app/webpacker/images/64'))
