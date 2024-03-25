@@ -7,6 +7,11 @@ Devise.setup do |config|
   # config.secret_key = '638ecb1787110fd618c1fa9e1be272a7ad21fe078f26dafd69374d53c66fc6ab' \
   #  'c3bceebde0705ca655488608699cd4c6afc88312c20d02a80acd5f1332e77768'
 
+  # This is set explicitly to remove a deprecation warning during the Rails 7.1
+  # to 7.2 transition, if Devise is set above 4.9.3, try removing it to see if
+  # the deprecation warning has been removed
+  config.secret_key = Rails.application.secret_key_base
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
