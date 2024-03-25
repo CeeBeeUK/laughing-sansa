@@ -19,7 +19,7 @@
   "dependencies": {
     "@rails/webpacker": "5.4.4",
     "is-svg": "^5.0.0",
-    "postcss": "^8.4.31"
+    "postcss": "^8.4.35"
   },
   "devDependencies": {
     "webpack-dev-server": "^4.15.1"
