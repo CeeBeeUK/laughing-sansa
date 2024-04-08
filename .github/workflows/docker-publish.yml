@@ -27,3 +27,4 @@ jobs:
         run: |
           docker build . --tag ghcr.io/ceebeeuk/laughing-sansa/eurovision:latest
           docker push ghcr.io/ceebeeuk/laughing-sansa/eurovision:latest
+ 
