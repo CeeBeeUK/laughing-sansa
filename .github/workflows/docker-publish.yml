@@ -9,9 +9,6 @@ jobs:
   push-store-image:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: './Store'
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main
