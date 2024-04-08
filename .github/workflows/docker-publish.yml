@@ -22,5 +22,5 @@ jobs:
   
       - name: 'Build Inventory Image'
         run: |
-          docker build . --tag ghcr.io/${{github.actor}}/${{ github.repository }}/eurovision:latest
-          docker push ghcr.io/${{github.actor}}/${{ github.repository }}/eurovision:latest
+          docker build . --tag ghcr.io/ceebeeuk/laughing-sansa/eurovision:latest
+          docker push ghcr.io/ceebeeuk/laughing-sansa/eurovision:latest
