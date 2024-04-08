@@ -3,32 +3,10 @@ on:
   pull_request:
     types:
       - closed
-  workflow_dispatch:
 
-# jobs:
-#   push-store-image:
-#     if: github.event.pull_request.merged == true
-#     runs-on: ubuntu-latest
-#     permissions:
-#       packages: write
-#     steps:
-#       - name: 'Checkout GitHub Action'
-#         uses: actions/checkout@v4
-  
-#       - name: 'Build image'
-#         run: docker build . --tag ghcr.io/ceebeeuk/laughing-sansa/eurovision:latest
-
-#       - name: 'Login to GitHub Container Registry'
-#         uses: docker/login-action@v3.1.0
-#         with:
-#           registry: ghcr.io
-#           username: ${{github.actor}}
-#           password: ${{secrets.GITHUB_TOKEN}}
-  
-#       - name: 'Push image'
-#         run: docker push ghcr.io/ceebeeuk/laughing-sansa/eurovision:latest
 jobs:
   build-and-push-docker:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       packages: write
