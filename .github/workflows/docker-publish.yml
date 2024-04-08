@@ -9,7 +9,8 @@ jobs:
   push-store-image:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    permissions: write_package
+    permissions:
+      packages: write
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v4
