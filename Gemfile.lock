@@ -482,6 +482,7 @@ DEPENDENCIES
   rubocop-rspec (~> 2)
   sass-rails
   sdoc (~> 2)
+  simplecov
   slim-rails
   spring
   sprockets

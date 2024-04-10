@@ -68,6 +68,7 @@ end
 group :test do
   gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
+  gem "simplecov", require: false
 end
 
 group :production do
