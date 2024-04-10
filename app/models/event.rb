@@ -100,4 +100,8 @@ class Event < ApplicationRecord
     ParticipatingCountry.new(event: self, country:).insert_at(1) unless GlobalConstants::BIG5.include?(country.name)
     save!
   end
+
+  def host_flag
+    country.xl_image
+  end
 end
