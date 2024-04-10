@@ -23,6 +23,11 @@ Rails.application.routes.draw do
   patch 'my/profile', to: 'my#profile_update'
   get 'my/:year/game', to: 'my#game', as: 'my_game'
 
+  get 'kids/:year/game', to: 'kids#game', as: :kids_scoring_event
+  get 'kids/:year/score/:act', to: 'kids#score_act', as: :kids_scoring_act
+  patch 'kids/score/:eps', to: 'kids#create_score', as: :kids_scoring_create_score
+  get 'kids/:year/join/:player', to: 'kids#join_game', as: :kids_join_game
+
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
