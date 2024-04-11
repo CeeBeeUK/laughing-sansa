@@ -1,8 +1,4 @@
-if ENV['CODECLIMATE_REPO_TOKEN']
-  require 'simplecov'
-  SimpleCov.start
-  # allow Code Climate Test coverage reports to be sent
-end
+require 'simplecov'
 
 # The `.rspec` file also contains a few flags that are not defaults but that
 # users commonly want.
