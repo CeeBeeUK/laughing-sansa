@@ -10,9 +10,17 @@
 .row.collapse
   .columns.small-8.medium-6
     h2
-      =@event.display_name
-  .columns.small-4.medium-6
-    = link_to 'Back to event', event_path(@event), {class: 'button success radius tiny expand back-to-event'}
+      .host-flag
+        =image_pack_tag @event.host_flag
+        =@event.display_name
+  -if current_user.admin?
+    .columns.small-2.medium-3
+      = link_to 'Back to event', event_path(@event), {class: 'button success radius tiny expand back-to-event'}
+    .columns.small-2.medium-3
+      = link_to 'Kids scoring', kids_scoring_event_path(@event), {class: 'button success radius tiny expand back-to-event'}
+  -else
+    .columns.small-4.medium-6
+      = link_to 'Back to event', event_path(@event), { class: 'button success radius tiny expand back-to-event' }
 .row
   .small-12.medium-6.columns
     .row.collapse.prefix-radius

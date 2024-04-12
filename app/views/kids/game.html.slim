@@ -1,0 +1,45 @@
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li.current
+      =link_to @event.display_name, my_game_path(@event)
+    -if current_user.admin?
+      li
+        =link_to 'Admin', game_admin_path(@event)
+.row.collapse
+  .columns.small-8.medium-6
+    h2
+      .host-flag
+        =image_pack_tag @event.host_flag
+        =@event.display_name
+  .columns.small-4.medium-6
+    = link_to 'Back to event', event_path(@event), {class: 'button success radius tiny expand back-to-event'}
+
+h1 Kids scoring
+
+.contain-to-grid.sticky
+  nav.top-bar data-topbar="" role="navigation"
+    .row.collapse
+      .columns.small-6.center.score-header Act
+      - @players.each do |player|
+        .columns.small-2.score-header.center
+          - if EventPlayer.where(player_id: player.id, event: @event).empty?
+            |#{player.first_name} (#{link_to "Join", kids_join_game_path(@event, player)})
+          - else
+            = player.first_name
+
+    section
+.row.score-data
+  .columns.small-12
+    - @event.participating_countries.each do |participating_country|
+      .row
+        .columns.small-6.small
+          =link_to "#{participating_country.position}. #{participating_country.country.name}",
+                   kids_scoring_act_path(@event, participating_country)
+          -if participating_country.player.present?
+            span.pad-left
+              |(#{participating_country.player.name})
+        - @players.each do |player|
+          .columns.small-2.center
+            = @event_player_scores.find_by(participating_country:, event_player: EventPlayer.where(player_id: player.id))&.score || "-"

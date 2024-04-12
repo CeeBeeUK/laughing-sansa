@@ -30,11 +30,11 @@ class Event < ApplicationRecord
   end
 
   def can_be_joined_by?(player)
-    active? && EventPlayer.find_by(event: self, player: player).nil?
+    active? && EventPlayer.find_by(event: self, player:).nil?
   end
 
   def being_played_by?(player)
-    active? && EventPlayer.find_by(event: self, player: player).present?
+    active? && EventPlayer.find_by(event: self, player:).present?
   end
 
   def complete?
@@ -97,9 +97,11 @@ class Event < ApplicationRecord
     GlobalConstants::BIG5.each_with_index do |c, i|
       ParticipatingCountry.new(event: self, country: Country.find_by(name: c)).insert_at(i + 1)
     end
-    unless GlobalConstants::BIG5.include?(country.name)
-      ParticipatingCountry.new(event: self, country: country).insert_at(1)
-    end
+    ParticipatingCountry.new(event: self, country:).insert_at(1) unless GlobalConstants::BIG5.include?(country.name)
     save!
+  end
+
+  def host_flag
+    country.xl_image
   end
 end

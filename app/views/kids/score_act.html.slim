@@ -1,0 +1,25 @@
+=content_for(:breadcrumb) do
+  ul.breadcrumbs
+    li
+      =link_to 'Home', root_path
+    li
+      =link_to @event.display_name, my_game_path(@event)
+    li.current
+      |Act #{@participating_country.position}
+.row.collapse
+  .columns.small-12
+    h2
+      .host-flag
+        =image_pack_tag @event.country.large_image
+        | #{@event.display_name} - Act #{@participating_country.position} - #{@participating_country.country.name}
+        =image_pack_tag @participating_country.country.large_image
+
+- @event_player_scores.each do |eps|
+  = form_for(eps, url: kids_scoring_create_score_path(eps), method: :patch, html: { autocomplete: 'off' }) do |f|
+    .row
+      .columns.small-2.medium-3.large-4
+        h3 #{eps.event_player.player.name} score
+      .columns.small-8.medium-6.large-4
+        = f.text_field :score
+      .columns.small-2.medium-3.large-4
+        .actions = f.submit class: 'button tiny radius', id: 'submit-button', value: 'Submit score'
