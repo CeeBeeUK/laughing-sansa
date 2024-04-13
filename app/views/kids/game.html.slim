@@ -35,8 +35,11 @@ h1 Kids scoring
     - @event.participating_countries.each do |participating_country|
       .row
         .columns.small-6.small
-          =link_to "#{participating_country.position}. #{participating_country.country.name}",
-                   kids_scoring_act_path(@event, participating_country)
+          - if @event.active?
+            =link_to "#{participating_country.position}. #{participating_country.country.name}",
+                     kids_scoring_act_path(@event, participating_country)
+          -else
+            |#{participating_country.position}. #{participating_country.country.name}
           -if participating_country.player.present?
             span.pad-left
               |(#{participating_country.player.name})
