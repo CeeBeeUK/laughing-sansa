@@ -37,7 +37,7 @@ jobs:
           push: true
           tags: ghcr.io/ceebeeuk/laughing-sansa/eurovision:latest
           build-args: |
-            BUILD_DATE=${{date %Y-%m-%dT%H:%M:%S%z}}
+            BUILD_DATE=$(date +%Y%m%d%H%M)
             BUILD_TAG=${{github.sha}}
           platforms: linux/arm64/v8
           cache-from: type=local,src=/tmp/.buildx-cache
