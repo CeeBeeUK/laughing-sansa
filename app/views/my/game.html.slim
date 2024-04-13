@@ -16,8 +16,9 @@
   -if current_user.admin?
     .columns.small-2.medium-3
       = link_to 'Back to event', event_path(@event), {class: 'button success radius tiny expand back-to-event'}
-    .columns.small-2.medium-3
-      = link_to 'Kids scoring', kids_scoring_event_path(@event), {class: 'button success radius tiny expand back-to-event'}
+    -if @event.active?
+      .columns.small-2.medium-3
+        = link_to 'Play as kids', kids_scoring_event_path(@event), {class: 'button success radius tiny expand back-to-event'}
   -else
     .columns.small-4.medium-6
       = link_to 'Back to event', event_path(@event), { class: 'button success radius tiny expand back-to-event' }

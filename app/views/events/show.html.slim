@@ -31,8 +31,9 @@
         = link_to 'Play game', my_game_path(@event), { class: 'button success radius tiny expand' }
       - elsif @event.archived?
         = link_to 'Show my scores', my_game_path(@event), { class: 'button success radius tiny expand' }
-    .columns.small-3
-      = link_to 'Play kids', kids_scoring_event_path(@event), { class: 'button success radius tiny expand' }
+    - if @event.active?
+      .columns.small-3
+        = link_to 'Play as kids', kids_scoring_event_path(@event), { class: 'button success radius tiny expand' }
   - else
     .columns.small-6
       - if @event.can_be_joined_by?(current_user)
