@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "ping", to: "status#ping", format: :json
+  get "status", to: "status#ping", format: :json
+
   get 'my/:year/score/act/:act', to: 'my#score', as: 'my_scoring'
   patch 'my/:year/score/act/:act', to: 'my#score_create'
 
