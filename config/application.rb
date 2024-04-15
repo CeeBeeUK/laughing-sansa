@@ -38,6 +38,7 @@ module Eurovision
     # config.i18n.default_locale = :de
 
     # keep the name alive
+    config.active_support.cache_format_version = 7.1
     config.middleware.use Rack::Pratchett
     config.action_dispatch.return_only_media_type_on_content_type = false
     Rails.autoloaders.main.ignore(Rails.root.join('/app/app/webpacker/images/16'))
