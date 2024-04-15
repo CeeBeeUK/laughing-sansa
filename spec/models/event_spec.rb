@@ -8,9 +8,6 @@ RSpec.describe Event, type: :model do
   end
 
   context 'automatically adds the "big 5" when created' do
-    let(:uk) { create(:country, name: 'United Kingdom') }
-    let(:host) { create(:country, name: 'Host country') }
-
     before do
       Country.delete_all
       described_class.delete_all
@@ -18,18 +15,26 @@ RSpec.describe Event, type: :model do
       create(:country, name: 'Spain')
       create(:country, name: 'Germany')
       create(:country, name: 'France')
-      create(:country, name: 'Host country')
+      create(:country, name: 'United Kingdom')
+      create(:country, name: 'Serbia')
     end
-    it 'and the host is non-big 5' do
-      create(:event, country: create(:country, name: 'Serbia'))
-      event.add_big_five
-      expect(event.participating_countries.count).to be 6
+
+    context 'when the host is non-big 5' do
+      let(:event) { create(:event, country: Country.find_by(name: 'Serbia')) }
+
+      it "adds the big five as well as the host" do
+        event.add_big_five
+        expect(event.participating_countries.count).to eql 6
+      end
     end
-    it 'and the host is one of the big 5' do
-      build(:event)
-      event.country = uk
-      event.add_big_five
-      expect(event.participating_countries.count).to be 5
+    context 'when the host is one of the big 5' do
+      let(:uk) { Country.find_by(name: 'United Kingdom') }
+      let(:event) { create(:event, country: uk) }
+
+      it 'does not create duplicate countries' do
+        event.add_big_five
+        expect(event.participating_countries.count).to eql 5
+      end
     end
   end
 
