@@ -5,10 +5,10 @@ class ParticipatingCountry < ApplicationRecord
 
   acts_as_list scope: :event
 
-  validates :country_id, :player_id, :event_id, :position, presence: true
-  validates :position, uniqueness: { scope: :event_id }
+  validates :country_id, :event_id, presence: true
+  validates :position, uniqueness: { scope: :event_id }, allow_blank: true
   validates :country_id, uniqueness: { scope: :event_id }
-  validates :player_id, numericality: { greater_than_or_equal_to: 0 }
+  validates :player_id, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
 
   scope :by_position, -> { all.order(:position) }
   scope :player_for_event, lambda { |event, player|

@@ -20,7 +20,8 @@ class ParticipatingCountriesController < ApplicationController
       params = participating_country_params[:country_id]
       @participating_country = ParticipatingCountry.new(event: @event, country_id: params)
       @participating_country.insert_at(1)
-    rescue ActiveRecord::RecordNotUnique
+      @participating_country.save!
+    rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
       flash[:alert] = 'Country already in event'
     end
     redirect_to manage_countries_path(@event)

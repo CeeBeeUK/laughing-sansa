@@ -95,9 +95,9 @@ class Event < ApplicationRecord
 
   def add_big_five
     GlobalConstants::BIG5.each_with_index do |c, i|
-      ParticipatingCountry.new(event: self, country: Country.find_by(name: c)).insert_at(i + 1)
+      ParticipatingCountry.create(event: self, country: Country.find_by(name: c)).insert_at(i + 1)
     end
-    ParticipatingCountry.new(event: self, country:).insert_at(1) unless GlobalConstants::BIG5.include?(country.name)
+    ParticipatingCountry.create(event: self, country:).insert_at(1) unless GlobalConstants::BIG5.include?(country.name)
     save!
   end
 

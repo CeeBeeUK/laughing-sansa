@@ -17,9 +17,6 @@ updates:
       patterns:
         - '*'
   ignore:
-    - dependency-name: acts_as_list
-      versions:
-      - "> 0.9.12"
     - dependency-name: foundation-rails
       versions:
       - "> 5.5.3.2"
