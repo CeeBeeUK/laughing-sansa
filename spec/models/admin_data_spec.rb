@@ -33,6 +33,12 @@ RSpec.describe AdminData, type: :model do
         expect(countries.first[0]).to eq "#{event.participating_countries.first.country.name} (test)"
       end
 
+      context 'when a player is not assigned' do
+        before { event.participating_countries.last.update!(player: nil) }
+
+        it { expect(countries.last[0]).to eq "#{event.participating_countries.last.country.name}" }
+      end
+
       describe 'returns an array of score data' do
         subject(:country_count) { countries.first[1] }
 
