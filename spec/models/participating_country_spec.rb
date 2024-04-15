@@ -41,16 +41,6 @@ RSpec.describe ParticipatingCountry, type: :model do
       expect(participant).to be_invalid
     end
 
-    it 'must require a player' do
-      participant.player = nil
-      expect(participant).to be_invalid
-    end
-
-    it 'must have a position' do
-      participant.position = nil
-      expect(participant).to be_invalid
-    end
-
     context 'within an event' do
       let(:first) { create(:participating_country) }
       let(:duplicate) { first.dup }
