@@ -147,6 +147,7 @@ RSpec.describe MyController, type: :controller do
   describe 'PUT #score_create' do
     let(:event_player) { create(:event_player, player: user) }
     let(:event_player_score) { create(:event_player_score, event_player: event_player) }
+    let(:prev_fattest_act) { create(:event_player_score, event_player: event_player, fattest: true) }
 
     before do
       sign_in user
@@ -154,21 +155,28 @@ RSpec.describe MyController, type: :controller do
     context 'with valid params' do
       before do
         event_player_score.fattest = true
-        post :score_create,
-          params: {
-            year: event_player_score.event.year,
-            act: event_player_score.participating_country.position,
-            event_player_score: event_player_score.attributes
-          }
       end
+
       it 'updates the score data' do
-        event_player_score.reload
-        expect(event_player_score.fattest).to be true
+        expect(prev_fattest_act.fattest).to be true
+        post :score_create,
+             params: {
+               year: event_player_score.event.year,
+               act: event_player_score.participating_country.position,
+               event_player_score: event_player_score.attributes
+             }
+        expect(event_player_score.reload.fattest).to be true
+        expect(prev_fattest_act.reload.fattest).to be false
       end
-      it 'returns a redirect code' do
-        expect(response.status).to be 302
-      end
+
       it 'redirects to the game view' do
+        post :score_create,
+             params: {
+               year: event_player_score.event.year,
+               act: event_player_score.participating_country.position,
+               event_player_score: event_player_score.attributes
+             }
+        expect(response.status).to be 302
         expect(response).to redirect_to(my_game_path(event_player_score.event))
       end
     end

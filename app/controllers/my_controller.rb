@@ -56,7 +56,7 @@ class MyController < ApplicationController
   end
 
   def true?(value)
-    [true, '1'].include?(value)
+    [true, '1', 'true'].include?(value)
   end
 
   def load_eps
