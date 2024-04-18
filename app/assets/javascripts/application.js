@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require touch-punch
 //= require jquery.timeago
 //= require turbolinks
 //= require foundation

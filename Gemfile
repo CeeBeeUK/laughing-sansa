@@ -39,7 +39,6 @@ gem "omniauth"
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 # and CanCan for authorization
-gem 'acts_as_list'
 gem 'cancancan'
 gem 'rack-pratchett'
 

@@ -37,6 +37,12 @@ hr
 -if @event.participating_countries.count > 0
 hr
   .row
+    .columns.small-2 Country
+    .columns.small-2 Position
+    .columns.small-3 Player
+    .columns.small-2 Final score
+    .columns.small-3 &nbsp;
+  .row
     .columns.small-12
       ul#PCL data-url=event_country_path(@event)
         -@event.participating_countries.each do |c|
@@ -45,11 +51,13 @@ hr
               = form_for c, url: allocate_country_player_path(@event), html: {autocomplete: 'off'} do |f|
                 input type="hidden" value="#{c.id}" id="participating_country_id" name="participating_country[id]"
                 = f.hidden_field :id
-                .columns.small-3
+                .columns.small-2
                   span.handle
-                    i.fi-list.fi-large
-                  =c.country.name
-                .columns.small-4
+                    =image_pack_tag(c.country.large_image)
+                  = c.country.name
+                .columns.small-2
+                  = f.text_field :position
+                .columns.small-3
                   = f.collection_select :player_id, @users, :id, :display_name, prompt: true
                 .columns.small-2
                   = f.text_field :real_final_score

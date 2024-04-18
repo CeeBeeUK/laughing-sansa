@@ -4,12 +4,11 @@ ul#PCL {
   margin-bottom: 0px;
   font-size: 12px;
   .handle {
+    padding-right:0.5rem;
+  }
+  .sequence {
     font-size: 30px;
     vertical-align: middle;
     padding-right:0.5rem;
-    :hover {
-      cursor: move;
-      color: #008CBA;
-    }
   }
 }

@@ -3,8 +3,6 @@ class ParticipatingCountry < ApplicationRecord
   belongs_to :event
   belongs_to :player, class_name: 'User', foreign_key: 'player_id'
 
-  acts_as_list scope: :event
-
   validates :country_id, :event_id, presence: true
   validates :position, uniqueness: { scope: :event_id }, allow_blank: true
   validates :country_id, uniqueness: { scope: :event_id }
