@@ -75,8 +75,6 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
-    acts_as_list (1.1.0)
-      activerecord (>= 4.2)
     ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
@@ -445,7 +443,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_list
   better_errors
   binding_of_caller
   byebug

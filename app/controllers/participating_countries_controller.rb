@@ -18,9 +18,7 @@ class ParticipatingCountriesController < ApplicationController
   def create
     begin
       params = participating_country_params[:country_id]
-      @participating_country = ParticipatingCountry.new(event: @event, country_id: params)
-      @participating_country.insert_at(1)
-      @participating_country.save!
+      @participating_country = ParticipatingCountry.create!(event: @event, country_id: params)
     rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
       flash[:alert] = 'Country already in event'
     end
@@ -30,7 +28,8 @@ class ParticipatingCountriesController < ApplicationController
   def allocate
     @pc.update(
       player_id: allocate_params[:player_id],
-      real_final_score: allocate_params[:real_final_score]
+      real_final_score: allocate_params[:real_final_score],
+      position: allocate_params[:position]
     )
     flash[:alert] = @pc.errors.full_messages unless @pc.save
     redirect_to manage_countries_path(@pc.event)
@@ -54,6 +53,6 @@ class ParticipatingCountriesController < ApplicationController
   end
 
   def allocate_params
-    params.require(:participating_country).permit(:player_id, :real_final_score)
+    params.require(:participating_country).permit(:player_id, :real_final_score, :position)
   end
 end
