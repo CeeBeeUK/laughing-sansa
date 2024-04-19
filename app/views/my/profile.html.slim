@@ -11,12 +11,12 @@ h2 #{@user.display_name}'s profile
   - if !@user.display_name_set?
     .alert-box.info.radius data-alert='' If you don't set a display name below, we'll use your google supplied first name
   .row
-    .small-12.medium-6.large-4.columns
+    .small-12.medium-6.columns
       .row.collapse.prefix-radius
-        .small-5.medium-3.columns
+        .small-5.medium-4.columns
           = f.label :display_name, class: 'prefix'
-        .small-7.medium-9.columns
-          = f.text_field :display_name   
+        .small-7.medium-8.columns
+          = f.text_field :display_name
   .actions = f.submit class: 'button tiny radius'
 
   .row.collapse
