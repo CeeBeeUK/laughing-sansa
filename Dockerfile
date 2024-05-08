@@ -1,4 +1,4 @@
-FROM ruby:3.3.0-alpine3.18 as base
+FROM ruby:3.3.1-alpine3.18 as base
 MAINTAINER CeeBeeUK
 
 RUN set -ex
