@@ -1,4 +1,4 @@
-FROM ruby:3.3.1-alpine3.18 as base
+FROM ruby:3.3.1-alpine3.19 as base
 MAINTAINER CeeBeeUK
 
 RUN set -ex
@@ -39,7 +39,7 @@ WORKDIR /usr/src/app
 # DEPENDENCIES START #
 ######################
 # Env vars needed for dependency install and asset precompilation
-COPY Gemfile* ./
+COPY .ruby-version Gemfile* ./
 # only install production dependencies,
 # build nokogiri using libxml2-dev, libxslt-dev
 RUN gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ") 
