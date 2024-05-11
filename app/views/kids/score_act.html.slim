@@ -11,7 +11,7 @@
     h2
       .host-flag
         =image_pack_tag @event.country.large_image
-        | #{@event.display_name} - Act #{@participating_country.position} - #{@participating_country.country.name}
+        | #{@event.display_name} - Act #{@participating_country&.position} - #{@participating_country.country.name}
         =image_pack_tag @participating_country.country.large_image
 
 - @event_player_scores.each do |eps|
