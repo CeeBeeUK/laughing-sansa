@@ -5,7 +5,7 @@
     li
       =link_to @event.display_name, my_game_path(@event)
     li.current
-      |Act #{@participating_country.position}
+      |Act #{@participating_country&.position}
 .row.collapse
   .columns.small-12
     h2
