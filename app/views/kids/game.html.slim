@@ -37,7 +37,7 @@ h1 Kids scoring
         .columns.small-6.small
           - if @event.active?
             =link_to "#{participating_country.position}. #{participating_country.country.name}",
-                     kids_scoring_act_path(@event, participating_country)
+                     kids_scoring_act_path(@event, participating_country.position)
           -else
             |#{participating_country.position}. #{participating_country.country.name}
           -if participating_country.player.present?
