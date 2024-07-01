@@ -60,7 +60,7 @@ group :test, :development do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'rubocop', '~>1.64', require: false
-  gem 'rubocop-rspec', '~>2', require: false
+  gem 'rubocop-rspec', '~>3', require: false
 end
 
 # Code climate CI integration
