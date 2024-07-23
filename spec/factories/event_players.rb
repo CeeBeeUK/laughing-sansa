@@ -1,13 +1,24 @@
 FactoryBot.define do
   factory :event_player do
-    association :player, factory: 'user'
-    association :event
+    player factory: 'user'
+    event
     predicted_uk_score { 1 }
-    after(:build) do |ep|
-      ep.event.active!
+
+    transient do
+      skip_event_activate { false }
     end
 
-    factory :invalid_pp do
+    trait :skip_event_activate do
+      transient do
+        skip_event_activate { true }
+      end
+    end
+
+    after(:build) do |ep, evaluator|
+      ep.event.active! unless evaluator.skip_event_activate
+    end
+
+    trait :invalid_pp do
       predicted_uk_score { nil }
     end
     trait :with_scores do
