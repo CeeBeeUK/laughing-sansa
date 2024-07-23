@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-  let(:event) { build(:event) }
+  let(:event) { create(:event) }
 
   it 'passes factory build' do
     expect(event).to be_valid

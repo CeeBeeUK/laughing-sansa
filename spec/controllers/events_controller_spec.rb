@@ -185,31 +185,33 @@ RSpec.describe EventsController, type: :controller do
       end
     end
     describe 'POST #sign_up' do
+      let(:event) { create(:event, year: Time.zone.today.year + 1) }
+
       context 'with valid params' do
-        let(:event_player) { build(:event_player) }
+        let(:event_player) { build(:event_player, event:) }
 
         it 'creates a new participating player' do
           expect do
-            post :sign_up, params: { year: event_player.event.year, event_player: event_player.attributes }
+            post :sign_up, params: { year: event.year, event_player: event_player.attributes }
           end.to change(EventPlayer, :count).by(1)
         end
         it 'redirects to the event view' do
-          post :sign_up, params: { year: event_player.event.year, event_player: event_player.attributes }
+          post :sign_up, params: { year: event.year, event_player: event_player.attributes }
           expect(response).to redirect_to(event_player.event)
         end
       end
       context 'with invalid params' do
-        let(:bad_pp) { build(:invalid_pp) }
+        let(:bad_pp) { build(:event_player, :invalid_pp, event:) }
 
         it 're-renders to the join view' do
-          post :sign_up, params: { year: bad_pp.event.year, event_player: bad_pp.attributes }
+          post :sign_up, params: { year: event.year, event_player: bad_pp.attributes }
           expect(response).to render_template :join
         end
       end
     end
     describe 'POST #create' do
       context 'with valid params' do
-        let(:event) { build(:event) }
+        let(:event) { build(:event, year: Time.zone.today.year + 2, country: create(:country)) }
 
         it 'creates a new Event' do
           expect do

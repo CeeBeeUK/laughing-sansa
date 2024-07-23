@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe EventPlayer, type: :model do
-  let(:participant) { build(:event_player) }
+  let(:participant) { create(:event_player) }
 
   before { participant.event.active! }
   it 'passes factory build' do
@@ -50,22 +50,23 @@ RSpec.describe EventPlayer, type: :model do
     end
   end
   context 'joining an event' do
-    let(:event) { build(:event) }
+    let(:event) { create(:event, status: ) }
+    let(:built_participant) { build(:event_player, :skip_event_activate, event:, player: create(:user)) }
 
-    it 'in setup should fail' do
-      event.setup!
-      participant.event = event
-      expect(participant).to be_invalid
+    context 'when in setup should fail' do
+      let(:status) { :setup }
+
+      it {expect(built_participant).not_to be_valid }
     end
-    it 'in archived should fail' do
-      event.archived!
-      participant.event = event
-      expect(participant).to be_invalid
+    context 'when in archived should fail' do
+      let(:status) { :archived }
+
+      it {expect(built_participant).not_to be_valid }
     end
-    it 'in active should succeed' do
-      event.active!
-      participant.event = event
-      expect(participant).to be_valid
+    context 'when in active should fail' do
+      let(:status) { :active }
+
+      it { expect(built_participant).to be_valid }
     end
   end
 

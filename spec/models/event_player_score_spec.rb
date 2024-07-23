@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe EventPlayerScore, type: :model do
-  let(:eps) { build(:event_player_score) }
+  let(:eps) { create(:event_player_score) }
 
   it 'passes factory build' do
     expect(eps).to be_valid
@@ -38,8 +38,8 @@ RSpec.describe EventPlayerScore, type: :model do
       eps.participating_country = create(:participating_country)
       expect(eps.country).to eql(eps.participating_country.country.name)
     end
-    it 'sets a sum for the particpating country' do
-      expect(eps.participating_country.sum).to be 0
+    it 'sets a sum for the participating country' do
+      expect(eps.participating_country.sum).to eq 1
     end
   end
   describe 'associations' do
