@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2015_03_30_212732) do
+ActiveRecord::Schema[7.2].define(version: 2015_03_30_212732) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "countries", force: :cascade do |t|
+  create_table "countries", id: :serial, force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
   end
 
-  create_table "event_player_scores", force: :cascade do |t|
+  create_table "event_player_scores", id: :serial, force: :cascade do |t|
     t.integer "event_player_id"
     t.integer "participating_country_id"
     t.integer "score"
@@ -28,30 +28,30 @@ ActiveRecord::Schema[7.1].define(version: 2015_03_30_212732) do
     t.boolean "fattest"
     t.boolean "wackiest"
     t.string "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["event_player_id"], name: "index_event_player_scores_on_event_player_id"
     t.index ["participating_country_id"], name: "index_event_player_scores_on_participating_country_id"
   end
 
-  create_table "event_players", force: :cascade do |t|
+  create_table "event_players", id: :serial, force: :cascade do |t|
     t.integer "player_id"
     t.integer "event_id"
     t.integer "predicted_uk_score"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["event_id"], name: "index_event_players_on_event_id"
     t.index ["player_id", "event_id"], name: "unique_player_and_event", unique: true
     t.index ["player_id"], name: "index_event_players_on_player_id"
   end
 
-  create_table "events", force: :cascade do |t|
+  create_table "events", id: :serial, force: :cascade do |t|
     t.integer "year"
     t.integer "country_id"
     t.string "host_city"
     t.boolean "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.integer "real_winner_id"
     t.integer "real_score"
     t.integer "real_player_id"
@@ -70,14 +70,14 @@ ActiveRecord::Schema[7.1].define(version: 2015_03_30_212732) do
     t.index ["real_winner_id"], name: "index_events_on_real_winner_id"
   end
 
-  create_table "participating_countries", force: :cascade do |t|
+  create_table "participating_countries", id: :serial, force: :cascade do |t|
     t.integer "country_id"
     t.integer "event_id"
     t.integer "player_id"
     t.integer "real_final_score"
     t.integer "home_final_score"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.integer "position"
     t.index ["country_id", "event_id"], name: "unique_country_for_event", unique: true
     t.index ["country_id"], name: "index_participating_countries_on_country_id"
@@ -85,19 +85,19 @@ ActiveRecord::Schema[7.1].define(version: 2015_03_30_212732) do
     t.index ["player_id"], name: "index_participating_countries_on_player_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "name"
     t.string "image"
     t.string "provider"
@@ -109,5 +109,4 @@ ActiveRecord::Schema[7.1].define(version: 2015_03_30_212732) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
 end
