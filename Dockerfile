@@ -1,5 +1,9 @@
 FROM ruby:3.4.1-alpine3.21 as base
-MAINTAINER CeeBeeUK
+LABEL org.opencontainers.image.vendor="CeeBeeUK" \
+      org.opencontainers.image.authors="CeeBeeUK" \
+      org.opencontainers.image.title="Eurovision" \
+      org.opencontainers.image.description="Public code, private party" \
+      org.opencontainers.image.url="https://github.com/CeeBeeUK/laughing-sansa"
 
 RUN set -ex
 # build dependencies:
