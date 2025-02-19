@@ -1,9 +1,9 @@
 class Event < ApplicationRecord
   belongs_to :country
-  belongs_to :real_winner, class_name: 'Country', foreign_key: 'real_winner_id'
-  belongs_to :home_winner, class_name: 'Country', foreign_key: 'home_winner_id'
-  belongs_to :real_player, class_name: 'User', foreign_key: 'real_player_id'
-  belongs_to :home_player, class_name: 'User', foreign_key: 'home_player_id'
+  belongs_to :real_winner, class_name: 'Country', foreign_key: 'real_winner_id', optional: true
+  belongs_to :home_winner, class_name: 'Country', foreign_key: 'home_winner_id', optional: true
+  belongs_to :real_player, class_name: 'User', foreign_key: 'real_player_id', optional: true
+  belongs_to :home_player, class_name: 'User', foreign_key: 'home_player_id', optional: true
 
   has_many :participating_countries, -> { order('position ASC') }
   has_many :event_players

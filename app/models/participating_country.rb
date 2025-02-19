@@ -1,7 +1,7 @@
 class ParticipatingCountry < ApplicationRecord
   belongs_to :country
   belongs_to :event
-  belongs_to :player, class_name: 'User', foreign_key: 'player_id'
+  belongs_to :player, class_name: 'User', foreign_key: 'player_id', optional: true
 
   validates :country_id, :event_id, presence: true
   validates :position, uniqueness: { scope: :event_id }, allow_blank: true
