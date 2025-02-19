@@ -7,7 +7,7 @@ RSpec.describe 'events/edit', type: :view do
         year: 999,
         host_city: 'MyString',
         active: false,
-        country_id: 1,
+        country: Country.create(name: "Country zero"),
         real_winner_id: nil,
         real_score: nil,
         real_player_id: nil,
