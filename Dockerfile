@@ -47,12 +47,12 @@ COPY .ruby-version Gemfile* ./
 # only install production dependencies,
 # build nokogiri using libxml2-dev, libxslt-dev
 RUN gem install bundler -v $(cat Gemfile.lock | tail -1 | tr -d " ") 
-RUN gem install nokogiri -- --use-system-libraries
 RUN bundler -v && \
     bundle config set frozen 'true' && \
     bundle config set no-cache 'true' && \
     bundle config set no-binstubs 'true' && \
     bundle config set without test:development && \
+    bundle config build.nokogiri --use-system-libraries && \
     bundle install --jobs 5 --retry 5 && \
     rm -rf /usr/local/bundle/cache
 
