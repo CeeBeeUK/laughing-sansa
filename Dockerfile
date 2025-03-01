@@ -23,6 +23,7 @@ RUN apk --no-cache add --virtual build-dependencies \
 && apk --no-cache add \
                   postgresql-client \
                   nodejs \
+                  libxslt \
                   yarn \
                   gcompat \
                   linux-headers \
