@@ -1,4 +1,4 @@
-FROM ruby:3.4.1-alpine3.21 as base
+FROM ruby:3.4.1-alpine3.21 AS base
 LABEL org.opencontainers.image.vendor="CeeBeeUK" \
       org.opencontainers.image.authors="CeeBeeUK" \
       org.opencontainers.image.title="Eurovision" \
@@ -64,9 +64,9 @@ RUN yarn install --frozen-lockfile --check-files --ignore-scripts
 ####################
 # DEPENDENCIES END #
 ####################
-ENV RAILS_ENV production
-ENV NODE_ENV production
-ENV RAILS_SERVE_STATIC_FILES true
+ENV RAILS_ENV=production
+ENV NODE_ENV=production
+ENV RAILS_SERVE_STATIC_FILES=true
 COPY . .
 RUN bundle exec rake webpacker:compile SECRET_KEY_BASE=a-real-secret-key-is-not-needed-here NODE_OPTIONS=--openssl-legacy-provider
 # tidy up installation
@@ -84,7 +84,7 @@ ENV BUILD_TAG=${BUILD_TAG}
 USER 1000
 
 # set port env var used by puma
-ENV PORT 3000
+ENV PORT=3000
 EXPOSE $PORT
 
 ENTRYPOINT ["./docker/entrypoint"]
