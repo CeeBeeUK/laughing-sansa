@@ -18,6 +18,7 @@
 //= require foundation
 //= require details.polyfill
 //= require_tree .
+const images = require.context('../images', true)
 
 $(function(){ $(document).foundation(); });
 
