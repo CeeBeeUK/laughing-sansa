@@ -16,8 +16,8 @@
     "url": "https://github.com/CeeBeeUK/laughing-sansa/issues"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --minify --outdir=app/assets/builds --public-path=assets --target=es6",
-    "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --style=compressed --load-path=node_modules"
+    "build": "esbuild app/javascript/*.* --bundle --loader:.gif=dataurl --sourcemap --minify --outdir=app/assets/builds --public-path=assets --target=es6",
+    "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --style=compressed --load-path=. --load-path=node_modules --quiet-deps --silence-deprecation slash-div --silence-deprecation import"
   },
   "dependencies": {
     "is-svg": "^6.0.0",
