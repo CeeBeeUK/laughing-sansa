@@ -14,7 +14,7 @@ ul.countries
   -@countries.each do |c|
     li
       = link_to c do
-        =image_pack_tag(c.large_image)
+        =image_tag(c.large_image)
         span.name
           =c.name
       span

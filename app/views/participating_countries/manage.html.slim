@@ -12,7 +12,7 @@
   .columns.small-12
     h2
       span.pad-right
-        =image_pack_tag(@event.country.xl_image)
+        =image_tag(@event.country.xl_image)
       =@event.display_name
       |  countries
 hr
@@ -53,7 +53,7 @@ hr
                 = f.hidden_field :id
                 .columns.small-2
                   span.handle
-                    =image_pack_tag(c.country.large_image)
+                    =image_tag(c.country.large_image)
                   = c.country.name
                 .columns.small-2
                   = f.text_field :position

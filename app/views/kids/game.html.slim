@@ -11,7 +11,7 @@
   .columns.small-8.medium-6
     h2
       .host-flag
-        =image_pack_tag @event.host_flag
+        =image_tag @event.host_flag
         =@event.display_name
   .columns.small-4.medium-6
     = link_to 'Back to event', event_path(@event), {class: 'button success radius tiny expand back-to-event'}
