@@ -3,14 +3,10 @@ source 'https://rubygems.org'
 ruby file: ".ruby-version"
 
 gem 'rails', '~> 8.0'
-gem 'sprockets'
-gem 'sprockets-rails'
 
 gem 'puma'
 # Use postgresql as the database for Active Record
 gem 'pg'
-# Use SCSS for stylesheets
-gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
