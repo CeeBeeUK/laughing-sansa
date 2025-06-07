@@ -395,16 +395,6 @@ GEM
       rubocop (~> 1.81)
     ruby-progressbar (1.13.0)
     sass (3.4.25)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     sdoc (2.6.5)
       rdoc (>= 5.0)
     securerandom (0.4.1)
@@ -426,14 +416,6 @@ GEM
       hashie (>= 0.1.0, < 6)
       version_gem (>= 1.1.8, < 3)
     spring (4.4.0)
-    sprockets (4.2.2)
-      concurrent-ruby (~> 1.0)
-      logger
-      rack (>= 2.2.4, < 4)
-    sprockets-rails (3.5.2)
-      actionpack (>= 6.1)
-      activesupport (>= 6.1)
-      sprockets (>= 3.0.0)
     stringio (3.2.0)
     temple (0.10.4)
     thor (1.5.0)
@@ -503,13 +485,10 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-rspec
-  sass-rails
   sdoc (~> 2)
   simplecov
   slim-rails
   spring
-  sprockets
-  sprockets-rails
   turbolinks
   tzinfo-data
   uglifier
