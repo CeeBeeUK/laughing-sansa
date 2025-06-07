@@ -31,6 +31,7 @@ gem 'sdoc', '~> 2', group: :doc
 
 # Rails 7 asset management
 gem "cssbundling-rails"
+gem "jsbundling-rails"
 gem "propshaft"
 
 gem 'ostruct'
@@ -80,5 +81,4 @@ end
 # gem for heroku deployment
 gem 'rails_12factor', group: :production
 
-gem "webpacker", "~> 5.4"
 gem "tzinfo-data"
