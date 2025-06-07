@@ -15,7 +15,9 @@
   "bugs": {
     "url": "https://github.com/CeeBeeUK/laughing-sansa/issues"
   },
-  "scripts": {},
+  "scripts": {
+    "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --style=compressed --load-path=node_modules"
+  },
   "dependencies": {
     "@rails/webpacker": "5.4.4",
     "is-svg": "^6.1.0",
