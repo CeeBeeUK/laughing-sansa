@@ -52,7 +52,7 @@ jobs:
         env:
           RAILS_ENV: test
           NODE_OPTIONS: --openssl-legacy-provider
-        run: bundle exec rake webpacker:compile
+        run: bundle exec rails assets:precompile
       - name: Configure database
         env:
           PGHOST: localhost
