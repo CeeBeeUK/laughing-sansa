@@ -20,8 +20,10 @@
     "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --style=compressed --load-path=. --load-path=node_modules --quiet-deps --silence-deprecation slash-div --silence-deprecation import"
   },
   "dependencies": {
+    "foundation-icons": "^2.0.0",
     "is-svg": "^6.0.0",
-    "postcss": "^8.5.6"
+    "jquery-ui": "^1.14.1",
+    "sass": "^1.57.1"
   },
   "devDependencies": {
     "esbuild": "^0.17.5"
