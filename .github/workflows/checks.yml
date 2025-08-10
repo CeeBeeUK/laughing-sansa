@@ -48,6 +48,8 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - name: install Yarn packages
+        run: yarn --frozen-lockfile
       - name: Precompile assets
         run: bundle exec rails assets:precompile
       - name: Configure database
