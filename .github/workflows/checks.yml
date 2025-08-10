@@ -21,6 +21,8 @@ jobs:
           bundle exec rubocop
   rspec:
     runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
     services:
       postgres:
         image: postgres:10.11
@@ -49,15 +51,11 @@ jobs:
       - name: Run yarn install
         run: yarn install --frozen-lockfile --ignore-scripts
       - name: Precompile assets
-        env:
-          RAILS_ENV: test
-          NODE_OPTIONS: --openssl-legacy-provider
         run: bundle exec rails assets:precompile
       - name: Configure database
         env:
           PGHOST: localhost
           PGUSER: postgres
-          RAILS_ENV: test
           ENCRYPTION_SERVICE_SALT: ${{ secrets.ENCRYPTION_SERVICE_SALT_FOR_RSPEC }}
         run: |
           bundle exec rake db:create db:schema:load
@@ -65,7 +63,6 @@ jobs:
         env:
           PGHOST: localhost
           PGUSER: postgres
-          RAILS_ENV: test
         run: |
           bundle exec rspec
       - uses: actions/upload-artifact@v4
