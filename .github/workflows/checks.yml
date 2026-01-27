@@ -46,6 +46,8 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - name: Run yarn install
+        run: yarn install --frozen-lockfile --ignore-scripts
       - name: Precompile assets
         env:
           RAILS_ENV: test
