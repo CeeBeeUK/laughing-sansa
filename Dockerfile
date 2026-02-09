@@ -1,4 +1,4 @@
-FROM ruby:4.0.0-alpine3.23 AS base
+FROM ruby:4.0.1-alpine3.23 AS base
 LABEL org.opencontainers.image.vendor="CeeBeeUK" \
       org.opencontainers.image.authors="CeeBeeUK" \
       org.opencontainers.image.title="Eurovision" \
