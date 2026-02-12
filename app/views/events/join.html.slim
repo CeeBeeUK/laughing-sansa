@@ -14,7 +14,7 @@
     h2
       |#{@event_player.player.display_name}, thanks for joining #{@event_player.event.display_name}
       img.pad-left 
-        =image_pack_tag @event_player.event.country.xl_image
+        =image_tag @event_player.event.country.xl_image
 - if @event_player.errors.any?
   #error_explanation
     h2 = "#{pluralize(@event_player.errors.count, "error")} prohibited you from joining this event:"

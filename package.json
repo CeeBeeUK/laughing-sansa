@@ -15,16 +15,18 @@
   "bugs": {
     "url": "https://github.com/CeeBeeUK/laughing-sansa/issues"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "esbuild app/assets/javascript/*.* --bundle --loader:.gif=dataurl --sourcemap --minify --outdir=app/assets/builds --public-path=assets --target=es6",
+    "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --style=compressed --load-path=. --load-path=public/assets --load-path=node_modules --quiet-deps --silence-deprecation slash-div --silence-deprecation import"
+  },
   "dependencies": {
-    "@rails/webpacker": "5.4.4",
-    "is-svg": "^6.1.0",
-    "postcss": "^8.5.6"
+    "foundation-icons": "^2.0.0",
+    "is-svg": "^6.0.0",
+    "jquery-ui": "^1.14.1",
+    "sass": "^1.57.1"
   },
   "devDependencies": {
-    "webpack": "4.47.0",
-    "webpack-cli": "3.3.12",
-    "webpack-dev-server": "^5.2.3"
+    "esbuild": "^0.17.5"
   },
   "resolutions": {
     "is-svg": "^4.2.2",

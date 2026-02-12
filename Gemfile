@@ -3,14 +3,10 @@ source 'https://rubygems.org'
 ruby file: ".ruby-version"
 
 gem 'rails', '~> 8.0'
-gem 'sprockets'
-gem 'sprockets-rails'
 
 gem 'puma'
 # Use postgresql as the database for Active Record
 gem 'pg'
-# Use SCSS for stylesheets
-gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -28,6 +24,11 @@ gem 'turbolinks'
 gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 2', group: :doc
+
+# Rails 7 asset management
+gem "cssbundling-rails"
+gem "jsbundling-rails"
+gem "propshaft"
 
 gem 'ostruct'
 
@@ -76,5 +77,4 @@ end
 # gem for heroku deployment
 gem 'rails_12factor', group: :production
 
-gem "webpacker", "~> 5.4"
 gem "tzinfo-data"

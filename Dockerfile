@@ -69,7 +69,7 @@ ENV RAILS_ENV=production
 ENV NODE_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
 COPY . .
-RUN bundle exec rake webpacker:compile SECRET_KEY_BASE=a-real-secret-key-is-not-needed-here NODE_OPTIONS=--openssl-legacy-provider
+RUN bundle exec rails assets:compile SECRET_KEY_BASE=a-real-secret-key-is-not-needed-here NODE_OPTIONS=--openssl-legacy-provider
 # tidy up installation
 RUN apk del build-dependencies
 # non-root/appuser should own only what they need to
