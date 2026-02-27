@@ -19,8 +19,14 @@
 //= require details.polyfill
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+import '../../../vendor/assets/javascripts/details.polyfill'
+import '../../../vendor/assets/javascripts/jquery.timeago'
 
+import jquery from 'jquery'
+window.jQuery = jquery
+window.$ = jquery
+
+$(function(){ $(document).foundation(); });
 
 $(document).ready(function () {
     $('#PCL').sortable({

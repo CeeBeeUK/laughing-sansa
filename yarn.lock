@@ -631,7 +631,12 @@ __metadata:
   dependencies:
     css-loader: "npm:^7.1.4"
     file-loader: "npm:^6.2.0"
+    foundation: "npm:4.2.1-1"
+    foundation-icons: "npm:^2.0.0"
     is-svg: "npm:^6.1.0"
+    jquery: "npm:^4.0.0"
+    jquery-ui: "npm:^1.14.2"
+    jquery-ujs: "npm:^1.2.3"
     mini-css-extract-plugin: "npm:^2.10.0"
     postcss: "npm:^8.5.6"
     sass: "npm:^1.97.3"
@@ -774,7 +779,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:^4.3.4":
+"cssom@npm:0.2.x":
+  version: 0.2.5
+  resolution: "cssom@npm:0.2.5"
+  checksum: 10c0/d8fae52a1b2cc37fdcc7ab81ff2294ba239959a690bec764446a4f6219de443b5bf82b5fa2249f7b3ead74e5b521cc7a4808790e5c518eaa2b199bc895443fd3
+  languageName: node
+  linkType: hard
+
+"debug@npm:*, debug@npm:4, debug@npm:^4.3.4":
   version: 4.4.3
   resolution: "debug@npm:4.4.3"
   dependencies:
@@ -966,6 +978,23 @@ __metadata:
   bin:
     flat: cli.js
   checksum: 10c0/f178b13482f0cd80c7fede05f4d10585b1f2fdebf26e12edc138e32d3150c6ea6482b7f12813a1091143bad52bb6d3596bca51a162257a21163c0ff438baa5fe
+  languageName: node
+  linkType: hard
+
+"foundation-icons@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "foundation-icons@npm:2.0.0"
+  checksum: 10c0/1dec8974f711bb0c2cd832ac92f7031878c6b35f09ad4129f7de2c4a41a5c813d31312697026bb316cb0212bcd5a6241835155333952bea4ab7c0593a85cb81f
+  languageName: node
+  linkType: hard
+
+"foundation@npm:4.2.1-1":
+  version: 4.2.1-1
+  resolution: "foundation@npm:4.2.1-1"
+  dependencies:
+    stylus: "npm:~0.32.1"
+    stylus-type-utils: "npm:~0.0.3"
+  checksum: 10c0/89f8bf7e3f2f7a5d5763b9a758ea2d865876caa1a82c7b40b758591af00c01c309e4b126c31f50bb8be1cb819a6cc7e6317b13b04be58aa1a848f44be9ec73e9
   languageName: node
   linkType: hard
 
@@ -1186,6 +1215,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jquery-ui@npm:^1.14.2":
+  version: 1.14.2
+  resolution: "jquery-ui@npm:1.14.2"
+  dependencies:
+    jquery: "npm:>=1.12.0 <5.0.0"
+  checksum: 10c0/83b65744c4f4f2e9fa12833feb76c964f9565ef8301ef4e224e93e6c867e10a45d7da3e93bc7bcaec5227a61e09a2a6d1ce0198d9c38de08e4ada3d53a628615
+  languageName: node
+  linkType: hard
+
+"jquery-ujs@npm:^1.2.3":
+  version: 1.2.3
+  resolution: "jquery-ujs@npm:1.2.3"
+  peerDependencies:
+    jquery: ">=1.8.0"
+  checksum: 10c0/3ae70de58496e9df65c3939464ebc449648bdd8078bbf5b9df1f32536e9d7482337a2e1de79bc9e7511ee7c3ef04ed8d5228f9344c1f52673bc32f0a5bd0d90f
+  languageName: node
+  linkType: hard
+
+"jquery@npm:>=1.12.0 <5.0.0, jquery@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "jquery@npm:4.0.0"
+  checksum: 10c0/06d8d0f51121af5a691f8b59c74823157bb5b60eea915b30eaa920d6c0ffd91e60ba81e9b97bd8203f331f9dd8d0ec9a4b010935ea314bdd2f15453c29bc780b
+  languageName: node
+  linkType: hard
+
 "json-parse-even-better-errors@npm:^2.3.1":
   version: 2.3.1
   resolution: "json-parse-even-better-errors@npm:2.3.1"
@@ -1393,6 +1447,13 @@ __metadata:
   dependencies:
     minipass: "npm:^7.1.2"
   checksum: 10c0/5aad75ab0090b8266069c9aabe582c021ae53eb33c6c691054a13a45db3b4f91a7fb1bd79151e6b4e9e9a86727b522527c0a06ec7d45206b745d54cd3097bcec
+  languageName: node
+  linkType: hard
+
+"mkdirp@npm:0.3.x":
+  version: 0.3.5
+  resolution: "mkdirp@npm:0.3.5"
+  checksum: 10c0/73b9ea9e94ef3cb465d9846289131ed202a2a6402b62dc9a9425609514e5a1819ac1990406c58c55fc8fa73890d7bfdf4e3540f3b6aa2b9d32702374be7f4387
   languageName: node
   linkType: hard
 
@@ -1914,6 +1975,28 @@ __metadata:
   version: 1.1.2
   resolution: "strnum@npm:1.1.2"
   checksum: 10c0/a0fce2498fa3c64ce64a40dada41beb91cabe3caefa910e467dc0518ef2ebd7e4d10f8c2202a6104f1410254cae245066c0e94e2521fb4061a5cb41831952392
+  languageName: node
+  linkType: hard
+
+"stylus-type-utils@npm:~0.0.3":
+  version: 0.0.3
+  resolution: "stylus-type-utils@npm:0.0.3"
+  peerDependencies:
+    stylus: 0.x
+  checksum: 10c0/4f361dcafb543af98a5fa4d019a672315518472e4b4bf325ff818a39250f8b01996caab9d956c64b4bc20697c55382b87408d4cba3b275b678394e2a4098f79d
+  languageName: node
+  linkType: hard
+
+"stylus@npm:~0.32.1":
+  version: 0.32.1
+  resolution: "stylus@npm:0.32.1"
+  dependencies:
+    cssom: "npm:0.2.x"
+    debug: "npm:*"
+    mkdirp: "npm:0.3.x"
+  bin:
+    stylus: ./bin/stylus
+  checksum: 10c0/83a31f884436c6ebd23f071573f100faf44b898049bda5aeca4dd3aa6fbf659a194aa072fd79386945861ac6836479419c9dec91fc072d3631935c203f3428d7
   languageName: node
   linkType: hard
 

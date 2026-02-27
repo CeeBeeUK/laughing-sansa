@@ -18,10 +18,18 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
       // Add CSS/SASS/SCSS rule with loaders
       {
         test: /\.(?:sa|sc|c)ss$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif|ico|eot|woff2|woff|ttf|svg)$/i,
+        use: 'file-loader',
       },
     ],
   },
