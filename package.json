@@ -15,7 +15,6 @@
   "bugs": {
     "url": "https://github.com/CeeBeeUK/laughing-sansa/issues"
   },
-  "scripts": {},
   "dependencies": {
     "@rails/webpacker": "5.4.4",
     "is-svg": "^6.1.0",
@@ -33,5 +32,6 @@
     "hosted-git-info": "^2.8.9",
     "postcss": "^8.2.10",
     "glob-parent": "^5.1.2"
-  }
+  },
+  "packageManager": "yarn@4.12.0"
 }
