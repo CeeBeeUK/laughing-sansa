@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "css-loader": "^7.1.4",
+    "file-loader": "^6.2.0",
     "is-svg": "^6.1.0",
     "mini-css-extract-plugin": "^2.10.0",
     "postcss": "^8.5.6",
