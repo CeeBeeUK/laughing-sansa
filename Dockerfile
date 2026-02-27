@@ -59,8 +59,10 @@ RUN bundler -v && \
     rm -rf /usr/local/bundle/cache
 
 # install npm packages
+COPY .yarn ./.yarn
+COPY .yarnrc.yml ./
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile --check-files --ignore-scripts
+RUN yarn install --immutable
 
 ####################
 # DEPENDENCIES END #
