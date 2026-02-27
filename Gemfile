@@ -6,6 +6,8 @@ gem 'rails', '~> 8.0'
 gem 'sprockets'
 gem 'sprockets-rails'
 
+gem 'jsbundling-rails'
+
 gem 'puma'
 # Use postgresql as the database for Active Record
 gem 'pg'
