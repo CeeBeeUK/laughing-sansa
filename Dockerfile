@@ -59,8 +59,10 @@ RUN bundler -v && \
     rm -rf /usr/local/bundle/cache
 
 # install npm packages
+COPY .yarn ./.yarn
+COPY .yarnrc.yml ./
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile --check-files --ignore-scripts
+RUN yarn install --immutable
 
 ####################
 # DEPENDENCIES END #
@@ -69,7 +71,7 @@ ENV RAILS_ENV=production
 ENV NODE_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
 COPY . .
-RUN bundle exec rake webpacker:compile SECRET_KEY_BASE=a-real-secret-key-is-not-needed-here NODE_OPTIONS=--openssl-legacy-provider
+RUN bundle exec rake assets:precompile SECRET_KEY_BASE=a-real-secret-key-is-not-needed-here NODE_OPTIONS=--openssl-legacy-provider
 # tidy up installation
 RUN apk del build-dependencies
 # non-root/appuser should own only what they need to

@@ -6,6 +6,8 @@ gem 'rails', '~> 8.0'
 gem 'sprockets'
 gem 'sprockets-rails'
 
+gem 'jsbundling-rails'
+
 gem 'puma'
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -76,5 +78,4 @@ end
 # gem for heroku deployment
 gem 'rails_12factor', group: :production
 
-gem "webpacker", "~> 5.4"
 gem "tzinfo-data"
