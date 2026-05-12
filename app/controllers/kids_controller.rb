@@ -19,9 +19,14 @@ class KidsController < ApplicationController
 
   def create_score
     authorize! :manage, Event
-    eps = EventPlayerScore.find(params[:eps])
-    score = params[:event_player_score][:score]
-    redirect_to kids_scoring_event_path(eps.event) if eps.update!(score:)
+
+    load_players
+    act = ParticipatingCountry.find_by(event: @event, position: params[:act])
+    kids_event_player_scores(act).each do |eps|
+      score = params["[#{eps.id}]score"]
+      eps.update!(score:)
+    end
+    redirect_to kids_scoring_event_path(act.event.year)
   end
 
   def join_game
@@ -37,6 +42,11 @@ class KidsController < ApplicationController
   def load_players
     @event = Event.find_by(year: params[:year])
     @players = User.where(encrypted_password: '').order(:id)
+  end
+
+  def kids_event_player_scores(act)
+    event_players = EventPlayer.where(event: act.event, player_id: @players.pluck(:id))
+    EventPlayerScore.where(event_player: event_players, participating_country: act)
   end
 
   def sign_up_params

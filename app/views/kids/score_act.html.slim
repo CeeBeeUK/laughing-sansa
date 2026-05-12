@@ -14,12 +14,12 @@
         | #{@event.display_name} - Act #{@participating_country&.position} - #{@participating_country.country.name}
         =image_pack_tag @participating_country.country.large_image
 
-- @event_player_scores.each do |eps|
-  = form_for(eps, url: kids_scoring_create_score_path(eps), method: :patch, html: { autocomplete: 'off' }) do |f|
+= form_with(url: kids_scoring_create_score_path(year: @event.year), method: :patch, html: { autocomplete: 'off' }) do |f|
+  - @event_player_scores.each do |eps|
     .row
       .columns.small-2.medium-3.large-4
         h3 #{eps.event_player.player.name} score
       .columns.small-8.medium-6.large-4
-        = f.text_field :score
-      .columns.small-2.medium-3.large-4
-        .actions = f.submit class: 'button tiny radius', id: 'submit-button', value: 'Submit score'
+        = f.text_field :score, name: "[#{eps.id}]score", id: "#{eps.id}_score", value: eps.score
+  .columns.small-2.medium-3.large-4
+    .actions = f.submit class: 'button tiny radius', id: 'submit-button', value: 'Submit score'

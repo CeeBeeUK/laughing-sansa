@@ -37,11 +37,19 @@ RSpec.describe KidsController do
   end
   
   describe 'POST /kids/score/:eps' do
-    subject(:post_act_score) { get :create_score, params: { eps: eps, event_player_score: { score: 10 } } }
+    subject(:post_act_score) { post :create_score, params: }
 
-    let(:eps) { create(:event_player_score, event:, score: 2) }
+    let(:eps) { create(:event_player_score, participating_country: pc, event_player: ep, score: 2) }
+    let(:ep) { create(:event_player, event:) }
+    let(:pc) { create(:participating_country, position: 1, event:) }
     let(:event) { create(:event) }
     let(:admin) { create(:admin_user) }
+    let(:params) do
+      {
+        year: eps.event.year,
+        act: eps.participating_country.position,
+        "[#{eps.id}]score": 10 }
+    end
 
     before { sign_in admin }
 
@@ -55,6 +63,25 @@ RSpec.describe KidsController do
       post_act_score
       expect(response).to have_http_status(:redirect)
       expect(response).to redirect_to(kids_scoring_event_path(event))
+    end
+
+    context "when there are two players" do
+      let(:eps2) { create(:event_player_score, participating_country: pc, event_player: ep, score: 5) }
+      let(:params) do
+        {
+          year: eps.event.year,
+          act: eps.participating_country.position,
+          "[#{eps.id}]score": 10,
+          "[#{eps2.id}]score": 12 }
+      end
+
+      it "updates both records" do
+        expect(eps.score).to eql 2
+        expect(eps2.score).to eql 5
+        post_act_score
+        expect(eps.reload.score).to eql 10
+        expect(eps2.reload.score).to eql 12
+      end
     end
   end
 end
