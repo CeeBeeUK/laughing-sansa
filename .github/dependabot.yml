@@ -2,6 +2,8 @@ version: 2
 updates:
 - package-ecosystem: bundler
   directory: "/"
+  cooldown:
+    default-days: 7
   allow:
     - dependency-type: "all"
   schedule:
@@ -36,6 +38,8 @@ updates:
         - ">= 8.0.0"
 - package-ecosystem: npm
   directory: "/"
+  cooldown:
+    default-days: 7
   target-branch: main
   allow:
     - dependency-type: "all"
@@ -50,3 +54,22 @@ updates:
     node:
       patterns:
         - '*'
+- package-ecosystem: "github-actions"
+  directory: "/"
+  cooldown:
+    default-days: 7
+  schedule:
+    interval: weekly
+    day: thursday
+    time: "21:00"
+    timezone: Europe/London
+  groups:
+    ruby:
+      patterns:
+        - "ruby*"
+    actions:
+      patterns:
+        - "*"
+      exclude-patterns:
+        - "ruby*"
+  open-pull-requests-limit: 10
