@@ -173,7 +173,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (8.0.0)
       railties (>= 3.2.16)
-    json (2.21.1)
+    json (2.21.2)
     jwt (3.2.0)
       base64
     language_server-protocol (3.17.0.5)
@@ -584,7 +584,7 @@ CHECKSUMS
   jbuilder (2.15.1) sha256=2430bec28fb0cebacb5875b1009cf9d8bc3c303ccb810c4c8b062a4b51457637
   jquery-rails (4.6.1) sha256=619f3496cdcdeaae1fd6dafa52dbac3fc45b745d4e09712da4184a16b3a8d9c0
   jquery-ui-rails (8.0.0) sha256=e198f0ccd84587bc1030e79333db5fdb1100c8d459ed378ff285f57720f6b9c9
-  json (2.21.1) sha256=13a43df75d95641443f5702dff350f237164a9d811ff0f2c2800d4d980220583
+  json (2.21.2) sha256=1f1d3b7cf2b3ba1a69beca0bb6db13d5438b80bff3cd54cdaaa620b9b07c1c6a
   jwt (3.2.0) sha256=5419b1fe37b1da0982bd07051f573a8b8789ab724c2aa7e785e4784a3ed217d7
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
